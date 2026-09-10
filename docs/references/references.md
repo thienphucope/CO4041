@@ -4,9 +4,22 @@
 Trọng tâm GĐ1: **BMS** + **mô phỏng chia/sắp xếp tấm pin tránh bóng râm (shading)**
 
 > ⭐ = sát trọng tâm GĐ1, nên đọc/làm trước.
-> Xem thêm việc cần làm ở [`todo.md`](todo.md).
+> Xem thêm việc cần làm ở [`../plan/proposal.md`](../plan/proposal.md) · Q&A với thầy: [`../info/qa1.md`](../info/qa1.md).
 
 ---
+
+## 0. Tài liệu thầy cung cấp (⭐ bắt buộc đọc — file PDF trong thư mục này)
+
+> 📄 **Bản chắt lọc nội dung 3 PDF này:** [`refs-extract.md`](refs-extract.md) — đọc cái này trước để nắm ý chính nhanh.
+> 📂 **Bản extract thô (text + ảnh gốc):** [`extracted/`](extracted/) — mỗi PDF 1 folder, gồm file `.md` (toàn bộ text theo trang) + ảnh/hình trong bài.
+
+| Tài liệu | File | Dùng cho phần nào |
+|---|---|---|
+| ⭐ **A new model for a photovoltaic panel using Proteus** (under arbitrary environmental conditions) | `A new model for a photovoltaic panel using Proteus software tool under_arbitrary environmental conditions.pdf` | **Mô phỏng tấm pin (PV) trên Proteus** — công cụ thầy chốt. |
+| ⭐ **Hybrid battery management system using the Internet of Things** | `Hybrid battery management system using the internet of_things.pdf` | **BMS + IoT** — kiến trúc giám sát pin. |
+| ⭐ **Simulation of Reconfiguration System using MATLAB–Simulink** | `SIMULATION OF RECONFIGURATION SYSTEM USING MATLAB - SIMULINK ENVIRONMENT.pdf` | **PV array configuration / reconfiguration** — thuật toán sắp xếp dàn pin tránh shading. |
+
+> ⚠️ Ngoài 3 tài liệu trên, nhóm **phải tự tìm thêm** cho proposal (thầy yêu cầu). Xem các mục ⭐ bên dưới.
 
 ## 1. Đặc tính pin mặt trời + bóng râm (shading) — ⭐ ưu tiên
 | Nguồn | Link | Đọc cho phần nào |
@@ -15,7 +28,8 @@ Trọng tâm GĐ1: **BMS** + **mô phỏng chia/sắp xếp tấm pin tránh bó
 | **NREL** | nrel.gov | Tài liệu chuẩn về PV; có phần mềm **SAM (System Advisor Model)** miễn phí. |
 | **Bypass/Blocking diode app note** | Search "bypass diode application note" (Vishay / onsemi) | Vì sao chia/nhóm tấm pin giảm tổn hao khi bị che. |
 
-## 2. Công cụ mô phỏng shading — ⭐ chọn 1 để làm
+## 2. Công cụ mô phỏng — ⭐ Proteus là công cụ thầy chốt
+> Thầy yêu cầu **mô phỏng chức năng trên Proteus** (cả BMS lẫn tấm pin) trước khi làm phần cứng — xem ref mục 0.1. Các công cụ dưới đây để **tham khảo phần thuật toán reconfiguration / phân tích shading**, không thay Proteus.
 | Công cụ | Link | Ghi chú |
 |---|---|---|
 | ⭐ **MATLAB/Simulink – Simscape Electrical** | mathworks.com (search "Simulink partial shading PV array example") | Có block **PV Array** mô phỏng partial shading. Hay dùng trong báo cáo học thuật → dễ trích dẫn. |
@@ -63,4 +77,4 @@ Trọng tâm GĐ1: **BMS** + **mô phỏng chia/sắp xếp tấm pin tránh bó
 
 ---
 
-*Cập nhật lần cuối: 2026-08-27*
+*Cập nhật lần cuối: 2026-08-28 — thêm mục 0 (tài liệu thầy cung cấp), chốt công cụ Proteus.*
