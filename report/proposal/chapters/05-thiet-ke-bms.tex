@@ -1,0 +1,90 @@
+\section{Phương pháp thiết kế BMS 12~V trên Proteus}
+
+\subsection{Cấu hình dự kiến và giới hạn thiết kế}
+
+Nhóm khảo sát bộ pin LiFePO4 4S gồm bốn cell nối tiếp, điện áp danh định khoảng 12,8~V, đại diện cho hệ lưu trữ lớp 12~V. Dung lượng định hướng ban đầu khoảng 15~Ah và sẽ được xác định lại từ tải, thời gian sử dụng và ngân sách. \pending{chốt loại cell và dung lượng ở mốc M2}
+
+Phương án 4S cho phép khảo sát đầy đủ chức năng cân bằng cell. Nếu chuyển sang ắc-quy SLA nguyên khối, nhóm vẫn giữ bài mô phỏng nhiều cell để đáp ứng yêu cầu thiết kế cân bằng.
+
+Nhóm thiết kế schematic BMS trong Proteus, kiểm tra từng khối rồi ghép thành mô hình hoàn chỉnh. \pending{schematic Proteus của BMS}
+
+\subsection{Các khối chức năng và giao tiếp}
+
+Luồng xử lý:
+
+\begin{quote}
+Bộ pin $\rightarrow$ đo điện áp, dòng, nhiệt độ $\rightarrow$ bộ điều khiển $\rightarrow$ ước lượng SoC, kiểm tra lỗi và cân bằng cell $\rightarrow$ điều khiển ngắt sạc/xả, hiển thị và xuất dữ liệu.
+\end{quote}
+
+\begin{longtable}{@{}p{2.8cm} p{4.5cm} p{6.5cm}@{}}
+\toprule
+\textbf{Khối} & \textbf{Đầu vào} & \textbf{Chức năng và đầu ra} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Khối} & \textbf{Đầu vào} & \textbf{Chức năng và đầu ra} \\
+\midrule
+\endhead
+Mô hình bộ pin & Điều kiện ban đầu, nguồn sạc, tải & Điện áp các cell và dòng pack phục vụ kiểm thử \\
+Đo lường & Điện áp các nút, tín hiệu dòng và nhiệt độ & Giá trị điện áp cell/pack, dòng có dấu, nhiệt độ và cờ dữ liệu hợp lệ \\
+Ước lượng SoC & Dòng pack, khoảng lấy mẫu, dung lượng và SoC ban đầu & SoC ước lượng theo thời gian \\
+Cân bằng cell & Điện áp cell, chế độ vận hành, nhiệt độ & Lệnh cho nhánh xả cân bằng của từng cell \\
+Bảo vệ & Điện áp, dòng, nhiệt độ, lỗi cảm biến & Quyền cho phép sạc/xả và mã nguyên nhân ngắt \\
+Hiển thị/giao tiếp & Dữ liệu đo, SoC, trạng thái & LCD hoặc terminal trong Proteus; dữ liệu cho khối IoT khi tích hợp \\
+\bottomrule
+\caption{Các khối chức năng của BMS và giao tiếp giữa chúng.}
+\label{tab:bms-blocks}
+\end{longtable}
+
+MCU dùng trong mô phỏng được chọn theo thư viện và khả năng nạp chương trình của phiên bản Proteus sử dụng. \pending{chốt MCU và kiểm tra thư viện Proteus ở đầu M2}
+
+\subsection{Phương pháp đo lường}
+
+Với bốn cell nối tiếp, gọi \(U_i\) là điện áp nút thứ \(i\) so với cực âm chung, \(U_0=0\). Điện áp cell thứ \(i\) là:
+\[
+V_{\mathrm{cell},i}=U_i-U_{i-1}.
+\]
+
+Khi đọc các nút qua cầu phân áp, nhóm chọn tỷ lệ riêng cho từng kênh theo điện áp nút lớn nhất, sau đó quy đổi về \(U_i\) trước khi lấy hiệu. Dải ADC, sai số phân áp và độ phân giải được kiểm tra trước khi chọn ngưỡng cân bằng.
+
+Khối dòng phải phân biệt chiều sạc và xả; nhóm dùng mô hình cảm biến dòng hai chiều hoặc shunt kết hợp mạch điều hòa có điểm giữa phù hợp với ADC. Khối nhiệt độ dùng LM35 nếu có mô hình khả dụng, hoặc nguồn áp tương đương đặc tuyến cảm biến để kiểm thử chức năng.
+
+\subsection{Phương pháp ước lượng SoC}
+
+Nhóm kiểm thử thuật toán ở Mục~\ref{sec:soc} bằng dòng đầu vào có giá trị và thời gian xác định. SoC ban đầu được đặt trong cấu hình từng ca thử, không mặc định bằng 100\%. Trước tiên nhóm kiểm tra chiều biến thiên, đơn vị thời gian và sai số so với điện tích tính trực tiếp.
+
+Mô hình tụ điện chỉ minh họa quá trình sạc/xả, không cung cấp đường OCV--SoC của pin thật; do đó hiệu chỉnh OCV được triển khai sau khi xác định loại cell, bảng tra và điều kiện nghỉ. Kết quả ước lượng SoC của pack không thay thế cơ chế bảo vệ theo từng cell.
+
+\subsection{Phương pháp cân bằng cell}
+
+Nhóm dùng cân bằng thụ động: mỗi cell có nhánh điện trở nối tiếp phần tử đóng cắt, mắc song song với cell đó. Bộ điều khiển bật nhánh phù hợp khi điện áp cell vượt mức cho phép cân bằng và chênh lệch với cell thấp nhất vượt ngưỡng đặt. Điều kiện nhiệt độ, trạng thái lỗi và ngưỡng nhả được thêm để tránh đóng/cắt liên tục.
+
+Với mô hình lý tưởng, nhóm ước lượng dòng xả và công suất điện trở qua \(I_{\mathrm{bal}}\approx V_{\mathrm{cell}}/R_{\mathrm{bal}}\) và \(P_{\mathrm{bal}}\approx V_{\mathrm{cell}}^2/R_{\mathrm{bal}}\); giá trị cụ thể tính sau khi chọn dòng cân bằng. Trong Proteus, bước đầu dùng công tắc điều khiển lý tưởng; khi thay bằng MOSFET, nhóm thiết kế mạch kích theo điện thế của từng cell.
+
+\subsection{Phương pháp bảo vệ và điều phối trạng thái}
+
+\begin{longtable}{@{}p{3.6cm} p{5.0cm} p{5.3cm}@{}}
+\toprule
+\textbf{Chức năng} & \textbf{Đại lượng kiểm tra} & \textbf{Phản ứng} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Chức năng} & \textbf{Đại lượng kiểm tra} & \textbf{Phản ứng} \\
+\midrule
+\endhead
+Quá áp cell (OV) & Điện áp cell lớn nhất & Ngắt quyền sạc; chỉ cho phép hoạt động khác nếu các điều kiện tương ứng vẫn hợp lệ \\
+Thấp áp cell (UV) & Điện áp cell nhỏ nhất & Ngắt quyền xả \\
+Quá dòng sạc/xả (OC) & Dòng pack có dấu và giới hạn theo từng chiều & Ngắt đường liên quan; ghi nhận nguyên nhân \\
+Ngắn mạch (SC) & Điều kiện dòng sự cố trong mô hình & Ngắt đầu ra; khóa khôi phục cho đến khi lỗi được xử lý \\
+Nhiệt độ ngoài giới hạn & Nhiệt độ và chế độ sạc/xả & Ngắt các đường không được phép; dừng cân bằng \\
+Lỗi đo lường & Tín hiệu ngoài dải hoặc không hợp lệ & Chuyển sang trạng thái khóa sạc/xả \\
+\bottomrule
+\caption{Các chức năng bảo vệ và phản ứng của BMS.}
+\label{tab:protection}
+\end{longtable}
+
+Nhóm định nghĩa các trạng thái khởi tạo, chờ, sạc, xả và lỗi. Sau khởi tạo, hệ thống chỉ cấp quyền sạc/xả khi dữ liệu đầu vào hợp lệ. Quyết định bảo vệ có ưu tiên cao hơn lệnh vận hành, cân bằng và lệnh IoT.
+
+Trong mô hình chức năng, nhóm tách ca sạc và ca xả để kiểm tra logic. Khi tích hợp microgrid, tải có thể nhận năng lượng trực tiếp từ PV trong lúc pin nhận phần công suất dư; vì vậy không áp dụng quy tắc ``đang sạc thì cấm toàn bộ tải'' như một yêu cầu chung.
+
+Các tham số ngưỡng tác động, ngưỡng khôi phục, thời gian xác nhận lỗi và chế độ tự phục hồi/khóa lỗi được chọn từ datasheet và yêu cầu vận hành, ghi thành bảng cấu hình dùng chung giữa mô hình và hồ sơ kiểm thử. \pending{bảng ngưỡng bảo vệ theo datasheet của pin được chọn} Bảo vệ ngắn mạch của phần cứng được đánh giá riêng ở mốc thực nghiệm vì mô phỏng logic MCU không phản ánh tốc độ cắt và khả năng chịu dòng của mạch thật.

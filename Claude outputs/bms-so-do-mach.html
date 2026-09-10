@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sơ đồ hệ thống microgrid</title>
+<style>
+  :root{
+    --bg:#0e1116; --panel:#161b22; --panel2:#1c232d; --line:#2b3440;
+    --tx:#e6edf3; --mut:#93a1b0; --acc:#39d0d8; --ok:#3fb950; --warn:#e3b341;
+    --bad:#f85149; --charge:#58a6ff; --dis:#e3a13a; --bal:#bc8cff; --wire:#46525f;
+    --sun:#f0c23c; --shade:#3a4450;
+    --r1:#39d0d8; --r2:#58a6ff; --r3:#bc8cff;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:"SF Mono",ui-monospace,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--font);padding:18px;line-height:1.5}
+  h1{font-size:20px;margin:0 0 2px}
+  .sub{color:var(--mut);font-size:13px;margin:0 0 14px;max-width:82ch}
+  .wrap{max-width:1240px;margin:0 auto}
+  .btns{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;align-items:center}
+  .grp{display:flex;gap:6px;flex-wrap:wrap;align-items:center;background:var(--panel);
+    border:1px solid var(--line);border-radius:10px;padding:6px 9px}
+  .grp .lb{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;margin-right:2px}
+  button{background:var(--panel2);color:var(--tx);border:1px solid var(--line);border-radius:8px;
+    padding:6px 10px;font-size:12px;cursor:pointer;font-family:var(--font)}
+  button:hover{border-color:var(--acc)}
+  button.on{background:var(--acc);color:#04222a;border-color:var(--acc);font-weight:700}
+  button.md.on{background:var(--ok);color:#052a0e;border-color:var(--ok)}
+  button.flt.on{background:var(--bad);color:#2a0606;border-color:var(--bad)}
+  button.bl.on,button.rc.on{background:var(--bal);color:#210a33;border-color:var(--bal)}
+  .stage{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px;overflow-x:auto}
+  svg{display:block;min-width:1120px;width:100%;height:auto}
+  .log{font-family:var(--mono);font-size:12.5px;background:#0c1117;border:1px solid var(--line);
+    border-radius:9px;padding:10px 12px;margin-top:10px;min-height:38px}
+  .log .g{color:var(--ok)} .log .f{color:var(--bad)} .log .a{color:var(--acc)} .log .b{color:var(--bal)} .log .y{color:var(--warn)}
+  .cap{color:var(--mut);font-size:11.5px;margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+  .cap b{color:var(--tx)}
+  .hint{font-size:11px;color:var(--mut);margin:-6px 0 12px}
+  /* svg classes */
+  .wire{stroke:var(--wire);stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .cur{stroke-width:4;fill:none;stroke-linecap:round;stroke-dasharray:2 13;opacity:0;transition:opacity .15s}
+  .cur.on{opacity:1;animation:flow .8s linear infinite}
+  .cur.rev.on{animation:flowr .8s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-15}}
+  @keyframes flowr{to{stroke-dashoffset:15}}
+  .sense{stroke:#37506a;stroke-width:1.4;fill:none;stroke-dasharray:1 4}
+  .gate{stroke:#5a4a73;stroke-width:1.6;fill:none;stroke-dasharray:5 4}
+  .lab{font-size:12px;fill:var(--tx)} .lab.s{font-size:10px;fill:var(--mut)}
+  .blk{fill:var(--panel2);stroke:var(--line);stroke-width:1.4}
+  .blk.hl{stroke:var(--acc)}
+  .node{fill:var(--acc)}
+  .mod rect{stroke-width:1.6}
+  .fet rect{fill:var(--panel2);stroke-width:2}
+  .cell{fill:var(--panel2);stroke:var(--line);stroke-width:1.4}
+  .balbox{fill:none;stroke:var(--wire);stroke-width:1.5}
+  .balon .balbox{stroke:var(--bal)}
+  .balon .balglow{opacity:1}.balglow{opacity:0}
+  .zoneln{stroke:#39506a;stroke-width:1.2;stroke-dasharray:3 4;fill:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Sơ đồ hệ thống microgrid — PV (cấu hình lại) + BMS</h1>
+  <p class="sub">Một hệ thống nhìn tổng quan: <b>dàn PV</b> → <b>bộ điều khiển sạc</b> → <b>bus DC</b> → <b>pin 4S + BMS</b> → <b>inverter/tải</b>, kèm <b>IoT</b>. Băng trên là dòng chảy tổng thể; hai vùng dưới phóng to chi tiết PV (cấu hình lại dàn pin khi bị che) và mạch BMS. Thử các nút để xem hệ phản ứng.</p>
+
+  <div class="btns">
+    <div class="grp"><span class="lb">PV che bóng</span>
+      <button class="sh on" data-sh="none">Không che</button>
+      <button class="sh" data-sh="row">Che 1 hàng</button>
+      <button class="sh" data-sh="col">Che 1 cột</button>
+      <button class="sh" data-sh="rand">Loang lổ</button>
+      <button class="rc" id="rc">⚙ Cấu hình lại (DES)</button>
+    </div>
+  </div>
+  <div class="btns">
+    <div class="grp"><span class="lb">BMS chế độ</span>
+      <button class="md" data-md="rest">Nghỉ</button>
+      <button class="md" data-md="charge">Sạc</button>
+      <button class="md" data-md="discharge">Xả</button>
+    </div>
+    <div class="grp"><span class="lb">Sự cố</span>
+      <button class="flt" data-f="ov">Quá áp</button>
+      <button class="flt" data-f="uv">Thấp áp</button>
+      <button class="flt" data-f="sc">Ngắn mạch</button>
+      <button class="flt" data-f="temp">Quá nhiệt</button>
+      <button class="flt" data-f="meas">Kẹt cảm biến</button>
+    </div>
+    <div class="grp">
+      <button class="bl" id="bal">Cân bằng cell</button>
+      <button id="reset">↺ Reset</button>
+    </div>
+  </div>
+  <div class="hint">Màn hẹp: cuộn ngang trong khung để xem hết sơ đồ.</div>
+
+  <div class="stage">
+    <svg viewBox="0 0 1160 700" role="img" aria-label="Sơ đồ hệ thống microgrid">
+      <!-- ================= TOP RIBBON: system overview ================= -->
+      <g>
+        <text class="lab s" x="20" y="34" fill="var(--acc)">TỔNG QUAN HỆ THỐNG</text>
+        <!-- blocks -->
+        <rect id="rbPV"   class="blk hl" x="20"  y="46" width="120" height="52" rx="8"/>
+        <rect id="rbCC"   class="blk"    x="210" y="46" width="120" height="52" rx="8"/>
+        <rect id="rbBus"  class="blk"    x="400" y="46" width="70"  height="52" rx="8"/>
+        <rect id="rbBMS"  class="blk hl" x="540" y="46" width="130" height="52" rx="8"/>
+        <rect id="rbInv"  class="blk"    x="740" y="46" width="110" height="52" rx="8"/>
+        <rect id="rbLoad" class="blk"    x="920" y="46" width="110" height="52" rx="8"/>
+        <rect id="rbIoT"  class="blk"    x="540" y="120" width="130" height="40" rx="8"/>
+        <text class="lab" x="80"  y="70" text-anchor="middle">Dàn PV</text>
+        <text class="lab s" x="80" y="86" text-anchor="middle">3×3 module</text>
+        <text class="lab" x="270" y="70" text-anchor="middle">ĐK sạc</text>
+        <text class="lab s" x="270" y="86" text-anchor="middle">MPPT/PWM</text>
+        <text class="lab" x="435" y="70" text-anchor="middle">Bus</text>
+        <text class="lab s" x="435" y="86" text-anchor="middle">DC</text>
+        <text class="lab" x="605" y="70" text-anchor="middle">Pin 4S + BMS</text>
+        <text class="lab s" x="605" y="86" text-anchor="middle">lưu trữ + bảo vệ</text>
+        <text class="lab" x="795" y="70" text-anchor="middle">Inverter</text>
+        <text class="lab s" x="795" y="86" text-anchor="middle">DC→AC</text>
+        <text class="lab" x="975" y="70" text-anchor="middle">Tải</text>
+        <text class="lab s" x="975" y="86" text-anchor="middle">DC/AC</text>
+        <text class="lab" x="605" y="145" text-anchor="middle">IoT / Cloud</text>
+        <!-- ribbon wires -->
+        <path class="wire" d="M140 72 H210"/>
+        <path class="wire" d="M330 72 H400"/>
+        <path class="wire" d="M470 72 H540"/>
+        <path class="wire" d="M670 72 H740"/>
+        <path class="wire" d="M850 72 H920"/>
+        <path class="wire" d="M605 98 V120"/>
+        <!-- ribbon current overlay (PV feeding system) -->
+        <path id="rbCur" class="cur" d="M140 72 H210 M330 72 H400 M470 72 H540 M670 72 H740 M850 72 H920" stroke="var(--ok)"/>
+        <!-- zoom connectors to detail zones -->
+        <path class="zoneln" d="M80 98 V178"/>
+        <path class="zoneln" d="M700 98 V178"/>
+      </g>
+
+      <!-- ================= DETAIL LEFT: PV array + reconfiguration ================= -->
+      <g>
+        <text class="lab s" x="20" y="196" fill="var(--r1)">CHI TIẾT · DÀN PV + CẤU HÌNH LẠI (DES)</text>
+        <!-- 3x3 grid -->
+        <g id="grid"></g>
+        <text class="lab s" x="60" y="410" fill="var(--mut)">Module sáng = nhận đủ nắng · module tối = bị che (bức xạ thấp)</text>
+        <text class="lab s" x="60" y="426" fill="var(--mut)">Nhãn R1/R2/R3 = module thuộc HÀNG ĐIỆN nào (DES đổi được, không cần di dời)</text>
+
+        <!-- row-sum panel -->
+        <rect class="blk" x="360" y="212" width="200" height="150" rx="8"/>
+        <text class="lab s" x="372" y="232">Tổng bức xạ mỗi hàng (Gi)</text>
+        <g id="rowsum"></g>
+        <line x1="372" y1="316" x2="548" y2="316" stroke="var(--line)"/>
+        <text class="lab" x="372" y="336" id="eiTx">EI = –</text>
+        <text class="lab" x="372" y="356" id="pTx">Công suất ≈ –</text>
+        <text class="lab s" x="360" y="392" fill="var(--bal)">DES = ma trận chuyển mạch đổi module thuộc hàng nào →</text>
+        <text class="lab s" x="360" y="406" fill="var(--bal)">trải đều module bị che ra 3 hàng → EI giảm → công suất tăng.</text>
+      </g>
+
+      <!-- ================= DETAIL RIGHT: BMS schematic ================= -->
+      <g>
+        <text class="lab s" x="600" y="196" fill="var(--acc)">CHI TIẾT · MẠCH BMS (PIN 4S)</text>
+        <!-- external loop wires -->
+        <rect class="blk" x="1040" y="300" width="96" height="60" rx="8"/>
+        <text class="lab s" x="1088" y="326" text-anchor="middle">ra Bus DC</text>
+        <text class="lab s" x="1088" y="342" text-anchor="middle">/ Tải</text>
+        <path class="wire" d="M700 250 V225 H1088 V300"/>
+        <path class="wire" d="M1088 360 V470 H700 V439"/>
+        <path id="bmsCur" class="cur" d="M700 250 V225 H1088 V470 H700 V439" stroke="var(--dis)"/>
+        <!-- cells -->
+        <g>
+          <rect class="cell" x="640" y="250" width="120" height="45" rx="5"/>
+          <rect class="cell" x="640" y="298" width="120" height="45" rx="5"/>
+          <rect class="cell" x="640" y="346" width="120" height="45" rx="5"/>
+          <rect class="cell" x="640" y="394" width="120" height="45" rx="5"/>
+          <text class="lab s" x="652" y="277">Cell 4</text><text class="lab s" x="652" y="325">Cell 3</text>
+          <text class="lab s" x="652" y="373">Cell 2</text><text class="lab s" x="652" y="421">Cell 1</text>
+          <text class="lab s" x="700" y="228" text-anchor="middle">B+</text>
+          <text class="lab s" x="700" y="452" text-anchor="middle">B−</text>
+          <circle class="node" cx="700" cy="250" r="3"/><circle class="node" cx="700" cy="439" r="3"/>
+        </g>
+        <!-- balancing branches -->
+        <g id="bg0" class="balgrp"><path class="balbox" d="M760 262 L784 262 M784 254 L784 290 M784 282 L760 282"/><rect class="balbox" x="777" y="264" width="14" height="14"/><text class="balglow lab s" x="796" y="276" fill="var(--bal)">↯</text></g>
+        <g id="bg1" class="balgrp"><path class="balbox" d="M760 310 L784 310 M784 302 L784 338 M784 330 L760 330"/><rect class="balbox" x="777" y="312" width="14" height="14"/><text class="balglow lab s" x="796" y="324" fill="var(--bal)">↯</text></g>
+        <g id="bg2" class="balgrp"><path class="balbox" d="M760 358 L784 358 M784 350 L784 386 M784 378 L760 378"/><rect class="balbox" x="777" y="360" width="14" height="14"/><text class="balglow lab s" x="796" y="372" fill="var(--bal)">↯</text></g>
+        <g id="bg3" class="balgrp"><path class="balbox" d="M760 406 L784 406 M784 398 L784 434 M784 426 L760 426"/><rect class="balbox" x="777" y="408" width="14" height="14"/><text class="balglow lab s" x="796" y="420" fill="var(--bal)">↯</text></g>
+        <text class="lab s" x="800" y="350" fill="var(--bal)">R cân bằng</text>
+        <text class="lab s" x="800" y="364" fill="var(--bal)">(mỗi cell)</text>
+
+        <!-- MOSFETs + shunt trên đường âm (rail y=470) -->
+        <g class="fet" id="fetDSG"><rect x="715" y="450" width="54" height="40" rx="6"/><text class="lab s" x="742" y="466" text-anchor="middle" fill="var(--mut)">MOSFET</text><text class="lab s" x="742" y="480" text-anchor="middle" id="dsgTx">DSG (xả)</text></g>
+        <g class="fet" id="fetCHG"><rect x="785" y="450" width="54" height="40" rx="6"/><text class="lab s" x="812" y="466" text-anchor="middle" fill="var(--mut)">MOSFET</text><text class="lab s" x="812" y="480" text-anchor="middle" id="chgTx">CHG (sạc)</text></g>
+        <rect x="857" y="458" width="46" height="24" rx="4" fill="var(--panel2)" stroke="var(--warn)" stroke-width="1.6"/>
+        <text class="lab s" x="880" y="474" text-anchor="middle" fill="var(--warn)">shunt</text>
+        <g id="xDSG" opacity="0"><line x1="721" y1="456" x2="763" y2="484" stroke="var(--bad)" stroke-width="3"/><line x1="763" y1="456" x2="721" y2="484" stroke="var(--bad)" stroke-width="3"/></g>
+        <g id="xCHG" opacity="0"><line x1="791" y1="456" x2="833" y2="484" stroke="var(--bad)" stroke-width="3"/><line x1="833" y1="456" x2="791" y2="484" stroke="var(--bad)" stroke-width="3"/></g>
+
+        <!-- MCU -->
+        <rect x="640" y="512" width="250" height="86" rx="10" fill="#141d28" stroke="var(--acc)" stroke-width="1.5"/>
+        <text class="lab" x="765" y="534" text-anchor="middle" font-weight="700">MCU</text>
+        <text class="lab s" x="765" y="552" text-anchor="middle">đọc áp cell / dòng (shunt) / nhiệt</text>
+        <text class="lab s" x="765" y="568" text-anchor="middle">tính SoC, so ngưỡng</text>
+        <text class="lab s" x="765" y="584" text-anchor="middle">điều khiển cổng MOSFET</text>
+        <!-- sense + gate -->
+        <path class="sense" d="M700 273 L640 516"/>
+        <path class="sense" d="M700 369 L648 516"/>
+        <path class="sense" d="M880 482 L845 512"/>
+        <path class="gate" d="M742 512 V490"/>
+        <path class="gate" d="M812 512 V490"/>
+        <text class="lab s" x="905" y="505" fill="#8a76a8">lệnh cổng</text>
+        <!-- LM35 -->
+        <rect x="548" y="470" width="66" height="28" rx="6" fill="var(--panel2)" stroke="var(--ok)" stroke-width="1.4"/>
+        <text class="lab s" x="581" y="488" text-anchor="middle" fill="var(--ok)">LM35</text>
+        <path class="sense" d="M614 484 L640 528"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="log" id="log">Chọn kiểu che bóng rồi bấm <span class="b">Cấu hình lại</span> để xem EI giảm và công suất tăng. Bên phải: chọn chế độ BMS.</div>
+
+  <div class="cap">
+    <b>PV + cấu hình lại (điểm "tối ưu" của đề tài):</b> dàn 3×3 nối kiểu TCT (module cùng hàng song song, các hàng nối tiếp). Khi bị che, các hàng lệch bức xạ (EI lớn) → dàn mất công suất. <b style="color:var(--bal)">DES</b> đổi module thuộc hàng điện nào để <b>trải đều phần bị che</b> ra 3 hàng → EI nhỏ lại → lấy lại công suất, <b>không thêm tấm pin nào</b>.<br>
+    <b>BMS:</b> 2 MOSFET (DSG/CHG) trên đường âm đóng/cắt xả–sạc; shunt đo dòng; mỗi cell có điện trở cân bằng; MCU đọc cảm biến rồi khóa cổng khi có lỗi (✕ đỏ = cắt).<br>
+    <span style="color:var(--mut)">Sơ đồ nguyên lý minh họa — mô hình bức xạ/công suất và ngưỡng chỉ mang tính tượng trưng để hiểu cơ chế, khớp Mục 5 & 7 của báo cáo.</span>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var R=['var(--r1)','var(--r2)','var(--r3)'];
+  // ---- PV state: 9 modules ----
+  var mods, reconf=false, shade='none';
+  function initMods(){
+    mods=[]; for(var i=0;i<9;i++) mods.push({g:1, er:Math.floor(i/3)});
+    applyShade();
+  }
+  function applyShade(){
+    for(var i=0;i<9;i++) mods[i].g=1;
+    if(shade==='row'){ [6,7,8].forEach(function(i){mods[i].g=0.4;}); }
+    else if(shade==='col'){ [0,3,6].forEach(function(i){mods[i].g=0.4;}); }
+    else if(shade==='rand'){ [0,4,5,7].forEach(function(i){mods[i].g=0.4;}); }
+    assignRows();
+  }
+  function assignRows(){
+    if(!reconf){ for(var i=0;i<9;i++) mods[i].er=Math.floor(i/3); return; }
+    // DP-SC (đơn giản): xếp module theo g giảm dần, chia snake vào 3 hàng để cân tổng
+    var idx=mods.map(function(m,i){return i;}).sort(function(a,b){return mods[b].g-mods[a].g;});
+    var order=[0,1,2,2,1,0,0,1,2]; // snake, mỗi hàng 3 module
+    idx.forEach(function(mi,k){ mods[mi].er=order[k]; });
+  }
+  function rowSums(){var G=[0,0,0]; mods.forEach(function(m){G[m.er]+=m.g;}); return G;}
+
+  // ---- BMS state ----
+  var mode='rest', F={ov:false,uv:false,sc:false,temp:false,meas:false}, balancing=false;
+
+  // ---- build PV grid DOM ----
+  var SVGNS='http://www.w3.org/2000/svg';
+  function el(t,a){var e=document.createElementNS(SVGNS,t);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  var grid=document.getElementById('grid'), rowsum=document.getElementById('rowsum');
+  function buildGrid(){
+    grid.innerHTML='';
+    for(var i=0;i<9;i++){
+      var x=60+(i%3)*96, y=220+Math.floor(i/3)*56;
+      var g=el('g',{'class':'mod','data-i':i});
+      var rc=el('rect',{x:x,y:y,width:80,height:48,rx:5,fill:'var(--panel2)',stroke:'var(--wire)'});
+      g.appendChild(rc);
+      var sun=el('circle',{cx:x+15,cy:y+15,r:6});
+      g.appendChild(sun);
+      var badge=el('text',{x:x+70,y:y+16,'text-anchor':'end','class':'lab s'});
+      g.appendChild(badge);
+      var pv=el('text',{x:x+40,y:y+40,'text-anchor':'middle','class':'lab s'});
+      g.appendChild(pv);
+      grid.appendChild(g);
+    }
+  }
+  function renderGrid(){
+    var G=rowSums();
+    document.querySelectorAll('#grid .mod').forEach(function(g){
+      var i=+g.getAttribute('data-i'), m=mods[i];
+      var rc=g.querySelector('rect'), sun=g.querySelector('circle');
+      var t=g.querySelectorAll('text'), badge=t[0], pv=t[1];
+      rc.setAttribute('stroke', R[m.er]);
+      rc.setAttribute('fill', m.g<1?'#141a20':'#1e2733');
+      sun.setAttribute('fill', m.g<1?'var(--shade)':'var(--sun)');
+      badge.textContent='R'+(m.er+1); badge.setAttribute('fill',R[m.er]);
+      pv.textContent=(m.g<1?'che':'nắng'); pv.setAttribute('fill',m.g<1?'var(--mut)':'var(--sun)');
+    });
+    // row sums panel
+    rowsum.innerHTML='';
+    for(var r=0;r<3;r++){
+      var y=252+r*20;
+      var t=el('text',{x:372,y:y,'class':'lab'}); t.setAttribute('fill',R[r]);
+      t.textContent='Hàng R'+(r+1)+':  G'+(r+1)+' = '+G[r].toFixed(1);
+      rowsum.appendChild(t);
+    }
+    var EI=Math.max.apply(null,G)-Math.min.apply(null,G);
+    var S=G[0]+G[1]+G[2];
+    var Pact=Math.max(0,S-0.9*EI), Ppct=Math.round(Pact/S*100);
+    document.getElementById('eiTx').textContent='EI = '+EI.toFixed(1)+' (chênh lệch hàng)';
+    document.getElementById('eiTx').setAttribute('fill', EI<0.3?'var(--ok)':(EI<1.2?'var(--warn)':'var(--bad)'));
+    document.getElementById('pTx').textContent='Công suất ≈ '+Ppct+'% mức lý tưởng';
+    document.getElementById('pTx').setAttribute('fill', Ppct>95?'var(--ok)':(Ppct>80?'var(--warn)':'var(--bad)'));
+    return {EI:EI,Ppct:Ppct,S:S};
+  }
+
+  // ---- BMS render (reuse) ----
+  function setFet(id,txId,ok){
+    document.getElementById(id).querySelector('rect').setAttribute('stroke',ok?'var(--ok)':'var(--bad)');
+    document.getElementById(txId).setAttribute('fill',ok?'var(--ok)':'var(--bad)');
+    document.getElementById('x'+id.slice(3)).setAttribute('opacity',ok?0:1);
+  }
+  function renderBMS(){
+    var chargeOK=!F.ov&&!F.sc&&!F.temp&&!F.meas, dischOK=!F.uv&&!F.sc&&!F.temp&&!F.meas;
+    setFet('fetDSG','dsgTx',dischOK); setFet('fetCHG','chgTx',chargeOK);
+    var conducting=(mode==='discharge'&&dischOK)||(mode==='charge'&&chargeOK);
+    var c=document.getElementById('bmsCur');
+    c.classList.toggle('on',conducting); c.classList.toggle('rev',mode==='charge');
+    c.setAttribute('stroke', mode==='charge'?'var(--charge)':'var(--dis)');
+    var balActive=balancing&&!F.sc&&!F.temp&&!F.meas, act=[balActive,false,balActive,false];
+    ['bg0','bg1','bg2','bg3'].forEach(function(id,i){document.getElementById(id).classList.toggle('balon',act[i]);});
+    return {conducting:conducting,chargeOK:chargeOK,dischOK:dischOK};
+  }
+
+  // ---- ribbon flow (PV feeding system) ----
+  function renderRibbon(pv){
+    document.getElementById('rbCur').classList.toggle('on', pv.Ppct>0);
+  }
+
+  function renderAll(){
+    var pv=renderGrid();
+    var bms=renderBMS();
+    renderRibbon(pv);
+    // log
+    var faults=[];
+    if(F.meas)faults.push('KẸT CẢM BIẾN → khóa 2 MOSFET');
+    if(F.sc)faults.push('NGẮN MẠCH → cắt &amp; chốt khóa');
+    if(F.temp)faults.push('QUÁ NHIỆT → cắt sạc/xả');
+    if(F.ov)faults.push('QUÁ ÁP → khóa MOSFET SẠC');
+    if(F.uv)faults.push('THẤP ÁP → khóa MOSFET XẢ');
+    var L=document.getElementById('log'), parts=[];
+    // PV part
+    if(pv.EI<0.05) parts.push('<span class="g">PV: các hàng cân bằng (EI=0) → công suất ~'+pv.Ppct+'%.</span>');
+    else if(reconf) parts.push('<span class="b">PV: đã cấu hình lại</span> → EI giảm còn '+pv.EI.toFixed(1)+', công suất ~'+pv.Ppct+'%.');
+    else parts.push('<span class="y">PV: bị che, các hàng lệch (EI='+pv.EI.toFixed(1)+') → chỉ ~'+pv.Ppct+'%. Bấm "Cấu hình lại".</span>');
+    // BMS part
+    if(faults.length) parts.push('<span class="f">BMS: '+faults.join(' · ')+'.</span>');
+    else if(mode==='discharge') parts.push('<span class="a">BMS: đang xả</span> (DSG dẫn).');
+    else if(mode==='charge') parts.push('<span class="a">BMS: đang sạc</span> (CHG dẫn).');
+    else parts.push('<span class="g">BMS: nghỉ</span>, 2 MOSFET sẵn sàng.');
+    L.innerHTML=parts.join('&nbsp; | &nbsp;');
+  }
+
+  // ---- wiring ----
+  document.querySelectorAll('.sh').forEach(function(b){
+    b.onclick=function(){shade=b.getAttribute('data-sh');
+      document.querySelectorAll('.sh').forEach(function(x){x.classList.toggle('on',x===b);});
+      applyShade(); renderAll();};
+  });
+  document.getElementById('rc').onclick=function(){
+    reconf=!reconf; this.classList.toggle('on',reconf); assignRows(); renderAll();
+  };
+  document.querySelectorAll('.md').forEach(function(b){
+    b.onclick=function(){mode=b.getAttribute('data-md');
+      document.querySelectorAll('.md').forEach(function(x){x.classList.toggle('on',x===b);}); renderAll();};
+  });
+  document.querySelectorAll('.flt').forEach(function(b){
+    b.onclick=function(){var k=b.getAttribute('data-f');F[k]=!F[k];b.classList.toggle('on',F[k]);renderAll();};
+  });
+  document.getElementById('bal').onclick=function(){balancing=!balancing;this.classList.toggle('on',balancing);renderAll();};
+  document.getElementById('reset').onclick=function(){
+    mode='rest';for(var k in F)F[k]=false;balancing=false;reconf=false;shade='none';
+    document.querySelectorAll('.md,.flt,.bl,.rc').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('.sh').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-sh')==='none');});
+    applyShade(); renderAll();
+  };
+
+  buildGrid(); initMods(); renderAll();
+})();
+</script>
+</body>
+</html>

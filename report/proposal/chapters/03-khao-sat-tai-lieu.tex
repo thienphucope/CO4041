@@ -1,0 +1,32 @@
+\section{Khảo sát tài liệu và hướng tiếp cận}
+
+\subsection{Ba tài liệu do giảng viên cung cấp}
+
+\begin{longtable}{@{}p{3.2cm} p{5.5cm} p{5.3cm}@{}}
+\toprule
+\textbf{Tài liệu} & \textbf{Nội dung chính} & \textbf{Cách sử dụng trong đề tài} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Tài liệu} & \textbf{Nội dung chính} & \textbf{Cách sử dụng trong đề tài} \\
+\midrule
+\endhead
+Yaqoob và cộng sự \cite{yaqoob} & Mô hình một diode cho PV; các khối phương trình trong Proteus; khảo sát bức xạ và nhiệt độ; đối chiếu SM55 và KC200GT & Cơ sở xây dựng mô hình PV trên Proteus, chọn bộ tham số tham khảo và cách kiểm tra I--V/P--V \\
+Kulkarni và cộng sự \cite{kulkarni} & BMS kết hợp nguồn lai, đo điện áp và nhiệt độ; mô phỏng trước phần cứng; truyền dữ liệu qua bộ điều khiển, ESP32 và ThingSpeak & Tham khảo kiến trúc đo lường, bảo vệ và giám sát IoT \\
+Ngô Ngọc Thành và Nguyễn Phùng Quang \cite{thanh} & Cấu hình TCT, ma trận chuyển mạch DES, chỉ số cân bằng bức xạ và thuật toán lai DP--SC & Cơ sở lý thuyết của PV array configuration và giới hạn áp dụng \\
+\bottomrule
+\caption{Ba tài liệu do giảng viên cung cấp và cách sử dụng.}
+\label{tab:three-refs}
+\end{longtable}
+
+Nghiên cứu \cite{yaqoob} cung cấp mô hình tấm pin trong các điều kiện môi trường, làm nền cho phần mô phỏng PV của nhóm. Nghiên cứu \cite{kulkarni} cung cấp kiến trúc đo lường và giám sát tham chiếu; nhóm bổ sung phương pháp SoC và thiết kế cân bằng phù hợp với bộ pin dự kiến. Nghiên cứu \cite{thanh} dùng MATLAB--Simulink và được nhóm khai thác cho phần lý thuyết cấu hình dàn pin.
+
+\subsection{Tài liệu bổ sung}
+
+Ngoài ba tài liệu trên, nhóm tham khảo thêm nguồn PVPMC của Sandia/NIST về mô hình một diode \cite{pvpmc}, tài liệu TI về phương pháp ước lượng dung lượng \cite{tigauge}, cân bằng cell \cite{tibalance} và datasheet LM35 \cite{lm35}. Các nguồn này phục vụ kiểm tra công thức và lựa chọn phương pháp; việc tham khảo tài liệu về một IC không đồng nghĩa với việc đã chọn IC đó cho phần cứng.
+
+\subsection{Hướng tiếp cận của nhóm}
+
+Nhóm phát triển hệ thống theo từng khối và kiểm thử trước khi tích hợp. Với BMS, hướng thiết kế là đo dòng để tính SoC, giám sát nhiệt độ, cân bằng thụ động và điều khiển ngắt sạc/xả. Với PV, nhóm tái dựng mô hình tham khảo trên Proteus trước, sau đó thay bằng thông số tấm pin thực tế.
+
+Với IoT, nhóm xây dựng cả luồng giám sát và lệnh điều khiển tải, có kiểm tra điều kiện tại bộ điều khiển. Việc đánh giá cuối cùng dựa trên dữ liệu đo, hồ sơ kiểm thử và chi phí thực hiện.

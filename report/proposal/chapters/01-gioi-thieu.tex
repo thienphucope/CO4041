@@ -1,0 +1,27 @@
+\section{Giới thiệu và mục tiêu}
+
+\subsection{Bài toán}
+
+Đề tài yêu cầu xây dựng một hệ thống năng lượng mặt trời có lưu trữ, hỗ trợ giám sát và điều khiển qua mobile hoặc PC, với chi phí phù hợp cho mô hình năng lượng độc lập \cite{specs}. Nhóm xác định ba vấn đề cần xử lý đồng thời: công suất PV phụ thuộc điều kiện môi trường; pin lưu trữ phải được giám sát và bảo vệ; các khối nguồn, tải và giao diện điều khiển phải phối hợp theo trạng thái hệ thống.
+
+Bức xạ và nhiệt độ làm thay đổi đặc tuyến của tấm pin \cite{yaqoob}. Khi một phần dàn pin bị che, sự không đồng đều giữa các module gây tổn hao do không tương hợp và có thể tạo nhiều cực đại trên đường công suất \cite{thanh}. Do đó nhóm nắm mô hình PV và các phương pháp cấu hình dàn pin trước khi lựa chọn phương án phần cứng.
+
+Với pin lưu trữ, điện áp toàn bộ bộ pin không đủ để xác định trạng thái từng cell. BMS phải theo dõi điện áp cell, dòng điện, nhiệt độ và trạng thái sạc, đồng thời kết hợp cân bằng cell với bảo vệ sạc/xả. Kiến trúc BMS tích hợp IoT trong \cite{kulkarni} được nhóm dùng làm tham chiếu cho luồng đo lường, xử lý và hiển thị thông tin.
+
+\subsection{Mục tiêu của báo cáo}
+
+Trong phạm vi báo cáo này, nhóm tập trung vào các nội dung sau \cite{qa1}:
+
+\begin{enumerate}
+    \item Đề xuất phương pháp thiết kế BMS 12~V với bốn chức năng: ước lượng SoC, giám sát nhiệt độ, cân bằng cell và mạch bảo vệ.
+    \item Xác định phương án mô phỏng chức năng BMS trên Proteus trước khi thực hiện phần cứng.
+    \item Xác định mô hình và quy trình mô phỏng tấm pin PV trên Proteus.
+    \item Tổng hợp lý thuyết về thuật toán PV array configuration từ tài liệu tham khảo.
+    \item Lập kế hoạch và phân chia nhiệm vụ cho ba thành viên.
+\end{enumerate}
+
+\subsection{Mục tiêu của toàn bộ đồ án CO4041}
+
+Nhóm phát triển mô hình có đường cấp năng lượng từ PV đến tải và pin lưu trữ; tích hợp bộ điều khiển sạc, BMS, inverter và chức năng chuyển nguồn; thu thập dữ liệu điện áp, dòng điện, công suất, nhiệt độ và SoC; xây dựng giao diện giám sát, điều khiển và lưu lịch sử. Sau khi tích hợp, nhóm thử nghiệm với các mức tải và điều kiện nguồn khác nhau, đánh giá khả năng vận hành và lập bảng chi phí \cite{specs}.
+
+Trong đề tài, ``chi phí tối ưu'' được hiểu là lựa chọn phương án có chi phí phù hợp trong số các phương án đáp ứng yêu cầu chức năng đã xác định. Nhóm so sánh trên cùng quy mô công suất và dung lượng, không đặt mục tiêu chứng minh một nghiệm tối ưu toàn cục.

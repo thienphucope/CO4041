@@ -1,0 +1,32 @@
+\section{Phạm vi và lộ trình thực hiện}
+
+\subsection{Phạm vi báo cáo và giai đoạn tiếp theo}
+
+Toàn bộ đề tài được thực hiện trong học phần CO4041. Báo cáo này trình bày phần cơ sở lý thuyết, phương pháp thiết kế và kế hoạch triển khai; các công việc mô phỏng, chế tạo, tích hợp inverter, bộ điều khiển sạc và IoT thuộc các giai đoạn tiếp theo của cùng học phần. Bảng~\ref{tab:scope} tóm tắt nội dung nhóm trình bày trong báo cáo và phần sẽ triển khai sau đó.
+
+\begin{longtable}{@{}p{3.2cm} p{5.3cm} p{5.5cm}@{}}
+\toprule
+\textbf{Nội dung} & \textbf{Trình bày trong báo cáo} & \textbf{Giai đoạn tiếp theo} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Nội dung} & \textbf{Trình bày trong báo cáo} & \textbf{Giai đoạn tiếp theo} \\
+\midrule
+\endhead
+Cơ sở lý thuyết & Tổng hợp PV, BMS, cấu hình dàn pin và kiến trúc IoT & Bổ sung datasheet, hiệu chỉnh mô hình và thiết kế \\
+BMS 12~V & Khối chức năng, nguyên lý và phương pháp kiểm thử & Dựng schematic, lập trình và mô phỏng trên Proteus; triển khai phần cứng \\
+Tấm pin PV & Mô hình single-diode và kế hoạch khảo sát & Dựng mô hình Proteus, lấy I--V/P--V và đối chiếu tài liệu \\
+PV array configuration & Lý thuyết TCT, DES và thuật toán cân bằng bức xạ theo \cite{thanh} & Cân nhắc mở rộng khi đã hoàn thành các chức năng chính \\
+Điều khiển sạc, inverter, chuyển nguồn, tải & Kiến trúc và công việc cần làm & Chọn thông số, khảo sát bằng Proteus, tích hợp phần cứng \\
+IoT và giao diện & Dữ liệu, chức năng giám sát/điều khiển và luồng thông tin & Triển khai trên thiết bị, kết nối mạng và thử nghiệm giao diện \\
+Đánh giá chi phí & Cách lập BOM và tiêu chí so sánh & Thu thập giá, chi phí thực tế và số liệu vận hành \\
+\bottomrule
+\caption{Nội dung trình bày trong báo cáo và phần triển khai ở giai đoạn tiếp theo.}
+\label{tab:scope}
+\end{longtable}
+
+Toàn bộ phần thiết kế mạch phục vụ mô phỏng sử dụng Proteus. Việc biên dịch chương trình cho MCU là bước chuẩn bị đầu vào cho mô phỏng. Việc kiểm thử BMS không phụ thuộc vào mô phỏng Wi-Fi, cloud hay ứng dụng hoàn chỉnh: nhóm kiểm tra giao tiếp bằng dữ liệu nối tiếp trong Proteus trước, rồi kiểm tra kết nối IoT trên thiết bị ở mốc tích hợp.
+
+\subsection{Nguyên tắc thực hiện}
+
+Nhóm phát triển hệ thống theo từng khối và kiểm thử độc lập trước khi tích hợp. Các thông số chưa được chốt (loại pin, dung lượng, ngưỡng bảo vệ, tấm pin thực tế\dots) được giữ ở dạng tham số và sẽ xác định ở các mốc tương ứng (xem \Cref{tab:open-decisions}). Nguyên tắc này bảo đảm mỗi phần đều có thể kiểm tra và thay thế mà không phải làm lại toàn bộ hệ thống.

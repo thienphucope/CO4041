@@ -1,0 +1,48 @@
+\section{Các thông số cần xác định và rủi ro thực hiện}
+
+\subsection{Các quyết định còn mở}
+
+\begin{longtable}{@{}p{5.0cm} p{5.2cm} p{4.1cm}@{}}
+\toprule
+\textbf{Nội dung} & \textbf{Trạng thái hiện tại} & \textbf{Thời điểm cần xác định} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Nội dung} & \textbf{Trạng thái hiện tại} & \textbf{Thời điểm cần xác định} \\
+\midrule
+\endhead
+Công suất tải và thời gian hoạt động & Chưa xác định & M2, trước khi chốt quy mô nguồn và pin \\
+Loại cell, số cell và dung lượng & Đề xuất khảo sát LiFePO4 4S; 15~Ah chỉ là giả định ban đầu & M2, trước thiết kế BMS chi tiết và mua pin \\
+Ngưỡng điện áp/dòng/nhiệt, trễ và khôi phục & Chưa có bảng datasheet của pin được chọn & M2--M3, trước khi kết luận các ca bảo vệ \\
+Dải đo và sai số cho phép & Chưa xác định từ phần cứng & M2; kiểm tra lại sau hiệu chuẩn ở M5 \\
+Tham số PV thực tế & SM55 chỉ là bộ tham số tham khảo & M4, khi chọn tấm pin triển khai \\
+MCU, cảm biến, thư viện và giấy phép Proteus & Chưa kiểm tra khả năng mô phỏng trên máy & Đầu M2 \\
+Bộ sạc, inverter, nguồn phụ và ngân sách & Chưa chọn linh kiện hoặc mô-đun & M4 \\
+Nền tảng IoT và giao thức điều khiển & ESP32/ThingSpeak là phương án khảo sát & M4--M5 \\
+Thực hiện reconfiguration ngoài phần lý thuyết & Chưa đưa vào đầu ra bắt buộc & Xem xét sau khi hoàn thành các phần chính \\
+\bottomrule
+\caption{Các quyết định còn mở và thời điểm cần xác định.}
+\label{tab:open-decisions}
+\end{longtable}
+
+\subsection{Rủi ro và cách xử lý dự kiến}
+
+\begin{longtable}{@{}p{4.6cm} p{4.3cm} p{5.4cm}@{}}
+\toprule
+\textbf{Rủi ro} & \textbf{Ảnh hưởng} & \textbf{Cách xử lý} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Rủi ro} & \textbf{Ảnh hưởng} & \textbf{Cách xử lý} \\
+\midrule
+\endhead
+Thiếu mô hình MCU/cảm biến hoặc không nạp/lưu được dự án Proteus & Không chạy được một phần mô phỏng & Kiểm tra ngay đầu M2; dùng nguồn tín hiệu và khối cơ bản cho phần đo; giải quyết môi trường MCU trước kiểm thử SoC \\
+Mô hình cell quá đơn giản & Dễ diễn giải sai thời gian sạc/xả hoặc cân bằng & Tách kiểm thử logic và kiểm thử động học; ghi rõ giới hạn của từng mô hình \\
+Sai số đo lớn so với ngưỡng cân bằng & Bật sai nhánh hoặc rung đóng/cắt & Lập ngân sách sai số, hiệu chuẩn, điều chỉnh dải đo và ngưỡng \\
+Mạch công suất không tương thích & Khó tích hợp hoặc vượt khả năng linh kiện & Rà điện áp, dòng, chiều cấp nguồn và điều kiện bảo vệ ở M4 \\
+Linh kiện giao chậm hoặc phạm vi quá rộng & Thiếu thời gian thực nghiệm & Khảo sát cung ứng sớm; ưu tiên đầu ra cốt lõi, giữ tuần dự phòng và dùng mô-đun phù hợp khi cần \\
+Mất mạng hoặc lệnh từ xa xung đột với bảo vệ & Hiển thị sai trạng thái hoặc điều khiển không phù hợp & Bảo vệ cục bộ, đánh dấu dữ liệu cũ, xác nhận lệnh và thử lỗi mạng \\
+\bottomrule
+\caption{Rủi ro thực hiện và cách xử lý dự kiến.}
+\label{tab:risks}
+\end{longtable}

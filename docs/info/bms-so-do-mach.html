@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sơ đồ mạch BMS 12V</title>
+<style>
+  :root{
+    --bg:#0e1116; --panel:#161b22; --panel2:#1c232d; --line:#2b3440;
+    --tx:#e6edf3; --mut:#93a1b0; --acc:#39d0d8; --ok:#3fb950; --warn:#e3b341;
+    --bad:#f85149; --charge:#58a6ff; --dis:#e3a13a; --bal:#bc8cff;
+    --wire:#46525f;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:"SF Mono",ui-monospace,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--font);padding:18px;line-height:1.5}
+  h1{font-size:20px;margin:0 0 2px}
+  .sub{color:var(--mut);font-size:13px;margin:0 0 14px;max-width:74ch}
+  .wrap{max-width:1060px;margin:0 auto}
+  .btns{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 12px}
+  .grp{display:flex;gap:7px;flex-wrap:wrap;align-items:center;background:var(--panel);
+    border:1px solid var(--line);border-radius:10px;padding:7px 9px}
+  .grp .lb{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin-right:2px}
+  button{background:var(--panel2);color:var(--tx);border:1px solid var(--line);border-radius:8px;
+    padding:7px 11px;font-size:12.5px;cursor:pointer;font-family:var(--font)}
+  button:hover{border-color:var(--acc)}
+  button.on{background:var(--acc);color:#04222a;border-color:var(--acc);font-weight:700}
+  button.md.on{background:var(--ok);color:#052a0e;border-color:var(--ok)}
+  button.flt.on{background:var(--bad);color:#2a0606;border-color:var(--bad)}
+  button.bl.on{background:var(--bal);color:#210a33;border-color:var(--bal)}
+  .stage{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px}
+  svg{width:100%;height:auto;display:block}
+  .log{font-family:var(--mono);font-size:12.5px;background:#0c1117;border:1px solid var(--line);
+    border-radius:9px;padding:10px 12px;margin-top:10px;min-height:40px}
+  .log .g{color:var(--ok)} .log .f{color:var(--bad)} .log .a{color:var(--acc)} .log .b{color:var(--bal)}
+  .cap{color:var(--mut);font-size:11.5px;margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+  /* svg element styles */
+  .wire{stroke:var(--wire);stroke-width:5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sense{stroke:#37506a;stroke-width:1.6;fill:none;stroke-dasharray:1 4;stroke-linecap:round}
+  .gate{stroke:#5a4a73;stroke-width:1.8;fill:none;stroke-dasharray:5 4}
+  .cur{stroke-width:5;fill:none;stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:2 15;opacity:0;transition:opacity .15s}
+  .cur.on{opacity:1;animation:flow .8s linear infinite}
+  .cur.rev.on{animation:flowr .8s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-17}}
+  @keyframes flowr{to{stroke-dashoffset:17}}
+  .lab{font-family:var(--font);font-size:12px;fill:var(--tx)}
+  .lab.s{font-size:10.5px;fill:var(--mut)}
+  .cell{fill:var(--panel2);stroke:var(--line);stroke-width:1.5}
+  .cellv{font-family:var(--mono);font-size:12px;fill:var(--tx)}
+  .fet rect{fill:var(--panel2);stroke-width:2}
+  .node{fill:var(--acc)}
+  .term{fill:var(--panel2);stroke:var(--mut);stroke-width:1.5}
+  .balbox{fill:none;stroke:var(--wire);stroke-width:1.6}
+  .balon .balbox{stroke:var(--bal)}
+  .balglow{opacity:0}
+  .balon .balglow{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Sơ đồ mạch BMS 12V (4S) — thực tế mắc thế nào</h1>
+  <p class="sub">4 cell nối tiếp tạo bộ pin ~12,8V. Hai <b>MOSFET</b> trên đường âm đóng/cắt sạc–xả, <b>điện trở shunt</b> đo dòng, mỗi cell có nhánh <b>điện trở cân bằng</b>. <b>MCU</b> đọc điện áp từng cell + dòng + nhiệt, rồi điều khiển các cổng MOSFET. Chọn chế độ và thử lỗi để xem dòng điện dừng ở đâu.</p>
+
+  <div class="btns">
+    <div class="grp"><span class="lb">Chế độ</span>
+      <button class="md" data-md="rest">Nghỉ</button>
+      <button class="md" data-md="charge">Sạc</button>
+      <button class="md" data-md="discharge">Xả</button>
+    </div>
+    <div class="grp"><span class="lb">Sự cố</span>
+      <button class="flt" data-f="ov">Quá áp</button>
+      <button class="flt" data-f="uv">Thấp áp</button>
+      <button class="flt" data-f="sc">Ngắn mạch</button>
+      <button class="flt" data-f="temp">Quá nhiệt</button>
+      <button class="flt" data-f="meas">Kẹt cảm biến</button>
+    </div>
+    <div class="grp">
+      <button class="bl" id="bal">Cân bằng cell</button>
+      <button id="reset">↺ Reset</button>
+    </div>
+  </div>
+
+  <div class="stage">
+    <svg viewBox="0 0 980 560" role="img" aria-label="Sơ đồ mạch BMS">
+      <!-- ===== load / charger box (drawn first so current dashes show over it) ===== -->
+      <rect class="term" x="812" y="250" width="120" height="70" rx="8"/>
+      <text class="lab" x="872" y="280" text-anchor="middle">Bộ sạc /</text>
+      <text class="lab" x="872" y="298" text-anchor="middle">Tải</text>
+
+      <!-- ===== static wires (external loop) ===== -->
+      <path class="wire" d="M135 90 L135 55 L872 55 L872 250"/>
+      <path class="wire" d="M872 320 L872 505 L135 505 L135 380"/>
+
+      <!-- ===== current overlay (same loop path, animated) ===== -->
+      <path id="cur" class="cur" d="M135 90 L135 55 L872 55 L872 505 L135 505 L135 380"/>
+
+      <!-- ===== pack: 4 cells in series ===== -->
+      <g>
+        <rect class="cell" x="70" y="90"  width="130" height="65" rx="6"/>
+        <rect class="cell" x="70" y="160" width="130" height="65" rx="6"/>
+        <rect class="cell" x="70" y="230" width="130" height="65" rx="6"/>
+        <rect class="cell" x="70" y="300" width="130" height="65" rx="6"/>
+        <text class="lab" x="86" y="118">Cell 4</text><text class="cellv" x="188" y="118" text-anchor="end">3,3V</text>
+        <text class="lab" x="86" y="188">Cell 3</text><text class="cellv" x="188" y="188" text-anchor="end">3,3V</text>
+        <text class="lab" x="86" y="258">Cell 2</text><text class="cellv" x="188" y="258" text-anchor="end">3,3V</text>
+        <text class="lab" x="86" y="328">Cell 1</text><text class="cellv" x="188" y="328" text-anchor="end">3,3V</text>
+        <!-- terminals -->
+        <text class="lab s" x="150" y="48" text-anchor="middle">B+ (PACK+)</text>
+        <text class="lab s" x="150" y="525" text-anchor="middle">B− (PACK−)</text>
+        <!-- inter-cell node dots -->
+        <circle class="node" cx="135" cy="90" r="3"/>
+        <circle class="node" cx="135" cy="160" r="3"/>
+        <circle class="node" cx="135" cy="230" r="3"/>
+        <circle class="node" cx="135" cy="300" r="3"/>
+        <circle class="node" cx="135" cy="365" r="3"/>
+      </g>
+
+      <!-- ===== balancing branches (one per cell) ===== -->
+      <g id="bg0" class="balgrp"><!-- cell4 90..155 -->
+        <path class="balbox" d="M200 108 L235 108 L235 122 M235 138 L235 150 L200 150"/>
+        <rect class="balbox" x="227" y="122" width="16" height="16"/>
+        <text class="lab s balglow" x="250" y="130" fill="var(--bal)">↯</text>
+      </g>
+      <g id="bg1" class="balgrp">
+        <path class="balbox" d="M200 178 L235 178 L235 192 M235 208 L235 220 L200 220"/>
+        <rect class="balbox" x="227" y="192" width="16" height="16"/>
+        <text class="lab s balglow" x="250" y="200" fill="var(--bal)">↯</text>
+      </g>
+      <g id="bg2" class="balgrp">
+        <path class="balbox" d="M200 248 L235 248 L235 262 M235 278 L235 290 L200 290"/>
+        <rect class="balbox" x="227" y="262" width="16" height="16"/>
+        <text class="lab s balglow" x="250" y="270" fill="var(--bal)">↯</text>
+      </g>
+      <g id="bg3" class="balgrp">
+        <path class="balbox" d="M200 318 L235 318 L235 332 M235 348 L235 360 L200 360"/>
+        <rect class="balbox" x="227" y="332" width="16" height="16"/>
+        <text class="lab s balglow" x="250" y="340" fill="var(--bal)">↯</text>
+      </g>
+      <text class="lab s" x="262" y="238" fill="var(--bal)">R cân bằng</text>
+      <text class="lab s" x="262" y="254" fill="var(--bal)">(mỗi cell 1 nhánh)</text>
+
+      <!-- ===== MOSFETs on the negative rail ===== -->
+      <g class="fet" id="fetDSG">
+        <rect x="300" y="482" width="60" height="46" rx="6"/>
+        <text class="lab s" x="330" y="500" text-anchor="middle" fill="var(--mut)">MOSFET</text>
+        <text class="lab" x="330" y="518" text-anchor="middle" id="dsgTx">DSG (xả)</text>
+      </g>
+      <g class="fet" id="fetCHG">
+        <rect x="410" y="482" width="60" height="46" rx="6"/>
+        <text class="lab s" x="440" y="500" text-anchor="middle" fill="var(--mut)">MOSFET</text>
+        <text class="lab" x="440" y="518" text-anchor="middle" id="chgTx">CHG (sạc)</text>
+      </g>
+
+      <!-- ===== shunt resistor ===== -->
+      <rect x="600" y="493" width="54" height="24" rx="4" fill="var(--panel2)" stroke="var(--warn)" stroke-width="1.8"/>
+      <text class="lab s" x="627" y="509" text-anchor="middle" fill="var(--warn)">R shunt</text>
+      <text class="lab s" x="627" y="540" text-anchor="middle" fill="var(--mut)">đo dòng</text>
+
+      <!-- ===== MCU ===== -->
+      <rect x="360" y="175" width="230" height="120" rx="10" fill="url(#mg)" stroke="var(--acc)" stroke-width="1.6"/>
+      <defs><linearGradient id="mg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#182230"/><stop offset="1" stop-color="#10161d"/></linearGradient></defs>
+      <text class="lab" x="475" y="205" text-anchor="middle" font-weight="700">MCU</text>
+      <text class="lab s" x="475" y="224" text-anchor="middle">Vi điều khiển</text>
+      <text class="lab s" x="475" y="248" text-anchor="middle">• đọc áp cell / dòng / nhiệt</text>
+      <text class="lab s" x="475" y="266" text-anchor="middle">• tính SoC, so ngưỡng</text>
+      <text class="lab s" x="475" y="284" text-anchor="middle">• điều khiển cổng MOSFET</text>
+
+      <!-- sense: cell taps -> MCU (thin) -->
+      <path class="sense" d="M135 90 L360 200"/>
+      <path class="sense" d="M135 160 L360 214"/>
+      <path class="sense" d="M135 230 L360 230"/>
+      <path class="sense" d="M135 300 L360 250"/>
+      <path class="sense" d="M135 365 L360 266"/>
+      <text class="lab s" x="250" y="150" fill="#5f7c9a">đo áp từng cell</text>
+
+      <!-- sense: shunt -> MCU -->
+      <path class="sense" d="M627 493 L590 250"/>
+      <!-- temp sensor -->
+      <rect x="20" y="405" width="88" height="34" rx="6" fill="var(--panel2)" stroke="var(--ok)" stroke-width="1.5"/>
+      <text class="lab s" x="64" y="426" text-anchor="middle" fill="var(--ok)">LM35 (nhiệt)</text>
+      <path class="sense" d="M108 422 L360 280"/>
+
+      <!-- gate lines: MCU -> FETs -->
+      <path class="gate" d="M420 295 L420 460 L330 460 L330 482"/>
+      <path class="gate" d="M470 295 L470 460 L440 460 L440 482"/>
+      <text class="lab s" x="486" y="360" fill="#8a76a8">lệnh cổng</text>
+
+      <!-- fault X markers (hidden by default) -->
+      <g id="xDSG" opacity="0"><line x1="308" y1="490" x2="352" y2="520" stroke="var(--bad)" stroke-width="3"/><line x1="352" y1="490" x2="308" y2="520" stroke="var(--bad)" stroke-width="3"/></g>
+      <g id="xCHG" opacity="0"><line x1="418" y1="490" x2="462" y2="520" stroke="var(--bad)" stroke-width="3"/><line x1="462" y1="490" x2="418" y2="520" stroke="var(--bad)" stroke-width="3"/></g>
+    </svg>
+  </div>
+
+  <div class="log" id="log">Chọn <span class="a">Sạc</span> hoặc <span class="a">Xả</span> để xem dòng điện chạy trong mạch.</div>
+
+  <div class="cap">
+    <b>Dòng điện</b> (chấm chạy) đi vòng: pin → đường ngoài → tải/bộ sạc → qua <b>shunt</b> và <b>2 MOSFET</b> ở đường âm → về pin.
+    Muốn <b>xả</b> phải có MOSFET DSG dẫn; muốn <b>sạc</b> phải có MOSFET CHG dẫn. Khi MCU phát hiện lỗi, nó <b>khóa cổng</b> MOSFET tương ứng (đánh dấu ✕ đỏ) → dòng bị cắt ngay tại đó.
+    Mỗi cell có một <b style="color:var(--bal)">điện trở cân bằng</b> + công tắc: khi cell nạp cao và lệch, MCU bật nhánh này xả bớt cell đó.
+    <br><span style="color:var(--mut)">Sơ đồ nguyên lý minh họa (bỏ qua diode thân MOSFET, mạch kích cổng, tụ lọc…) — đủ để hình dung cách mắc thật, khớp Mục 5 báo cáo.</span>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var mode='rest', F={ov:false,uv:false,sc:false,temp:false,meas:false}, balancing=false;
+  var cur=document.getElementById('cur'), log=document.getElementById('log');
+
+  function setFet(id,txId,label,ok){
+    var g=document.getElementById(id), t=document.getElementById(txId);
+    g.querySelector('rect').setAttribute('stroke', ok?'var(--ok)':'var(--bad)');
+    t.setAttribute('fill', ok?'var(--ok)':'var(--bad)');
+    document.getElementById('x'+id.slice(3)).setAttribute('opacity', ok?0:1);
+  }
+
+  function render(){
+    var chargeOK = !F.ov && !F.sc && !F.temp && !F.meas;   // sạc cần: không quá áp/ngắn mạch/quá nhiệt/lỗi đo
+    var dischOK  = !F.uv && !F.sc && !F.temp && !F.meas;    // xả cần: không thấp áp/ngắn mạch/quá nhiệt/lỗi đo
+    setFet('fetDSG','dsgTx','DSG', dischOK);
+    setFet('fetCHG','chgTx','CHG', chargeOK);
+
+    var conducting = (mode==='discharge'&&dischOK) || (mode==='charge'&&chargeOK);
+    cur.classList.toggle('on', conducting);
+    cur.classList.toggle('rev', mode==='charge');
+    cur.classList.remove('dis','chg');
+    if(conducting){
+      cur.style.stroke = (mode==='charge')?'var(--charge)':'var(--dis)';
+    }
+
+    // balancing branches (demo: cell4 & cell2 are the "cao" cells)
+    var balActive = balancing && !F.sc && !F.temp && !F.meas;
+    var act=[balActive, false, balActive, false];
+    ['bg0','bg1','bg2','bg3'].forEach(function(id,i){
+      document.getElementById(id).classList.toggle('balon', act[i]);
+    });
+
+    // status text
+    var faults=[];
+    if(F.meas) faults.push('KẸT CẢM BIẾN → khóa cả 2 MOSFET (an toàn)');
+    if(F.sc)   faults.push('NGẮN MẠCH → cắt &amp; chốt khóa cả 2 MOSFET');
+    if(F.temp) faults.push('QUÁ NHIỆT → cắt sạc/xả, dừng cân bằng');
+    if(F.ov)   faults.push('QUÁ ÁP → MCU khóa cổng MOSFET SẠC (CHG)');
+    if(F.uv)   faults.push('THẤP ÁP → MCU khóa cổng MOSFET XẢ (DSG)');
+
+    if(faults.length){
+      log.innerHTML='<span class="f">■ BẢO VỆ:</span> '+faults.join(' &nbsp;·&nbsp; ')+
+        (conducting?'':' <span class="f">— dòng bị cắt tại MOSFET (✕).</span>');
+    } else if(mode==='discharge'){
+      log.innerHTML='<span class="a">■ ĐANG XẢ</span> — MOSFET DSG dẫn, dòng đi từ pin ra tải rồi về qua shunt.'+(balancing?' <span class="b">Cân bằng đang bật.</span>':'');
+    } else if(mode==='charge'){
+      log.innerHTML='<span class="a">■ ĐANG SẠC</span> — MOSFET CHG dẫn, dòng từ bộ sạc nạp ngược vào pin.'+(balancing?' <span class="b">Cân bằng đang bật.</span>':'');
+    } else {
+      log.innerHTML='<span class="g">■ NGHỈ</span> — không có dòng qua tải; 2 MOSFET ở trạng thái cho phép, chờ lệnh sạc/xả.'+(balancing?' <span class="b">Cân bằng đang bật.</span>':'');
+    }
+  }
+
+  document.querySelectorAll('.md').forEach(function(b){
+    b.onclick=function(){mode=b.getAttribute('data-md');
+      document.querySelectorAll('.md').forEach(function(x){x.classList.toggle('on',x===b);});
+      render();};
+  });
+  document.querySelectorAll('.flt').forEach(function(b){
+    b.onclick=function(){var k=b.getAttribute('data-f');F[k]=!F[k];b.classList.toggle('on',F[k]);render();};
+  });
+  document.getElementById('bal').onclick=function(){balancing=!balancing;this.classList.toggle('on',balancing);render();};
+  document.getElementById('reset').onclick=function(){
+    mode='rest';for(var k in F)F[k]=false;balancing=false;
+    document.querySelectorAll('.md,.flt,.bl').forEach(function(x){x.classList.remove('on');});
+    render();
+  };
+
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+\section{Tìm hiểu thuật toán PV array configuration}
+
+\subsection{Cấu hình tĩnh và cấu hình lại dàn pin}
+
+PV array configuration mô tả cách nối các module thành dàn pin. Các cấu hình được trình bày trong \cite{thanh} gồm nối tiếp, song song, nối tiếp--song song, Total-Cross-Tied (TCT), Bridge-Link và Honey-Comb. Reconfiguration là việc thay đổi kết nối trong quá trình vận hành để thích ứng với phân bố bức xạ.
+
+Trong cấu hình TCT được xét ở \cite{thanh}, các module trong một hàng mắc song song và các hàng liên kết nối tiếp. Khi tổng khả năng cấp dòng của các hàng không đồng đều, điểm làm việc của dàn bị ảnh hưởng. Ý tưởng của reconfiguration là phân bố lại các module giữa các hàng để giảm sự chênh lệch này.
+
+Diode bypass và reconfiguration có vai trò khác nhau. Bypass tạo đường dòng đi vòng qua phần được bảo vệ; reconfiguration thay đổi cách ghép các module. Việc chia nhóm module và bố trí bypass có thể được cân nhắc khi làm phần cứng, nhưng không thay thế nội dung tìm hiểu thuật toán trong báo cáo.
+
+\subsection{Cân bằng bức xạ và chỉ số EI}
+
+Theo \cite{thanh}, hệ thống sử dụng thông tin điện áp, dòng điện cùng mô hình module để ước lượng bức xạ. Ký hiệu \(G_{ij}\) là bức xạ của module thứ \(j\) trong hàng \(i\), \(n_i\) là số module ở hàng đó và \(m\) là số hàng. Tổng bức xạ quy ước của hàng là:
+\[
+G_i=\sum_{j=1}^{n_i}G_{ij}.
+\]
+
+Với số hàng cố định, mức phân bố đều tương ứng:
+\[
+\overline{G}=\frac{1}{m}\sum_{i=1}^{m}G_i.
+\]
+
+Chỉ số cân bằng được định nghĩa:
+\[
+EI=\max_i(G_i)-\min_i(G_i).
+\]
+
+Các tổng \(G_i\) phục vụ so sánh khả năng cấp dòng giữa các hàng theo giả thiết mô hình, không phải phép đo năng lượng của hàng. Khi EI giảm, mức chênh lệch giữa các hàng giảm. Nghiên cứu \cite{thanh} sử dụng mục tiêu này để tìm cấu hình phù hợp, đồng thời ràng buộc số hàng theo dải điện áp đầu vào inverter.
+
+\subsection{Thuật toán lai DP--SC}
+
+Tài liệu \cite{thanh} mô tả cách kết hợp Dynamic Programming (DP, quy hoạch động) và Smart Choice (SC). DP được dùng cho bài toán chọn tập con module sao cho tổng bức xạ của các hàng gần cân bằng, liên quan đến bài toán Subset Sum. SC bổ sung cách lựa chọn cho những trường hợp mà phương pháp DP trong nghiên cứu chưa cho phân bố tốt.
+
+Có thể diễn giải luồng xử lý tổng quát của phương pháp trong \cite{thanh} như sau:
+
+\begin{enumerate}
+    \item Thu nhận hoặc ước lượng bức xạ của từng module và ghi nhận cấu hình hiện tại.
+    \item Xác định số hàng cùng các điều kiện kết nối cho phép.
+    \item Dùng phương pháp lai DP--SC để phân nhóm module theo mục tiêu cân bằng bức xạ.
+    \item Tính EI và lựa chọn cấu hình theo tiêu chí của thuật toán.
+    \item Chuyển kết quả phân nhóm thành lệnh cho ma trận DES.
+    \item Khảo sát đặc tuyến và công suất sau khi đổi cấu hình.
+\end{enumerate}
+
+Đây là phần diễn giải lý thuyết của thuật toán trong tài liệu, làm cơ sở khi nhóm cân nhắc mở rộng ở giai đoạn sau.
+
+\subsection{Ma trận chuyển mạch DES}
+
+Dynamic Electrical Scheme (DES) là phần mạch thực hiện thay đổi kết nối. Đầu ra thuật toán xác định module thuộc hàng nào; bộ điều khiển dùng thông tin này để điều khiển các công tắc tương ứng. Trong mô hình chín module của \cite{thanh}, ma trận cho phép phân bố module vào tối đa ba hàng.
+
+Khi xét khả năng làm phần cứng, nhóm cần đánh giá số lượng công tắc, tổn hao dẫn, trình tự chuyển mạch và chi phí điều khiển. EI là chỉ tiêu trong mô hình khảo sát, chưa đủ để khẳng định mọi cấu hình EI thấp hơn đều có lợi hơn khi tính cả tổn hao và thời gian chuyển mạch.
+
+\subsection{Phạm vi áp dụng vào đồ án}
+
+Nhóm sử dụng \cite{thanh} để giải thích cơ chế giảm tổn hao do không tương hợp, các thành phần của hệ reconfiguration và mối liên hệ với điều kiện bức xạ. Các kết quả mô phỏng trong bài thuộc nghiên cứu của tác giả và được nhóm dùng làm tham chiếu lý thuyết.
+
+Trong đề tài, phần này dừng ở mức tìm hiểu lý thuyết; mô phỏng hoặc chế tạo DES là hướng mở rộng tùy chọn, xem xét sau khi hoàn thành PV, BMS và hệ thống chính. MATLAB--Simulink là môi trường của nghiên cứu \cite{thanh}; các mô phỏng của nhóm đều dùng Proteus.

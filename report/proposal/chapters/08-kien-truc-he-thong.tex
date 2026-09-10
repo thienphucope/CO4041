@@ -1,0 +1,75 @@
+\section{Kiến trúc và phương án triển khai toàn hệ thống}
+
+\subsection{Kiến trúc năng lượng và dữ liệu}
+
+Nhóm đề xuất các đường năng lượng sau:
+
+\begin{quote}
+PV $\rightarrow$ bộ điều khiển sạc $\rightarrow$ bus DC được quản lý $\rightarrow$ tải DC hoặc inverter $\rightarrow$ tải AC.
+
+Pin lưu trữ $\leftrightarrow$ đường sạc/xả do BMS quản lý $\leftrightarrow$ bus DC.
+
+Nguồn DC phụ trợ $\rightarrow$ khối chọn nguồn và chống cấp ngược $\rightarrow$ nhánh cấp nguồn phù hợp.
+\end{quote}
+
+Nguồn phụ trợ dự kiến là nguồn DC đã cách ly hoặc nguồn phòng thí nghiệm phù hợp. Cách ghép nguồn phụ vào bus hay đầu vào bộ sạc sẽ được xác định khi chọn bộ điều khiển nguồn. Mô hình dự kiến vận hành độc lập; chức năng chuyển nguồn không đồng nghĩa với hòa lưới.
+
+Luồng dữ liệu và điều khiển:
+
+\begin{quote}
+Cảm biến $\rightarrow$ bộ điều khiển cục bộ/BMS $\rightarrow$ khối kết nối IoT $\rightarrow$ dịch vụ lưu trữ $\rightarrow$ giao diện mobile/PC.
+
+Lệnh người dùng $\rightarrow$ bộ điều khiển kiểm tra điều kiện $\rightarrow$ cơ cấu chấp hành $\rightarrow$ phản hồi trạng thái thực tế.
+\end{quote}
+
+Trên đây là sơ đồ khối chức năng của hệ thống. \pending{sơ đồ nối chân, vị trí phần tử công suất và triển khai mạch thực tế (mốc M4--M5)}
+
+\subsection{Phương án cho từng thành phần}
+
+\begin{longtable}{@{}p{3.2cm} p{11.3cm}@{}}
+\toprule
+\textbf{Thành phần} & \textbf{Công việc dự kiến} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Thành phần} & \textbf{Công việc dự kiến} \\
+\midrule
+\endhead
+PV & Chọn quy mô công suất theo tải; kiểm tra dải điện áp và dòng phù hợp bộ điều khiển sạc \\
+Bộ điều khiển sạc & So sánh phương án PWM/MPPT theo yêu cầu công suất và chi phí; xác định đặc tuyến sạc theo loại pin \\
+Pin và BMS & Chốt cấu hình cell, dung lượng, bảo vệ và cân bằng; hoàn thành mô phỏng trước thử nghiệm \\
+Inverter & Chọn mô-đun hoặc phương án triển khai phù hợp bus và tải; kiểm tra công suất liên tục, khởi động và hiệu suất \\
+Chuyển nguồn & Xác định điều kiện chọn nguồn, ngắt trước khi đóng nguồn khác khi cần, tránh cấp ngược và ghi nhận trạng thái \\
+Tải & Chọn tải DC và tải AC đại diện, có các mức công suất để kiểm tra thay đổi tải \\
+Đo lường & Đo dòng/áp tại PV, pin và tải ở mức cần thiết cho điều khiển và đánh giá \\
+IoT/giao diện & Hiển thị hiện tại, đồ thị lịch sử, năng lượng, trạng thái nguồn/tải, cảnh báo và lệnh điều khiển \\
+\bottomrule
+\caption{Phương án dự kiến cho từng thành phần của hệ thống.}
+\label{tab:components}
+\end{longtable}
+
+Nhóm ưu tiên tích hợp các mô-đun công suất phù hợp nếu việc tự thiết kế toàn bộ bộ sạc hoặc inverter vượt quá nguồn lực. Công việc thiết kế và đánh giá BMS, đo lường, điều phối nguồn và IoT vẫn được giữ trong phạm vi đề tài. Quyết định dùng mô-đun hay tự thiết kế sẽ được ghi rõ trong báo cáo và BOM.
+
+\subsection{Xác định quy mô và chi phí}
+
+Trước khi chọn phần cứng, nhóm sẽ lập danh sách tải gồm công suất và thời gian sử dụng. Nhu cầu năng lượng tải được ước lượng:
+\[
+E_{\mathrm{load}}=\sum_j P_j\,t_j.
+\]
+
+Nhóm sẽ từ nhu cầu này xác định dung lượng lưu trữ, công suất PV và công suất các khối chuyển đổi, có xét tổn hao, mức dung lượng pin cho phép sử dụng và dự phòng. Các giá trị chưa có dữ liệu hiện vẫn để mở.
+
+BOM dự kiến gồm PV, cell, bộ sạc, inverter, BMS, vi điều khiển, cảm biến, thiết bị chuyển mạch, dây nối, đầu nối, phần cơ khí và chi phí gia công. Khi so sánh phương án, nhóm sẽ ghi nguồn giá, ngày lấy giá, phần có sẵn và phần phải mua; không so trực tiếp hai phương án khác công suất hoặc thiếu chức năng.
+
+\subsection{Kế hoạch IoT và điều khiển}
+
+Nhóm dự kiến đánh giá ESP32 cho kết nối mạng và ThingSpeak theo kiến trúc trong \cite{kulkarni}. Nền tảng cuối cùng sẽ được chọn sau khi kiểm tra khả năng lưu dữ liệu, hiển thị và nhận lệnh. Giao diện cần:
+
+\begin{itemize}
+    \item Hiển thị điện áp, dòng, công suất, năng lượng, nhiệt độ, SoC và trạng thái tải/nguồn.
+    \item Tra cứu lịch sử và thời điểm xảy ra lỗi.
+    \item Gửi lệnh bật/tắt tải hoặc chọn chế độ trong phạm vi cho phép.
+    \item Hiển thị kết quả thực thi và trạng thái kết nối.
+\end{itemize}
+
+Mỗi bản ghi sẽ có mốc thời gian và trạng thái chất lượng dữ liệu. Khi mất kết nối, bộ điều khiển tiếp tục bảo vệ cục bộ; giao diện phải phân biệt dữ liệu mới với dữ liệu cũ. Lệnh bật tải không được vô hiệu hóa điều kiện ngắt của BMS. Nhóm sẽ thử giao tiếp bằng terminal trên Proteus trước, sau đó kiểm tra đường truyền và ứng dụng trên thiết bị.

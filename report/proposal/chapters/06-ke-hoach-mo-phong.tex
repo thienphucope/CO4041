@@ -1,0 +1,74 @@
+\section{Kế hoạch mô phỏng trên Proteus}
+
+\subsection{Trình tự và phạm vi}
+
+Nhóm tạo hai dự án Proteus riêng cho PV và BMS. Sau khi mỗi mô hình đáp ứng các ca kiểm tra, nhóm khảo sát ghép nối qua khối điều khiển sạc và đường tải. Toàn bộ mô phỏng được thực hiện trước khi chế tạo phần cứng.
+
+Với BMS, nhóm bắt đầu bằng một kênh đo và bảo vệ, sau đó mở rộng lên nhiều cell để kiểm tra cân bằng; bài thử một cell là bước kiểm tra ban đầu trước khi dựng BMS 12~V hoàn chỉnh.
+
+\subsection{Mô phỏng tấm pin}
+
+Nhóm thực hiện các bước sau theo phương pháp trong \cite{yaqoob}:
+
+\begin{enumerate}
+    \item Lập bảng tham số của một tấm pin tham khảo (ban đầu dùng SM55 trong \cite{yaqoob}, gồm thông số danh định và tham số mô hình đã công bố).
+    \item Dựng các thành phần \(I_{\mathrm{ph}}, I_D, I_{\mathrm{sh}}\) bằng khối toán và nguồn phụ thuộc trong Proteus; tạo đầu vào điều chỉnh bức xạ và nhiệt độ.
+    \item Quét điểm làm việc từ gần ngắn mạch đến gần hở mạch để thu các cặp \(V,I\), sau đó tính \(P=VI\).
+    \item Kiểm tra \(I_{\mathrm{SC}},V_{\mathrm{OC}},V_{\mathrm{MPP}},I_{\mathrm{MPP}},P_{\mathrm{MPP}}\) tại điều kiện tham chiếu.
+    \item Thay đổi riêng bức xạ và nhiệt độ để kiểm tra xu hướng và so sánh với các đường cong trong tài liệu.
+\end{enumerate}
+
+\begin{longtable}{@{}p{2.2cm} p{4.6cm} p{3.6cm} p{3.6cm}@{}}
+\toprule
+\textbf{Mã ca thử} & \textbf{Điều kiện} & \textbf{Dữ liệu cần thu} & \textbf{Cách đánh giá} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Mã ca thử} & \textbf{Điều kiện} & \textbf{Dữ liệu cần thu} & \textbf{Cách đánh giá} \\
+\midrule
+\endhead
+PV-01 & \(G=1000\ \mathrm{W/m^2}\), \(T=25^\circ\mathrm{C}\) & I--V, P--V và các điểm đặc trưng & Đối chiếu bộ thông số SM55 trong \cite{yaqoob} \\
+PV-02 & \(G=400,700,1000\ \mathrm{W/m^2}\), giữ \(T=25^\circ\mathrm{C}\) & Họ đường I--V/P--V & Kiểm tra tác động của bức xạ ở cùng nhiệt độ \\
+PV-03 & \(T=25,45,60^\circ\mathrm{C}\), giữ \(G=1000\ \mathrm{W/m^2}\) & Họ đường I--V/P--V & Kiểm tra tác động của nhiệt độ ở cùng bức xạ \\
+\bottomrule
+\caption{Các ca thử cho mô phỏng tấm pin.}
+\label{tab:pv-tests}
+\end{longtable}
+
+Nhóm ghi sai lệch của từng thông số so với tham chiếu và chỉ so sánh định lượng khi cùng điều kiện và cùng bộ tham số. Bộ tham số SM55 phục vụ kiểm tra mô hình, không phải quyết định chọn tấm pin. \pending{kết quả I--V/P--V của các ca PV-01--03}
+
+\subsection{Mô phỏng BMS}
+
+Nhóm kiểm tra phần đo trước khi dùng dữ liệu cho bảo vệ hoặc SoC, sau đó thử từng chức năng độc lập và thử lỗi kết hợp.
+
+\begin{longtable}{@{}p{2.0cm} p{6.3cm} p{5.2cm}@{}}
+\toprule
+\textbf{Mã ca thử} & \textbf{Nội dung} & \textbf{Kết quả cần quan sát} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Mã ca thử} & \textbf{Nội dung} & \textbf{Kết quả cần quan sát} \\
+\midrule
+\endhead
+BMS-01 & Đặt các điện áp cell, dòng hai chiều và nhiệt độ đã biết & Giá trị đọc đúng kênh, đúng dấu, đúng đơn vị; ghi sai số \\
+BMS-02 & Cho dòng sạc/xả đã biết trong thời gian xác định & SoC tăng/giảm phù hợp điện tích; không vượt phạm vi 0--100\% \\
+BMS-03 & Tăng một cell vượt ngưỡng OV & Đường sạc ngắt; mã lỗi xác định đúng cell/điều kiện \\
+BMS-04 & Giảm một cell dưới ngưỡng UV & Đường xả ngắt \\
+BMS-05 & Vượt giới hạn dòng ở từng chiều & Đường tương ứng ngắt; có thời điểm tác động \\
+BMS-06 & Tạo sự cố ngắn mạch trong mô hình đã giới hạn dòng & Đầu ra bị khóa; không tự bật lại khi lỗi còn tồn tại \\
+BMS-07 & Đưa nhiệt độ qua ngưỡng tác động và khôi phục & Cảnh báo/ngắt và phục hồi theo đúng cấu hình \\
+BMS-08 & Đặt các cell lệch điện áp & Nhánh cân bằng chọn đúng cell; theo dõi dòng xả và độ lệch theo thời gian \\
+BMS-09 & Dao động quanh ngưỡng, lỗi cảm biến hoặc khởi động lại & Tránh rung đóng/cắt; đầu ra khởi động ở trạng thái khóa \\
+BMS-10 & Có nhiều lỗi đồng thời hoặc lệnh bật tải khi đang lỗi & Giữ ưu tiên bảo vệ; chỉ phục hồi khi các điều kiện cho phép đều thỏa \\
+\bottomrule
+\caption{Các ca thử cho mô phỏng BMS.}
+\label{tab:bms-tests}
+\end{longtable}
+
+Với nguồn áp lý tưởng, nhóm kiểm tra việc chọn nhánh cân bằng nhưng điện áp nguồn không tự giảm; để đánh giá diễn biến chênh lệch cell, nhóm dùng mô hình lưu trữ có động học (mô hình tụ hoặc mạch tương đương pin được xác định tham số). Kết quả từ mô hình tụ thể hiện hành vi mạch, không dùng để công bố thời gian cân bằng hay thời gian sử dụng pin thật. \pending{kết quả các ca BMS-01--10}
+
+\subsection{Hồ sơ mô phỏng}
+
+Mỗi lần chạy lưu phiên bản mô hình, tham số đầu vào, chương trình MCU nếu có, đồ thị/dữ liệu và kết luận cho từng ca thử, kèm điều kiện và mã ca thử. Quy trình thao tác chi tiết được tách trong tài liệu hướng dẫn mô phỏng đi kèm bộ tài liệu đề tài.
+
+Mô phỏng điện áp và tín hiệu nhiệt cho phép kiểm tra phản ứng của BMS ở mức logic; các yếu tố điện hóa, lão hóa, sinh nhiệt và khả năng chịu sự cố của linh kiện được kiểm tra trên phần cứng ở mốc thực nghiệm.
