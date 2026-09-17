@@ -1,12 +1,14 @@
 \section{Cơ sở lý thuyết}
+\label{sec:theory}
 
 \subsection{Thành phần của mô hình microgrid}
 
-Theo phạm vi đề tài \cite{specs}, mô hình gồm nguồn PV, bộ điều khiển sạc, pin lưu trữ, BMS, inverter và tải. PV cung cấp điện một chiều; bộ điều khiển sạc điều chỉnh quá trình nạp theo bộ pin; BMS theo dõi trạng thái pin và cho phép hoặc ngắt các đường sạc/xả. Inverter chuyển điện DC thành AC cho tải phù hợp. Lớp IoT thu thập dữ liệu, hiển thị và tiếp nhận lệnh của người dùng.
+Theo phạm vi đề tài học phần, mô hình gồm nguồn PV, bộ điều khiển sạc, pin lưu trữ, BMS, inverter và tải. PV cung cấp điện một chiều; bộ điều khiển sạc điều chỉnh quá trình nạp theo bộ pin; BMS theo dõi trạng thái pin và cho phép hoặc ngắt các đường sạc/xả. Inverter chuyển điện DC thành AC cho tải phù hợp. Lớp IoT thu thập dữ liệu, hiển thị và tiếp nhận lệnh của người dùng.
 
 Bộ điều khiển sạc và BMS có vai trò riêng: nhóm cần thiết kế hoặc chọn bộ sạc có đặc tuyến phù hợp, đồng thời dùng BMS để giám sát và bảo vệ bộ pin. Chức năng ngắt quá áp của BMS không thay thế việc điều khiển điện áp và dòng sạc.
 
 \subsection{Đặc tính tấm pin quang điện}
+\label{sec:pv-characteristics}
 
 Đường I--V biểu diễn quan hệ dòng điện và điện áp đầu ra; đường P--V được xác định từ:
 \[
@@ -23,6 +25,7 @@ Nghiên cứu \cite{yaqoob} sử dụng điều kiện tham chiếu \(G_{\mathrm
 MPPT (Maximum Power Point Tracking) là quá trình điều chỉnh điểm làm việc để tìm công suất lớn. Khi có nhiều đỉnh trên đường P--V do che bóng, một phương pháp tìm kiếm cục bộ có thể dừng ở đỉnh chưa phải lớn nhất; vấn đề này liên quan đến việc tìm hiểu cấu hình dàn pin \cite{thanh}.
 
 \subsection{Mô hình một diode}
+\label{sec:pv-model}
 
 Theo \cite{yaqoob} và \cite{pvpmc}, mô hình gồm nguồn dòng quang sinh, diode, điện trở song song và điện trở nối tiếp. Với các tham số quy đổi ở cấp module, phương trình dòng đầu ra là:
 \[
@@ -63,13 +66,14 @@ z_{k+1}=\operatorname{clip}_{[0,1]}
 \mathrm{SoC}_k=100\,z_k.
 \]
 
-Ở công thức này, \(\Delta t\) tính bằng giây; mô hình ban đầu giả thiết hiệu suất coulomb bằng 1. Khi dòng đổi sang chiều sạc, \(I_{\mathrm{bat}}<0\) và SoC tăng. Do sai số dòng và giá trị khởi tạo gây sai số tích lũy, nhóm bổ sung hiệu chỉnh bằng OCV khi có bảng OCV--SoC và điều kiện nghỉ phù hợp \cite{tigauge}. \pending{bảng OCV--SoC và độ chính xác trên pin thật sẽ xác định sau khi chọn cell}
+Ở công thức này, \(\Delta t\) tính bằng giây; mô hình ban đầu giả thiết hiệu suất coulomb bằng 1. Khi dòng đổi sang chiều sạc, \(I_{\mathrm{bat}}<0\) và SoC tăng. Sai số dòng và giá trị khởi tạo gây sai số tích lũy. Nhóm khảo sát hiệu chỉnh bằng OCV khi có bảng OCV--SoC và điều kiện nghỉ phù hợp với loại pin được chọn \cite{tigauge}. Phương pháp khởi tạo và hiệu chỉnh được xác định trong giai đoạn mô phỏng chức năng; độ chính xác trên pin thật được đánh giá bằng dữ liệu tham chiếu khi triển khai phần cứng và thực nghiệm.
 
 \subsection{Cân bằng cell, nhiệt độ và bảo vệ}
+\label{sec:balance-theory}
 
 Các cell nối tiếp có thể lệch trạng thái sạc. Cell chạm giới hạn trước sẽ hạn chế khả năng sử dụng của bộ pin. Cân bằng thụ động tạo nhánh xả qua điện trở ở cell được chọn; năng lượng dư chuyển thành nhiệt. Khi áp dụng, cần xét điều kiện cho phép cân bằng, công suất tản và ảnh hưởng đến phép đo \cite{tibalance}.
 
-Nhóm dự kiến giám sát nhiệt độ bằng LM35 hoặc mô hình tín hiệu tương đương. Theo datasheet \cite{lm35}, hệ số chuyển đổi là \(10\ \mathrm{mV}/^\circ\mathrm{C}\):
+Trong mô phỏng, nhóm có thể dùng LM35 hoặc mô hình tín hiệu tương đương để kiểm tra giám sát nhiệt độ. Đây là phương án tham khảo, chưa phải lựa chọn cảm biến phần cứng. Theo datasheet \cite{lm35}, hệ số chuyển đổi là \(10\ \mathrm{mV}/^\circ\mathrm{C}\):
 \[
 T[^\circ\mathrm{C}]=\frac{V_{\mathrm{LM35}}[\mathrm{V}]}{0.01}.
 \]
@@ -78,6 +82,6 @@ BMS cần phản ứng khi điện áp, dòng hoặc nhiệt độ vượt phạ
 
 \subsection{Giám sát và điều khiển qua IoT}
 
-Trong \cite{kulkarni}, bộ điều khiển thu thập dữ liệu cảm biến, hiển thị tại chỗ và chuyển dữ liệu qua ESP32 đến ThingSpeak. Nhóm sử dụng kiến trúc này làm cơ sở cho luồng giám sát. Các chức năng điều khiển tải, xác nhận lệnh và lưu trạng thái sự cố là phần nhóm đề xuất thêm cho hệ thống của mình.
+Trong \cite{kulkarni}, bộ điều khiển thu thập dữ liệu cảm biến, hiển thị tại chỗ và chuyển dữ liệu qua khối kết nối mạng lên nền tảng IoT. Nhóm tham khảo luồng giám sát này và sẽ chọn nền tảng theo nhu cầu lưu dữ liệu, hiển thị, điều khiển và chi phí. Các chức năng điều khiển tải, xác nhận lệnh và lưu trạng thái sự cố là phần nhóm đề xuất thêm cho hệ thống của mình.
 
 Dữ liệu dự kiến gồm điện áp cell và pack, dòng pin, điện áp/dòng PV, công suất, nhiệt độ, SoC, trạng thái tải, nguồn đang sử dụng và mã lỗi. Thuật toán bảo vệ sẽ chạy tại bộ điều khiển cục bộ để việc ngắt mạch không phụ thuộc vào kết nối mạng.

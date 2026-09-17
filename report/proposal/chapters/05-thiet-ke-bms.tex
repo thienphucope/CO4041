@@ -1,12 +1,13 @@
 \section{Phương pháp thiết kế BMS 12~V trên Proteus}
+\label{sec:bms-design}
 
 \subsection{Cấu hình dự kiến và giới hạn thiết kế}
 
-Nhóm khảo sát bộ pin LiFePO4 4S gồm bốn cell nối tiếp, điện áp danh định khoảng 12,8~V, đại diện cho hệ lưu trữ lớp 12~V. Dung lượng định hướng ban đầu khoảng 15~Ah và sẽ được xác định lại từ tải, thời gian sử dụng và ngân sách. \pending{chốt loại cell và dung lượng ở mốc M2}
+Thông tin đầu vào hiện có là bộ pin 12~V, 15~Ah do giảng viên cung cấp. Nhóm chưa có thông tin về loại hóa học, cấu hình cell, mã pin, công suất tải và thời gian cấp tải. Khi bắt đầu giai đoạn xây dựng mô hình và xác định đầu vào, nhóm làm rõ pin có sẵn hay được tự lựa chọn, sau đó xác định cấu hình đo lường và bảo vệ theo datasheet.
 
-Phương án 4S cho phép khảo sát đầy đủ chức năng cân bằng cell. Nếu chuyển sang ắc-quy SLA nguyên khối, nhóm vẫn giữ bài mô phỏng nhiều cell để đáp ứng yêu cầu thiết kế cân bằng.
+LiFePO4 4S, gồm bốn cell nối tiếp với điện áp danh định khoảng 12,8~V, được dùng làm ví dụ cấu hình đại diện để trình bày BMS nhiều cell cho hệ lớp 12~V. Nhóm chưa lựa chọn loại pin hoặc cấu hình 4S cho phần cứng. Khi có thông tin pin thực tế, nhóm cập nhật số cell, đặc tuyến và ngưỡng tương ứng. Nếu bộ pin không có đầu nối tiếp cận từng cell, nhóm cần thống nhất cách thể hiện chức năng cân bằng trên phần cứng hoặc mô hình riêng trước khi triển khai.
 
-Nhóm thiết kế schematic BMS trong Proteus, kiểm tra từng khối rồi ghép thành mô hình hoàn chỉnh. \pending{schematic Proteus của BMS}
+Nhóm thiết kế schematic BMS trong Proteus, kiểm tra từng khối rồi ghép thành mô hình hoàn chỉnh. Schematic và kết quả kiểm thử là đầu ra của giai đoạn xây dựng mô hình và mô phỏng chức năng.
 
 \subsection{Các khối chức năng và giao tiếp}
 
@@ -16,7 +17,7 @@ Luồng xử lý và các khối chức năng của BMS được thể hiện �
 \centering
 \begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[node distance=7mm and 12mm]
-  \node[blk] (pin) {Bộ pin 4S};
+  \node[blk] (pin) {Bộ pin\\nhiều cell};
   \node[blk, right=of pin] (meas) {Đo lường\\$V_\text{cell},\,I,\,T$};
   \node[blk, right=of meas] (ctrl) {Bộ điều khiển\\SoC $\cdot$ cân bằng $\cdot$ bảo vệ};
   \node[blk, right=of ctrl] (act) {Ngắt\\sạc/xả};
@@ -47,11 +48,13 @@ Các khối chức năng của BMS và giao tiếp giữa chúng:
     \item \textbf{Hiển thị/giao tiếp.} Đầu vào: dữ liệu đo, SoC, trạng thái. Đầu ra: LCD hoặc terminal trong Proteus; dữ liệu cho khối IoT khi tích hợp.
 \end{itemize}
 
-MCU dùng trong mô phỏng được chọn theo thư viện và khả năng nạp chương trình của phiên bản Proteus sử dụng. \pending{chốt MCU và kiểm tra thư viện Proteus ở đầu M2}
+Nhóm dự kiến dùng một ESP32 có kết nối Wi-Fi làm bộ điều khiển phần cứng, phụ trách thu thập số đo, ước lượng SoC, điều phối cân bằng, trạng thái vận hành và giao tiếp IoT. Các khối đo và chấp hành vẫn cần mạch giao tiếp phù hợp; nhóm lựa chọn biến thể ESP32 và cảm biến khi thiết kế tích hợp, dựa trên số kênh đo, chân giao tiếp, bộ nhớ và thời gian xử lý. Chức năng bảo vệ phần cứng tự chủ được xác định riêng với firmware giám sát.
+
+Trong giai đoạn mô phỏng chức năng, nhóm dự kiến dùng Arduino Uno hoặc MCU có mô hình thực thi chương trình trong Proteus đang sử dụng. Chương trình mô phỏng thực hiện đo lường, tính SoC, logic cân bằng và bảo vệ; dữ liệu được quan sát qua LCD hoặc terminal. Khi chuyển sang ESP32, nhóm tái sử dụng phần thuật toán, cập nhật lớp đọc cảm biến, thời gian, chân điều khiển và giao tiếp, rồi biên dịch và kiểm thử lại trên thiết bị. Mô phỏng bằng Uno kiểm chứng chức năng ở mức thuật toán/mạch đại diện, chưa xác nhận đặc tính ADC, thời gian thực thi hoặc kết nối Wi-Fi của ESP32.
 
 \subsection{Phương pháp đo lường}
 
-Với bốn cell nối tiếp, gọi \(U_i\) là điện áp nút thứ \(i\) so với cực âm chung, \(U_0=0\). Điện áp cell thứ \(i\) là:
+Với \(N\) cell nối tiếp, gọi \(U_i\) là điện áp nút thứ \(i\) so với cực âm chung, \(U_0=0\). Điện áp cell thứ \(i\), với \(i=1,\ldots,N\), là:
 \[
 V_{\mathrm{cell},i}=U_i-U_{i-1}.
 \]
@@ -70,7 +73,7 @@ Mô hình tụ điện chỉ minh họa quá trình sạc/xả, không cung cấ
 
 Nhóm dùng cân bằng thụ động: mỗi cell có nhánh điện trở nối tiếp phần tử đóng cắt, mắc song song với cell đó. Bộ điều khiển bật nhánh phù hợp khi điện áp cell vượt mức cho phép cân bằng và chênh lệch với cell thấp nhất vượt ngưỡng đặt. Điều kiện nhiệt độ, trạng thái lỗi và ngưỡng nhả được thêm để tránh đóng/cắt liên tục.
 
-Với mô hình lý tưởng, nhóm ước lượng dòng xả và công suất điện trở qua \(I_{\mathrm{bal}}\approx V_{\mathrm{cell}}/R_{\mathrm{bal}}\) và \(P_{\mathrm{bal}}\approx V_{\mathrm{cell}}^2/R_{\mathrm{bal}}\); giá trị cụ thể tính sau khi chọn dòng cân bằng. Trong Proteus, bước đầu dùng công tắc điều khiển lý tưởng; khi thay bằng MOSFET, nhóm thiết kế mạch kích theo điện thế của từng cell.
+Với mô hình lý tưởng, nhóm ước lượng dòng xả và công suất điện trở qua \(I_{\mathrm{bal}}\approx V_{\mathrm{cell}}/R_{\mathrm{bal}}\) và \(P_{\mathrm{bal}}\approx V_{\mathrm{cell}}^2/R_{\mathrm{bal}}\); giá trị cụ thể tính sau khi chọn dòng cân bằng. Nhóm ước lượng thời lượng ca thử từ điện tích cần xả và dòng cân bằng để phù hợp buổi thực nghiệm. Trong Proteus, bước đầu dùng công tắc điều khiển lý tưởng; khi thay bằng MOSFET, nhóm thiết kế mạch kích theo điện thế của từng cell.
 
 \subsection{Phương pháp bảo vệ và điều phối trạng thái}
 
@@ -89,4 +92,6 @@ Nhóm định nghĩa các trạng thái khởi tạo, chờ, sạc, xả và l�
 
 Trong mô hình chức năng, nhóm tách ca sạc và ca xả để kiểm tra logic. Khi tích hợp microgrid, tải có thể nhận năng lượng trực tiếp từ PV trong lúc pin nhận phần công suất dư; vì vậy không áp dụng quy tắc ``đang sạc thì cấm toàn bộ tải'' như một yêu cầu chung.
 
-Các tham số ngưỡng tác động, ngưỡng khôi phục, thời gian xác nhận lỗi và chế độ tự phục hồi/khóa lỗi được chọn từ datasheet và yêu cầu vận hành, ghi thành bảng cấu hình dùng chung giữa mô hình và hồ sơ kiểm thử. \pending{bảng ngưỡng bảo vệ theo datasheet của pin được chọn} Bảo vệ ngắn mạch của phần cứng được đánh giá riêng ở mốc thực nghiệm vì mô phỏng logic MCU không phản ánh tốc độ cắt và khả năng chịu dòng của mạch thật.
+Các tham số ngưỡng tác động, ngưỡng khôi phục, thời gian xác nhận lỗi và chế độ tự phục hồi/khóa lỗi được chọn từ datasheet và yêu cầu vận hành, ghi thành bảng cấu hình dùng chung giữa mô hình và hồ sơ kiểm thử. Nhóm xác định bộ ngưỡng khi xây dựng mô hình và mô phỏng chức năng, sau đó rà lại với linh kiện đã chọn trước giai đoạn triển khai phần cứng.
+
+Trong giai đoạn thiết kế tích hợp, nhóm lựa chọn cơ chế bảo vệ phần cứng tự chủ cho các sự cố cần phản ứng nhanh và xác định phần xử lý bằng firmware. IC giám sát/bảo vệ hoặc mạch so sánh là các hướng khảo sát, chưa chọn mã linh kiện. Phép thử ngắn mạch trong Proteus chỉ kiểm tra logic; đánh giá phần cứng cần đo thời gian tác động và dòng còn lại bằng phương án thử có giới hạn dòng phù hợp với linh kiện.

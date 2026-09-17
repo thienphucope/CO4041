@@ -1,22 +1,23 @@
 \section{Kế hoạch thực hiện và phân chia nhiệm vụ}
+\label{sec:plan}
 
-\subsection{Tiến độ dự kiến cho toàn project}
+\subsection{Các giai đoạn thực hiện}
 
-Nhóm đề xuất khung 12 tuần tính từ thời điểm bắt đầu đồ án, chia thành bảy mốc từ M1 đến M7. Mốc M1 tương ứng nội dung của báo cáo này; các mốc còn lại được điều chỉnh theo tiến độ thực tế và phản hồi của giảng viên.
+Nhóm đề xuất khung làm việc 14 tuần trong một học kỳ, tính từ thời điểm bắt đầu đồ án. Đây là giả định lập kế hoạch nội bộ, chưa phải lịch chính thức của học phần. M1 tương ứng mốc proposal; nhóm sẽ quy đổi các tuần tương đối sang ngày thực tế sau khi đối chiếu LMS và thời gian còn lại. Các mốc M2--M4 có phần thực hiện song song theo phụ thuộc công việc.
 
-Tiến độ dự kiến cho toàn bộ đồ án CO4041:
+Các giai đoạn thực hiện cho toàn bộ đồ án CO4041:
 
 \begin{itemize}
     \item \textbf{M1 --- Proposal (tuần 1--2).} Công việc: tổng hợp tài liệu, xác định phương pháp BMS/PV, tìm hiểu reconfiguration, lập kế hoạch. Đầu ra: báo cáo có đủ nội dung yêu cầu, nguồn trích dẫn và phân công.
-    \item \textbf{M2 --- Mô hình và đầu vào (tuần 3--4).} Công việc: kiểm tra Proteus, dựng PV, kiểm tra đo áp, dòng, nhiệt, xác định tải, pin và bảng tham số dự kiến. Đầu ra: PV có dữ liệu đối chiếu, khối đo đọc đúng tín hiệu, bộ thông số đủ để lập mô hình BMS.
-    \item \textbf{M3 --- BMS hoàn chỉnh trong mô phỏng (tuần 5--6).} Công việc: mở rộng nhiều cell, thêm SoC, cân bằng, bảo vệ và thử lỗi kết hợp. Đầu ra: dự án Proteus, chương trình, cấu hình và kết quả PV-01--03, BMS-01--10; xử lý lỗi ảnh hưởng chức năng.
-    \item \textbf{M4 --- Thiết kế tích hợp (tuần 7).} Công việc: chọn bộ sạc, inverter, tải và chuyển nguồn, khảo sát ghép khối trên Proteus, chốt BOM và giao tiếp. Đầu ra: sơ đồ kết nối, dải điện áp/dòng phù hợp, danh mục vật tư và kế hoạch thử phần cứng.
-    \item \textbf{M5 --- Phần cứng và IoT (tuần 8--9).} Công việc: triển khai mạch đo/BMS, tích hợp từng khối nguồn ở mức phù hợp, phát triển firmware và giao diện. Đầu ra: các khối chạy riêng, hiệu chuẩn ban đầu, dữ liệu và lệnh được truyền có phản hồi.
-    \item \textbf{M6 --- Tích hợp và thực nghiệm (tuần 10--11).} Công việc: ghép hệ thống, thử tải, điều kiện nguồn, chuyển nguồn, mất mạng và bảo vệ, thu số liệu chi phí/hiệu suất. Đầu ra: nhật ký thử nghiệm và dữ liệu, danh sách lỗi đã xử lý hoặc giới hạn còn lại.
-    \item \textbf{M7 --- Hoàn thiện và bàn giao (tuần 12).} Công việc: dự phòng sửa lỗi, kiểm tra lại ca bị ảnh hưởng, hoàn thiện báo cáo và hồ sơ. Đầu ra: mô hình minh họa, mã nguồn, schematic, kết quả, BOM và báo cáo cuối theo yêu cầu học phần.
+    \item \textbf{M2 --- Mô hình và đầu vào (tuần 3--4).} Công việc: kiểm tra Proteus; dựng PV song song với kiểm tra đo áp, dòng, nhiệt; làm rõ loại pin, tải, nguồn lực và bảng tham số dự kiến. Đầu ra: PV có dữ liệu đối chiếu, khối đo đọc đúng tín hiệu, bộ thông số đủ để lập mô hình BMS.
+    \item \textbf{M3 --- Mô phỏng chức năng (tuần 4--6).} Công việc: mở rộng BMS nhiều cell, thêm SoC, cân bằng, bảo vệ và thử lỗi kết hợp; hoàn thiện PV; dựng giao diện bằng dữ liệu giả theo giao tiếp đã thống nhất. Đầu ra: dự án Proteus, chương trình, cấu hình và kết quả PV-01--03, BMS-01--10; giao diện mẫu và danh sách lỗi cần xử lý.
+    \item \textbf{M4 --- Thiết kế tích hợp (khảo sát tuần 3--4, chốt tuần 5--6).} Công việc: khảo sát bộ sạc, inverter, tải, nguồn phụ và thời gian cung ứng; rà tương thích; thiết kế kết nối và chốt BOM theo từng khối. Đầu ra: sơ đồ kết nối, dải điện áp/dòng phù hợp, giao tiếp, linh kiện được lựa chọn và kế hoạch thử phần cứng.
+    \item \textbf{M5 --- Phần cứng và IoT (tuần 7--9).} Công việc: triển khai mạch đo/BMS đã qua kiểm tra mô phỏng, tích hợp từng khối nguồn; kết nối firmware và giao diện với dữ liệu thiết bị. Đầu ra: các khối chạy riêng, hiệu chuẩn ban đầu, dữ liệu và lệnh được truyền có phản hồi.
+    \item \textbf{M6 --- Tích hợp và thực nghiệm (tuần 10--12).} Công việc: ghép hệ thống; thử tải, điều kiện nguồn, chuyển nguồn, mất mạng và bảo vệ; thu số liệu chi phí/hiệu suất. Đầu ra: nhật ký thử nghiệm theo tiêu chí đã xác định, dữ liệu đo và danh sách lỗi hoặc giới hạn còn lại.
+    \item \textbf{M7 --- Dự phòng và bàn giao (tuần 13--14).} Tuần 13 dành cho xử lý lỗi phát sinh và kiểm tra lại các ca bị ảnh hưởng; tuần 14 hoàn thiện báo cáo, hồ sơ và chuẩn bị trình diễn theo yêu cầu học phần. Đầu ra: mô hình minh họa, mã nguồn, schematic, kết quả, BOM và báo cáo cuối.
 \end{itemize}
 
-Việc mua linh kiện chỉ triển khai sau khi đã xác định thông số và khả năng tương thích của khối liên quan. Khảo sát nhà cung cấp có thể làm trong M2--M3 để ước lượng thời gian cung ứng. Phần giao diện có thể phát triển với dữ liệu giả lập ở M5, nhưng đánh giá IoT hoàn chỉnh phải dùng dữ liệu từ thiết bị ở M6.
+Nhóm mua linh kiện sau khi xác định thông số và khả năng tương thích của khối liên quan, không cần đợi toàn bộ hệ thống hoàn thành mô phỏng mới khảo sát hoặc đặt linh kiện đã đủ căn cứ. Việc triển khai phần cứng vẫn phụ thuộc kết quả mô phỏng chức năng tương ứng. Nếu cần gia công PCB, nhóm đưa thời gian chế tạo và sửa mạch vào M4--M5. Nhóm điều chỉnh kế hoạch khi biết lịch thực tế, giữ thời gian tích hợp và đo đạc; phần reconfiguration mở rộng không nằm trên đường tiến độ bắt buộc.
 
 \subsection{Phân chia nhiệm vụ}
 

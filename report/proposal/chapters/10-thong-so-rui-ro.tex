@@ -3,29 +3,41 @@
 \subsection{Các quyết định còn mở}
 \label{sec:open-decisions}
 
-Các quyết định còn mở và thời điểm cần xác định:
+Nhóm giữ thông tin pin 12~V, 15~Ah do giảng viên cung cấp làm đầu vào hiện có. Các nội dung còn mở được phân theo nguồn quyết định để tiếp tục thiết kế mà không đồng nhất phương án khảo sát với yêu cầu đã xác nhận.
+
+\textbf{Đầu vào và phạm vi cần làm rõ với giảng viên, ở đầu giai đoạn xây dựng mô hình và xác định đầu vào:}
+\begin{itemize}
+    \item Pin có sẵn hay nhóm tự chọn; loại pin, datasheet và khả năng tiếp cận từng cell.
+    \item Loại tải AC/DC, công suất, thời gian hoạt động tối thiểu và mức gián đoạn tải cho phép khi chuyển nguồn. Nếu chưa có mức quy định, nhóm đề xuất quy mô từ pin và nguồn lực để nhận góp ý.
+    \item Mức tự thiết kế mạch/PCB BMS, cách thể hiện chức năng cân bằng trên phần cứng và mức đáp ứng học phần của phương án tích hợp mô-đun sạc/inverter.
+    \item Thiết bị, dụng cụ đo, địa điểm thử và kinh phí hỗ trợ có thể sử dụng. Ngân sách tự chi do nhóm thống nhất.
+\end{itemize}
+
+Nhóm kiểm tra hạn nộp, mốc tiến độ và tiêu chí đánh giá trên LMS trước; các thông tin chưa công bố sẽ được trao đổi với giảng viên. Nội dung proposal tiếp tục theo mức tổng quan đã thống nhất với giảng viên.
+
+\textbf{Lựa chọn kỹ thuật do nhóm đề xuất và kiểm chứng:}
 
 \begin{itemize}
-    \item \textbf{Công suất tải và thời gian hoạt động.} Trạng thái: chưa xác định. Cần xác định ở M2, trước khi chốt quy mô nguồn và pin.
-    \item \textbf{Loại cell, số cell và dung lượng.} Trạng thái: đề xuất khảo sát LiFePO4 4S, 15~Ah chỉ là giả định ban đầu. Cần xác định ở M2, trước thiết kế BMS chi tiết và mua pin.
-    \item \textbf{Ngưỡng điện áp/dòng/nhiệt, trễ và khôi phục.} Trạng thái: chưa có bảng datasheet của pin được chọn. Cần xác định ở M2--M3, trước khi kết luận các ca bảo vệ.
-    \item \textbf{Dải đo và sai số cho phép.} Trạng thái: chưa xác định từ phần cứng. Cần xác định ở M2, kiểm tra lại sau hiệu chuẩn ở M5.
-    \item \textbf{Tham số PV thực tế.} Trạng thái: SM55 chỉ là bộ tham số tham khảo. Cần xác định ở M4, khi chọn tấm pin triển khai.
-    \item \textbf{MCU, cảm biến, thư viện và giấy phép Proteus.} Trạng thái: chưa kiểm tra khả năng mô phỏng trên máy. Cần xác định ở đầu M2.
-    \item \textbf{Bộ sạc, inverter, nguồn phụ và ngân sách.} Trạng thái: chưa chọn linh kiện hoặc mô-đun. Cần xác định ở M4.
-    \item \textbf{Nền tảng IoT và giao thức điều khiển.} Trạng thái: ESP32/ThingSpeak là phương án khảo sát. Cần xác định ở M4--M5.
-    \item \textbf{Thực hiện reconfiguration ngoài phần lý thuyết.} Trạng thái: chưa đưa vào đầu ra bắt buộc. Xem xét sau khi hoàn thành các phần chính.
+    \item \textbf{Cấu hình pin và quy mô nguồn/tải.} Sau khi có đầu vào ở giai đoạn xây dựng mô hình và xác định đầu vào, nhóm xác định số cell, dải bus, công suất PV, sạc/inverter và dòng thiết kế. Mã thiết bị được chốt theo từng khối tại giai đoạn thiết kế tích hợp trước khi mua hoặc tích hợp.
+    \item \textbf{Đo lường và bảo vệ.} Nhóm chọn MCU, cảm biến, IC hoặc mạch bảo vệ, dải đo, sai số cho phép và nhánh cân bằng. Ngưỡng áp/dòng/nhiệt, trễ và khôi phục phải dựa trên datasheet pin, linh kiện và yêu cầu vận hành; bộ tham số mô phỏng được xác định ở giai đoạn xây dựng mô hình và mô phỏng chức năng, rà lại ở giai đoạn thiết kế tích hợp và kiểm tra sau hiệu chuẩn ở giai đoạn triển khai phần cứng và IoT.
+    \item \textbf{Phương pháp SoC.} Nhóm xác định trạng thái ban đầu, dung lượng tham chiếu và khả năng hiệu chỉnh theo loại pin ở giai đoạn mô phỏng chức năng; đánh giá sai số bằng dữ liệu tham chiếu ở giai đoạn triển khai phần cứng và thực nghiệm.
+    \item \textbf{Môi trường mô phỏng.} Nhóm kiểm tra thư viện, giấy phép và khả năng nạp chương trình ở đầu giai đoạn xây dựng mô hình và xác định đầu vào. SM55 là bộ tham số PV tham khảo; mô hình phần cứng được cập nhật khi chọn tấm pin tại giai đoạn thiết kế tích hợp.
+    \item \textbf{IoT và điều phối nguồn.} Nhóm chọn nền tảng, giao thức, chu kỳ cập nhật và phản hồi lệnh; khảo sát từ giai đoạn mô phỏng chức năng và chốt giao tiếp ở giai đoạn thiết kế tích hợp. Nhóm dự kiến dùng ESP32 làm khối kết nối; nền tảng IoT được chọn theo nhu cầu lưu dữ liệu, hiển thị, điều khiển và chi phí. Đường nguồn phụ và chuyển nguồn được thiết kế theo yêu cầu tải đã xác định.
+    \item \textbf{Tiêu chí đánh giá và chi phí.} Nhóm đề xuất phép đo và mức chấp nhận trước chạy thử chính thức, đối chiếu tiêu chí học phần; dự toán ở giai đoạn xác định đầu vào và thiết kế tích hợp và cập nhật BOM thực tế tại giai đoạn tích hợp và thực nghiệm.
 \end{itemize}
+
+Mô phỏng hoặc chế tạo reconfiguration là hướng mở rộng sau các đầu ra chính. Nhóm tự quản lý tiến độ và phân công theo Mục~\ref{sec:plan}; thay đổi yêu cầu hoặc sản phẩm bắt buộc cần trao đổi với giảng viên.
 
 \subsection{Rủi ro và cách xử lý dự kiến}
 
 Rủi ro thực hiện và cách xử lý dự kiến:
 
 \begin{itemize}
-    \item \textbf{Thiếu mô hình MCU/cảm biến hoặc không nạp/lưu được dự án Proteus.} Ảnh hưởng: không chạy được một phần mô phỏng. Xử lý: kiểm tra ngay đầu M2, dùng nguồn tín hiệu và khối cơ bản cho phần đo, giải quyết môi trường MCU trước kiểm thử SoC.
+    \item \textbf{Chậm làm rõ pin, tải hoặc mức tự thiết kế.} Ảnh hưởng: phải đổi cấu hình BMS hoặc thiết bị công suất. Xử lý: hỏi các đầu vào ở đầu giai đoạn xây dựng mô hình và xác định đầu vào; tiếp tục mô hình tham số và giao diện giả lập trong lúc chờ, chốt đầu vào liên quan trước mua linh kiện.
+    \item \textbf{Thiếu mô hình MCU/cảm biến hoặc không nạp/lưu được dự án Proteus.} Ảnh hưởng: không chạy được một phần mô phỏng. Xử lý: kiểm tra ngay đầu giai đoạn xây dựng mô hình và xác định đầu vào, dùng nguồn tín hiệu và khối cơ bản cho phần đo, giải quyết môi trường MCU trước kiểm thử SoC.
     \item \textbf{Mô hình cell quá đơn giản.} Ảnh hưởng: dễ diễn giải sai thời gian sạc/xả hoặc cân bằng. Xử lý: tách kiểm thử logic và kiểm thử động học, ghi rõ giới hạn của từng mô hình.
     \item \textbf{Sai số đo lớn so với ngưỡng cân bằng.} Ảnh hưởng: bật sai nhánh hoặc rung đóng/cắt. Xử lý: lập ngân sách sai số, hiệu chuẩn, điều chỉnh dải đo và ngưỡng.
-    \item \textbf{Mạch công suất không tương thích.} Ảnh hưởng: khó tích hợp hoặc vượt khả năng linh kiện. Xử lý: rà điện áp, dòng, chiều cấp nguồn và điều kiện bảo vệ ở M4.
-    \item \textbf{Linh kiện giao chậm hoặc phạm vi quá rộng.} Ảnh hưởng: thiếu thời gian thực nghiệm. Xử lý: khảo sát cung ứng sớm, ưu tiên đầu ra cốt lõi, giữ tuần dự phòng và dùng mô-đun phù hợp khi cần.
+    \item \textbf{Mạch công suất không tương thích.} Ảnh hưởng: khó tích hợp hoặc vượt khả năng linh kiện. Xử lý: rà điện áp, dòng, chiều cấp nguồn và điều kiện bảo vệ ở giai đoạn thiết kế tích hợp.
+    \item \textbf{Linh kiện giao chậm hoặc phạm vi quá rộng.} Ảnh hưởng: thiếu thời gian thực nghiệm. Xử lý: khảo sát cung ứng từ giai đoạn xây dựng mô hình và xác định đầu vào, chốt và đặt theo từng khối; dùng mô-đun sạc/inverter, giữ tuần dự phòng và ưu tiên đầu ra bắt buộc.
     \item \textbf{Mất mạng hoặc lệnh từ xa xung đột với bảo vệ.} Ảnh hưởng: hiển thị sai trạng thái hoặc điều khiển không phù hợp. Xử lý: bảo vệ cục bộ, đánh dấu dữ liệu cũ, xác nhận lệnh và thử lỗi mạng.
 \end{itemize}

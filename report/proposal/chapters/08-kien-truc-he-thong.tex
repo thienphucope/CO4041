@@ -1,25 +1,27 @@
 \section{Kiến trúc và phương án triển khai toàn hệ thống}
+\label{sec:architecture}
 
 \subsection{Kiến trúc năng lượng và dữ liệu}
 
-Nhóm đề xuất các đường năng lượng như Hình~\ref{fig:energy}: PV cấp qua bộ điều khiển sạc lên bus DC được quản lý, từ đó ra tải DC hoặc qua inverter cấp tải AC; pin lưu trữ trao đổi công suất hai chiều với bus qua đường sạc/xả do BMS quản lý; nguồn DC phụ trợ vào bus qua khối chọn nguồn và chống cấp ngược.
+Nhóm đề xuất kiến trúc ở Hình~\ref{fig:energy}: nguồn PV hoặc nguồn DC phụ trợ cấp qua khối chọn nguồn và bộ điều khiển sạc phù hợp với pin, sau đó tới bus DC. Pin trao đổi công suất hai chiều với bus qua đường sạc/xả do BMS quản lý. Tải DC lấy điện từ bus; inverter cấp điện cho tải AC. Nhóm đặt chức năng điều chỉnh dòng/áp sạc trên đường từ cả hai nguồn tới pin.
 
 \begin{figure}[H]
 \centering
 \begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[node distance=7mm and 11mm]
   \node[blk] (pv) {PV};
-  \node[blk, right=of pv] (cc) {Bộ điều khiển\\sạc};
-  \node[blk, right=of cc] (bus) {Bus DC\\(được quản lý)};
+  \node[blk, right=of pv] (sel) {Chọn nguồn /\\chống cấp ngược};
+  \node[blk, right=of sel] (cc) {Bộ điều khiển\\sạc phù hợp pin};
+  \node[blk, right=of cc] (bus) {Bus DC\\phía pin};
   \node[blk, right=of bus] (inv) {Inverter};
   \node[blk, right=of inv] (ac) {Tải AC};
   \node[blk, above=of bus] (dc) {Tải DC};
   \node[blk, below=of cc] (pin) {Pin lưu trữ};
   \node[blk, below=of bus] (bms) {BMS};
-  \node[blk, below=of inv] (sel) {Chọn nguồn /\\chống cấp ngược};
-  \node[blk, below=of ac] (aux) {Nguồn DC\\phụ trợ};
+  \node[blk, below=of pv] (aux) {Nguồn DC\\phụ trợ};
 
-  \draw[fl] (pv) -- (cc);
+  \draw[fl] (pv) -- (sel);
+  \draw[fl] (sel) -- (cc);
   \draw[fl] (cc) -- (bus);
   \draw[fl] (bus) -- (inv);
   \draw[fl] (inv) -- (ac);
@@ -27,14 +29,15 @@ Nhóm đề xuất các đường năng lượng như Hình~\ref{fig:energy}: PV
   \draw[fl2] (pin) -- (bms);
   \draw[fl2] (bms) -- (bus);
   \draw[fl] (aux) -- (sel);
-  \draw[fl] (sel) -- (bus);
 \end{tikzpicture}
 \end{adjustbox}
 \caption{Sơ đồ khối luồng năng lượng của hệ thống.}
 \label{fig:energy}
 \end{figure}
 
-Nguồn phụ trợ dự kiến là nguồn DC đã cách ly hoặc nguồn phòng thí nghiệm phù hợp. Cách ghép nguồn phụ vào bus hay đầu vào bộ sạc sẽ được xác định khi chọn bộ điều khiển nguồn. Mô hình dự kiến vận hành độc lập; chức năng chuyển nguồn không đồng nghĩa với hòa lưới.
+Nguồn phụ trợ dự kiến là nguồn DC đã cách ly hoặc nguồn phòng thí nghiệm phù hợp. Sơ đồ trên mô tả chức năng; khi chọn mô-đun, nhóm phải kiểm tra bộ sạc hỗ trợ dải điện áp và đặc tính của từng nguồn. Nếu cần các bộ sạc riêng, mỗi nhánh vẫn phải điều chỉnh quá trình sạc và có cơ chế chống cấp ngược. BMS thực hiện bảo vệ, không thay thế bộ sạc.
+
+Ở phương án này, bus DC phía pin biến thiên theo điện áp bộ pin. Nhóm chọn tải và inverter theo toàn bộ dải điện áp vận hành; tải cần điện áp ổn định sẽ có khối DC--DC phù hợp. Nhóm làm rõ yêu cầu duy trì tải khi xác định đầu vào và chốt dải bus trong giai đoạn thiết kế tích hợp. Mô hình đề xuất vận hành độc lập, không đặt nhiệm vụ hòa lưới.
 
 Luồng dữ liệu và điều khiển như Hình~\ref{fig:data}: cảm biến đưa số đo về bộ điều khiển cục bộ/BMS, qua khối kết nối IoT lên dịch vụ lưu trữ và hiển thị trên giao diện mobile/PC; lệnh người dùng đi ngược lại, được bộ điều khiển kiểm tra điều kiện trước khi tác động cơ cấu chấp hành và phản hồi trạng thái thực tế.
 
@@ -64,7 +67,7 @@ Luồng dữ liệu và điều khiển như Hình~\ref{fig:data}: cảm biến 
 \label{fig:data}
 \end{figure}
 
-Hai sơ đồ khối trên mô tả chức năng ở mức tổng quan của hệ thống, chưa bao gồm mức nối chân và bố trí phần tử công suất. \pending{sơ đồ nối chân, vị trí phần tử công suất và triển khai mạch thực tế (mốc M4--M5)}
+Hai sơ đồ khối trên mô tả chức năng ở mức tổng quan của hệ thống. Nhóm hoàn thành sơ đồ nối chân và bố trí phần tử công suất trong giai đoạn thiết kế tích hợp, trước khi triển khai phần cứng. Khối kết nối IoT có thể nằm trên cùng ESP32 với bộ điều khiển cục bộ; việc tách khối trong sơ đồ thể hiện chức năng, không mặc định dùng hai vi điều khiển.
 
 \subsection{Phương án cho từng thành phần}
 
@@ -72,16 +75,16 @@ Phương án dự kiến cho từng thành phần của hệ thống:
 
 \begin{itemize}
     \item \textbf{PV.} Chọn quy mô công suất theo tải; kiểm tra dải điện áp và dòng phù hợp bộ điều khiển sạc.
-    \item \textbf{Bộ điều khiển sạc.} So sánh phương án PWM/MPPT theo yêu cầu công suất và chi phí; xác định đặc tuyến sạc theo loại pin.
-    \item \textbf{Pin và BMS.} Chốt cấu hình cell, dung lượng, bảo vệ và cân bằng; hoàn thành mô phỏng trước thử nghiệm.
-    \item \textbf{Inverter.} Chọn mô-đun hoặc phương án triển khai phù hợp bus và tải; kiểm tra công suất liên tục, khởi động và hiệu suất.
+    \item \textbf{Bộ điều khiển sạc.} Chọn mô-đun có đặc tuyến sạc phù hợp pin; so sánh phương án PWM và MPPT theo công suất, nguồn đầu vào và chi phí.
+    \item \textbf{Pin và BMS.} Làm rõ loại pin 12~V, 15~Ah và khả năng tiếp cận từng cell; thiết kế đo lường, SoC, cân bằng và bảo vệ; hoàn thành mô phỏng chức năng trước triển khai phần cứng liên quan.
+    \item \textbf{Inverter.} Chọn mô-đun phù hợp bus và tải; kiểm tra công suất liên tục, khởi động và hiệu suất.
     \item \textbf{Chuyển nguồn.} Xác định điều kiện chọn nguồn, ngắt trước khi đóng nguồn khác khi cần, tránh cấp ngược và ghi nhận trạng thái.
     \item \textbf{Tải.} Chọn tải DC và tải AC đại diện, có các mức công suất để kiểm tra thay đổi tải.
     \item \textbf{Đo lường.} Đo dòng/áp tại PV, pin và tải ở mức cần thiết cho điều khiển và đánh giá.
     \item \textbf{IoT/giao diện.} Hiển thị hiện tại, đồ thị lịch sử, năng lượng, trạng thái nguồn/tải, cảnh báo và lệnh điều khiển.
 \end{itemize}
 
-Nhóm ưu tiên tích hợp các mô-đun công suất phù hợp nếu việc tự thiết kế toàn bộ bộ sạc hoặc inverter vượt quá nguồn lực. Công việc thiết kế và đánh giá BMS, đo lường, điều phối nguồn và IoT vẫn được giữ trong phạm vi đề tài. Quyết định dùng mô-đun hay tự thiết kế sẽ được ghi rõ trong báo cáo và BOM.
+Phương án chính của nhóm là tích hợp mô-đun sạc và inverter có sẵn để tập trung công việc tự phát triển vào BMS, đo lường, firmware, điều phối nguồn và IoT. Với BMS, nhóm khảo sát linh kiện hoặc IC giám sát/bảo vệ để tích hợp vào thiết kế; mức tự thiết kế mạch/PCB và đầu ra cân bằng phần cứng cần đối chiếu yêu cầu học phần. Báo cáo và BOM sẽ ghi rõ phần nhóm thiết kế và phần sử dụng mô-đun.
 
 \subsection{Xác định quy mô và chi phí}
 
@@ -90,13 +93,15 @@ Trước khi chọn phần cứng, nhóm sẽ lập danh sách tải gồm công
 E_{\mathrm{load}}=\sum_j P_j\,t_j.
 \]
 
-Nhóm sẽ từ nhu cầu này xác định dung lượng lưu trữ, công suất PV và công suất các khối chuyển đổi, có xét tổn hao, mức dung lượng pin cho phép sử dụng và dự phòng. Các giá trị chưa có dữ liệu hiện vẫn để mở.
+Nhóm đối chiếu nhu cầu tải với bộ pin 12~V, 15~Ah, có xét tổn hao và mức dung lượng cho phép sử dụng, rồi xác định công suất PV và các khối chuyển đổi. Nếu nhu cầu tải vượt khả năng bộ pin, nhóm đề xuất điều chỉnh quy mô tải hoặc trao đổi lại yêu cầu đầu vào trước khi thay dung lượng pin.
+
+Hiện công suất tải, thời lượng cấp tải, công suất PV, dòng thiết kế, dải bus và ngân sách chưa có giá trị xác nhận. Trong giai đoạn xác định đầu vào, nhóm lập bảng thông số gồm nguồn yêu cầu hoặc căn cứ tính toán, người phụ trách và thời điểm cần xác định; các giá trị được chốt theo khối khi thiết kế tích hợp, trước khi mua linh kiện.
 
 BOM dự kiến gồm PV, cell, bộ sạc, inverter, BMS, vi điều khiển, cảm biến, thiết bị chuyển mạch, dây nối, đầu nối, phần cơ khí và chi phí gia công. Khi so sánh phương án, nhóm sẽ ghi nguồn giá, ngày lấy giá, phần có sẵn và phần phải mua; không so trực tiếp hai phương án khác công suất hoặc thiếu chức năng.
 
 \subsection{Kế hoạch IoT và điều khiển}
 
-Nhóm dự kiến đánh giá ESP32 cho kết nối mạng và ThingSpeak theo kiến trúc trong \cite{kulkarni}. Nền tảng cuối cùng sẽ được chọn sau khi kiểm tra khả năng lưu dữ liệu, hiển thị và nhận lệnh. Giao diện cần:
+Nhóm dự kiến dùng ESP32 kết nối tới một nền tảng IoT. Nhóm sẽ chọn nền tảng trong giai đoạn thiết kế tích hợp theo khả năng lưu dữ liệu, hiển thị, nhận lệnh, xác thực truy cập và chi phí. Giao diện cần:
 
 \begin{itemize}
     \item Hiển thị điện áp, dòng, công suất, năng lượng, nhiệt độ, SoC và trạng thái tải/nguồn.
@@ -105,4 +110,4 @@ Nhóm dự kiến đánh giá ESP32 cho kết nối mạng và ThingSpeak theo k
     \item Hiển thị kết quả thực thi và trạng thái kết nối.
 \end{itemize}
 
-Mỗi bản ghi sẽ có mốc thời gian và trạng thái chất lượng dữ liệu. Khi mất kết nối, bộ điều khiển tiếp tục bảo vệ cục bộ; giao diện phải phân biệt dữ liệu mới với dữ liệu cũ. Lệnh bật tải không được vô hiệu hóa điều kiện ngắt của BMS. Nhóm sẽ thử giao tiếp bằng terminal trên Proteus trước, sau đó kiểm tra đường truyền và ứng dụng trên thiết bị.
+Mỗi bản ghi sẽ có mốc thời gian và trạng thái chất lượng dữ liệu. Khi mất kết nối, bộ điều khiển tiếp tục bảo vệ cục bộ; giao diện phải phân biệt dữ liệu mới với dữ liệu cũ. Lệnh bật tải không được vô hiệu hóa điều kiện ngắt của BMS. Nhóm sẽ thử giao tiếp bằng terminal trên Proteus trước, sau đó kiểm tra đường truyền và ứng dụng trên ESP32 thật. Firmware tách công việc đo/điều khiển khỏi truyền dữ liệu mạng để việc chờ kết nối không chặn xử lý cục bộ; thời gian xử lý và tài nguyên được kiểm tra khi tích hợp.

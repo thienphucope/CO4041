@@ -26,11 +26,12 @@
 
 % Tham chiếu chéo: dùng \Cref{}
 \usepackage[nameinlink]{cleveref}
-
-% Đánh dấu phần còn thiếu / sẽ bổ sung ở bước sau.
-% Dùng: \pending{mô tả ngắn phần cần bổ sung}
-\usepackage{xcolor}
-\newcommand{\pending}[1]{{\color{orange!75!black}\bfseries[Cần bổ sung: #1]}}
+\crefname{table}{bảng}{các bảng}
+\Crefname{table}{Bảng}{Các bảng}
+\crefname{section}{mục}{các mục}
+\Crefname{section}{Mục}{Các mục}
+\crefname{figure}{hình}{các hình}
+\Crefname{figure}{Hình}{Các hình}
 
 % ------------------------------------------------------------
 % Cấu hình trang bìa
@@ -57,8 +58,6 @@
 \clearpage
 
 \input{chapters/01-gioi-thieu}
-\input{chapters/02-pham-vi}
-\input{chapters/03-khao-sat-tai-lieu}
 \input{chapters/04-co-so-ly-thuyet}
 \input{chapters/05-thiet-ke-bms}
 \input{chapters/06-ke-hoach-mo-phong}

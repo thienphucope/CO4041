@@ -1,6 +1,9 @@
-\section{Đối chiếu yêu cầu đề tài với nội dung báo cáo}
+\section{Sản phẩm dự kiến và phương pháp đánh giá}
+\label{sec:evaluation}
 
-Báo cáo trình bày cơ sở lý thuyết, phương pháp thiết kế BMS 12~V, kế hoạch mô phỏng BMS/PV trên Proteus, phần lý thuyết PV array configuration, kiến trúc hệ thống và kế hoạch phân công. \Cref{tab:req-map} đối chiếu các yêu cầu của đề tài \cite{qa1} với mục tương ứng trong báo cáo.
+\subsection{Đối chiếu nội dung proposal}
+
+\Cref{tab:req-map} đối chiếu yêu cầu tại mốc proposal (theo trao đổi với giảng viên) với nội dung báo cáo. Các ca thử trong kế hoạch là công việc dự kiến; báo cáo này chưa công bố kết quả đạt của nhóm.
 
 \begin{longtable}{@{}p{6.5cm} p{8.0cm}@{}}
 \toprule
@@ -11,13 +14,55 @@ Báo cáo trình bày cơ sở lý thuyết, phương pháp thiết kế BMS 12~
 \textbf{Yêu cầu} & \textbf{Mục trình bày trong báo cáo} \\
 \midrule
 \endhead
-BMS 12~V: SoC, nhiệt độ, cân bằng cell, bảo vệ & Mục 4.5--4.6 và Mục 5 \\
-Mô phỏng chức năng trên Proteus trước phần cứng & Mục 6 và thứ tự M2--M5 trong Mục 9 \\
-Mô phỏng tấm pin & Mục 4.2--4.3 và 6.2 \\
-Tìm hiểu PV array configuration & Mục 7 \\
-Phương pháp tổng quan, kế hoạch, phân nhiệm vụ & Mục 5--6 và 8--9 \\
-Đọc tài liệu được cung cấp và tự tìm thêm & Mục 3 và 12 \\
+BMS 12~V: SoC, nhiệt độ, cân bằng cell, bảo vệ & Mục~\ref{sec:soc}, \ref{sec:balance-theory} và \ref{sec:bms-design} \\
+Mô phỏng chức năng trên Proteus trước phần cứng & Mục~\ref{sec:simulation} và kế hoạch tại Mục~\ref{sec:plan} \\
+Mô phỏng tấm pin & Mục~\ref{sec:pv-characteristics}, \ref{sec:pv-model} và \ref{sec:pv-simulation} \\
+Tìm hiểu PV array configuration & Mục~\ref{sec:pv-configuration} \\
+Phương pháp tổng quan, kế hoạch, phân nhiệm vụ & Mục~\ref{sec:bms-design}, \ref{sec:simulation}, \ref{sec:architecture} và \ref{sec:plan} \\
+Đọc tài liệu được cung cấp và tự tìm thêm & Trích dẫn trong Mục~\ref{sec:theory}, \ref{sec:bms-design}, \ref{sec:pv-configuration} và danh mục tài liệu tham khảo \\
 \bottomrule
-\caption{Đối chiếu yêu cầu của đề tài và nội dung trình bày trong báo cáo.}
+\caption{Đối chiếu yêu cầu proposal và nội dung báo cáo.}
 \label{tab:req-map}
 \end{longtable}
+
+\subsection{Sản phẩm sau triển khai}
+
+Nhóm dự kiến bàn giao mô hình Proteus PV/BMS cùng tham số và chương trình; mô hình phần cứng tích hợp nguồn PV, bộ sạc, pin, BMS, inverter, tải và chuyển nguồn; giao diện giám sát/điều khiển và lịch sử dữ liệu; hồ sơ thiết kế, mã nguồn, nhật ký thử, BOM và báo cáo tổng kết. Mức tự thiết kế PCB và cách thể hiện cân bằng phần cứng được làm rõ ở giai đoạn xây dựng mô hình và xác định đầu vào theo Mục~\ref{sec:open-decisions}.
+
+Hồ sơ ghi rõ các mô-đun có sẵn, phần nhóm tự phát triển và giới hạn đã kiểm chứng. Nhóm coi một đầu ra hoàn thành khi có cấu hình tái lập, dữ liệu của phép thử liên quan và kết luận so với tiêu chí đã đặt. Phần tìm hiểu reconfiguration bàn giao bằng nội dung lý thuyết và phân tích khả năng áp dụng.
+
+\subsection{Phép thử và tiêu chí dự kiến}
+
+\Cref{tab:acceptance} nêu cách đánh giá ở mức proposal. Các giới hạn định lượng chưa có căn cứ được xác định từ yêu cầu tải, datasheet và ngân sách sai số trong giai đoạn xác định đầu vào và thiết kế tích hợp, trước khi chạy bộ thử chính thức. Nhóm ghi các giới hạn vào cấu hình kiểm thử và đối chiếu tiêu chí học phần; không điều chỉnh giới hạn chỉ để phù hợp số liệu đã đo.
+
+\begin{longtable}{@{}p{2.5cm} p{6.0cm} p{6.2cm}@{}}
+\toprule
+\textbf{Đối tượng} & \textbf{Phép thử / dữ liệu} & \textbf{Căn cứ kết luận đạt} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Đối tượng} & \textbf{Phép thử / dữ liệu} & \textbf{Căn cứ kết luận đạt} \\
+\midrule
+\endhead
+PV mô phỏng & PV-01--03: đường I--V/P--V, các điểm đặc trưng và điều kiện \(G,T\). & Đúng xu hướng; sai lệch so với cùng bộ tham số tham chiếu trong giới hạn xác định ở giai đoạn xây dựng mô hình và xác định đầu vào. \\
+Đo lường & So áp, dòng hai chiều và nhiệt độ với tín hiệu hoặc dụng cụ tham chiếu tại nhiều điểm trong dải đo. & Đúng kênh, dấu và đơn vị; sai số sau hiệu chuẩn trong ngân sách xác định ở giai đoạn xác định đầu vào và thiết kế tích hợp. \\
+SoC & Dòng và thời gian biết trước trong mô phỏng; dữ liệu dòng tham chiếu và điều kiện khởi tạo xác định khi thử pin thật. & Đúng chiều biến thiên, giới hạn 0--100\%; ghi sai số theo điểm phần trăm và độ trôi so với mức đặt trước thử. \\
+Cân bằng & Chọn cell, đo dòng nhánh, nhiệt độ và diễn biến độ lệch trong điều kiện thử đã ghi. & Chọn đúng nhánh, tôn trọng điều kiện cho phép/dừng; đánh giá mức giảm độ lệch bằng mô hình hoặc pin phù hợp. \\
+Bảo vệ & OV/UV/OC/nhiệt, lỗi cảm biến, khởi động, lỗi kết hợp và khôi phục; đo thời gian tác động và dòng sau ngắt. & Đúng bảng ngưỡng/trễ/khôi phục; khóa khi lỗi còn tồn tại; lệnh từ xa không vượt quyền bảo vệ. Giới hạn phần cứng xác định ở giai đoạn thiết kế tích hợp. \\
+Nguồn và tải & Các mức tải, thay đổi nguồn, chuyển nguồn phụ; ghi áp bus, công suất, thời lượng và gián đoạn tải. & Đáp ứng dải điện áp, công suất và mức gián đoạn đã xác định ở giai đoạn xác định đầu vào và thiết kế tích hợp; không cấp ngược ngoài đường thiết kế. \\
+IoT & Đối chiếu dữ liệu thiết bị/giao diện; gửi lệnh, đo độ trễ, mất mạng và kết nối lại. & Dữ liệu đúng, có phản hồi thực thi; nhận biết dữ liệu cũ; bảo vệ cục bộ hoạt động khi mất mạng; độ trễ theo mức đặt tại giai đoạn thiết kế tích hợp. \\
+Chi phí và hiệu suất & BOM thực tế, phương án so sánh cùng yêu cầu; đo năng lượng tại ranh giới khối đã chọn. & Có nguồn giá, phần có sẵn/phải mua và điều kiện đo; lựa chọn phương án đáp ứng chức năng trong ngân sách đã thống nhất. \\
+\bottomrule
+\caption{Phương pháp đánh giá các đầu ra của đồ án.}
+\label{tab:acceptance}
+\end{longtable}
+
+Kiểm thử SoC bằng dòng biết trước xác nhận phép tích phân và logic chương trình. Đánh giá sai số trên pin thật cần dữ liệu tham chiếu độc lập với giá trị ước lượng, dung lượng tham chiếu và cách xác định trạng thái ban đầu. Nhóm ghi rõ điều kiện nhiệt độ, dòng thử và các giới hạn của phép đối chiếu.
+
+Năng lượng ở một nhánh đo được tính từ công suất theo thời gian:
+\[
+E=\sum_k P_k\frac{\Delta t_k}{3600}\quad[\mathrm{Wh}],
+\]
+với \(P_k\) tính bằng W và \(\Delta t_k\) bằng giây. Khi đánh giá hiệu suất, nhóm xác định ranh giới khối và các nguồn năng lượng đi qua ranh giới đó. Với phép đo toàn hệ thống có pin, nhóm phải tính thay đổi năng lượng lưu trữ hoặc so sánh ở trạng thái pin đầu/cuối tương đương. Năng lượng tải có thể gồm phần pin đã xả, nên tỷ số năng lượng tải/PV riêng lẻ chưa đủ để kết luận hiệu suất hệ thống.
+
+Nhóm thử các mức tải và điều kiện nguồn khác nhau, ghi điều kiện chiếu sáng thực tế. Nếu không có dụng cụ đo bức xạ, nhóm mô tả điều kiện thử và số đo điện, không gán giá trị bức xạ từ nhận xét thời tiết. Số liệu và giới hạn chưa đạt sẽ được ghi trong báo cáo cuối.

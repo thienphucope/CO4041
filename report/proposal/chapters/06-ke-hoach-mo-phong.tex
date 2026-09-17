@@ -1,12 +1,14 @@
 \section{Kế hoạch mô phỏng trên Proteus}
+\label{sec:simulation}
 
 \subsection{Trình tự và phạm vi}
 
-Nhóm tạo hai dự án Proteus riêng cho PV và BMS. Sau khi mỗi mô hình đáp ứng các ca kiểm tra, nhóm khảo sát ghép nối qua khối điều khiển sạc và đường tải. Toàn bộ mô phỏng được thực hiện trước khi chế tạo phần cứng.
+Nhóm tạo hai dự án Proteus riêng cho PV và BMS và triển khai song song. Sau khi mỗi mô hình đáp ứng các ca kiểm tra, nhóm khảo sát ghép nối qua khối điều khiển sạc và đường tải. Mỗi khối cần hoàn thành mô phỏng chức năng liên quan trước khi triển khai phần cứng tương ứng; khảo sát linh kiện và phát triển giao diện bằng dữ liệu giả có thể thực hiện cùng thời gian.
 
 Với BMS, nhóm bắt đầu bằng một kênh đo và bảo vệ, sau đó mở rộng lên nhiều cell để kiểm tra cân bằng; bài thử một cell là bước kiểm tra ban đầu trước khi dựng BMS 12~V hoàn chỉnh.
 
 \subsection{Mô phỏng tấm pin}
+\label{sec:pv-simulation}
 
 Nhóm thực hiện các bước sau theo phương pháp trong \cite{yaqoob}:
 
@@ -26,11 +28,11 @@ Các ca thử cho mô phỏng tấm pin:
     \item \textbf{PV-03.} Điều kiện \(T=25,45,60^\circ\mathrm{C}\), giữ \(G=1000\ \mathrm{W/m^2}\); thu họ đường I--V/P--V; kiểm tra tác động của nhiệt độ ở cùng bức xạ.
 \end{itemize}
 
-Nhóm ghi sai lệch của từng thông số so với tham chiếu và chỉ so sánh định lượng khi cùng điều kiện và cùng bộ tham số. Bộ tham số SM55 phục vụ kiểm tra mô hình, không phải quyết định chọn tấm pin. \pending{kết quả I--V/P--V của các ca PV-01--03}
+Nhóm ghi sai lệch của từng thông số so với tham chiếu và chỉ so sánh định lượng khi cùng điều kiện và cùng bộ tham số. Bộ tham số SM55 phục vụ kiểm tra mô hình, không phải quyết định chọn tấm pin. Nhóm hoàn thành đồ thị và dữ liệu PV-01--03 trong giai đoạn mô phỏng chức năng.
 
 \subsection{Mô phỏng BMS}
 
-Nhóm kiểm tra phần đo trước khi dùng dữ liệu cho bảo vệ hoặc SoC, sau đó thử từng chức năng độc lập và thử lỗi kết hợp.
+Nhóm viết và biên dịch chương trình cho MCU mô phỏng, nạp tệp chương trình phù hợp vào mô hình Proteus, rồi kiểm tra phần đo trước khi dùng dữ liệu cho bảo vệ hoặc SoC. Sau đó nhóm thử từng chức năng độc lập và thử lỗi kết hợp. Tệp biên dịch cho Arduino Uno chỉ dùng với mô hình tương ứng; chương trình phần cứng ESP32 được biên dịch cho ESP32 sau khi cập nhật lớp giao tiếp.
 
 Các ca thử cho mô phỏng BMS:
 
@@ -47,10 +49,10 @@ Các ca thử cho mô phỏng BMS:
     \item \textbf{BMS-10.} Có nhiều lỗi đồng thời hoặc lệnh bật tải khi đang lỗi; giữ ưu tiên bảo vệ, chỉ phục hồi khi các điều kiện cho phép đều thỏa.
 \end{itemize}
 
-Với nguồn áp lý tưởng, nhóm kiểm tra việc chọn nhánh cân bằng nhưng điện áp nguồn không tự giảm; để đánh giá diễn biến chênh lệch cell, nhóm dùng mô hình lưu trữ có động học (mô hình tụ hoặc mạch tương đương pin được xác định tham số). Kết quả từ mô hình tụ thể hiện hành vi mạch, không dùng để công bố thời gian cân bằng hay thời gian sử dụng pin thật. \pending{kết quả các ca BMS-01--10}
+Với nguồn áp lý tưởng, nhóm kiểm tra việc chọn nhánh cân bằng nhưng điện áp nguồn không tự giảm; để đánh giá diễn biến chênh lệch cell, nhóm dùng mô hình lưu trữ có động học (mô hình tụ hoặc mạch tương đương pin được xác định tham số). Kết quả từ mô hình tụ thể hiện hành vi mạch, không dùng để công bố thời gian cân bằng hay thời gian sử dụng pin thật. Nhóm hoàn thành dữ liệu và kết luận BMS-01--10 trong giai đoạn mô phỏng chức năng.
 
 \subsection{Hồ sơ mô phỏng}
 
-Mỗi lần chạy lưu phiên bản mô hình, tham số đầu vào, chương trình MCU nếu có, đồ thị/dữ liệu và kết luận cho từng ca thử, kèm điều kiện và mã ca thử. Quy trình thao tác chi tiết được tách trong tài liệu hướng dẫn mô phỏng đi kèm bộ tài liệu đề tài.
+Mỗi lần chạy lưu phiên bản mô hình, tham số đầu vào, mã nguồn và tệp biên dịch MCU đối với mô hình BMS, đồ thị/dữ liệu và kết luận cho từng ca thử, kèm điều kiện và mã ca thử. Mô hình PV bằng các khối phương trình và nguồn phụ thuộc có thể chạy độc lập với MCU. Quy trình thao tác chi tiết được tách trong tài liệu hướng dẫn mô phỏng đi kèm bộ tài liệu đề tài.
 
-Mô phỏng điện áp và tín hiệu nhiệt cho phép kiểm tra phản ứng của BMS ở mức logic; các yếu tố điện hóa, lão hóa, sinh nhiệt và khả năng chịu sự cố của linh kiện được kiểm tra trên phần cứng ở mốc thực nghiệm.
+Mô phỏng điện áp và tín hiệu nhiệt cho phép kiểm tra phản ứng của BMS ở mức logic. Thực nghiệm tập trung vào sai số đo, nhiệt độ tại các vị trí giám sát và phản ứng bảo vệ trong các điều kiện thử đã xác định. Nhóm sử dụng dữ liệu nhà sản xuất cho đặc tính điện hóa và tuổi thọ pin; nghiên cứu lão hóa và thử phá hủy nằm ngoài phạm vi học kỳ.
