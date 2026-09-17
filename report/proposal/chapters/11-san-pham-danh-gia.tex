@@ -1,6 +1,4 @@
-\section{Sản phẩm dự kiến và phương pháp đánh giá}
-
-\subsection{Nội dung đã trình bày trong báo cáo}
+\section{Đối chiếu yêu cầu đề tài với nội dung báo cáo}
 
 Báo cáo trình bày cơ sở lý thuyết, phương pháp thiết kế BMS 12~V, kế hoạch mô phỏng BMS/PV trên Proteus, phần lý thuyết PV array configuration, kiến trúc hệ thống và kế hoạch phân công. \Cref{tab:req-map} đối chiếu các yêu cầu của đề tài \cite{qa1} với mục tương ứng trong báo cáo.
 
@@ -23,49 +21,3 @@ Phương pháp tổng quan, kế hoạch, phân nhiệm vụ & Mục 5--6 và 8-
 \caption{Đối chiếu yêu cầu của đề tài và nội dung trình bày trong báo cáo.}
 \label{tab:req-map}
 \end{longtable}
-
-\subsection{Sản phẩm dự kiến của toàn project}
-
-Các đầu ra dự kiến gồm mô hình Proteus PV và BMS; cấu hình và chương trình điều khiển; mô hình microgrid phần cứng với bộ sạc, pin, inverter, tải và chuyển nguồn; hệ thống IoT/giao diện; hồ sơ đo lường, thực nghiệm, BOM và báo cáo tổng kết.
-
-Với các thành phần dùng mô-đun có sẵn, nhóm nêu mã sản phẩm, chức năng, cách tích hợp và phạm vi thử nghiệm. Phần tự phát triển có tài liệu đủ để tái lập mô hình và kiểm tra kết quả.
-
-\subsection{Các chỉ tiêu đánh giá}
-
-\begin{longtable}{@{}p{3.4cm} p{11.0cm}@{}}
-\toprule
-\textbf{Đối tượng} & \textbf{Chỉ tiêu và dữ liệu cần có} \\
-\midrule
-\endfirsthead
-\toprule
-\textbf{Đối tượng} & \textbf{Chỉ tiêu và dữ liệu cần có} \\
-\midrule
-\endhead
-PV mô phỏng & Sai lệch các điểm đặc trưng so với nguồn tham chiếu; chiều biến thiên khi thay đổi \(G,T\) \\
-Đo lường BMS & Sai số điện áp, dòng, nhiệt; đúng dấu dòng và đúng điện áp từng cell \\
-SoC & Sai số so với điện tích tham chiếu trong ca thử có điều kiện ban đầu xác định; độ trôi khi có sai số dòng \\
-Cân bằng & Chọn đúng nhánh, dòng cân bằng, chênh lệch cell trước/sau và thời gian theo mô hình được sử dụng \\
-Bảo vệ & Điều kiện và thời gian tác động; dòng còn lại sau ngắt; điều kiện khôi phục; phản ứng với lỗi kết hợp \\
-Nguồn và tải & Điện áp bus, khả năng cấp tải, quá trình chuyển nguồn và ảnh hưởng đến tải \\
-IoT & Tính đúng của dữ liệu, độ trễ cập nhật/lệnh, phản hồi thực thi và hành vi khi mất mạng \\
-Chi phí & Tổng BOM và chi phí thực hiện; so sánh các phương án đáp ứng cùng yêu cầu \\
-\bottomrule
-\caption{Các chỉ tiêu đánh giá cho từng đối tượng.}
-\label{tab:metrics}
-\end{longtable}
-
-Mức chấp nhận cho từng chỉ tiêu được xác định trước khi chạy bộ thử chính thức, dựa trên yêu cầu tải, độ phân giải đo và linh kiện đã chọn. \pending{mức chấp nhận cụ thể cho từng chỉ tiêu}
-
-Với giá trị tham chiếu khác 0, sai lệch tương đối được tính:
-\[
-\varepsilon_X=
-\frac{|X_{\mathrm{thu}}-X_{\mathrm{ref}}|}{|X_{\mathrm{ref}}|}\times100\%.
-\]
-
-Với giá trị gần 0, nhóm báo cáo sai số tuyệt đối để tránh tỷ lệ không có ý nghĩa. Năng lượng ở một nhánh đo được tích phân từ công suất:
-\[
-E=\sum_k P_k\,\frac{\Delta t_k}{3600}\quad[\mathrm{Wh}],
-\]
-với công suất tính bằng W và thời gian bằng giây. Khi đánh giá hiệu suất, nhóm ghi rõ ranh giới khối và khoảng đo. Với hệ có pin, nhóm tính phần năng lượng lưu trữ thay đổi hoặc so sánh ở trạng thái pin đầu/cuối tương đương; không lấy điện năng tải chia cho điện năng PV trong một khoảng pin đang xả rồi kết luận đó là hiệu suất hệ thống.
-
-Các thử nghiệm cuối gồm thay đổi mức tải, thay đổi mức nguồn PV hoặc điều kiện chiếu sáng ghi nhận được, chuyển nguồn phụ, mất kết nối và phục hồi sau lỗi. Nếu không đo được bức xạ, nhóm mô tả điều kiện thử thực tế thay vì gán giá trị \(\mathrm{W/m^2}\) tùy ý cho thời tiết.

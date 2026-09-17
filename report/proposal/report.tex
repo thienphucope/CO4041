@@ -10,6 +10,16 @@
 \usepackage{array,longtable,multirow,tabularx}
 \usepackage{enumitem}
 
+% Sơ đồ khối (block diagram)
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
+\tikzset{
+  blk/.style={draw, rounded corners=2pt, align=center, inner sep=4pt,
+              minimum height=9mm, font=\footnotesize},
+  fl/.style={-{Latex[length=2mm]}, thick},
+  fl2/.style={{Latex[length=2mm]}-{Latex[length=2mm]}, thick},
+}
+
 % Hình ảnh
 \usepackage{caption,float}
 \usepackage[export]{adjustbox}

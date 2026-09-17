@@ -10,31 +10,42 @@ Nhóm thiết kế schematic BMS trong Proteus, kiểm tra từng khối rồi g
 
 \subsection{Các khối chức năng và giao tiếp}
 
-Luồng xử lý:
+Luồng xử lý và các khối chức năng của BMS được thể hiện ở Hình~\ref{fig:bms}: bộ pin được đo điện áp, dòng và nhiệt độ; bộ điều khiển ước lượng SoC, kiểm tra lỗi và cân bằng cell, rồi điều khiển ngắt sạc/xả, hiển thị và xuất dữ liệu.
 
-\begin{quote}
-Bộ pin $\rightarrow$ đo điện áp, dòng, nhiệt độ $\rightarrow$ bộ điều khiển $\rightarrow$ ước lượng SoC, kiểm tra lỗi và cân bằng cell $\rightarrow$ điều khiển ngắt sạc/xả, hiển thị và xuất dữ liệu.
-\end{quote}
+\begin{figure}[H]
+\centering
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[node distance=7mm and 12mm]
+  \node[blk] (pin) {Bộ pin 4S};
+  \node[blk, right=of pin] (meas) {Đo lường\\$V_\text{cell},\,I,\,T$};
+  \node[blk, right=of meas] (ctrl) {Bộ điều khiển\\SoC $\cdot$ cân bằng $\cdot$ bảo vệ};
+  \node[blk, right=of ctrl] (act) {Ngắt\\sạc/xả};
+  \node[blk, below=of ctrl] (disp) {Hiển thị /\\IoT};
 
-\begin{longtable}{@{}p{2.8cm} p{4.5cm} p{6.5cm}@{}}
-\toprule
-\textbf{Khối} & \textbf{Đầu vào} & \textbf{Chức năng và đầu ra} \\
-\midrule
-\endfirsthead
-\toprule
-\textbf{Khối} & \textbf{Đầu vào} & \textbf{Chức năng và đầu ra} \\
-\midrule
-\endhead
-Mô hình bộ pin & Điều kiện ban đầu, nguồn sạc, tải & Điện áp các cell và dòng pack phục vụ kiểm thử \\
-Đo lường & Điện áp các nút, tín hiệu dòng và nhiệt độ & Giá trị điện áp cell/pack, dòng có dấu, nhiệt độ và cờ dữ liệu hợp lệ \\
-Ước lượng SoC & Dòng pack, khoảng lấy mẫu, dung lượng và SoC ban đầu & SoC ước lượng theo thời gian \\
-Cân bằng cell & Điện áp cell, chế độ vận hành, nhiệt độ & Lệnh cho nhánh xả cân bằng của từng cell \\
-Bảo vệ & Điện áp, dòng, nhiệt độ, lỗi cảm biến & Quyền cho phép sạc/xả và mã nguyên nhân ngắt \\
-Hiển thị/giao tiếp & Dữ liệu đo, SoC, trạng thái & LCD hoặc terminal trong Proteus; dữ liệu cho khối IoT khi tích hợp \\
-\bottomrule
-\caption{Các khối chức năng của BMS và giao tiếp giữa chúng.}
-\label{tab:bms-blocks}
-\end{longtable}
+  \draw[fl] (pin) -- (meas);
+  \draw[fl] (meas) -- (ctrl);
+  \draw[fl] (ctrl) -- (act);
+  \draw[fl] (ctrl) -- (disp);
+  \draw[fl] (ctrl.north) to[out=90,in=90]
+        node[above, font=\scriptsize] {cân bằng cell} (pin.north);
+  \draw[fl] (act.south) -- ++(0,-4mm) coordinate (g) -| (pin.south);
+  \node[font=\scriptsize, below=0pt of g] {cho phép sạc/xả};
+\end{tikzpicture}
+\end{adjustbox}
+\caption{Sơ đồ khối chức năng và luồng xử lý của BMS.}
+\label{fig:bms}
+\end{figure}
+
+Các khối chức năng của BMS và giao tiếp giữa chúng:
+
+\begin{itemize}
+    \item \textbf{Mô hình bộ pin.} Đầu vào: điều kiện ban đầu, nguồn sạc, tải. Đầu ra: điện áp các cell và dòng pack phục vụ kiểm thử.
+    \item \textbf{Đo lường.} Đầu vào: điện áp các nút, tín hiệu dòng và nhiệt độ. Đầu ra: giá trị điện áp cell/pack, dòng có dấu, nhiệt độ và cờ dữ liệu hợp lệ.
+    \item \textbf{Ước lượng SoC.} Đầu vào: dòng pack, khoảng lấy mẫu, dung lượng và SoC ban đầu. Đầu ra: SoC ước lượng theo thời gian.
+    \item \textbf{Cân bằng cell.} Đầu vào: điện áp cell, chế độ vận hành, nhiệt độ. Đầu ra: lệnh cho nhánh xả cân bằng của từng cell.
+    \item \textbf{Bảo vệ.} Đầu vào: điện áp, dòng, nhiệt độ, lỗi cảm biến. Đầu ra: quyền cho phép sạc/xả và mã nguyên nhân ngắt.
+    \item \textbf{Hiển thị/giao tiếp.} Đầu vào: dữ liệu đo, SoC, trạng thái. Đầu ra: LCD hoặc terminal trong Proteus; dữ liệu cho khối IoT khi tích hợp.
+\end{itemize}
 
 MCU dùng trong mô phỏng được chọn theo thư viện và khả năng nạp chương trình của phiên bản Proteus sử dụng. \pending{chốt MCU và kiểm tra thư viện Proteus ở đầu M2}
 
@@ -63,25 +74,16 @@ Với mô hình lý tưởng, nhóm ước lượng dòng xả và công suất 
 
 \subsection{Phương pháp bảo vệ và điều phối trạng thái}
 
-\begin{longtable}{@{}p{3.6cm} p{5.0cm} p{5.3cm}@{}}
-\toprule
-\textbf{Chức năng} & \textbf{Đại lượng kiểm tra} & \textbf{Phản ứng} \\
-\midrule
-\endfirsthead
-\toprule
-\textbf{Chức năng} & \textbf{Đại lượng kiểm tra} & \textbf{Phản ứng} \\
-\midrule
-\endhead
-Quá áp cell (OV) & Điện áp cell lớn nhất & Ngắt quyền sạc; chỉ cho phép hoạt động khác nếu các điều kiện tương ứng vẫn hợp lệ \\
-Thấp áp cell (UV) & Điện áp cell nhỏ nhất & Ngắt quyền xả \\
-Quá dòng sạc/xả (OC) & Dòng pack có dấu và giới hạn theo từng chiều & Ngắt đường liên quan; ghi nhận nguyên nhân \\
-Ngắn mạch (SC) & Điều kiện dòng sự cố trong mô hình & Ngắt đầu ra; khóa khôi phục cho đến khi lỗi được xử lý \\
-Nhiệt độ ngoài giới hạn & Nhiệt độ và chế độ sạc/xả & Ngắt các đường không được phép; dừng cân bằng \\
-Lỗi đo lường & Tín hiệu ngoài dải hoặc không hợp lệ & Chuyển sang trạng thái khóa sạc/xả \\
-\bottomrule
-\caption{Các chức năng bảo vệ và phản ứng của BMS.}
-\label{tab:protection}
-\end{longtable}
+Các chức năng bảo vệ và phản ứng tương ứng của BMS:
+
+\begin{itemize}
+    \item \textbf{Quá áp cell (OV).} Kiểm tra điện áp cell lớn nhất; ngắt quyền sạc, chỉ cho phép hoạt động khác nếu các điều kiện tương ứng vẫn hợp lệ.
+    \item \textbf{Thấp áp cell (UV).} Kiểm tra điện áp cell nhỏ nhất; ngắt quyền xả.
+    \item \textbf{Quá dòng sạc/xả (OC).} Kiểm tra dòng pack có dấu và giới hạn theo từng chiều; ngắt đường liên quan và ghi nhận nguyên nhân.
+    \item \textbf{Ngắn mạch (SC).} Kiểm tra điều kiện dòng sự cố trong mô hình; ngắt đầu ra và khóa khôi phục cho đến khi lỗi được xử lý.
+    \item \textbf{Nhiệt độ ngoài giới hạn.} Kiểm tra nhiệt độ và chế độ sạc/xả; ngắt các đường không được phép và dừng cân bằng.
+    \item \textbf{Lỗi đo lường.} Phát hiện tín hiệu ngoài dải hoặc không hợp lệ; chuyển sang trạng thái khóa sạc/xả.
+\end{itemize}
 
 Nhóm định nghĩa các trạng thái khởi tạo, chờ, sạc, xả và lỗi. Sau khởi tạo, hệ thống chỉ cấp quyền sạc/xả khi dữ liệu đầu vào hợp lệ. Quyết định bảo vệ có ưu tiên cao hơn lệnh vận hành, cân bằng và lệnh IoT.
 

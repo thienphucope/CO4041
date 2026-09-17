@@ -18,22 +18,13 @@ Nhóm thực hiện các bước sau theo phương pháp trong \cite{yaqoob}:
     \item Thay đổi riêng bức xạ và nhiệt độ để kiểm tra xu hướng và so sánh với các đường cong trong tài liệu.
 \end{enumerate}
 
-\begin{longtable}{@{}p{2.2cm} p{4.6cm} p{3.6cm} p{3.6cm}@{}}
-\toprule
-\textbf{Mã ca thử} & \textbf{Điều kiện} & \textbf{Dữ liệu cần thu} & \textbf{Cách đánh giá} \\
-\midrule
-\endfirsthead
-\toprule
-\textbf{Mã ca thử} & \textbf{Điều kiện} & \textbf{Dữ liệu cần thu} & \textbf{Cách đánh giá} \\
-\midrule
-\endhead
-PV-01 & \(G=1000\ \mathrm{W/m^2}\), \(T=25^\circ\mathrm{C}\) & I--V, P--V và các điểm đặc trưng & Đối chiếu bộ thông số SM55 trong \cite{yaqoob} \\
-PV-02 & \(G=400,700,1000\ \mathrm{W/m^2}\), giữ \(T=25^\circ\mathrm{C}\) & Họ đường I--V/P--V & Kiểm tra tác động của bức xạ ở cùng nhiệt độ \\
-PV-03 & \(T=25,45,60^\circ\mathrm{C}\), giữ \(G=1000\ \mathrm{W/m^2}\) & Họ đường I--V/P--V & Kiểm tra tác động của nhiệt độ ở cùng bức xạ \\
-\bottomrule
-\caption{Các ca thử cho mô phỏng tấm pin.}
-\label{tab:pv-tests}
-\end{longtable}
+Các ca thử cho mô phỏng tấm pin:
+
+\begin{itemize}
+    \item \textbf{PV-01.} Điều kiện \(G=1000\ \mathrm{W/m^2}\), \(T=25^\circ\mathrm{C}\); thu I--V, P--V và các điểm đặc trưng; đánh giá bằng cách đối chiếu bộ thông số SM55 trong \cite{yaqoob}.
+    \item \textbf{PV-02.} Điều kiện \(G=400,700,1000\ \mathrm{W/m^2}\), giữ \(T=25^\circ\mathrm{C}\); thu họ đường I--V/P--V; kiểm tra tác động của bức xạ ở cùng nhiệt độ.
+    \item \textbf{PV-03.} Điều kiện \(T=25,45,60^\circ\mathrm{C}\), giữ \(G=1000\ \mathrm{W/m^2}\); thu họ đường I--V/P--V; kiểm tra tác động của nhiệt độ ở cùng bức xạ.
+\end{itemize}
 
 Nhóm ghi sai lệch của từng thông số so với tham chiếu và chỉ so sánh định lượng khi cùng điều kiện và cùng bộ tham số. Bộ tham số SM55 phục vụ kiểm tra mô hình, không phải quyết định chọn tấm pin. \pending{kết quả I--V/P--V của các ca PV-01--03}
 
@@ -41,29 +32,20 @@ Nhóm ghi sai lệch của từng thông số so với tham chiếu và chỉ so
 
 Nhóm kiểm tra phần đo trước khi dùng dữ liệu cho bảo vệ hoặc SoC, sau đó thử từng chức năng độc lập và thử lỗi kết hợp.
 
-\begin{longtable}{@{}p{2.0cm} p{6.3cm} p{5.2cm}@{}}
-\toprule
-\textbf{Mã ca thử} & \textbf{Nội dung} & \textbf{Kết quả cần quan sát} \\
-\midrule
-\endfirsthead
-\toprule
-\textbf{Mã ca thử} & \textbf{Nội dung} & \textbf{Kết quả cần quan sát} \\
-\midrule
-\endhead
-BMS-01 & Đặt các điện áp cell, dòng hai chiều và nhiệt độ đã biết & Giá trị đọc đúng kênh, đúng dấu, đúng đơn vị; ghi sai số \\
-BMS-02 & Cho dòng sạc/xả đã biết trong thời gian xác định & SoC tăng/giảm phù hợp điện tích; không vượt phạm vi 0--100\% \\
-BMS-03 & Tăng một cell vượt ngưỡng OV & Đường sạc ngắt; mã lỗi xác định đúng cell/điều kiện \\
-BMS-04 & Giảm một cell dưới ngưỡng UV & Đường xả ngắt \\
-BMS-05 & Vượt giới hạn dòng ở từng chiều & Đường tương ứng ngắt; có thời điểm tác động \\
-BMS-06 & Tạo sự cố ngắn mạch trong mô hình đã giới hạn dòng & Đầu ra bị khóa; không tự bật lại khi lỗi còn tồn tại \\
-BMS-07 & Đưa nhiệt độ qua ngưỡng tác động và khôi phục & Cảnh báo/ngắt và phục hồi theo đúng cấu hình \\
-BMS-08 & Đặt các cell lệch điện áp & Nhánh cân bằng chọn đúng cell; theo dõi dòng xả và độ lệch theo thời gian \\
-BMS-09 & Dao động quanh ngưỡng, lỗi cảm biến hoặc khởi động lại & Tránh rung đóng/cắt; đầu ra khởi động ở trạng thái khóa \\
-BMS-10 & Có nhiều lỗi đồng thời hoặc lệnh bật tải khi đang lỗi & Giữ ưu tiên bảo vệ; chỉ phục hồi khi các điều kiện cho phép đều thỏa \\
-\bottomrule
-\caption{Các ca thử cho mô phỏng BMS.}
-\label{tab:bms-tests}
-\end{longtable}
+Các ca thử cho mô phỏng BMS:
+
+\begin{itemize}
+    \item \textbf{BMS-01.} Đặt các điện áp cell, dòng hai chiều và nhiệt độ đã biết; quan sát giá trị đọc đúng kênh, đúng dấu, đúng đơn vị và ghi sai số.
+    \item \textbf{BMS-02.} Cho dòng sạc/xả đã biết trong thời gian xác định; SoC tăng/giảm phù hợp điện tích và không vượt phạm vi 0--100\%.
+    \item \textbf{BMS-03.} Tăng một cell vượt ngưỡng OV; đường sạc ngắt, mã lỗi xác định đúng cell/điều kiện.
+    \item \textbf{BMS-04.} Giảm một cell dưới ngưỡng UV; đường xả ngắt.
+    \item \textbf{BMS-05.} Vượt giới hạn dòng ở từng chiều; đường tương ứng ngắt, có thời điểm tác động.
+    \item \textbf{BMS-06.} Tạo sự cố ngắn mạch trong mô hình đã giới hạn dòng; đầu ra bị khóa, không tự bật lại khi lỗi còn tồn tại.
+    \item \textbf{BMS-07.} Đưa nhiệt độ qua ngưỡng tác động và khôi phục; cảnh báo/ngắt và phục hồi theo đúng cấu hình.
+    \item \textbf{BMS-08.} Đặt các cell lệch điện áp; nhánh cân bằng chọn đúng cell, theo dõi dòng xả và độ lệch theo thời gian.
+    \item \textbf{BMS-09.} Dao động quanh ngưỡng, lỗi cảm biến hoặc khởi động lại; tránh rung đóng/cắt, đầu ra khởi động ở trạng thái khóa.
+    \item \textbf{BMS-10.} Có nhiều lỗi đồng thời hoặc lệnh bật tải khi đang lỗi; giữ ưu tiên bảo vệ, chỉ phục hồi khi các điều kiện cho phép đều thỏa.
+\end{itemize}
 
 Với nguồn áp lý tưởng, nhóm kiểm tra việc chọn nhánh cân bằng nhưng điện áp nguồn không tự giảm; để đánh giá diễn biến chênh lệch cell, nhóm dùng mô hình lưu trữ có động học (mô hình tụ hoặc mạch tương đương pin được xác định tham số). Kết quả từ mô hình tụ thể hiện hành vi mạch, không dùng để công bố thời gian cân bằng hay thời gian sử dụng pin thật. \pending{kết quả các ca BMS-01--10}
 

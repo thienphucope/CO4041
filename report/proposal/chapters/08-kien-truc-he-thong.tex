@@ -2,51 +2,84 @@
 
 \subsection{Kiến trúc năng lượng và dữ liệu}
 
-Nhóm đề xuất các đường năng lượng sau:
+Nhóm đề xuất các đường năng lượng như Hình~\ref{fig:energy}: PV cấp qua bộ điều khiển sạc lên bus DC được quản lý, từ đó ra tải DC hoặc qua inverter cấp tải AC; pin lưu trữ trao đổi công suất hai chiều với bus qua đường sạc/xả do BMS quản lý; nguồn DC phụ trợ vào bus qua khối chọn nguồn và chống cấp ngược.
 
-\begin{quote}
-PV $\rightarrow$ bộ điều khiển sạc $\rightarrow$ bus DC được quản lý $\rightarrow$ tải DC hoặc inverter $\rightarrow$ tải AC.
+\begin{figure}[H]
+\centering
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[node distance=7mm and 11mm]
+  \node[blk] (pv) {PV};
+  \node[blk, right=of pv] (cc) {Bộ điều khiển\\sạc};
+  \node[blk, right=of cc] (bus) {Bus DC\\(được quản lý)};
+  \node[blk, right=of bus] (inv) {Inverter};
+  \node[blk, right=of inv] (ac) {Tải AC};
+  \node[blk, above=of bus] (dc) {Tải DC};
+  \node[blk, below=of cc] (pin) {Pin lưu trữ};
+  \node[blk, below=of bus] (bms) {BMS};
+  \node[blk, below=of inv] (sel) {Chọn nguồn /\\chống cấp ngược};
+  \node[blk, below=of ac] (aux) {Nguồn DC\\phụ trợ};
 
-Pin lưu trữ $\leftrightarrow$ đường sạc/xả do BMS quản lý $\leftrightarrow$ bus DC.
-
-Nguồn DC phụ trợ $\rightarrow$ khối chọn nguồn và chống cấp ngược $\rightarrow$ nhánh cấp nguồn phù hợp.
-\end{quote}
+  \draw[fl] (pv) -- (cc);
+  \draw[fl] (cc) -- (bus);
+  \draw[fl] (bus) -- (inv);
+  \draw[fl] (inv) -- (ac);
+  \draw[fl] (bus) -- (dc);
+  \draw[fl2] (pin) -- (bms);
+  \draw[fl2] (bms) -- (bus);
+  \draw[fl] (aux) -- (sel);
+  \draw[fl] (sel) -- (bus);
+\end{tikzpicture}
+\end{adjustbox}
+\caption{Sơ đồ khối luồng năng lượng của hệ thống.}
+\label{fig:energy}
+\end{figure}
 
 Nguồn phụ trợ dự kiến là nguồn DC đã cách ly hoặc nguồn phòng thí nghiệm phù hợp. Cách ghép nguồn phụ vào bus hay đầu vào bộ sạc sẽ được xác định khi chọn bộ điều khiển nguồn. Mô hình dự kiến vận hành độc lập; chức năng chuyển nguồn không đồng nghĩa với hòa lưới.
 
-Luồng dữ liệu và điều khiển:
+Luồng dữ liệu và điều khiển như Hình~\ref{fig:data}: cảm biến đưa số đo về bộ điều khiển cục bộ/BMS, qua khối kết nối IoT lên dịch vụ lưu trữ và hiển thị trên giao diện mobile/PC; lệnh người dùng đi ngược lại, được bộ điều khiển kiểm tra điều kiện trước khi tác động cơ cấu chấp hành và phản hồi trạng thái thực tế.
 
-\begin{quote}
-Cảm biến $\rightarrow$ bộ điều khiển cục bộ/BMS $\rightarrow$ khối kết nối IoT $\rightarrow$ dịch vụ lưu trữ $\rightarrow$ giao diện mobile/PC.
+\begin{figure}[H]
+\centering
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[node distance=8mm and 10mm]
+  \node[blk] (sen) {Cảm biến};
+  \node[blk, right=of sen] (ctrl) {Bộ điều khiển\\cục bộ / BMS};
+  \node[blk, right=of ctrl] (iot) {Khối kết nối\\IoT};
+  \node[blk, right=of iot] (cloud) {Dịch vụ\\lưu trữ};
+  \node[blk, right=of cloud] (ui) {Giao diện\\mobile / PC};
+  \node[blk, below=of ctrl] (act) {Cơ cấu\\chấp hành};
 
-Lệnh người dùng $\rightarrow$ bộ điều khiển kiểm tra điều kiện $\rightarrow$ cơ cấu chấp hành $\rightarrow$ phản hồi trạng thái thực tế.
-\end{quote}
+  \draw[fl] (sen) -- (ctrl);
+  \draw[fl] (ctrl) -- (iot);
+  \draw[fl] (iot) -- (cloud);
+  \draw[fl] (cloud) -- (ui);
+  \draw[fl] (ctrl) -- (act);
+  \draw[fl] (ui.north) to[out=100,in=80]
+        node[above, font=\scriptsize] {lệnh người dùng} (ctrl.north);
+  \draw[fl] (act.south) -- ++(0,-4mm) coordinate (fb) -| (sen.south);
+  \node[font=\scriptsize, below=0pt of fb] {phản hồi trạng thái};
+\end{tikzpicture}
+\end{adjustbox}
+\caption{Sơ đồ khối luồng dữ liệu và điều khiển của hệ thống.}
+\label{fig:data}
+\end{figure}
 
-Trên đây là sơ đồ khối chức năng của hệ thống. \pending{sơ đồ nối chân, vị trí phần tử công suất và triển khai mạch thực tế (mốc M4--M5)}
+Hai sơ đồ khối trên mô tả chức năng ở mức tổng quan của hệ thống, chưa bao gồm mức nối chân và bố trí phần tử công suất. \pending{sơ đồ nối chân, vị trí phần tử công suất và triển khai mạch thực tế (mốc M4--M5)}
 
 \subsection{Phương án cho từng thành phần}
 
-\begin{longtable}{@{}p{3.2cm} p{11.3cm}@{}}
-\toprule
-\textbf{Thành phần} & \textbf{Công việc dự kiến} \\
-\midrule
-\endfirsthead
-\toprule
-\textbf{Thành phần} & \textbf{Công việc dự kiến} \\
-\midrule
-\endhead
-PV & Chọn quy mô công suất theo tải; kiểm tra dải điện áp và dòng phù hợp bộ điều khiển sạc \\
-Bộ điều khiển sạc & So sánh phương án PWM/MPPT theo yêu cầu công suất và chi phí; xác định đặc tuyến sạc theo loại pin \\
-Pin và BMS & Chốt cấu hình cell, dung lượng, bảo vệ và cân bằng; hoàn thành mô phỏng trước thử nghiệm \\
-Inverter & Chọn mô-đun hoặc phương án triển khai phù hợp bus và tải; kiểm tra công suất liên tục, khởi động và hiệu suất \\
-Chuyển nguồn & Xác định điều kiện chọn nguồn, ngắt trước khi đóng nguồn khác khi cần, tránh cấp ngược và ghi nhận trạng thái \\
-Tải & Chọn tải DC và tải AC đại diện, có các mức công suất để kiểm tra thay đổi tải \\
-Đo lường & Đo dòng/áp tại PV, pin và tải ở mức cần thiết cho điều khiển và đánh giá \\
-IoT/giao diện & Hiển thị hiện tại, đồ thị lịch sử, năng lượng, trạng thái nguồn/tải, cảnh báo và lệnh điều khiển \\
-\bottomrule
-\caption{Phương án dự kiến cho từng thành phần của hệ thống.}
-\label{tab:components}
-\end{longtable}
+Phương án dự kiến cho từng thành phần của hệ thống:
+
+\begin{itemize}
+    \item \textbf{PV.} Chọn quy mô công suất theo tải; kiểm tra dải điện áp và dòng phù hợp bộ điều khiển sạc.
+    \item \textbf{Bộ điều khiển sạc.} So sánh phương án PWM/MPPT theo yêu cầu công suất và chi phí; xác định đặc tuyến sạc theo loại pin.
+    \item \textbf{Pin và BMS.} Chốt cấu hình cell, dung lượng, bảo vệ và cân bằng; hoàn thành mô phỏng trước thử nghiệm.
+    \item \textbf{Inverter.} Chọn mô-đun hoặc phương án triển khai phù hợp bus và tải; kiểm tra công suất liên tục, khởi động và hiệu suất.
+    \item \textbf{Chuyển nguồn.} Xác định điều kiện chọn nguồn, ngắt trước khi đóng nguồn khác khi cần, tránh cấp ngược và ghi nhận trạng thái.
+    \item \textbf{Tải.} Chọn tải DC và tải AC đại diện, có các mức công suất để kiểm tra thay đổi tải.
+    \item \textbf{Đo lường.} Đo dòng/áp tại PV, pin và tải ở mức cần thiết cho điều khiển và đánh giá.
+    \item \textbf{IoT/giao diện.} Hiển thị hiện tại, đồ thị lịch sử, năng lượng, trạng thái nguồn/tải, cảnh báo và lệnh điều khiển.
+\end{itemize}
 
 Nhóm ưu tiên tích hợp các mô-đun công suất phù hợp nếu việc tự thiết kế toàn bộ bộ sạc hoặc inverter vượt quá nguồn lực. Công việc thiết kế và đánh giá BMS, đo lường, điều phối nguồn và IoT vẫn được giữ trong phạm vi đề tài. Quyết định dùng mô-đun hay tự thiết kế sẽ được ghi rõ trong báo cáo và BOM.
 

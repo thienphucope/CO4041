@@ -4,26 +4,17 @@
 
 Nhóm đề xuất khung 12 tuần tính từ thời điểm bắt đầu đồ án, chia thành bảy mốc từ M1 đến M7. Mốc M1 tương ứng nội dung của báo cáo này; các mốc còn lại được điều chỉnh theo tiến độ thực tế và phản hồi của giảng viên.
 
-\begin{longtable}{@{}p{2.6cm} p{1.4cm} p{4.6cm} p{5.0cm}@{}}
-\toprule
-\textbf{Mốc} & \textbf{Tuần} & \textbf{Công việc} & \textbf{Đầu ra và điều kiện chuyển bước} \\
-\midrule
-\endfirsthead
-\toprule
-\textbf{Mốc} & \textbf{Tuần} & \textbf{Công việc} & \textbf{Đầu ra và điều kiện chuyển bước} \\
-\midrule
-\endhead
-M1: Proposal & 1--2 & Tổng hợp tài liệu; xác định phương pháp BMS/PV; tìm hiểu reconfiguration; lập kế hoạch & Báo cáo có đủ nội dung yêu cầu, nguồn trích dẫn và phân công \\
-M2: Mô hình và đầu vào & 3--4 & Kiểm tra Proteus; dựng PV; kiểm tra đo áp, dòng, nhiệt; xác định tải, pin và bảng tham số dự kiến & PV có dữ liệu đối chiếu; khối đo đọc đúng tín hiệu; bộ thông số đủ để lập mô hình BMS \\
-M3: BMS hoàn chỉnh trong mô phỏng & 5--6 & Mở rộng nhiều cell; thêm SoC, cân bằng, bảo vệ và thử lỗi kết hợp & Dự án Proteus, chương trình, cấu hình và kết quả PV-01--03, BMS-01--10; xử lý lỗi ảnh hưởng chức năng \\
-M4: Thiết kế tích hợp & 7 & Chọn bộ sạc, inverter, tải và chuyển nguồn; khảo sát ghép khối trên Proteus; chốt BOM và giao tiếp & Sơ đồ kết nối, dải điện áp/dòng phù hợp, danh mục vật tư và kế hoạch thử phần cứng \\
-M5: Phần cứng và IoT & 8--9 & Triển khai mạch đo/BMS, tích hợp từng khối nguồn ở mức phù hợp; phát triển firmware và giao diện & Các khối chạy riêng; hiệu chuẩn ban đầu; dữ liệu và lệnh được truyền có phản hồi \\
-M6: Tích hợp và thực nghiệm & 10--11 & Ghép hệ thống; thử tải, điều kiện nguồn, chuyển nguồn, mất mạng và bảo vệ; thu số liệu chi phí/hiệu suất & Nhật ký thử nghiệm và dữ liệu; danh sách lỗi đã xử lý hoặc giới hạn còn lại \\
-M7: Hoàn thiện và bàn giao & 12 & Dự phòng sửa lỗi, kiểm tra lại ca bị ảnh hưởng, hoàn thiện báo cáo và hồ sơ & Mô hình minh họa, mã nguồn, schematic, kết quả, BOM và báo cáo cuối theo yêu cầu học phần \\
-\bottomrule
-\caption{Tiến độ dự kiến cho toàn bộ đồ án CO4041.}
-\label{tab:schedule}
-\end{longtable}
+Tiến độ dự kiến cho toàn bộ đồ án CO4041:
+
+\begin{itemize}
+    \item \textbf{M1 --- Proposal (tuần 1--2).} Công việc: tổng hợp tài liệu, xác định phương pháp BMS/PV, tìm hiểu reconfiguration, lập kế hoạch. Đầu ra: báo cáo có đủ nội dung yêu cầu, nguồn trích dẫn và phân công.
+    \item \textbf{M2 --- Mô hình và đầu vào (tuần 3--4).} Công việc: kiểm tra Proteus, dựng PV, kiểm tra đo áp, dòng, nhiệt, xác định tải, pin và bảng tham số dự kiến. Đầu ra: PV có dữ liệu đối chiếu, khối đo đọc đúng tín hiệu, bộ thông số đủ để lập mô hình BMS.
+    \item \textbf{M3 --- BMS hoàn chỉnh trong mô phỏng (tuần 5--6).} Công việc: mở rộng nhiều cell, thêm SoC, cân bằng, bảo vệ và thử lỗi kết hợp. Đầu ra: dự án Proteus, chương trình, cấu hình và kết quả PV-01--03, BMS-01--10; xử lý lỗi ảnh hưởng chức năng.
+    \item \textbf{M4 --- Thiết kế tích hợp (tuần 7).} Công việc: chọn bộ sạc, inverter, tải và chuyển nguồn, khảo sát ghép khối trên Proteus, chốt BOM và giao tiếp. Đầu ra: sơ đồ kết nối, dải điện áp/dòng phù hợp, danh mục vật tư và kế hoạch thử phần cứng.
+    \item \textbf{M5 --- Phần cứng và IoT (tuần 8--9).} Công việc: triển khai mạch đo/BMS, tích hợp từng khối nguồn ở mức phù hợp, phát triển firmware và giao diện. Đầu ra: các khối chạy riêng, hiệu chuẩn ban đầu, dữ liệu và lệnh được truyền có phản hồi.
+    \item \textbf{M6 --- Tích hợp và thực nghiệm (tuần 10--11).} Công việc: ghép hệ thống, thử tải, điều kiện nguồn, chuyển nguồn, mất mạng và bảo vệ, thu số liệu chi phí/hiệu suất. Đầu ra: nhật ký thử nghiệm và dữ liệu, danh sách lỗi đã xử lý hoặc giới hạn còn lại.
+    \item \textbf{M7 --- Hoàn thiện và bàn giao (tuần 12).} Công việc: dự phòng sửa lỗi, kiểm tra lại ca bị ảnh hưởng, hoàn thiện báo cáo và hồ sơ. Đầu ra: mô hình minh họa, mã nguồn, schematic, kết quả, BOM và báo cáo cuối theo yêu cầu học phần.
+\end{itemize}
 
 Việc mua linh kiện chỉ triển khai sau khi đã xác định thông số và khả năng tương thích của khối liên quan. Khảo sát nhà cung cấp có thể làm trong M2--M3 để ước lượng thời gian cung ứng. Phần giao diện có thể phát triển với dữ liệu giả lập ở M5, nhưng đánh giá IoT hoàn chỉnh phải dùng dữ liệu từ thiết bị ở M6.
 
@@ -31,22 +22,13 @@ Việc mua linh kiện chỉ triển khai sau khi đã xác định thông số 
 
 Phân công dưới đây kế thừa hướng phụ trách trong bản kế hoạch ban đầu và mở rộng cho toàn bộ project.
 
-\begin{longtable}{@{}p{3.0cm} p{4.0cm} p{4.0cm} p{3.3cm}@{}}
-\toprule
-\textbf{Thành viên} & \textbf{Tại mốc proposal} & \textbf{Sau proposal} & \textbf{Sản phẩm phụ trách} \\
-\midrule
-\endfirsthead
-\toprule
-\textbf{Thành viên} & \textbf{Tại mốc proposal} & \textbf{Sau proposal} & \textbf{Sản phẩm phụ trách} \\
-\midrule
-\endhead
-Lê Thanh Phú (2212581) & Tổng hợp BMS, SoC, nhiệt độ, cân bằng và bảo vệ; xây dựng phương pháp mô phỏng BMS & Dựng BMS trong Proteus; phát triển logic cục bộ; triển khai BMS phần cứng; phối hợp thử lỗi & Mô hình BMS, cấu hình bảo vệ, chương trình và hồ sơ kiểm thử BMS \\
-Phan Trần Nguyên Phúc (2212643) & Tổng hợp PV, shading, TCT/DES và thuật toán DP--SC; lập kế hoạch mô phỏng PV & Dựng PV; chủ trì bộ sạc, inverter, tải và chuyển nguồn; theo dõi BOM khối công suất & Mô hình PV, dữ liệu I--V/P--V, phương án cấp nguồn và kết quả thử năng lượng \\
-Hoàng Ngô Thiên Phúc (2212612) & Tổng hợp đo lường, kiến trúc IoT, kế hoạch và biên tập báo cáo & Chủ trì cảm biến/hiệu chuẩn, giao tiếp, IoT và giao diện; tổ chức lưu dữ liệu; tổng hợp chi phí & Hồ sơ đo lường, giao diện, nhật ký dữ liệu và bản báo cáo hợp nhất \\
-\bottomrule
-\caption{Phân chia nhiệm vụ giữa ba thành viên.}
-\label{tab:tasks}
-\end{longtable}
+Phân chia nhiệm vụ giữa ba thành viên:
+
+\begin{itemize}
+    \item \textbf{Lê Thanh Phú (2212581).} Tại mốc proposal: tổng hợp BMS, SoC, nhiệt độ, cân bằng và bảo vệ, xây dựng phương pháp mô phỏng BMS. Sau proposal: dựng BMS trong Proteus, phát triển logic cục bộ, triển khai BMS phần cứng, phối hợp thử lỗi. Sản phẩm phụ trách: mô hình BMS, cấu hình bảo vệ, chương trình và hồ sơ kiểm thử BMS.
+    \item \textbf{Phan Trần Nguyên Phúc (2212643).} Tại mốc proposal: tổng hợp PV, shading, TCT/DES và thuật toán DP--SC, lập kế hoạch mô phỏng PV. Sau proposal: dựng PV, chủ trì bộ sạc, inverter, tải và chuyển nguồn, theo dõi BOM khối công suất. Sản phẩm phụ trách: mô hình PV, dữ liệu I--V/P--V, phương án cấp nguồn và kết quả thử năng lượng.
+    \item \textbf{Hoàng Ngô Thiên Phúc (2212612).} Tại mốc proposal: tổng hợp đo lường, kiến trúc IoT, kế hoạch và biên tập báo cáo. Sau proposal: chủ trì cảm biến/hiệu chuẩn, giao tiếp, IoT và giao diện, tổ chức lưu dữ liệu, tổng hợp chi phí. Sản phẩm phụ trách: hồ sơ đo lường, giao diện, nhật ký dữ liệu và bản báo cáo hợp nhất.
+\end{itemize}
 
 Ba thành viên cùng thống nhất thông số đầu vào, lắp ghép và đánh giá toàn hệ thống. Với phần cứng BMS, Lê Thanh Phú phối hợp Hoàng Ngô Thiên Phúc về đo lường; với đường công suất, Phan Trần Nguyên Phúc phối hợp Lê Thanh Phú về quyền sạc/xả. Mỗi phần trước khi tích hợp cần một thành viên khác kiểm tra chéo.
 

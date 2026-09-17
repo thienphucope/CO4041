@@ -2,22 +2,13 @@
 
 \subsection{Ba tài liệu do giảng viên cung cấp}
 
-\begin{longtable}{@{}p{3.2cm} p{5.5cm} p{5.3cm}@{}}
-\toprule
-\textbf{Tài liệu} & \textbf{Nội dung chính} & \textbf{Cách sử dụng trong đề tài} \\
-\midrule
-\endfirsthead
-\toprule
-\textbf{Tài liệu} & \textbf{Nội dung chính} & \textbf{Cách sử dụng trong đề tài} \\
-\midrule
-\endhead
-Yaqoob và cộng sự \cite{yaqoob} & Mô hình một diode cho PV; các khối phương trình trong Proteus; khảo sát bức xạ và nhiệt độ; đối chiếu SM55 và KC200GT & Cơ sở xây dựng mô hình PV trên Proteus, chọn bộ tham số tham khảo và cách kiểm tra I--V/P--V \\
-Kulkarni và cộng sự \cite{kulkarni} & BMS kết hợp nguồn lai, đo điện áp và nhiệt độ; mô phỏng trước phần cứng; truyền dữ liệu qua bộ điều khiển, ESP32 và ThingSpeak & Tham khảo kiến trúc đo lường, bảo vệ và giám sát IoT \\
-Ngô Ngọc Thành và Nguyễn Phùng Quang \cite{thanh} & Cấu hình TCT, ma trận chuyển mạch DES, chỉ số cân bằng bức xạ và thuật toán lai DP--SC & Cơ sở lý thuyết của PV array configuration và giới hạn áp dụng \\
-\bottomrule
-\caption{Ba tài liệu do giảng viên cung cấp và cách sử dụng.}
-\label{tab:three-refs}
-\end{longtable}
+Ba tài liệu do giảng viên cung cấp và cách nhóm sử dụng:
+
+\begin{itemize}
+    \item \textbf{Yaqoob và cộng sự \cite{yaqoob}.} Nội dung chính: mô hình một diode cho PV, các khối phương trình trong Proteus, khảo sát bức xạ và nhiệt độ, đối chiếu SM55 và KC200GT. Cách dùng: cơ sở xây dựng mô hình PV trên Proteus, chọn bộ tham số tham khảo và cách kiểm tra I--V/P--V.
+    \item \textbf{Kulkarni và cộng sự \cite{kulkarni}.} Nội dung chính: BMS kết hợp nguồn lai, đo điện áp và nhiệt độ, mô phỏng trước phần cứng, truyền dữ liệu qua bộ điều khiển, ESP32 và ThingSpeak. Cách dùng: tham khảo kiến trúc đo lường, bảo vệ và giám sát IoT.
+    \item \textbf{Ngô Ngọc Thành và Nguyễn Phùng Quang \cite{thanh}.} Nội dung chính: cấu hình TCT, ma trận chuyển mạch DES, chỉ số cân bằng bức xạ và thuật toán lai DP--SC. Cách dùng: cơ sở lý thuyết của PV array configuration và giới hạn áp dụng.
+\end{itemize}
 
 Nghiên cứu \cite{yaqoob} cung cấp mô hình tấm pin trong các điều kiện môi trường, làm nền cho phần mô phỏng PV của nhóm. Nghiên cứu \cite{kulkarni} cung cấp kiến trúc đo lường và giám sát tham chiếu; nhóm bổ sung phương pháp SoC và thiết kế cân bằng phù hợp với bộ pin dự kiến. Nghiên cứu \cite{thanh} dùng MATLAB--Simulink và được nhóm khai thác cho phần lý thuyết cấu hình dàn pin.
 

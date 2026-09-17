@@ -1,0 +1,12 @@
+# Portable LaTeX toolchains (in-project, reusable)
+.tinytex/
+.miktex/
+
+# LaTeX build artifacts
+report/proposal/*.aux
+report/proposal/*.log
+report/proposal/*.out
+report/proposal/*.toc
+report/proposal/*.fls
+report/proposal/*.fdb_latexmk
+report/proposal/*.synctex.gz
