@@ -2,29 +2,37 @@
 
 \subsection{Bài toán}
 
-Đề tài yêu cầu xây dựng một hệ thống năng lượng mặt trời có lưu trữ, hỗ trợ giám sát và điều khiển qua mobile hoặc PC, với chi phí phù hợp cho mô hình năng lượng độc lập, theo mô tả và yêu cầu của đề tài học phần. Nhóm xác định ba vấn đề cần xử lý đồng thời: công suất PV phụ thuộc điều kiện môi trường; pin lưu trữ phải được giám sát và bảo vệ; các khối nguồn, tải và giao diện điều khiển phải phối hợp theo trạng thái hệ thống.
+Đề tài yêu cầu xây dựng một hệ thống năng lượng mặt trời có lưu trữ với chi phí phù hợp cho mô hình năng lượng độc lập. Công suất thu được của dàn PV phụ thuộc mạnh vào điều kiện bức xạ: bức xạ và nhiệt độ làm thay đổi đặc tuyến của tấm pin \cite{yaqoob}. Khi một phần dàn pin bị che (bóng cây, tòa nhà, vật cản di chuyển), các tấm nhận bức xạ khác nhau; sự không tương hợp giữa chúng gây tổn hao và có thể tạo nhiều cực đại trên đường công suất \cite{thanh}.
 
-Bức xạ và nhiệt độ làm thay đổi đặc tuyến của tấm pin \cite{yaqoob}. Khi một phần dàn pin bị che, sự không đồng đều giữa các module gây tổn hao do không tương hợp và có thể tạo nhiều cực đại trên đường công suất \cite{thanh}. Do đó nhóm nắm mô hình PV và các phương pháp cấu hình dàn pin trước khi lựa chọn phương án phần cứng.
+Cùng một tập tấm pin có thể được nối theo nhiều cách: nối tiếp--song song (SP), Total-Cross-Tied (TCT), Bridge-Link (BL), Honey-Comb (HC)\dots{} Dưới bức xạ đều, các cách nối cùng số tấm nối tiếp cho công suất như nhau; dưới che bóng, công suất của chúng khác nhau. Cấu hình lại dàn pin (reconfiguration) là việc thay đổi cách nối trong lúc vận hành để giảm tổn hao do không tương hợp \cite{thanh}.
 
-Với pin lưu trữ, điện áp toàn bộ bộ pin không đủ để xác định trạng thái từng cell. BMS phải theo dõi điện áp cell, dòng điện, nhiệt độ và trạng thái sạc, đồng thời kết hợp cân bằng cell với bảo vệ sạc/xả. Kiến trúc BMS tích hợp IoT trong \cite{kulkarni} được nhóm dùng làm tham chiếu cho luồng đo lường, xử lý và hiển thị thông tin.
-
-\subsection{Mục tiêu của báo cáo}
+\subsection{Phạm vi đã thống nhất}
 \label{sec:proposal-scope}
 
-Trong phạm vi báo cáo này, theo phạm vi giai đoạn 1 đã thống nhất với giảng viên, nhóm tập trung vào các nội dung sau:
+Theo trao đổi với giảng viên, phạm vi giai đoạn 1 được xác định như sau:
+
+\begin{itemize}
+    \item \textbf{Trọng tâm:} PV array reconfiguration cho dàn \(3\times3\) gồm chín tấm pin. Mức cơ bản là chuyển giữa các cấu hình, đo và so sánh công suất; các thuật toán chuyển cấu hình nâng cao được nghiên cứu thêm sau khi hoàn thành mức cơ bản.
+    \item \textbf{Sản phẩm:} PCB mạch chuyển cấu hình dàn PV và mô phỏng thuật toán chuyển cấu hình trên MATLAB.
+    \item \textbf{Sạc và pin:} dùng bộ điều khiển sạc Suoer ST-S1230 cho hệ 12~V. Bộ sạc đảm nhận việc sạc và bảo vệ pin; nhóm không thiết kế BMS và không thực hiện cân bằng cell.
+    \item \textbf{Tải:} tải tĩnh, công suất không đổi trong quá trình thử.
+\end{itemize}
+
+\subsection{Mục tiêu của báo cáo}
+
+Trong phạm vi báo cáo này, nhóm tập trung vào các nội dung:
 
 \begin{enumerate}
-    \item Đề xuất phương pháp thiết kế BMS 12~V với bốn chức năng: ước lượng SoC, giám sát nhiệt độ, cân bằng cell và mạch bảo vệ.
-    \item Xác định phương án mô phỏng chức năng BMS trên Proteus trước khi thực hiện phần cứng.
-    \item Xác định mô hình và quy trình mô phỏng tấm pin PV trên Proteus.
-    \item Tổng hợp lý thuyết về thuật toán PV array configuration từ tài liệu tham khảo.
+    \item Tổng hợp lý thuyết về đặc tính tấm PV, che bóng một phần và các kiểu nối dàn pin.
+    \item Xác định các cấu hình dàn \(3\times3\) tương thích với bộ sạc ST-S1230 và các cấu hình phải loại bỏ.
+    \item Đề xuất phương án ma trận chuyển mạch trên PCB để chuyển giữa các cấu hình hợp lệ.
+    \item Lập kế hoạch mô phỏng trên MATLAB: mô hình tấm, mô hình dàn, các ca che bóng và tiêu chí so sánh.
+    \item Tổng hợp thuật toán reconfiguration từ tài liệu làm cơ sở cho phần mở rộng.
     \item Lập kế hoạch và phân chia nhiệm vụ cho ba thành viên.
 \end{enumerate}
 
-Theo mức độ tổng quan đã thống nhất với giảng viên, nhóm trình bày tiêu chí lựa chọn và thời điểm chốt thiết bị. Các mã linh kiện được nhắc đến làm ví dụ hoặc tham chiếu mô phỏng; việc chọn phần cứng dựa trên đầu vào đã xác định và kết quả kiểm tra tương thích ở các mốc sau.
+\subsection{Mục tiêu của giai đoạn 1}
 
-\subsection{Mục tiêu của toàn bộ đồ án CO4041}
+Cuối giai đoạn, nhóm cần có: mô hình MATLAB tính được đường I--V, P--V và công suất của từng cấu hình dưới các ca che bóng đã định nghĩa; PCB chuyển cấu hình đã lắp ráp, điều khiển được bằng vi điều khiển và đo được điện áp, dòng điện đầu ra dàn; bộ số liệu thực nghiệm so sánh các cấu hình trên dàn pin thật, đối chiếu với kết quả mô phỏng.
 
-Nhóm phát triển mô hình có đường cấp năng lượng từ PV đến tải và pin lưu trữ; tích hợp bộ điều khiển sạc, BMS, inverter và chức năng chuyển nguồn; thu thập dữ liệu điện áp, dòng điện, công suất, nhiệt độ và SoC; xây dựng giao diện giám sát, điều khiển và lưu lịch sử. Sau khi tích hợp, nhóm thử nghiệm với các mức tải và điều kiện nguồn khác nhau, đánh giá khả năng vận hành và lập bảng chi phí theo yêu cầu đề tài.
-
-Trong đề tài, ``chi phí tối ưu'' được hiểu là lựa chọn phương án có chi phí phù hợp trong số các phương án đáp ứng yêu cầu chức năng đã xác định. Nhóm so sánh trên cùng quy mô công suất và dung lượng, không đặt mục tiêu chứng minh một nghiệm tối ưu toàn cục.
+Trong đề tài, ``chi phí tối ưu'' được hiểu là chọn phương án mạch có chi phí phù hợp trong số các phương án đáp ứng yêu cầu chức năng. Với PCB chuyển cấu hình, nhóm cân nhắc số công tắc, loại linh kiện đóng cắt và số kênh đo so với mức linh hoạt cấu hình đạt được.

@@ -1,11 +1,9 @@
 \section{Cơ sở lý thuyết}
 \label{sec:theory}
 
-\subsection{Thành phần của mô hình microgrid}
+\subsection{Thành phần của mô hình}
 
-Theo phạm vi đề tài học phần, mô hình gồm nguồn PV, bộ điều khiển sạc, pin lưu trữ, BMS, inverter và tải. PV cung cấp điện một chiều; bộ điều khiển sạc điều chỉnh quá trình nạp theo bộ pin; BMS theo dõi trạng thái pin và cho phép hoặc ngắt các đường sạc/xả. Inverter chuyển điện DC thành AC cho tải phù hợp. Lớp IoT thu thập dữ liệu, hiển thị và tiếp nhận lệnh của người dùng.
-
-Bộ điều khiển sạc và BMS có vai trò riêng: nhóm cần thiết kế hoặc chọn bộ sạc có đặc tuyến phù hợp, đồng thời dùng BMS để giám sát và bảo vệ bộ pin. Chức năng ngắt quá áp của BMS không thay thế việc điều khiển điện áp và dòng sạc.
+Mô hình gồm dàn PV \(3\times3\), mạch chuyển cấu hình, bộ điều khiển sạc, pin lưu trữ 12~V và tải tĩnh. Dàn PV cung cấp điện một chiều; mạch chuyển cấu hình quyết định cách các tấm được nối với nhau; bộ điều khiển sạc điều chỉnh quá trình nạp và bảo vệ pin; tải lấy điện từ đầu ra của bộ sạc. Phần nhóm tự phát triển là mạch chuyển cấu hình, phép đo và thuật toán chọn cấu hình.
 
 \subsection{Đặc tính tấm pin quang điện}
 \label{sec:pv-characteristics}
@@ -40,7 +38,7 @@ Trong đó \(I_{\mathrm{ph}}\) là dòng quang sinh; \(I_0\) là dòng bão hòa
 
 Nhóm sẽ kiểm tra cách quy đổi tham số trước khi dựng mô hình. Nếu đã dùng \(R_s,R_{\mathrm{sh}}\) ở cấp module thì không nhân thêm số cell vào hai điện trở này. Tương tự, khi gộp \(nN_sV_T\) thành một hệ số, nhóm phải tránh đưa \(N_s\) vào hai lần \cite{pvpmc}.
 
-Trong \cite{yaqoob}, tác giả biểu diễn các thành phần dòng bằng khối toán học và nguồn phụ thuộc trong Proteus. Nhóm dự kiến sử dụng bộ tham số công bố của SM55 để kiểm tra mô hình ban đầu, sau đó cập nhật theo tấm pin được lựa chọn. Các hệ số phụ thuộc nhiệt độ sẽ được đối chiếu với công thức, bảng tham số và chiều biến thiên trong tài liệu trước khi chạy.
+Trong \cite{yaqoob}, tác giả hiện thực phương trình này bằng khối toán học và nguồn phụ thuộc trong Proteus; nhóm dùng cùng phương trình nhưng giải trên MATLAB. Nhóm dùng bộ tham số công bố của SM55 trong \cite{yaqoob} để kiểm tra mô hình ban đầu, sau đó trích tham số cho tấm 6~V/15~W được sử dụng. Các hệ số phụ thuộc nhiệt độ sẽ được đối chiếu với công thức, bảng tham số và chiều biến thiên trong tài liệu trước khi chạy.
 
 \subsection{Che bóng một phần và tổn hao do không tương hợp}
 
@@ -48,40 +46,9 @@ Các module nối tiếp có cùng dòng nhánh, còn các module song song có 
 
 Cell bị che có thể chịu phân cực ngược và tiêu tán công suất, gây điểm nóng. Diode bypass tạo đường dòng đi vòng qua phần được bảo vệ, giúp hạn chế tác động này nhưng không khôi phục năng lượng mặt trời đã bị che. Cấu hình lại dàn pin hướng đến giảm phần tổn hao do không tương hợp thông qua thay đổi kết nối \cite{thanh}.
 
-\subsection{Pin lưu trữ và trạng thái sạc}
-\label{sec:soc}
+\subsection{Điểm làm việc của dàn khi nối với bộ điều khiển sạc}
+\label{sec:charger-operating-point}
 
-Dung lượng điện của pin thường biểu diễn bằng Ah. Với điện áp danh định \(V_{\mathrm{nom}}\) và dung lượng \(Q_{\mathrm{Ah}}\), năng lượng danh định được ước lượng:
-\[
-E_{\mathrm{nom}}\approx V_{\mathrm{nom}}\,Q_{\mathrm{Ah}}\quad [\mathrm{Wh}].
-\]
+Công suất dàn PV thực sự cấp ra phụ thuộc điểm làm việc mà tải đặt lên nó. Với bộ điều khiển sạc kiểu MPPT, bộ chuyển đổi DC--DC điều chỉnh điện áp dàn để tiến về điểm công suất cực đại; khi đường P--V có nhiều đỉnh, thuật toán MPPT cục bộ có thể dừng ở đỉnh chưa phải lớn nhất \cite{thanh}. Với bộ điều khiển kiểu PWM, dàn pin được nối với pin qua công tắc đóng ngắt, nên khi đang dẫn điện áp dàn xấp xỉ điện áp pin; công suất thu được là \(P(V_{\mathrm{bat}})\) chứ không phải \(P_{\mathrm{MPP}}\).
 
-Đây là giá trị danh định; năng lượng cấp được cho tải còn phụ thuộc chế độ xả và tổn hao của hệ thống. C-rate biểu diễn dòng sạc/xả theo dung lượng, chẳng hạn \(1C\) tương ứng dòng có giá trị bằng dung lượng Ah chia cho một giờ \cite{kulkarni}.
-
-SoC (State of Charge) biểu diễn tỷ lệ dung lượng còn lại. Tra điện áp hở mạch cần bảng đặc tính phù hợp và điều kiện nghỉ; coulomb counting tích phân dòng vào/ra, cần biết trạng thái ban đầu và dung lượng tham chiếu \cite{tigauge}. Nhóm đề xuất dùng coulomb counting cho mô hình chức năng, với quy ước dòng pack dương khi xả:
-\[
-z_{k+1}=\operatorname{clip}_{[0,1]}
-\!\left(z_k-\frac{I_{\mathrm{bat},k}\,\Delta t}{3600\,Q_{\mathrm{Ah}}}\right),
-\qquad
-\mathrm{SoC}_k=100\,z_k.
-\]
-
-Ở công thức này, \(\Delta t\) tính bằng giây; mô hình ban đầu giả thiết hiệu suất coulomb bằng 1. Khi dòng đổi sang chiều sạc, \(I_{\mathrm{bat}}<0\) và SoC tăng. Sai số dòng và giá trị khởi tạo gây sai số tích lũy. Nhóm khảo sát hiệu chỉnh bằng OCV khi có bảng OCV--SoC và điều kiện nghỉ phù hợp với loại pin được chọn \cite{tigauge}. Phương pháp khởi tạo và hiệu chỉnh được xác định trong giai đoạn mô phỏng chức năng; độ chính xác trên pin thật được đánh giá bằng dữ liệu tham chiếu khi triển khai phần cứng và thực nghiệm.
-
-\subsection{Cân bằng cell, nhiệt độ và bảo vệ}
-\label{sec:balance-theory}
-
-Các cell nối tiếp có thể lệch trạng thái sạc. Cell chạm giới hạn trước sẽ hạn chế khả năng sử dụng của bộ pin. Cân bằng thụ động tạo nhánh xả qua điện trở ở cell được chọn; năng lượng dư chuyển thành nhiệt. Khi áp dụng, cần xét điều kiện cho phép cân bằng, công suất tản và ảnh hưởng đến phép đo \cite{tibalance}.
-
-Trong mô phỏng, nhóm có thể dùng LM35 hoặc mô hình tín hiệu tương đương để kiểm tra giám sát nhiệt độ. Đây là phương án tham khảo, chưa phải lựa chọn cảm biến phần cứng. Theo datasheet \cite{lm35}, hệ số chuyển đổi là \(10\ \mathrm{mV}/^\circ\mathrm{C}\):
-\[
-T[^\circ\mathrm{C}]=\frac{V_{\mathrm{LM35}}[\mathrm{V}]}{0.01}.
-\]
-
-BMS cần phản ứng khi điện áp, dòng hoặc nhiệt độ vượt phạm vi cho phép. Các mức giới hạn phụ thuộc cell, bộ sạc và phần tử công suất được chọn. Nhóm không áp dụng trực tiếp ngưỡng của bộ pin trong \cite{kulkarni} cho một loại pin khác.
-
-\subsection{Giám sát và điều khiển qua IoT}
-
-Trong \cite{kulkarni}, bộ điều khiển thu thập dữ liệu cảm biến, hiển thị tại chỗ và chuyển dữ liệu qua khối kết nối mạng lên nền tảng IoT. Nhóm tham khảo luồng giám sát này và sẽ chọn nền tảng theo nhu cầu lưu dữ liệu, hiển thị, điều khiển và chi phí. Các chức năng điều khiển tải, xác nhận lệnh và lưu trạng thái sự cố là phần nhóm đề xuất thêm cho hệ thống của mình.
-
-Dữ liệu dự kiến gồm điện áp cell và pack, dòng pin, điện áp/dòng PV, công suất, nhiệt độ, SoC, trạng thái tải, nguồn đang sử dụng và mã lỗi. Thuật toán bảo vệ sẽ chạy tại bộ điều khiển cục bộ để việc ngắt mạch không phụ thuộc vào kết nối mạng.
+Vì vậy, khi so sánh các cấu hình, nhóm tính cả hai đại lượng: công suất cực đại toàn cục \(P_{\mathrm{GMPP}}\) và công suất tại dải điện áp pin \(P(V_{\mathrm{bat}})\). Kiểu điều khiển của ST-S1230 (PWM hay MPPT) và giới hạn điện áp vào PV sẽ được xác nhận từ tài liệu đi kèm thiết bị trước khi chốt tiêu chí so sánh chính.

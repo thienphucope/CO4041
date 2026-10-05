@@ -6,12 +6,14 @@
 \textbf{Học phần:} & CO4041 -- Đồ án chuyên ngành / Đồ án môn học Kỹ thuật Máy tính, HK261 \\[2pt]
 \textbf{GVHD:} & ThS. Phạm Công Thái, TS. Lê Trọng Nhân \\[2pt]
 \textbf{Sinh viên thực hiện:} & Lê Thanh Phú (2212581), Phan Trần Nguyên Phúc (2212643), Hoàng Ngô Thiên Phúc (2212612) \\[2pt]
-\textbf{Ngày cập nhật:} & 17/09/2026 \\
+\textbf{Ngày cập nhật:} & 05/10/2026 \\
 \end{tabular}
 
 \section*{Tóm tắt}
 \addcontentsline{toc}{section}{Tóm tắt}
 
-Đề tài xây dựng một mô hình microgrid quy mô nhỏ dùng năng lượng mặt trời, gồm nguồn quang điện, bộ điều khiển sạc, pin lưu trữ, bộ quản lý pin (BMS), inverter, tải và lớp giám sát/điều khiển qua IoT. Báo cáo trình bày cơ sở lý thuyết đúc kết từ tài liệu tham khảo, phương pháp thiết kế BMS 12~V và mô phỏng BMS cùng tấm pin trên Proteus, thuật toán cấu hình lại dàn pin khi bức xạ không đồng đều, kiến trúc tổng thể của hệ thống, cùng kế hoạch và phân công cho toàn bộ học phần.
+Đề tài xây dựng một mô hình năng lượng mặt trời quy mô nhỏ, trong đó trọng tâm của giai đoạn này là \textbf{cấu hình lại dàn pin quang điện (PV array reconfiguration)} cho dàn \(3\times3\) gồm chín tấm pin 6~V/15~W. Khi dàn pin bị che bóng một phần, cách nối các tấm quyết định phần công suất bị mất do không tương hợp; thay đổi cách nối trong lúc vận hành giúp giảm tổn hao này.
 
-Mục tiêu của báo cáo là đề xuất hướng thiết kế và lộ trình triển khai để nhận góp ý của giảng viên. Thông tin pin hiện có là 12~V, 15~Ah; loại pin, tải và mã thiết bị triển khai còn cần xác định. Nhóm dự kiến tích hợp mô-đun sạc và inverter, tập trung phần tự phát triển vào BMS, đo lường, firmware, điều phối nguồn và IoT. Báo cáo trình bày phương pháp và kế hoạch; schematic Proteus, kết quả mô phỏng, số liệu đo và BOM có giá là đầu ra của các mốc tiếp theo.
+Sản phẩm của giai đoạn gồm hai phần: (1) mô phỏng trên MATLAB các cấu hình dàn \(3\times3\) dưới các dạng che bóng và thuật toán chọn cấu hình; (2) PCB mạch chuyển cấu hình dàn PV, dùng để đo và so sánh công suất giữa các cấu hình trên dàn pin thật. Bộ điều khiển sạc Suoer ST-S1230 đảm nhận việc sạc và bảo vệ pin lưu trữ 12~V, nên nhóm không thiết kế BMS và không thực hiện cân bằng cell.
+
+Báo cáo trình bày cơ sở lý thuyết về đặc tính và che bóng dàn PV, các cấu hình \(3\times3\) tương thích với bộ sạc (SP, TCT, BL, HC), phương án ma trận chuyển mạch trên PCB, kế hoạch mô phỏng MATLAB, kiến trúc thực nghiệm, kế hoạch và phân công. Thông số tấm pin và bộ sạc trong báo cáo lấy theo thông tin bán hàng; nhóm sẽ đối chiếu lại bằng datasheet và phép đo trước khi chốt thiết kế PCB.

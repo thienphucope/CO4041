@@ -1,8 +1,8 @@
 # Core — Cân bằng cell (cell balancing)
 
 > **Cái gì:** kéo các cell nối tiếp về **cùng mức** (áp/SoC). Không cân bằng → cell yếu nhất giới hạn cả pack, chai nhanh, dễ quá/thấp áp.
-> **Tại sao quan trọng với đồ án:** 1 trong 4 khối BMS thầy chốt ([`qa1.md`](qa1.md) §A1).
-> **Nguồn:** Ref 2 — Kulkarni 2025 ([`../references/extracted/02-bms-iot/02-bms-iot.md`](../references/extracted/02-bms-iot/02-bms-iot.md)) + kiến thức nền BMS.
+> **Tại sao quan trọng với đồ án:** 1 trong 4 khối BMS thầy chốt ([`qa1.md`](../../info/qa1.md) §A1).
+> **Nguồn:** Ref 2 — Kulkarni 2025 ([`../../references/extracted/02-bms-iot/02-bms-iot.md`](../../references/extracted/02-bms-iot/02-bms-iot.md)) + kiến thức nền BMS.
 > Liên quan: [[core-soc]] · [[core-protection]] · [[core-thermal]]
 
 ---
@@ -40,7 +40,7 @@ Cell nối tiếp dùng **cùng một dòng** nhưng dung lượng/nội trở l
 
 ## 4. Ref 2 làm gì (đối chiếu)
 - Ref 2 đo **áp từng cell** (C1–C3) + hiển thị, nhưng **không mô tả mạch cân bằng chủ động/thụ động cụ thể** — chủ yếu monitoring.
-- Có mạch **relay cân bằng** trong đồ án nhóm khoá trước (cùng 2 thầy) — ⚠️ xem cảnh báo trùng lặp ở [`../plan/proposal.md`](../plan/proposal.md) B6 (ảnh [`../archives/extracted/solar-microgrid-project/images/p15-img01-x208.jpeg`](../archives/extracted/solar-microgrid-project/images/p15-img01-x208.jpeg)).
+- Có mạch **relay cân bằng** trong đồ án nhóm khoá trước (cùng 2 thầy) — ⚠️ xem cảnh báo trùng lặp ở [`../../plan/proposal.md`](../../plan/proposal.md) B6 (ảnh [`../extracted/solar-microgrid-project/images/p15-img01-x208.jpeg`](../extracted/solar-microgrid-project/images/p15-img01-x208.jpeg)).
 👉 **Được tham khảo bố trí, không bê nguyên, phải trích nguồn.**
 
 ## 5. Áp dụng vào đồ án
@@ -48,7 +48,7 @@ Cell nối tiếp dùng **cùng một dòng** nhưng dung lượng/nội trở l
 - Liên kết với [[core-soc]] (biết cell nào cao) và [[core-protection]] (ngưỡng OVP/UVP).
 
 ## 6. Còn mở
-- Số cell nối tiếp phụ thuộc **loại pin chưa chốt** ([`../plan/proposal.md`](../plan/proposal.md) B3): 12 V LiFePO4 ≈ 4S; SLA 12 V là 6 "cell" 2 V (thường không balance từng cell) → **ảnh hưởng lớn tới việc có cần balancing hay không**.
+- Số cell nối tiếp phụ thuộc **loại pin chưa chốt** ([`../../plan/proposal.md`](../../plan/proposal.md) B3): 12 V LiFePO4 ≈ 4S; SLA 12 V là 6 "cell" 2 V (thường không balance từng cell) → **ảnh hưởng lớn tới việc có cần balancing hay không**.
 - Ngưỡng & dòng xả điện trở — chốt khi có thông số pin.
 
 *Cập nhật: 2026-09-10.*

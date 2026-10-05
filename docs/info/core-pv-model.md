@@ -3,7 +3,7 @@
 > **Cái gì:** cách mô tả tấm pin mặt trời bằng toán (single-diode model) rồi dựng lại trong Proteus để vẽ đường **I–V / P–V** dưới mọi điều kiện bức xạ G và nhiệt độ T — **trước khi** làm phần cứng.
 > **Tại sao quan trọng với đồ án:** thầy chốt dùng **Proteus** mô phỏng cả BMS lẫn tấm pin ([`qa1.md`](qa1.md) §A4). Đây là khuôn mẫu PV.
 > **Nguồn chính:** Ref 1 — Yaqoob et al. 2022 ([`../references/extracted/01-pv-proteus/01-pv-proteus.md`](../references/extracted/01-pv-proteus/01-pv-proteus.md)).
-> Liên quan: [[core-partial-shading]] · [[core-pv-reconfig]] · [[core-iot-monitoring]]
+> Liên quan: [[core-partial-shading]] · [[core-pv-reconfig]]
 
 ---
 

@@ -1,4 +1,4 @@
-\section{Tìm hiểu thuật toán PV array configuration}
+\section{Thuật toán cấu hình lại dàn pin}
 \label{sec:pv-configuration}
 
 \subsection{Cấu hình tĩnh và cấu hình lại dàn pin}
@@ -43,7 +43,7 @@ Có thể diễn giải luồng xử lý tổng quát của phương pháp trong
     \item Khảo sát đặc tuyến và công suất sau khi đổi cấu hình.
 \end{enumerate}
 
-Đây là phần diễn giải lý thuyết của thuật toán trong tài liệu, làm cơ sở khi nhóm cân nhắc mở rộng ở giai đoạn sau.
+Đây là phần diễn giải lý thuyết của thuật toán trong tài liệu, làm cơ sở cho phần mở rộng sau khi hoàn thành mức cơ bản.
 
 \subsection{Ma trận chuyển mạch DES}
 
@@ -51,8 +51,12 @@ Dynamic Electrical Scheme (DES) là phần mạch thực hiện thay đổi kế
 
 Khi xét khả năng làm phần cứng, nhóm cần đánh giá số lượng công tắc, tổn hao dẫn, trình tự chuyển mạch và chi phí điều khiển. EI là chỉ tiêu trong mô hình khảo sát, chưa đủ để khẳng định mọi cấu hình EI thấp hơn đều có lợi hơn khi tính cả tổn hao và thời gian chuyển mạch.
 
+\subsection{Các hướng reconfiguration khác}
+
+Ngoài phương án của \cite{thanh}, các nghiên cứu khác cho thấy những đánh đổi cần cân nhắc khi chọn thuật toán. \cite{vicente} điều khiển động dàn SP bằng luật Rough Sets và đo dòng ngắn mạch từng tấm theo chu kỳ; việc đo đòi hỏi tách tấm khỏi dàn trong thời gian ngắn, làm mất một phần năng lượng. \cite{etarhouni} đề xuất cách sắp xếp vị trí tấm trong TCT \(3\times3\) để phân tán bóng che, nhưng dây được nối một lần trước khi vận hành và giữ nguyên. \cite{ngertugrul} dùng MOSFET, cảm biến áp từng tấm và một cảm biến dòng chung để giảm số linh kiện, đổi lại mạch chỉ cho phép một số kết nối nhất định.
+
+Từ các tài liệu trên, nhóm rút ra: tập cấu hình mà thuật toán có thể chọn bị giới hạn bởi các mối nối mà PCB cho phép; cách đo trạng thái từng tấm quyết định thuật toán có dùng được thông tin bức xạ hay không; và mục tiêu cuối cùng là công suất thực thu được, có tính tổn hao chuyển mạch và thời gian đo.
+
 \subsection{Phạm vi áp dụng vào đồ án}
 
-Nhóm sử dụng \cite{thanh} để giải thích cơ chế giảm tổn hao do không tương hợp, các thành phần của hệ reconfiguration và mối liên hệ với điều kiện bức xạ. Các kết quả mô phỏng trong bài thuộc nghiên cứu của tác giả và được nhóm dùng làm tham chiếu lý thuyết.
-
-Trong đề tài, phần này dừng ở mức tìm hiểu lý thuyết; mô phỏng hoặc chế tạo DES là hướng mở rộng tùy chọn, xem xét sau khi hoàn thành PV, BMS và hệ thống chính. MATLAB--Simulink là môi trường của nghiên cứu \cite{thanh}; các mô phỏng của nhóm đều dùng Proteus.
+Ở mức cơ bản, nhóm chuyển giữa các cấu hình nhóm A bằng bốn công tắc nối chéo và chọn cấu hình bằng cách quét, đo công suất (Mục~\ref{sec:pcb}). Thuật toán cân bằng bức xạ DP--SC và ma trận DES đổi nhóm từng tấm của \cite{thanh} là hướng mở rộng: nhóm mô phỏng trên MATLAB sau khi hoàn thành mức cơ bản, và chỉ chuyển thành phần cứng khi số công tắc, kênh đo và tiến độ cho phép.

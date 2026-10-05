@@ -1,0 +1,101 @@
+\section{Dàn PV \texorpdfstring{\(3\times3\)}{3x3} và mạch chuyển cấu hình}
+\label{sec:pv3x3}
+
+\subsection{Thông số đầu vào}
+
+Dàn pin gồm chín tấm mono 6~V/15~W, kích thước khoảng \(35\times35\)~cm. Theo thông tin bán hàng, mỗi tấm có \(V_{\mathrm{MPP}}\approx6\)~V và \(I_{\mathrm{MPP}}\approx2{,}5\)~A. Để tính sơ bộ, nhóm giả thiết \(V_{\mathrm{OC}}\approx1{,}2\,V_{\mathrm{MPP}}\approx7{,}2\)~V và \(I_{\mathrm{SC}}\approx1{,}1\,I_{\mathrm{MPP}}\approx2{,}75\)~A; các giá trị này sẽ được thay bằng datasheet và phép đo từng tấm ở điều kiện nắng thực tế.
+
+Bộ điều khiển sạc Suoer ST-S1230 dùng cho hệ pin 12~V. Để sạc được pin 12~V, dàn cần điện áp làm việc khoảng 15--18~V, tương ứng ba tấm 6~V nối tiếp. Đồng thời, điện áp hở mạch của dàn ở nhiệt độ thấp không được vượt giới hạn điện áp vào PV của bộ sạc. Hai ràng buộc này quyết định tập cấu hình hợp lệ.
+
+\subsection{Các cấu hình sạc được qua ST-S1230 (nhóm A)}
+\label{sec:group-a}
+
+Các cấu hình nhóm A đều có ba tấm nối tiếp trên mỗi nhánh và ba nhánh song song, nên ở bức xạ đều chúng có cùng điện áp, dòng và công suất (Bảng~\ref{tab:group-a}). Điểm khác nhau nằm ở các \emph{mối nối chéo} giữa các nhánh, và khác biệt này chỉ thể hiện khi có che bóng.
+
+\begin{table}[H]
+\centering
+\caption{Các cấu hình dàn \(3\times3\) sạc được qua ST-S1230 (giá trị tính ở bức xạ đều, STC, từ giả thiết thông số tấm ở trên).}
+\label{tab:group-a}
+\small
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}Xcccc>{\raggedright\arraybackslash}X@{}}
+\hline
+\textbf{Cấu hình} & \textbf{Cách nối} & \(V_{\mathrm{MPP}}\) & \(V_{\mathrm{OC}}\) & \(I_{\mathrm{SC}}\) & \(P_{\mathrm{MPP}}\) & \textbf{Ghi chú} \\
+\hline
+SP (3S3P) & Ba chuỗi, mỗi chuỗi ba tấm nối tiếp; ba chuỗi mắc song song & 18~V & 21,6~V & 8,25~A & 135~W & Cấu hình cơ sở để so sánh \\
+TCT & Như SP, thêm nối chéo tại mọi nút cùng mức giữa các chuỗi; tương đương ba hàng song song mắc nối tiếp & 18~V & 21,6~V & 8,25~A & 135~W & Nhiều mối nối chéo nhất; nền cho reconfiguration trong \cite{thanh} \\
+BL & Như SP, nối chéo một phần theo kiểu cầu xen kẽ & 18~V & 21,6~V & 8,25~A & 135~W & Ít mối nối chéo hơn TCT \\
+HC & Như SP, nối chéo một phần theo kiểu tổ ong & 18~V & 21,6~V & 8,25~A & 135~W & Số mối nối chéo trung gian giữa BL và TCT \\
+\hline
+\end{tabularx}
+\end{table}
+
+Giá trị 135~W là công suất danh định ở điều kiện chuẩn. Nếu ST-S1230 là bộ điều khiển PWM, dàn làm việc gần điện áp pin (khoảng 12,5--14,4~V) thay vì 18~V, nên công suất thực nhận được thấp hơn (Mục~\ref{sec:charger-operating-point}). Mẫu nối chéo cụ thể của BL và HC cho dàn ba cột được nhóm chốt theo hình vẽ cấu hình trong \cite{thanh} khi vẽ schematic.
+
+\subsection{Các cấu hình bị loại}
+
+Một số cách nối khác của chín tấm không dùng được với bộ sạc:
+
+\begin{itemize}
+    \item \textbf{9P (toàn song song):} \(V_{\mathrm{MPP}}\approx6\)~V, \(I_{\mathrm{SC}}\approx24{,}75\)~A. Điện áp quá thấp để sạc pin 12~V và dòng lớn.
+    \item \textbf{9S (toàn nối tiếp):} \(V_{\mathrm{MPP}}\approx54\)~V, \(V_{\mathrm{OC}}\approx64{,}8\)~V. Theo thông tin sơ bộ, mức này vượt giới hạn điện áp vào PV của bộ sạc (khoảng 50~V), có nguy cơ hỏng thiết bị nên tuyệt đối không cho phép.
+    \item \textbf{Ba chuỗi 3S độc lập:} mỗi chuỗi 18~V, 45~W, nhưng cần ba đầu vào sạc riêng (nhiều bus); không phù hợp với một bộ ST-S1230.
+\end{itemize}
+
+Mạch chuyển cấu hình phải được thiết kế sao cho không có tổ hợp công tắc nào tạo ra các cấu hình trên, kể cả khi firmware lỗi.
+
+\subsection{Phương án ma trận chuyển mạch trên PCB}
+\label{sec:pcb}
+
+Ở mức cơ bản, các cấu hình nhóm A có chung phần nối tiếp: mỗi nhánh luôn là ba tấm nối tiếp. Chúng chỉ khác nhau ở các mối nối chéo giữa các nút cùng mức của ba nhánh. Dàn \(3\times3\) có hai mức nút trung gian (giữa hàng 1--2 và hàng 2--3); mỗi mức có hai vị trí nối chéo giữa các nhánh kề nhau (nhánh 1--2 và nhánh 2--3). Như vậy chỉ cần bốn công tắc nối chéo:
+
+\begin{itemize}
+    \item Tất cả bốn công tắc mở: SP.
+    \item Tất cả bốn công tắc đóng: TCT.
+    \item Các tổ hợp con của bốn công tắc: các cấu hình nối chéo một phần, trong đó có BL và HC.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=24mm,y=14mm,
+    pv/.style={draw, minimum width=11mm, minimum height=7mm, font=\scriptsize},
+    sw/.style={draw, dashed, thick},
+    nd/.style={circle, fill, inner sep=1.2pt}]
+  \foreach \c in {1,2,3} {
+    \foreach \r in {1,2,3} {
+      \node[pv] (m\r\c) at (\c,-\r) {PV\(_{\r\c}\)};
+    }
+    \draw (\c,-0.35) -- (m1\c.north);
+    \draw (m1\c.south) -- (m2\c.north);
+    \draw (m2\c.south) -- (m3\c.north);
+    \draw (m3\c.south) -- (\c,-3.65);
+    \node[nd] (n1\c) at (\c,-1.5) {};
+    \node[nd] (n2\c) at (\c,-2.5) {};
+  }
+  \draw[thick] (1,-0.35) -- (3,-0.35) node[right, font=\scriptsize] {\(+\) ra bộ sạc};
+  \draw[thick] (1,-3.65) -- (3,-3.65) node[right, font=\scriptsize] {\(-\)};
+  \draw[sw] (n11) -- node[above, font=\scriptsize] {S1} (n12);
+  \draw[sw] (n12) -- node[above, font=\scriptsize] {S2} (n13);
+  \draw[sw] (n21) -- node[above, font=\scriptsize] {S3} (n22);
+  \draw[sw] (n22) -- node[above, font=\scriptsize] {S4} (n23);
+\end{tikzpicture}
+\caption{Dàn \(3\times3\) với phần nối tiếp cố định và bốn công tắc nối chéo S1--S4 (nét đứt). Tất cả mở: SP; tất cả đóng: TCT; các tổ hợp con: nối chéo một phần (BL, HC\dots).}
+\label{fig:tie-switches}
+\end{figure}
+
+Bốn công tắc (Hình~\ref{fig:tie-switches}) cho \(2^4=16\) trạng thái. Vì phần nối tiếp được nối cứng, mọi trạng thái đều giữ ba tấm nối tiếp trên mỗi nhánh; do đó mạch \emph{không thể} tạo ra 9S hay 9P. Đây là cách khóa an toàn ở mức phần cứng cho ràng buộc điện áp của bộ sạc. Hướng chuyển SP\(\leftrightarrow\)TCT bằng bốn relay trên dàn \(3\times3\) cũng được dùng trong thực nghiệm của \cite{pachauri}.
+
+Yêu cầu thiết kế cho các khối trên PCB:
+
+\begin{itemize}
+    \item \textbf{Công tắc nối chéo.} Dòng qua mối nối chéo có thể chạy theo hai chiều tùy phân bố bóng che, nên mỗi công tắc dùng hai MOSFET đấu ngược (back-to-back) hoặc relay. MOSFET cho phép chuyển nhanh để quét các cấu hình; relay đơn giản hơn về mạch kích. Nhóm chọn sau khi tính dòng, điện áp chịu đựng và tổn hao dẫn.
+    \item \textbf{Mạch kích.} Các nút nối chéo nằm ở các mức điện thế khác nhau, nên mạch kích cổng MOSFET cần thả nổi hoặc cách ly so với mass của vi điều khiển. Phân tích điện áp chịu đựng theo vị trí công tắc trong \cite{ngertugrul} được dùng làm tham khảo.
+    \item \textbf{Đo lường.} Tối thiểu đo điện áp và dòng đầu ra dàn để tính công suất; mở rộng đo điện áp tại các nút trung gian và dòng từng nhánh để nhận biết bóng che.
+    \item \textbf{Bảo vệ và đấu nối.} Diode bypass cho từng tấm (nếu tấm chưa có sẵn), cầu chì đầu ra, đầu nối chịu được dòng dàn khoảng 8~A và công tắc ngắt dàn khỏi bộ sạc khi cần đo hoặc khi có lỗi.
+    \item \textbf{Điều khiển.} Vi điều khiển (dự kiến ESP32) đọc số đo, điều khiển bốn công tắc và ghi dữ liệu; trình tự chuyển mạch tránh trạng thái trung gian gây xung dòng.
+\end{itemize}
+
+\subsection{Thuật toán chọn cấu hình ở mức cơ bản}
+
+Với 16 trạng thái, nhóm có thể chọn cấu hình bằng cách thử lần lượt: chuyển sang từng trạng thái, chờ ổn định, đo công suất rồi giữ trạng thái cho công suất lớn nhất. Quá trình quét được lặp lại theo chu kỳ hoặc khi công suất thay đổi vượt ngưỡng, để theo kịp sự thay đổi của bóng che. Chu kỳ quét phải cân bằng giữa phản ứng nhanh với bóng che và phần năng lượng mất trong lúc đo, chuyển mạch.
+
+Phương án mở rộng là ma trận cho phép đổi nhóm từng tấm giữa các hàng của TCT (ma trận DES), kết hợp ước lượng bức xạ từng tấm và thuật toán cân bằng bức xạ như \cite{thanh} (Mục~\ref{sec:pv-configuration}). Hướng này linh hoạt hơn nhưng cần nhiều công tắc và kênh đo hơn; nhóm xét sau khi hoàn thành mức cơ bản.

@@ -1,8 +1,8 @@
 # Core — Mạch bảo vệ pin (protection circuit)
 
 > **Cái gì:** ngắt/giới hạn khi pin vượt giới hạn an toàn — **quá áp, thấp áp, quá dòng, quá nhiệt** (và ngắn mạch). Là "hàng rào an toàn" của BMS.
-> **Tại sao quan trọng với đồ án:** 1 trong 4 khối BMS thầy chốt ([`qa1.md`](qa1.md) §A1).
-> **Nguồn:** Ref 2 — Kulkarni 2025 ([`../references/extracted/02-bms-iot/02-bms-iot.md`](../references/extracted/02-bms-iot/02-bms-iot.md)) + kiến thức nền BMS.
+> **Tại sao quan trọng với đồ án:** 1 trong 4 khối BMS thầy chốt ([`qa1.md`](../../info/qa1.md) §A1).
+> **Nguồn:** Ref 2 — Kulkarni 2025 ([`../../references/extracted/02-bms-iot/02-bms-iot.md`](../../references/extracted/02-bms-iot/02-bms-iot.md)) + kiến thức nền BMS.
 > Liên quan: [[core-soc]] · [[core-cell-balancing]] · [[core-thermal]]
 
 ---
@@ -49,7 +49,7 @@ Dải an toàn Li-ion theo Ref 2 (dẫn [8,9], Trang 1): **áp cell 2.5–4.2 V*
 - Ngưỡng lấy từ [[core-soc]] (áp cell) + [[core-thermal]] (nhiệt) + C-rate (dòng).
 
 ## 6. Còn mở
-- Ngưỡng cụ thể phụ thuộc **loại pin chưa chốt** ([`../plan/proposal.md`](../plan/proposal.md) B3): LiFePO4 (2.5–3.65 V/cell) vs SLA (dải khác). → Tra datasheet rồi chốt bảng ngưỡng.
+- Ngưỡng cụ thể phụ thuộc **loại pin chưa chốt** ([`../../plan/proposal.md`](../../plan/proposal.md) B3): LiFePO4 (2.5–3.65 V/cell) vs SLA (dải khác). → Tra datasheet rồi chốt bảng ngưỡng.
 - Dùng IC bảo vệ sẵn (vd BQ769x, DW01) hay tự làm bằng MCU+MOSFET — quyết theo hướng "tự làm thuật toán" (KTMT) của đề tài.
 
 *Cập nhật: 2026-09-10.*

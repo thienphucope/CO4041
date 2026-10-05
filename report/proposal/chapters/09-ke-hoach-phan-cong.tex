@@ -3,38 +3,30 @@
 
 \subsection{Các giai đoạn thực hiện}
 
-Nhóm đề xuất khung làm việc 14 tuần trong một học kỳ, tính từ thời điểm bắt đầu đồ án. Đây là giả định lập kế hoạch nội bộ, chưa phải lịch chính thức của học phần. M1 tương ứng mốc proposal; nhóm sẽ quy đổi các tuần tương đối sang ngày thực tế sau khi đối chiếu LMS và thời gian còn lại. Các mốc M2--M4 có phần thực hiện song song theo phụ thuộc công việc.
-
-Các giai đoạn thực hiện cho toàn bộ đồ án CO4041:
+Nhóm đề xuất khung làm việc theo tuần tương đối, tính từ khi chốt phạm vi PV reconfiguration. Đây là giả định lập kế hoạch nội bộ; nhóm sẽ quy đổi sang ngày thực tế theo lịch học phần trên LMS.
 
 \begin{itemize}
-    \item \textbf{M1 --- Proposal (tuần 1--2).} Công việc: tổng hợp tài liệu, xác định phương pháp BMS/PV, tìm hiểu reconfiguration, lập kế hoạch. Đầu ra: báo cáo có đủ nội dung yêu cầu, nguồn trích dẫn và phân công.
-    \item \textbf{M2 --- Mô hình và đầu vào (tuần 3--4).} Công việc: kiểm tra Proteus; dựng PV song song với kiểm tra đo áp, dòng, nhiệt; làm rõ loại pin, tải, nguồn lực và bảng tham số dự kiến. Đầu ra: PV có dữ liệu đối chiếu, khối đo đọc đúng tín hiệu, bộ thông số đủ để lập mô hình BMS.
-    \item \textbf{M3 --- Mô phỏng chức năng (tuần 4--6).} Công việc: mở rộng BMS nhiều cell, thêm SoC, cân bằng, bảo vệ và thử lỗi kết hợp; hoàn thiện PV; dựng giao diện bằng dữ liệu giả theo giao tiếp đã thống nhất. Đầu ra: dự án Proteus, chương trình, cấu hình và kết quả PV-01--03, BMS-01--10; giao diện mẫu và danh sách lỗi cần xử lý.
-    \item \textbf{M4 --- Thiết kế tích hợp (khảo sát tuần 3--4, chốt tuần 5--6).} Công việc: khảo sát bộ sạc, inverter, tải, nguồn phụ và thời gian cung ứng; rà tương thích; thiết kế kết nối và chốt BOM theo từng khối. Đầu ra: sơ đồ kết nối, dải điện áp/dòng phù hợp, giao tiếp, linh kiện được lựa chọn và kế hoạch thử phần cứng.
-    \item \textbf{M5 --- Phần cứng và IoT (tuần 7--9).} Công việc: triển khai mạch đo/BMS đã qua kiểm tra mô phỏng, tích hợp từng khối nguồn; kết nối firmware và giao diện với dữ liệu thiết bị. Đầu ra: các khối chạy riêng, hiệu chuẩn ban đầu, dữ liệu và lệnh được truyền có phản hồi.
-    \item \textbf{M6 --- Tích hợp và thực nghiệm (tuần 10--12).} Công việc: ghép hệ thống; thử tải, điều kiện nguồn, chuyển nguồn, mất mạng và bảo vệ; thu số liệu chi phí/hiệu suất. Đầu ra: nhật ký thử nghiệm theo tiêu chí đã xác định, dữ liệu đo và danh sách lỗi hoặc giới hạn còn lại.
-    \item \textbf{M7 --- Dự phòng và bàn giao (tuần 13--14).} Tuần 13 dành cho xử lý lỗi phát sinh và kiểm tra lại các ca bị ảnh hưởng; tuần 14 hoàn thiện báo cáo, hồ sơ và chuẩn bị trình diễn theo yêu cầu học phần. Đầu ra: mô hình minh họa, mã nguồn, schematic, kết quả, BOM và báo cáo cuối.
+    \item \textbf{M1 --- Proposal (đã hoàn thành, cập nhật phạm vi).} Tổng hợp tài liệu, xác định các cấu hình hợp lệ, phương án PCB và kế hoạch mô phỏng. Đầu ra: báo cáo này.
+    \item \textbf{M2 --- Thông số và mô hình tấm (tuần 1--2).} Xác nhận thông số ST-S1230 và tấm PV; đo từng tấm; mô hình một tấm trên MATLAB. Đầu ra: bảng thông số đã xác nhận, kết quả PV-01--04.
+    \item \textbf{M3 --- Mô phỏng dàn (tuần 2--4).} Mô hình dàn theo trạng thái công tắc, bộ ca che bóng, so sánh cấu hình. Đầu ra: kết quả ARR-01--04, bảng xếp hạng cấu hình.
+    \item \textbf{M4 --- Thiết kế PCB (tuần 3--5, song song M3).} Chọn linh kiện đóng cắt, mạch kích, cảm biến; vẽ schematic và layout; rà soát chéo. Đầu ra: schematic, layout, BOM, file gia công.
+    \item \textbf{M5 --- Gia công và firmware (tuần 6--8).} Đặt gia công, lắp ráp, kiểm tra từng khối; viết firmware đo, điều khiển công tắc và gửi dữ liệu. Đầu ra: PCB hoạt động, chuyển được 16 trạng thái, số đo đã hiệu chuẩn.
+    \item \textbf{M6 --- Thực nghiệm và đối chiếu (tuần 9--11).} Lắp dàn \(3\times3\) với bộ sạc, pin, tải; đo các cấu hình dưới các ca che bóng; chạy thuật toán quét; đối chiếu với mô phỏng, chạy ARR-05. Đầu ra: nhật ký đo, đồ thị so sánh mô phỏng--thực nghiệm.
+    \item \textbf{M7 --- Dự phòng và bàn giao (tuần 12--14).} Xử lý lỗi, đo lại các ca bị ảnh hưởng; nếu còn thời gian, mô phỏng thuật toán mở rộng DP--SC/DES; hoàn thiện báo cáo và trình diễn.
 \end{itemize}
 
-Nhóm mua linh kiện sau khi xác định thông số và khả năng tương thích của khối liên quan, không cần đợi toàn bộ hệ thống hoàn thành mô phỏng mới khảo sát hoặc đặt linh kiện đã đủ căn cứ. Việc triển khai phần cứng vẫn phụ thuộc kết quả mô phỏng chức năng tương ứng. Nếu cần gia công PCB, nhóm đưa thời gian chế tạo và sửa mạch vào M4--M5. Nhóm điều chỉnh kế hoạch khi biết lịch thực tế, giữ thời gian tích hợp và đo đạc; phần reconfiguration mở rộng không nằm trên đường tiến độ bắt buộc.
+Thời gian gia công PCB là rủi ro tiến độ chính, nên M4 được bắt đầu song song với M3 thay vì chờ mô phỏng hoàn tất: phương án bốn công tắc nối chéo không phụ thuộc vào kết quả xếp hạng cấu hình. Nếu cần sửa mạch, nhóm dùng thời gian dự phòng ở M7.
 
 \subsection{Phân chia nhiệm vụ}
 
-Phân công dưới đây kế thừa hướng phụ trách trong bản kế hoạch ban đầu và mở rộng cho toàn bộ project.
-
-Phân chia nhiệm vụ giữa ba thành viên:
-
 \begin{itemize}
-    \item \textbf{Lê Thanh Phú (2212581).} Tại mốc proposal: tổng hợp BMS, SoC, nhiệt độ, cân bằng và bảo vệ, xây dựng phương pháp mô phỏng BMS. Sau proposal: dựng BMS trong Proteus, phát triển logic cục bộ, triển khai BMS phần cứng, phối hợp thử lỗi. Sản phẩm phụ trách: mô hình BMS, cấu hình bảo vệ, chương trình và hồ sơ kiểm thử BMS.
-    \item \textbf{Phan Trần Nguyên Phúc (2212643).} Tại mốc proposal: tổng hợp PV, shading, TCT/DES và thuật toán DP--SC, lập kế hoạch mô phỏng PV. Sau proposal: dựng PV, chủ trì bộ sạc, inverter, tải và chuyển nguồn, theo dõi BOM khối công suất. Sản phẩm phụ trách: mô hình PV, dữ liệu I--V/P--V, phương án cấp nguồn và kết quả thử năng lượng.
-    \item \textbf{Hoàng Ngô Thiên Phúc (2212612).} Tại mốc proposal: tổng hợp đo lường, kiến trúc IoT, kế hoạch và biên tập báo cáo. Sau proposal: chủ trì cảm biến/hiệu chuẩn, giao tiếp, IoT và giao diện, tổ chức lưu dữ liệu, tổng hợp chi phí. Sản phẩm phụ trách: hồ sơ đo lường, giao diện, nhật ký dữ liệu và bản báo cáo hợp nhất.
+    \item \textbf{Lê Thanh Phú (2212581).} Chủ trì thiết kế PCB: chọn linh kiện đóng cắt, mạch kích, bảo vệ; schematic, layout, gia công và lắp ráp. Sản phẩm phụ trách: hồ sơ thiết kế PCB, BOM và kết quả kiểm tra từng khối mạch.
+    \item \textbf{Phan Trần Nguyên Phúc (2212643).} Chủ trì mô phỏng MATLAB: mô hình tấm, mô hình dàn theo trạng thái công tắc, bộ ca che bóng, thuật toán chọn cấu hình và phần mở rộng DP--SC. Sản phẩm phụ trách: script mô phỏng, kết quả PV-01--04, ARR-01--05.
+    \item \textbf{Hoàng Ngô Thiên Phúc (2212612).} Chủ trì đo lường và firmware: cảm biến, hiệu chuẩn, điều khiển công tắc, thuật toán quét trên vi điều khiển, ghi và hiển thị dữ liệu; tổ chức thực nghiệm và biên tập báo cáo. Sản phẩm phụ trách: firmware, nhật ký đo và báo cáo hợp nhất.
 \end{itemize}
 
-Ba thành viên cùng thống nhất thông số đầu vào, lắp ghép và đánh giá toàn hệ thống. Với phần cứng BMS, Lê Thanh Phú phối hợp Hoàng Ngô Thiên Phúc về đo lường; với đường công suất, Phan Trần Nguyên Phúc phối hợp Lê Thanh Phú về quyền sạc/xả. Mỗi phần trước khi tích hợp cần một thành viên khác kiểm tra chéo.
+Ba thành viên cùng thống nhất thông số đầu vào và cùng thực hiện thực nghiệm. Người làm mô phỏng và người làm PCB phối hợp để mô hình dùng đúng tập trạng thái công tắc của mạch; người làm firmware và người làm PCB phối hợp về chân điều khiển, mạch đo và trình tự chuyển mạch. Mỗi phần trước khi tích hợp cần một thành viên khác kiểm tra chéo.
 
 \subsection{Phối hợp và quản lý thay đổi}
 
-Nhóm dự kiến rà tiến độ mỗi tuần, cập nhật công việc đã hoàn thành, vướng mắc và đầu ra tuần kế tiếp. Nhóm sẽ dùng chung bảng thông số gồm quy ước dòng, đơn vị, cấu hình pin, dải đo, ngưỡng và giao tiếp giữa các khối.
-
-Khi thay loại pin, số cell, dải công suất hoặc cách chuyển nguồn, nhóm phải cập nhật mô hình, firmware, BOM và ca kiểm thử liên quan trước khi tiếp tục tích hợp. Mỗi mốc bàn giao sẽ lưu phiên bản tài liệu và mô hình tương ứng để truy lại dữ liệu.
+Nhóm rà tiến độ mỗi tuần và dùng chung một bảng thông số gồm tham số tấm, giới hạn của bộ sạc, ký hiệu công tắc, quy ước dòng và đơn vị. Khi thay đổi thông số tấm, bộ sạc hoặc tập công tắc, nhóm cập nhật mô hình MATLAB, schematic, firmware và ca kiểm thử liên quan trước khi tiếp tục. Mỗi mốc bàn giao lưu phiên bản tài liệu, script và thiết kế tương ứng.

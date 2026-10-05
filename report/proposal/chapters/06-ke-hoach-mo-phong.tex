@@ -1,58 +1,63 @@
-\section{Kế hoạch mô phỏng trên Proteus}
+\section{Kế hoạch mô phỏng trên MATLAB}
 \label{sec:simulation}
 
 \subsection{Trình tự và phạm vi}
 
-Nhóm tạo hai dự án Proteus riêng cho PV và BMS và triển khai song song. Sau khi mỗi mô hình đáp ứng các ca kiểm tra, nhóm khảo sát ghép nối qua khối điều khiển sạc và đường tải. Mỗi khối cần hoàn thành mô phỏng chức năng liên quan trước khi triển khai phần cứng tương ứng; khảo sát linh kiện và phát triển giao diện bằng dữ liệu giả có thể thực hiện cùng thời gian.
+Mô phỏng được xây dựng từ dưới lên: mô hình một tấm, sau đó ghép thành dàn \(3\times3\) theo từng cấu hình, rồi áp các ca che bóng và thuật toán chọn cấu hình. Mỗi bước được kiểm tra trước khi sang bước sau. Mô phỏng chạy trên MATLAB; nhóm có thể dùng khối pin mặt trời có sẵn của Simulink/Simscape để đối chiếu với mô hình phương trình tự viết.
 
-Với BMS, nhóm bắt đầu bằng một kênh đo và bảo vệ, sau đó mở rộng lên nhiều cell để kiểm tra cân bằng; bài thử một cell là bước kiểm tra ban đầu trước khi dựng BMS 12~V hoàn chỉnh.
+Mô phỏng phục vụ hai mục đích: dự đoán cấu hình nào cho công suất lớn hơn dưới từng dạng che bóng, và cung cấp số liệu để đối chiếu với thực nghiệm trên PCB. Kết quả mô phỏng không thay thế phép đo trên dàn thật.
 
-\subsection{Mô phỏng tấm pin}
+\subsection{Mô hình tấm pin}
 \label{sec:pv-simulation}
 
-Nhóm thực hiện các bước sau theo phương pháp trong \cite{yaqoob}:
+Nhóm thực hiện các bước sau:
 
 \begin{enumerate}
-    \item Lập bảng tham số của một tấm pin tham khảo (ban đầu dùng SM55 trong \cite{yaqoob}, gồm thông số danh định và tham số mô hình đã công bố).
-    \item Dựng các thành phần \(I_{\mathrm{ph}}, I_D, I_{\mathrm{sh}}\) bằng khối toán và nguồn phụ thuộc trong Proteus; tạo đầu vào điều chỉnh bức xạ và nhiệt độ.
-    \item Quét điểm làm việc từ gần ngắn mạch đến gần hở mạch để thu các cặp \(V,I\), sau đó tính \(P=VI\).
-    \item Kiểm tra \(I_{\mathrm{SC}},V_{\mathrm{OC}},V_{\mathrm{MPP}},I_{\mathrm{MPP}},P_{\mathrm{MPP}}\) tại điều kiện tham chiếu.
-    \item Thay đổi riêng bức xạ và nhiệt độ để kiểm tra xu hướng và so sánh với các đường cong trong tài liệu.
+    \item Hiện thực mô hình một diode (Mục~\ref{sec:pv-model}) bằng script MATLAB, giải phương trình ẩn \(I(V)\) bằng phương pháp lặp.
+    \item Kiểm tra mô hình bằng bộ tham số SM55 trong \cite{yaqoob}.
+    \item Trích tham số cho tấm 6~V/15~W từ datasheet hoặc từ đường I--V đo được.
+    \item Thêm diode bypass cho từng tấm để mô hình đúng hành vi khi tấm bị che trong chuỗi nối tiếp.
 \end{enumerate}
 
-Các ca thử cho mô phỏng tấm pin:
+Các ca thử cho mô hình tấm:
 
 \begin{itemize}
-    \item \textbf{PV-01.} Điều kiện \(G=1000\ \mathrm{W/m^2}\), \(T=25^\circ\mathrm{C}\); thu I--V, P--V và các điểm đặc trưng; đánh giá bằng cách đối chiếu bộ thông số SM55 trong \cite{yaqoob}.
-    \item \textbf{PV-02.} Điều kiện \(G=400,700,1000\ \mathrm{W/m^2}\), giữ \(T=25^\circ\mathrm{C}\); thu họ đường I--V/P--V; kiểm tra tác động của bức xạ ở cùng nhiệt độ.
-    \item \textbf{PV-03.} Điều kiện \(T=25,45,60^\circ\mathrm{C}\), giữ \(G=1000\ \mathrm{W/m^2}\); thu họ đường I--V/P--V; kiểm tra tác động của nhiệt độ ở cùng bức xạ.
+    \item \textbf{PV-01.} \(G=1000\ \mathrm{W/m^2}\), \(T=25^\circ\mathrm{C}\); thu I--V, P--V và các điểm đặc trưng; đối chiếu bộ thông số SM55 trong \cite{yaqoob}.
+    \item \textbf{PV-02.} \(G=400,700,1000\ \mathrm{W/m^2}\), giữ \(T=25^\circ\mathrm{C}\); kiểm tra tác động của bức xạ.
+    \item \textbf{PV-03.} \(T=25,45,60^\circ\mathrm{C}\), giữ \(G=1000\ \mathrm{W/m^2}\); kiểm tra tác động của nhiệt độ.
+    \item \textbf{PV-04.} Tham số tấm 6~V/15~W; so sánh \(V_{\mathrm{OC}}, I_{\mathrm{SC}}, P_{\mathrm{MPP}}\) với datasheet và phép đo.
 \end{itemize}
 
-Nhóm ghi sai lệch của từng thông số so với tham chiếu và chỉ so sánh định lượng khi cùng điều kiện và cùng bộ tham số. Bộ tham số SM55 phục vụ kiểm tra mô hình, không phải quyết định chọn tấm pin. Nhóm hoàn thành đồ thị và dữ liệu PV-01--03 trong giai đoạn mô phỏng chức năng.
+\subsection{Mô hình dàn \texorpdfstring{\(3\times3\)}{3x3} và các ca che bóng}
+\label{sec:array-simulation}
 
-\subsection{Mô phỏng BMS}
+Dàn được mô hình bằng lưới chín tấm với ma trận bức xạ \(G_{ij}\) và bốn biến trạng thái công tắc nối chéo (Mục~\ref{sec:pcb}). Với mỗi trạng thái, mô hình giải các ràng buộc dòng tại nút và điện áp nhánh để thu đường I--V, P--V của toàn dàn. Cách mô hình theo trạng thái công tắc giúp mô phỏng dùng đúng tập cấu hình mà PCB thực hiện được.
 
-Nhóm viết và biên dịch chương trình cho MCU mô phỏng, nạp tệp chương trình phù hợp vào mô hình Proteus, rồi kiểm tra phần đo trước khi dùng dữ liệu cho bảo vệ hoặc SoC. Sau đó nhóm thử từng chức năng độc lập và thử lỗi kết hợp. Tệp biên dịch cho Arduino Uno chỉ dùng với mô hình tương ứng; chương trình phần cứng ESP32 được biên dịch cho ESP32 sau khi cập nhật lớp giao tiếp.
+Bộ ca che bóng tham khảo các mẫu trong \cite{etarhouni} và \cite{alwar}: che theo hàng, theo cột, theo đường chéo, ngẫu nhiên, và các dạng ngắn/dài, hẹp/rộng. Nhóm bổ sung kịch bản mép bóng di chuyển qua dàn theo thời gian để kiểm tra thuật toán quét cấu hình.
 
-Các ca thử cho mô phỏng BMS:
+Các ca thử cho mô hình dàn:
 
 \begin{itemize}
-    \item \textbf{BMS-01.} Đặt các điện áp cell, dòng hai chiều và nhiệt độ đã biết; quan sát giá trị đọc đúng kênh, đúng dấu, đúng đơn vị và ghi sai số.
-    \item \textbf{BMS-02.} Cho dòng sạc/xả đã biết trong thời gian xác định; SoC tăng/giảm phù hợp điện tích và không vượt phạm vi 0--100\%.
-    \item \textbf{BMS-03.} Tăng một cell vượt ngưỡng OV; đường sạc ngắt, mã lỗi xác định đúng cell/điều kiện.
-    \item \textbf{BMS-04.} Giảm một cell dưới ngưỡng UV; đường xả ngắt.
-    \item \textbf{BMS-05.} Vượt giới hạn dòng ở từng chiều; đường tương ứng ngắt, có thời điểm tác động.
-    \item \textbf{BMS-06.} Tạo sự cố ngắn mạch trong mô hình đã giới hạn dòng; đầu ra bị khóa, không tự bật lại khi lỗi còn tồn tại.
-    \item \textbf{BMS-07.} Đưa nhiệt độ qua ngưỡng tác động và khôi phục; cảnh báo/ngắt và phục hồi theo đúng cấu hình.
-    \item \textbf{BMS-08.} Đặt các cell lệch điện áp; nhánh cân bằng chọn đúng cell, theo dõi dòng xả và độ lệch theo thời gian.
-    \item \textbf{BMS-09.} Dao động quanh ngưỡng, lỗi cảm biến hoặc khởi động lại; tránh rung đóng/cắt, đầu ra khởi động ở trạng thái khóa.
-    \item \textbf{BMS-10.} Có nhiều lỗi đồng thời hoặc lệnh bật tải khi đang lỗi; giữ ưu tiên bảo vệ, chỉ phục hồi khi các điều kiện cho phép đều thỏa.
+    \item \textbf{ARR-01.} Bức xạ đều; bốn cấu hình nhóm A cho cùng đường I--V và \(P_{\mathrm{MPP}}\) bằng chín lần công suất một tấm (trừ sai số mô hình).
+    \item \textbf{ARR-02.} Một tấm bị che ở các vị trí khác nhau; so sánh \(P_{\mathrm{GMPP}}\), số đỉnh trên đường P--V và \(P(V_{\mathrm{bat}})\) giữa SP, TCT, BL, HC.
+    \item \textbf{ARR-03.} Các mẫu che hàng, cột, chéo, ngẫu nhiên, ngắn/dài, hẹp/rộng; lập bảng xếp hạng cấu hình theo từng mẫu.
+    \item \textbf{ARR-04.} Quét đủ 16 trạng thái công tắc cho mỗi mẫu che; xác định trạng thái tốt nhất và mức chênh so với SP.
+    \item \textbf{ARR-05.} Bóng di chuyển theo thời gian; mô phỏng thuật toán quét cấu hình với các chu kỳ quét khác nhau, tính điện năng thu được có trừ thời gian chuyển mạch.
 \end{itemize}
 
-Với nguồn áp lý tưởng, nhóm kiểm tra việc chọn nhánh cân bằng nhưng điện áp nguồn không tự giảm; để đánh giá diễn biến chênh lệch cell, nhóm dùng mô hình lưu trữ có động học (mô hình tụ hoặc mạch tương đương pin được xác định tham số). Kết quả từ mô hình tụ thể hiện hành vi mạch, không dùng để công bố thời gian cân bằng hay thời gian sử dụng pin thật. Nhóm hoàn thành dữ liệu và kết luận BMS-01--10 trong giai đoạn mô phỏng chức năng.
+\subsection{Tiêu chí so sánh}
+
+Với mỗi cấu hình và mỗi ca che bóng, nhóm ghi các chỉ tiêu:
+
+\begin{itemize}
+    \item Công suất cực đại toàn cục \(P_{\mathrm{GMPP}}\) và số đỉnh cục bộ trên đường P--V.
+    \item Công suất tại dải điện áp pin \(P(V_{\mathrm{bat}})\), dùng khi bộ sạc là PWM.
+    \item Tổn hao do không tương hợp: \(P_{\mathrm{ML}}=\sum_{i,j}P_{\mathrm{MPP},ij}-P_{\mathrm{GMPP}}\).
+    \item Mức tăng so với SP: \(\Delta P=(P_{\mathrm{cfg}}-P_{\mathrm{SP}})/P_{\mathrm{SP}}\).
+\end{itemize}
+
+Chỉ số cân bằng bức xạ EI của \cite{thanh} được tính thêm để so sánh, nhưng kết luận cấu hình tốt hơn dựa trên công suất tính từ đường P--V.
 
 \subsection{Hồ sơ mô phỏng}
 
-Mỗi lần chạy lưu phiên bản mô hình, tham số đầu vào, mã nguồn và tệp biên dịch MCU đối với mô hình BMS, đồ thị/dữ liệu và kết luận cho từng ca thử, kèm điều kiện và mã ca thử. Mô hình PV bằng các khối phương trình và nguồn phụ thuộc có thể chạy độc lập với MCU. Quy trình thao tác chi tiết được tách trong tài liệu hướng dẫn mô phỏng đi kèm bộ tài liệu đề tài.
-
-Mô phỏng điện áp và tín hiệu nhiệt cho phép kiểm tra phản ứng của BMS ở mức logic. Thực nghiệm tập trung vào sai số đo, nhiệt độ tại các vị trí giám sát và phản ứng bảo vệ trong các điều kiện thử đã xác định. Nhóm sử dụng dữ liệu nhà sản xuất cho đặc tính điện hóa và tuổi thọ pin; nghiên cứu lão hóa và thử phá hủy nằm ngoài phạm vi học kỳ.
+Mỗi lần chạy lưu phiên bản script, tham số tấm, ma trận bức xạ, trạng thái công tắc, đồ thị và bảng kết quả, kèm mã ca thử. Các ca che bóng dùng trong mô phỏng được mô tả đủ để tái tạo lại trên dàn thật bằng tấm che, phục vụ đối chiếu ở giai đoạn thực nghiệm.

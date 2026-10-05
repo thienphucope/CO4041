@@ -1,8 +1,8 @@
 # Core — Ước lượng SoC (State of Charge)
 
 > **Cái gì:** đo % pin còn lại. Mạch tham khảo chỉ **suy từ điện áp** → điểm yếu; nhóm đề xuất **coulomb counting + hiệu chỉnh OCV** (đúng chất KTMT = thuật toán/firmware).
-> **Tại sao quan trọng với đồ án:** là 1 trong 4 khối BMS thầy chốt ([`qa1.md`](qa1.md) §A1) và là **điểm khác biệt #1** ([`../plan/proposal.md`](../plan/proposal.md) B7.1).
-> **Nguồn:** Ref 2 — Kulkarni 2025 ([`../references/extracted/02-bms-iot/02-bms-iot.md`](../references/extracted/02-bms-iot/02-bms-iot.md)) + kiến thức nền BMS.
+> **Tại sao quan trọng với đồ án:** là 1 trong 4 khối BMS thầy chốt ([`qa1.md`](../../info/qa1.md) §A1) và là **điểm khác biệt #1** ([`../../plan/proposal.md`](../../plan/proposal.md) B7.1).
+> **Nguồn:** Ref 2 — Kulkarni 2025 ([`../../references/extracted/02-bms-iot/02-bms-iot.md`](../../references/extracted/02-bms-iot/02-bms-iot.md)) + kiến thức nền BMS.
 > Liên quan: [[core-cell-balancing]] · [[core-thermal]] · [[core-protection]] · [[core-iot-monitoring]]
 
 ---
@@ -63,7 +63,7 @@ Vd pin 2 Ah, sạc 0.5C → I = 1 A. Quyết định dải dòng cần đo & b�
 - Ghi rõ là **phương pháp** ở báo cáo 2 tuần; code chi tiết để sau mốc proposal.
 
 ## 5. Còn mở
-- **Loại pin chưa chốt** ([`../plan/proposal.md`](../plan/proposal.md) B3): LiFePO4 áp phẳng → CC càng cần thiết; SLA thì OCV–SoC dễ tra hơn. Ảnh hưởng bảng OCV–SoC.
+- **Loại pin chưa chốt** ([`../../plan/proposal.md`](../../plan/proposal.md) B3): LiFePO4 áp phẳng → CC càng cần thiết; SLA thì OCV–SoC dễ tra hơn. Ảnh hưởng bảng OCV–SoC.
 - Dung lượng Q giả định 12V–15Ah (~180Wh) — **chưa chốt**.
 - Bảng OCV–SoC lấy từ datasheet pin thực tế — **tự tìm thêm**.
 
