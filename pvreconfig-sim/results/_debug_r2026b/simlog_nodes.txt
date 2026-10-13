@@ -1,0 +1,4 @@
+TOP: CVS GND PV11 PV12 PV13 PV21 PV22 PV23 PV31 PV32 PV33 S1 S1_cmd S2 S2_cmd S3 S3_cmd S4 S4_cmd
+S1: i n p power_dissipated v vT
+PV11: D SC
+PV11.SC: CCS Ir diode1 n p power_dissipated resistorParallel resistorSeries

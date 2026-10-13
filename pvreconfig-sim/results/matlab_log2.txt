@@ -1,0 +1,611 @@
+[13-Oct-2026 17:49:39] Running simulations...
+[13-Oct-2026 17:49:50] Completed 1 of 144 simulation runs
+[13-Oct-2026 17:49:53] Completed 2 of 144 simulation runs
+[13-Oct-2026 17:49:57] Completed 3 of 144 simulation runs
+[13-Oct-2026 17:50:01] Completed 4 of 144 simulation runs
+[13-Oct-2026 17:50:06] Completed 5 of 144 simulation runs
+[13-Oct-2026 17:50:09] Completed 6 of 144 simulation runs
+[13-Oct-2026 17:50:13] Completed 7 of 144 simulation runs
+[13-Oct-2026 17:50:17] Completed 8 of 144 simulation runs
+[13-Oct-2026 17:50:20] Completed 9 of 144 simulation runs
+[13-Oct-2026 17:50:24] Completed 10 of 144 simulation runs
+[13-Oct-2026 17:50:28] Completed 11 of 144 simulation runs
+[13-Oct-2026 17:50:32] Completed 12 of 144 simulation runs
+[13-Oct-2026 17:50:35] Completed 13 of 144 simulation runs
+[13-Oct-2026 17:50:39] Completed 14 of 144 simulation runs
+[13-Oct-2026 17:50:43] Completed 15 of 144 simulation runs
+[13-Oct-2026 17:50:47] Completed 16 of 144 simulation runs
+[13-Oct-2026 17:50:51] Completed 17 of 144 simulation runs
+[13-Oct-2026 17:50:54] Completed 18 of 144 simulation runs
+[13-Oct-2026 17:50:58] Completed 19 of 144 simulation runs
+[13-Oct-2026 17:51:01] Completed 20 of 144 simulation runs
+[13-Oct-2026 17:51:05] Completed 21 of 144 simulation runs
+[13-Oct-2026 17:51:09] Completed 22 of 144 simulation runs
+[13-Oct-2026 17:51:13] Completed 23 of 144 simulation runs
+[13-Oct-2026 17:51:16] Completed 24 of 144 simulation runs
+[13-Oct-2026 17:51:20] Completed 25 of 144 simulation runs
+[13-Oct-2026 17:51:23] Completed 26 of 144 simulation runs
+[13-Oct-2026 17:51:27] Completed 27 of 144 simulation runs
+[13-Oct-2026 17:51:31] Completed 28 of 144 simulation runs
+[13-Oct-2026 17:51:35] Completed 29 of 144 simulation runs
+[13-Oct-2026 17:51:38] Completed 30 of 144 simulation runs
+[13-Oct-2026 17:51:42] Completed 31 of 144 simulation runs
+[13-Oct-2026 17:51:46] Completed 32 of 144 simulation runs
+[13-Oct-2026 17:51:49] Completed 33 of 144 simulation runs
+[13-Oct-2026 17:51:53] Completed 34 of 144 simulation runs
+[13-Oct-2026 17:51:57] Completed 35 of 144 simulation runs
+[13-Oct-2026 17:52:00] Completed 36 of 144 simulation runs
+[13-Oct-2026 17:52:04] Completed 37 of 144 simulation runs
+[13-Oct-2026 17:52:08] Completed 38 of 144 simulation runs
+[13-Oct-2026 17:52:11] Completed 39 of 144 simulation runs
+[13-Oct-2026 17:52:15] Completed 40 of 144 simulation runs
+[13-Oct-2026 17:52:19] Completed 41 of 144 simulation runs
+[13-Oct-2026 17:52:23] Completed 42 of 144 simulation runs
+[13-Oct-2026 17:52:26] Completed 43 of 144 simulation runs
+[13-Oct-2026 17:52:30] Completed 44 of 144 simulation runs
+[13-Oct-2026 17:52:34] Completed 45 of 144 simulation runs
+[13-Oct-2026 17:52:37] Completed 46 of 144 simulation runs
+[13-Oct-2026 17:52:41] Completed 47 of 144 simulation runs
+[13-Oct-2026 17:52:45] Completed 48 of 144 simulation runs
+[13-Oct-2026 17:52:49] Completed 49 of 144 simulation runs
+[13-Oct-2026 17:52:52] Completed 50 of 144 simulation runs
+[13-Oct-2026 17:52:56] Completed 51 of 144 simulation runs
+[13-Oct-2026 17:53:00] Completed 52 of 144 simulation runs
+[13-Oct-2026 17:53:03] Completed 53 of 144 simulation runs
+[13-Oct-2026 17:53:07] Completed 54 of 144 simulation runs
+[13-Oct-2026 17:53:11] Completed 55 of 144 simulation runs
+[13-Oct-2026 17:53:14] Completed 56 of 144 simulation runs
+[13-Oct-2026 17:53:18] Completed 57 of 144 simulation runs
+[13-Oct-2026 17:53:22] Completed 58 of 144 simulation runs
+[13-Oct-2026 17:53:25] Completed 59 of 144 simulation runs
+[13-Oct-2026 17:53:29] Completed 60 of 144 simulation runs
+[13-Oct-2026 17:53:33] Completed 61 of 144 simulation runs
+[13-Oct-2026 17:53:37] Completed 62 of 144 simulation runs
+[13-Oct-2026 17:53:40] Completed 63 of 144 simulation runs
+[13-Oct-2026 17:53:44] Completed 64 of 144 simulation runs
+[13-Oct-2026 17:53:48] Completed 65 of 144 simulation runs
+[13-Oct-2026 17:53:51] Completed 66 of 144 simulation runs
+[13-Oct-2026 17:53:55] Completed 67 of 144 simulation runs
+[13-Oct-2026 17:53:59] Completed 68 of 144 simulation runs
+[13-Oct-2026 17:54:02] Completed 69 of 144 simulation runs
+[13-Oct-2026 17:54:06] Completed 70 of 144 simulation runs
+[13-Oct-2026 17:54:10] Completed 71 of 144 simulation runs
+[13-Oct-2026 17:54:13] Completed 72 of 144 simulation runs
+[13-Oct-2026 17:54:17] Completed 73 of 144 simulation runs
+[13-Oct-2026 17:54:21] Completed 74 of 144 simulation runs
+[13-Oct-2026 17:54:24] Completed 75 of 144 simulation runs
+[13-Oct-2026 17:54:28] Completed 76 of 144 simulation runs
+[13-Oct-2026 17:54:32] Completed 77 of 144 simulation runs
+[13-Oct-2026 17:54:35] Completed 78 of 144 simulation runs
+[13-Oct-2026 17:54:39] Completed 79 of 144 simulation runs
+[13-Oct-2026 17:54:43] Completed 80 of 144 simulation runs
+[13-Oct-2026 17:54:46] Completed 81 of 144 simulation runs
+[13-Oct-2026 17:54:50] Completed 82 of 144 simulation runs
+[13-Oct-2026 17:54:54] Completed 83 of 144 simulation runs
+[13-Oct-2026 17:54:58] Completed 84 of 144 simulation runs
+[13-Oct-2026 17:55:01] Completed 85 of 144 simulation runs
+[13-Oct-2026 17:55:05] Completed 86 of 144 simulation runs
+[13-Oct-2026 17:55:09] Completed 87 of 144 simulation runs
+[13-Oct-2026 17:55:12] Completed 88 of 144 simulation runs
+[13-Oct-2026 17:55:16] Completed 89 of 144 simulation runs
+[13-Oct-2026 17:55:20] Completed 90 of 144 simulation runs
+[13-Oct-2026 17:55:24] Completed 91 of 144 simulation runs
+[13-Oct-2026 17:55:27] Completed 92 of 144 simulation runs
+[13-Oct-2026 17:55:31] Completed 93 of 144 simulation runs
+[13-Oct-2026 17:55:35] Completed 94 of 144 simulation runs
+[13-Oct-2026 17:55:39] Completed 95 of 144 simulation runs
+[13-Oct-2026 17:55:42] Completed 96 of 144 simulation runs
+[13-Oct-2026 17:55:46] Completed 97 of 144 simulation runs
+[13-Oct-2026 17:55:50] Completed 98 of 144 simulation runs
+[13-Oct-2026 17:55:54] Completed 99 of 144 simulation runs
+[13-Oct-2026 17:55:57] Completed 100 of 144 simulation runs
+[13-Oct-2026 17:56:01] Completed 101 of 144 simulation runs
+[13-Oct-2026 17:56:05] Completed 102 of 144 simulation runs
+[13-Oct-2026 17:56:08] Completed 103 of 144 simulation runs
+[13-Oct-2026 17:56:12] Completed 104 of 144 simulation runs
+[13-Oct-2026 17:56:16] Completed 105 of 144 simulation runs
+[13-Oct-2026 17:56:20] Completed 106 of 144 simulation runs
+[13-Oct-2026 17:56:23] Completed 107 of 144 simulation runs
+[13-Oct-2026 17:56:27] Completed 108 of 144 simulation runs
+[13-Oct-2026 17:56:31] Completed 109 of 144 simulation runs
+[13-Oct-2026 17:56:34] Completed 110 of 144 simulation runs
+[13-Oct-2026 17:56:38] Completed 111 of 144 simulation runs
+[13-Oct-2026 17:56:42] Completed 112 of 144 simulation runs
+[13-Oct-2026 17:56:45] Completed 113 of 144 simulation runs
+[13-Oct-2026 17:56:49] Completed 114 of 144 simulation runs
+[13-Oct-2026 17:56:53] Completed 115 of 144 simulation runs
+[13-Oct-2026 17:56:56] Completed 116 of 144 simulation runs
+[13-Oct-2026 17:57:00] Completed 117 of 144 simulation runs
+[13-Oct-2026 17:57:04] Completed 118 of 144 simulation runs
+[13-Oct-2026 17:57:08] Completed 119 of 144 simulation runs
+[13-Oct-2026 17:57:11] Completed 120 of 144 simulation runs
+[13-Oct-2026 17:57:15] Completed 121 of 144 simulation runs
+[13-Oct-2026 17:57:18] Completed 122 of 144 simulation runs
+[13-Oct-2026 17:57:22] Completed 123 of 144 simulation runs
+[13-Oct-2026 17:57:26] Completed 124 of 144 simulation runs
+[13-Oct-2026 17:57:30] Completed 125 of 144 simulation runs
+[13-Oct-2026 17:57:33] Completed 126 of 144 simulation runs
+[13-Oct-2026 17:57:37] Completed 127 of 144 simulation runs
+[13-Oct-2026 17:57:41] Completed 128 of 144 simulation runs
+[13-Oct-2026 17:57:44] Completed 129 of 144 simulation runs
+[13-Oct-2026 17:57:48] Completed 130 of 144 simulation runs
+[13-Oct-2026 17:57:52] Completed 131 of 144 simulation runs
+[13-Oct-2026 17:57:55] Completed 132 of 144 simulation runs
+[13-Oct-2026 17:57:59] Completed 133 of 144 simulation runs
+[13-Oct-2026 17:58:03] Completed 134 of 144 simulation runs
+[13-Oct-2026 17:58:06] Completed 135 of 144 simulation runs
+[13-Oct-2026 17:58:10] Completed 136 of 144 simulation runs
+[13-Oct-2026 17:58:14] Completed 137 of 144 simulation runs
+[13-Oct-2026 17:58:17] Completed 138 of 144 simulation runs
+[13-Oct-2026 17:58:21] Completed 139 of 144 simulation runs
+[13-Oct-2026 17:58:25] Completed 140 of 144 simulation runs
+[13-Oct-2026 17:58:28] Completed 141 of 144 simulation runs
+[13-Oct-2026 17:58:32] Completed 142 of 144 simulation runs
+[13-Oct-2026 17:58:36] Completed 143 of 144 simulation runs
+[13-Oct-2026 17:58:39] Completed 144 of 144 simulation runs
+Đã chạy 144 lần mô phỏng trong 549.1 s
+
+LỖI deu, S=0000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI deu, S=0001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI deu, S=0010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI deu, S=0011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI deu, S=0100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI deu, S=0101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI deu, S=0110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI deu, S=0111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI deu, S=1000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI deu, S=1001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI deu, S=1010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI deu, S=1011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI deu, S=1100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI deu, S=1101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI deu, S=1110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI deu, S=1111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI mot-tam, S=0000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI mot-tam, S=0001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI mot-tam, S=0010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI mot-tam, S=0011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI mot-tam, S=0100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI mot-tam, S=0101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI mot-tam, S=0110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI mot-tam, S=0111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI mot-tam, S=1000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI mot-tam, S=1001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI mot-tam, S=1010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI mot-tam, S=1011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI mot-tam, S=1100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI mot-tam, S=1101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI mot-tam, S=1110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI mot-tam, S=1111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hai-tam, S=0000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hai-tam, S=0001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hai-tam, S=0010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hai-tam, S=0011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hai-tam, S=0100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hai-tam, S=0101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hai-tam, S=0110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hai-tam, S=0111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hai-tam, S=1000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hai-tam, S=1001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hai-tam, S=1010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hai-tam, S=1011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hai-tam, S=1100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hai-tam, S=1101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hai-tam, S=1110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hai-tam, S=1111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hang-1, S=0000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hang-1, S=0001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hang-1, S=0010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hang-1, S=0011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hang-1, S=0100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hang-1, S=0101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hang-1, S=0110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hang-1, S=0111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hang-1, S=1000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hang-1, S=1001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hang-1, S=1010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hang-1, S=1011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hang-1, S=1100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hang-1, S=1101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hang-1, S=1110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI hang-1, S=1111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cot-1, S=0000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cot-1, S=0001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cot-1, S=0010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cot-1, S=0011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cot-1, S=0100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cot-1, S=0101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cot-1, S=0110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cot-1, S=0111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cot-1, S=1000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cot-1, S=1001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cot-1, S=1010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cot-1, S=1011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cot-1, S=1100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cot-1, S=1101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cot-1, S=1110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cot-1, S=1111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cheo, S=0000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cheo, S=0001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cheo, S=0010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cheo, S=0011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cheo, S=0100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cheo, S=0101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cheo, S=0110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cheo, S=0111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cheo, S=1000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cheo, S=1001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cheo, S=1010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cheo, S=1011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cheo, S=1100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cheo, S=1101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cheo, S=1110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI cheo, S=1111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI goc-2x2, S=0000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI goc-2x2, S=0001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI goc-2x2, S=0010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI goc-2x2, S=0011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI goc-2x2, S=0100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI goc-2x2, S=0101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI goc-2x2, S=0110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI goc-2x2, S=0111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI goc-2x2, S=1000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI goc-2x2, S=1001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI goc-2x2, S=1010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI goc-2x2, S=1011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI goc-2x2, S=1100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI goc-2x2, S=1101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI goc-2x2, S=1110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI goc-2x2, S=1111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI bong-dai, S=0000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI bong-dai, S=0001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI bong-dai, S=0010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI bong-dai, S=0011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI bong-dai, S=0100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI bong-dai, S=0101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI bong-dai, S=0110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI bong-dai, S=0111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI bong-dai, S=1000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI bong-dai, S=1001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI bong-dai, S=1010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI bong-dai, S=1011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI bong-dai, S=1100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI bong-dai, S=1101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI bong-dai, S=1110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI bong-dai, S=1111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI ngau-nhien, S=0000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI ngau-nhien, S=0001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI ngau-nhien, S=0010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI ngau-nhien, S=0011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI ngau-nhien, S=0100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI ngau-nhien, S=0101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI ngau-nhien, S=0110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI ngau-nhien, S=0111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI ngau-nhien, S=1000: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI ngau-nhien, S=1001: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI ngau-nhien, S=1010: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI ngau-nhien, S=1011: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI ngau-nhien, S=1100: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI ngau-nhien, S=1101: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI ngau-nhien, S=1110: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+LỖI ngau-nhien, S=1111: Unrecognized method, property, or field 'v' for class 'simscape.logging.Node'.
+Ca                SP      TCT       BL     Best  S_best      dP/SP |  Pbat SP Pbat TCT
+deu              NaN      NaN      NaN      NaN  NaN          NaN% |      NaN mot-tam          NaN      NaN      NaN      NaN  NaN          NaN% |      NaN hai-tam          NaN      NaN      NaN      NaN  NaN          NaN% |      NaN hang-1           NaN      NaN      NaN      NaN  NaN          NaN% |      NaN cot-1            NaN      NaN      NaN      NaN  NaN          NaN% |      NaN cheo             NaN      NaN      NaN      NaN  NaN          NaN% |      NaN goc-2x2          NaN      NaN      NaN      NaN  NaN          NaN% |      NaN bong-dai         NaN      NaN      NaN      NaN  NaN          NaN% |      NaN ngau-nhien       NaN      NaN      NaN      NaN  NaN          NaN% |      NaN 
+Ứng suất công tắc (9 ca): |I| max = NaN A, |U| max = NaN V
+Đã ghi results/arr_summary_simulink.csv, switch_stress_simulink.csv, sl_results.mat
+== COMPARE RUN OK ==
+Elapsed time is 549.160413 seconds.
+clc; load_system(fullfile(cfg.modeldir,'pv3x3.slx')); o=sim('pv3x3'); lg=o.simlog; fid=fopen('results/simlog_nodes.txt','w'); fprintf(fid,'TOP: %s\n',strjoin(lg.childIds,' ')); fprintf(fid,'S1: %s\n',strjoin(lg.S1.childIds,' ')); fprintf(fid,'PV11: %s\n',strjoin(lg.PV11.childIds,' ')); fprintf(fid,'PV11.SC: %s\n',strjoin(lg.PV11.SC.childIds,' ')); fclose(fid); disp('== NODES OK ==')
+{Unable to resolve the name 'cfg.modeldir'.
+} 
+clc; cfg=sl_config; load_system(fullfile(cfg.modeldir,'pv3x3.slx')); o=sim('pv3x3'); lg=o.simlog; fid=fopen('results/simlog_nodes.txt','w'); fprintf(fid,'TOP: %s\n',strjoin(lg.childIds,' ')); fprintf(fid,'S1: %s\n',strjoin(lg.S1.childIds,' ')); fprintf(fid,'PV11: %s\n',strjoin(lg.PV11.childIds,' ')); fprintf(fid,'PV11.SC: %s\n',strjoin(lg.PV11.SC.childIds,' ')); fclose(fid); disp('== NODES OK ==')
+== NODES OK ==
+clc; rehash; try, sl_run_compare({'mot-tam'}); disp('== QUICK OK =='); catch e, disp(getReport(e,'extended','hyperlinks','off')); end
+[13-Oct-2026 18:00:39] Running simulations...
+[13-Oct-2026 18:00:41] Completed 1 of 16 simulation runs
+[13-Oct-2026 18:00:45] Completed 2 of 16 simulation runs
+[13-Oct-2026 18:00:49] Completed 3 of 16 simulation runs
+[13-Oct-2026 18:00:53] Completed 4 of 16 simulation runs
+[13-Oct-2026 18:00:56] Completed 5 of 16 simulation runs
+[13-Oct-2026 18:01:00] Completed 6 of 16 simulation runs
+[13-Oct-2026 18:01:04] Completed 7 of 16 simulation runs
+[13-Oct-2026 18:01:08] Completed 8 of 16 simulation runs
+[13-Oct-2026 18:01:11] Completed 9 of 16 simulation runs
+[13-Oct-2026 18:01:15] Completed 10 of 16 simulation runs
+[13-Oct-2026 18:01:19] Completed 11 of 16 simulation runs
+[13-Oct-2026 18:01:23] Completed 12 of 16 simulation runs
+[13-Oct-2026 18:01:26] Completed 13 of 16 simulation runs
+[13-Oct-2026 18:01:30] Completed 14 of 16 simulation runs
+[13-Oct-2026 18:01:34] Completed 15 of 16 simulation runs
+[13-Oct-2026 18:01:38] Completed 16 of 16 simulation runs
+Đã chạy 16 lần mô phỏng trong 59.1 s
+
+Ca                SP      TCT       BL     Best  S_best      dP/SP |  Pbat SP Pbat TCT
+mot-tam       103.84   111.10   107.95   111.10  TCT         +7.0% |    91.06    82.22
+
+Ứng suất công tắc (9 ca): |I| max = 0.96 A, |U| max = 3.72 V
+Đã ghi results/arr_summary_simulink.csv, switch_stress_simulink.csv, sl_results.mat
+== QUICK OK ==
+clc; for st={'sl_run_compare','sl_compare','sl_transient_tests','sl_des_check'}, fprintf('\n##### %s  %s\n',st{1},datestr(now)); try, feval(st{1}); fprintf('##### %s OK\n',st{1}); catch e, fprintf('##### %s FAIL\n',st{1}); disp(getReport(e,'extended','hyperlinks','off')); end; end; disp('##### ALL DONE')
+
+##### sl_run_compare  13-Oct-2026 18:02:12
+[13-Oct-2026 18:02:13] Running simulations...
+[13-Oct-2026 18:02:16] Completed 1 of 144 simulation runs
+[13-Oct-2026 18:02:20] Completed 2 of 144 simulation runs
+[13-Oct-2026 18:02:24] Completed 3 of 144 simulation runs
+[13-Oct-2026 18:02:28] Completed 4 of 144 simulation runs
+[13-Oct-2026 18:02:31] Completed 5 of 144 simulation runs
+[13-Oct-2026 18:02:35] Completed 6 of 144 simulation runs
+[13-Oct-2026 18:02:39] Completed 7 of 144 simulation runs
+[13-Oct-2026 18:02:42] Completed 8 of 144 simulation runs
+[13-Oct-2026 18:02:46] Completed 9 of 144 simulation runs
+[13-Oct-2026 18:02:50] Completed 10 of 144 simulation runs
+[13-Oct-2026 18:02:54] Completed 11 of 144 simulation runs
+[13-Oct-2026 18:02:57] Completed 12 of 144 simulation runs
+[13-Oct-2026 18:03:01] Completed 13 of 144 simulation runs
+[13-Oct-2026 18:03:05] Completed 14 of 144 simulation runs
+[13-Oct-2026 18:03:08] Completed 15 of 144 simulation runs
+[13-Oct-2026 18:03:12] Completed 16 of 144 simulation runs
+[13-Oct-2026 18:03:16] Completed 17 of 144 simulation runs
+[13-Oct-2026 18:03:19] Completed 18 of 144 simulation runs
+[13-Oct-2026 18:03:23] Completed 19 of 144 simulation runs
+[13-Oct-2026 18:03:27] Completed 20 of 144 simulation runs
+[13-Oct-2026 18:03:30] Completed 21 of 144 simulation runs
+[13-Oct-2026 18:03:34] Completed 22 of 144 simulation runs
+[13-Oct-2026 18:03:38] Completed 23 of 144 simulation runs
+[13-Oct-2026 18:03:42] Completed 24 of 144 simulation runs
+[13-Oct-2026 18:03:45] Completed 25 of 144 simulation runs
+[13-Oct-2026 18:03:49] Completed 26 of 144 simulation runs
+[13-Oct-2026 18:03:53] Completed 27 of 144 simulation runs
+[13-Oct-2026 18:03:56] Completed 28 of 144 simulation runs
+[13-Oct-2026 18:04:00] Completed 29 of 144 simulation runs
+[13-Oct-2026 18:04:04] Completed 30 of 144 simulation runs
+[13-Oct-2026 18:04:08] Completed 31 of 144 simulation runs
+[13-Oct-2026 18:04:11] Completed 32 of 144 simulation runs
+[13-Oct-2026 18:04:15] Completed 33 of 144 simulation runs
+[13-Oct-2026 18:04:19] Completed 34 of 144 simulation runs
+[13-Oct-2026 18:04:22] Completed 35 of 144 simulation runs
+[13-Oct-2026 18:04:26] Completed 36 of 144 simulation runs
+[13-Oct-2026 18:04:30] Completed 37 of 144 simulation runs
+[13-Oct-2026 18:04:34] Completed 38 of 144 simulation runs
+[13-Oct-2026 18:04:37] Completed 39 of 144 simulation runs
+[13-Oct-2026 18:04:41] Completed 40 of 144 simulation runs
+[13-Oct-2026 18:04:45] Completed 41 of 144 simulation runs
+[13-Oct-2026 18:04:49] Completed 42 of 144 simulation runs
+[13-Oct-2026 18:04:52] Completed 43 of 144 simulation runs
+[13-Oct-2026 18:04:56] Completed 44 of 144 simulation runs
+[13-Oct-2026 18:05:00] Completed 45 of 144 simulation runs
+[13-Oct-2026 18:05:03] Completed 46 of 144 simulation runs
+[13-Oct-2026 18:05:07] Completed 47 of 144 simulation runs
+[13-Oct-2026 18:05:14] Completed 48 of 144 simulation runs
+[13-Oct-2026 18:05:21] Completed 49 of 144 simulation runs
+[13-Oct-2026 18:05:27] Completed 50 of 144 simulation runs
+[13-Oct-2026 18:05:34] Completed 51 of 144 simulation runs
+[13-Oct-2026 18:05:41] Completed 52 of 144 simulation runs
+[13-Oct-2026 18:05:48] Completed 53 of 144 simulation runs
+[13-Oct-2026 18:05:54] Completed 54 of 144 simulation runs
+[13-Oct-2026 18:06:01] Completed 55 of 144 simulation runs
+[13-Oct-2026 18:06:07] Completed 56 of 144 simulation runs
+[13-Oct-2026 18:06:14] Completed 57 of 144 simulation runs
+[13-Oct-2026 18:06:20] Completed 58 of 144 simulation runs
+[13-Oct-2026 18:06:27] Completed 59 of 144 simulation runs
+[13-Oct-2026 18:06:33] Completed 60 of 144 simulation runs
+[13-Oct-2026 18:06:40] Completed 61 of 144 simulation runs
+[13-Oct-2026 18:06:46] Completed 62 of 144 simulation runs
+[13-Oct-2026 18:06:53] Completed 63 of 144 simulation runs
+[13-Oct-2026 18:06:59] Completed 64 of 144 simulation runs
+[13-Oct-2026 18:07:06] Completed 65 of 144 simulation runs
+[13-Oct-2026 18:07:13] Completed 66 of 144 simulation runs
+[13-Oct-2026 18:07:19] Completed 67 of 144 simulation runs
+[13-Oct-2026 18:07:26] Completed 68 of 144 simulation runs
+[13-Oct-2026 18:07:32] Completed 69 of 144 simulation runs
+[13-Oct-2026 18:07:39] Completed 70 of 144 simulation runs
+[13-Oct-2026 18:07:45] Completed 71 of 144 simulation runs
+[13-Oct-2026 18:07:52] Completed 72 of 144 simulation runs
+[13-Oct-2026 18:07:58] Completed 73 of 144 simulation runs
+[13-Oct-2026 18:08:04] Completed 74 of 144 simulation runs
+[13-Oct-2026 18:08:11] Completed 75 of 144 simulation runs
+[13-Oct-2026 18:08:17] Completed 76 of 144 simulation runs
+[13-Oct-2026 18:08:23] Completed 77 of 144 simulation runs
+[13-Oct-2026 18:08:30] Completed 78 of 144 simulation runs
+[13-Oct-2026 18:08:36] Completed 79 of 144 simulation runs
+[13-Oct-2026 18:08:43] Completed 80 of 144 simulation runs
+[13-Oct-2026 18:08:49] Completed 81 of 144 simulation runs
+[13-Oct-2026 18:08:56] Completed 82 of 144 simulation runs
+[13-Oct-2026 18:09:02] Completed 83 of 144 simulation runs
+[13-Oct-2026 18:09:08] Completed 84 of 144 simulation runs
+[13-Oct-2026 18:09:15] Completed 85 of 144 simulation runs
+[13-Oct-2026 18:09:21] Completed 86 of 144 simulation runs
+[13-Oct-2026 18:09:28] Completed 87 of 144 simulation runs
+[13-Oct-2026 18:09:34] Completed 88 of 144 simulation runs
+[13-Oct-2026 18:09:41] Completed 89 of 144 simulation runs
+[13-Oct-2026 18:09:47] Completed 90 of 144 simulation runs
+[13-Oct-2026 18:09:53] Completed 91 of 144 simulation runs
+[13-Oct-2026 18:10:00] Completed 92 of 144 simulation runs
+[13-Oct-2026 18:10:07] Completed 93 of 144 simulation runs
+[13-Oct-2026 18:10:13] Completed 94 of 144 simulation runs
+[13-Oct-2026 18:10:20] Completed 95 of 144 simulation runs
+[13-Oct-2026 18:10:27] Completed 96 of 144 simulation runs
+[13-Oct-2026 18:10:33] Completed 97 of 144 simulation runs
+[13-Oct-2026 18:10:39] Completed 98 of 144 simulation runs
+[13-Oct-2026 18:10:46] Completed 99 of 144 simulation runs
+[13-Oct-2026 18:10:52] Completed 100 of 144 simulation runs
+[13-Oct-2026 18:10:59] Completed 101 of 144 simulation runs
+[13-Oct-2026 18:11:05] Completed 102 of 144 simulation runs
+[13-Oct-2026 18:11:11] Completed 103 of 144 simulation runs
+[13-Oct-2026 18:11:17] Completed 104 of 144 simulation runs
+[13-Oct-2026 18:11:24] Completed 105 of 144 simulation runs
+[13-Oct-2026 18:11:30] Completed 106 of 144 simulation runs
+[13-Oct-2026 18:11:36] Completed 107 of 144 simulation runs
+[13-Oct-2026 18:11:43] Completed 108 of 144 simulation runs
+[13-Oct-2026 18:11:50] Completed 109 of 144 simulation runs
+[13-Oct-2026 18:11:57] Completed 110 of 144 simulation runs
+[13-Oct-2026 18:12:03] Completed 111 of 144 simulation runs
+[13-Oct-2026 18:12:10] Completed 112 of 144 simulation runs
+[13-Oct-2026 18:12:16] Completed 113 of 144 simulation runs
+[13-Oct-2026 18:12:22] Completed 114 of 144 simulation runs
+[13-Oct-2026 18:12:29] Completed 115 of 144 simulation runs
+[13-Oct-2026 18:12:35] Completed 116 of 144 simulation runs
+[13-Oct-2026 18:12:40] Completed 117 of 144 simulation runs
+[13-Oct-2026 18:12:47] Completed 118 of 144 simulation runs
+[13-Oct-2026 18:12:53] Completed 119 of 144 simulation runs
+[13-Oct-2026 18:12:59] Completed 120 of 144 simulation runs
+[13-Oct-2026 18:13:06] Completed 121 of 144 simulation runs
+[13-Oct-2026 18:13:12] Completed 122 of 144 simulation runs
+[13-Oct-2026 18:13:18] Completed 123 of 144 simulation runs
+[13-Oct-2026 18:13:25] Completed 124 of 144 simulation runs
+[13-Oct-2026 18:13:31] Completed 125 of 144 simulation runs
+[13-Oct-2026 18:13:37] Completed 126 of 144 simulation runs
+[13-Oct-2026 18:13:44] Completed 127 of 144 simulation runs
+[13-Oct-2026 18:13:50] Completed 128 of 144 simulation runs
+[13-Oct-2026 18:13:57] Completed 129 of 144 simulation runs
+[13-Oct-2026 18:14:03] Completed 130 of 144 simulation runs
+[13-Oct-2026 18:14:09] Completed 131 of 144 simulation runs
+[13-Oct-2026 18:14:16] Completed 132 of 144 simulation runs
+[13-Oct-2026 18:14:21] Completed 133 of 144 simulation runs
+[13-Oct-2026 18:14:24] Completed 134 of 144 simulation runs
+[13-Oct-2026 18:14:27] Completed 135 of 144 simulation runs
+[13-Oct-2026 18:14:30] Completed 136 of 144 simulation runs
+[13-Oct-2026 18:14:33] Completed 137 of 144 simulation runs
+[13-Oct-2026 18:14:35] Completed 138 of 144 simulation runs
+[13-Oct-2026 18:14:38] Completed 139 of 144 simulation runs
+[13-Oct-2026 18:14:41] Completed 140 of 144 simulation runs
+[13-Oct-2026 18:14:44] Completed 141 of 144 simulation runs
+[13-Oct-2026 18:14:47] Completed 142 of 144 simulation runs
+[13-Oct-2026 18:14:49] Completed 143 of 144 simulation runs
+[13-Oct-2026 18:14:52] Completed 144 of 144 simulation runs
+Đã chạy 144 lần mô phỏng trong 760.5 s
+
+Ca                SP      TCT       BL     Best  S_best      dP/SP |  Pbat SP Pbat TCT
+deu           135.00   135.00   135.00   135.00  SP          +0.0% |   104.71   104.71
+mot-tam       103.84   111.10   107.95   111.10  TCT         +7.0% |    91.06    82.22
+hai-tam        88.64   105.48   104.27   105.48  S=1011     +19.0% |    77.41    80.40
+hang-1         85.86    85.86    85.86    85.86  SP          +0.0% |    63.75    63.75
+cot-1         100.99   100.99   100.99   100.99  SP          +0.0% |    79.69    79.69
+cheo           85.86   100.98   100.98   100.98  BL         +17.6% |    63.75    79.69
+goc-2x2        70.53    72.19    72.02    72.19  S=0011      +2.4% |    55.23    55.47
+bong-dai       81.78    81.78    81.78    81.78  SP          +0.0% |    65.40    65.40
+ngau-nhien     56.33    78.72    62.27    78.72  TCT        +39.8% |    42.95    61.21
+
+Ứng suất công tắc (9 ca): |I| max = 2.51 A, |U| max = 7.58 V
+Đã ghi results/arr_summary_simulink.csv, switch_stress_simulink.csv, sl_results.mat
+##### sl_run_compare OK
+
+##### sl_compare  13-Oct-2026 18:14:52
+[Warning: Column headers from the file were modified to make them valid MATLAB identifiers before creating variable names for the table. The original
+column headers are saved in the VariableDescriptions property.
+Set 'VariableNamingRule' to 'preserve' to use the original column headers as table variable names.] 
+[Warning: Column headers from the file were modified to make them valid MATLAB identifiers before creating variable names for the table. The original
+column headers are saved in the VariableDescriptions property.
+Set 'VariableNamingRule' to 'preserve' to use the original column headers as table variable names.] 
+
+== Simulink so với tham chiếu (ngưỡng 1.0 %)
+Ca          max|dPmax| max|dPbat|  số đỉnh  best Simulink  best tham chiếu
+bong-dai         0.00%      0.00%     khớp  SP             SP             ĐẠT
+cheo             0.01%      0.04%     khớp  S=1101         BL             ĐẠT
+cot-1            0.00%      0.00%     khớp  SP             SP             ĐẠT
+deu              0.00%      0.00%     khớp  SP             SP             ĐẠT
+goc-2x2          0.01%      0.00%     khớp  S=0111         S=0011         ĐẠT
+hai-tam          0.01%      0.01%     khớp  TCT            S=1011         ĐẠT
+hang-1           0.00%      0.01%     khớp  SP             SP             ĐẠT
+mot-tam          0.01%      0.01%     khớp  TCT            TCT            ĐẠT
+ngau-nhien       0.01%      0.01%     khớp  TCT            TCT            ĐẠT
+TẤT CẢ ĐẠT
+Chi tiết: results/compare_simulink_vs_ref.csv
+##### sl_compare OK
+
+##### sl_transient_tests  13-Oct-2026 18:14:56
+[13-Oct-2026 18:14:56] Running simulations...
+[13-Oct-2026 18:15:00] Completed 1 of 7 simulation runs
+[13-Oct-2026 18:15:02] Completed 2 of 7 simulation runs
+[13-Oct-2026 18:15:04] Completed 3 of 7 simulation runs
+[13-Oct-2026 18:15:06] Completed 4 of 7 simulation runs
+[13-Oct-2026 18:15:10] Completed 5 of 7 simulation runs
+[13-Oct-2026 18:15:13] Completed 6 of 7 simulation runs
+[13-Oct-2026 18:15:17] Completed 7 of 7 simulation runs
+
+== Mức 3: quá độ đóng/cắt (Rsw = 20 mOhm, Rline = 50 mOhm, Lline = 1.0 uH, Vbat = 13.0 V)
+
+mot-tam SP->TCT cùng lúc (Cpv = 5 uF): I dàn 7.52 -> 6.31 A
+   Sk    đỉnh (A)    xác lập tham chiếu  t ổn định     E (uJ)
+   S1     123.468      0.636      0.642     0.00 ms     177.11
+   S2     123.468      0.636      0.642     0.00 ms     177.11
+   S3     123.468      0.636      0.642     0.00 ms     177.11
+   S4     123.468      0.636      0.642     0.00 ms     177.11
+[Warning: Graphics acceleration hardware is unavailable. Graphics quality and performance might be diminished. See <a href="https://www.mathworks.com/support/requirements/matlab-system-requirements.html">MATLAB System Requirements</a>.] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('print', 'D:\Program Files\MATLAB\R2026b\toolbox\matlab\graphics\export\print.m', 6)" style="font-weight:bold">print</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\matlab\graphics\export\print.m',6,0)">line 6</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_transient_tests', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_transient_tests.m', 78)" style="font-weight:bold">sl_transient_tests</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_transient_tests.m',78,0)">line 78</a>)] 
+
+mot-tam SP->TCT lần lượt 1 ms (Cpv = 5 uF): I dàn 7.52 -> 6.31 A
+   Sk    đỉnh (A)    xác lập tham chiếu  t ổn định     E (uJ)
+   S1     123.466      0.636      0.642     3.00 ms     187.35
+   S2     113.260      0.636      0.642     2.00 ms     167.72
+   S3     181.226      0.636      0.642     1.00 ms     187.83
+   S4     164.940      0.636      0.642     0.00 ms     165.85
+
+mot-tam TCT->SP (Cpv = 5 uF): I dàn 7.24 -> 6.58 A
+   Sk    đỉnh (A)    xác lập tham chiếu  t ổn định     E (uJ)
+   S1       0.000      0.000      0.000     0.00 ms       0.00
+   S2       0.000      0.000      0.000     0.00 ms       0.00
+   S3       0.000      0.000      0.000     0.00 ms       0.00
+   S4       0.000      0.000      0.000     0.00 ms       0.00
+
+cheo SP->TCT (Cpv = 5 uF): I dàn 5.54 -> 6.12 A
+   Sk    đỉnh (A)    xác lập tham chiếu  t ổn định     E (uJ)
+   S1     368.383      1.924      1.925     0.00 ms    1617.13
+   S2       0.000      0.000      0.000     0.00 ms       0.00
+   S3       0.000      0.000      0.000     0.00 ms       0.00
+   S4     368.383      1.924      1.925     0.00 ms    1617.13
+
+cheo SP->TCT, Cpv 1 uF (Cpv = 1 uF): I dàn 4.59 -> 6.12 A
+   Sk    đỉnh (A)    xác lập tham chiếu  t ổn định     E (uJ)
+   S1     368.383      1.924      1.925     0.00 ms    1507.58
+   S2       0.000      0.000      0.000     0.00 ms       0.00
+   S3       0.000      0.000      0.000     0.00 ms       0.00
+   S4     368.383      1.924      1.925     0.00 ms    1507.58
+
+cheo SP->TCT, Cpv 10 uF (Cpv = 10 uF): I dàn 6.39 -> 6.12 A
+   Sk    đỉnh (A)    xác lập tham chiếu  t ổn định     E (uJ)
+   S1     368.383      1.924      1.925     0.00 ms    1754.06
+   S2       0.000      0.000      0.000     0.00 ms       0.00
+   S3       0.000      0.000      0.000     0.00 ms       0.00
+   S4     368.383      1.924      1.925     0.00 ms    1754.06
+
+ban-co SP->TCT (Cpv = 5 uF): I dàn 5.08 -> 2.76 A
+   Sk    đỉnh (A)    xác lập tham chiếu  t ổn định     E (uJ)
+   S1     193.838      1.756      1.777     0.00 ms    1271.09
+   S2     193.838      1.756      1.777     0.00 ms    1271.09
+   S3     193.838      1.756      1.777     0.00 ms    1271.09
+   S4     193.838      1.756      1.777     0.00 ms    1271.09
+
+Đã ghi results/transient_simulink.csv, .mat và hình trong results/fig/
+##### sl_transient_tests OK
+
+##### sl_des_check  13-Oct-2026 18:15:31
+[13-Oct-2026 18:15:32] Running simulations...
+[13-Oct-2026 18:15:36] Completed 1 of 10 simulation runs
+[13-Oct-2026 18:15:40] Completed 2 of 10 simulation runs
+[13-Oct-2026 18:15:44] Completed 3 of 10 simulation runs
+[13-Oct-2026 18:15:47] Completed 4 of 10 simulation runs
+[13-Oct-2026 18:15:51] Completed 5 of 10 simulation runs
+[13-Oct-2026 18:15:55] Completed 6 of 10 simulation runs
+[13-Oct-2026 18:15:58] Completed 7 of 10 simulation runs
+[13-Oct-2026 18:16:02] Completed 8 of 10 simulation runs
+[13-Oct-2026 18:16:04] Completed 9 of 10 simulation runs
+[13-Oct-2026 18:16:08] Completed 10 of 10 simulation runs
+
+== Mức 4: DES Simulink so với tham chiếu (ngưỡng 1.0 %)
+Ca          cách chia hàng                           Pmax      ref     Pbat      ref
+deu         11 23 33 | 13 21 32 | 12 22 31         134.89   135.00   104.71   104.71 
+deu         11 12 13 | 21 22 23 | 31 32 33         134.89   135.00   104.71   104.71 
+mot-tam     11 13 23 33 | 12 21 31 32 | 22         113.53   113.83    79.15    80.36 <-- LỆCH
+mot-tam     11 12 13 | 21 22 23 | 31 32 33         111.03   111.10    82.22    82.23 
+hang-1      11 23 33 | 13 21 32 | 12 22 31         100.92   100.99    79.69    79.69 
+hang-1      11 12 13 | 21 22 23 | 31 32 33          85.75    85.87    63.33    63.76 
+goc-2x2     11 12 21 22 33 | 23 31 | 13 32          89.72    89.78    70.09    70.09 
+goc-2x2     11 12 13 | 21 22 23 | 31 32 33          72.15    72.19    55.46    55.47 
+ngau-nhien  11 12 13 | 21 22 23 | 31 32 33          78.68    78.72    61.20    61.21 
+ngau-nhien  11 12 31 | 13 21 32 | 22 23 33          82.84    82.88    66.18    66.18 
+DES Simulink: CÓ LỆCH
+##### sl_des_check OK
+##### ALL DONE

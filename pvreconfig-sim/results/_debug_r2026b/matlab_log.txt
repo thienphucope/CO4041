@@ -1,0 +1,298 @@
+MATLAB Parallel Computing Toolbox
+Simscape Simscape Electrical
+Simulink Stateflow
+26.2 26.2
+26.2 26.2
+26.2 26.2
+
+ans =
+
+     1
+
+
+ans =
+
+     1
+
+
+ans =
+
+     1
+
+setup_path; try, sl_build_model(); disp('== BUILD OK =='); catch e, disp(getReport(e,'extended','hyperlinks','off')); end
+[Warning: Name is nonexistent or not a directory: D:\Documents\261\4041\pvreconfig-sim\models] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('path', 'D:\Program Files\MATLAB\R2026b\toolbox\matlab\general\path.m', 89)" style="font-weight:bold">path</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\matlab\general\path.m',89,0)">line 89</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('addpath', 'D:\Program Files\MATLAB\R2026b\toolbox\matlab\general\addpath.m', 70)" style="font-weight:bold">addpath</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\matlab\general\addpath.m',70,0)">line 70</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('setup_path', 'D:\Documents\261\4041\pvreconfig-sim\setup_path.m', 9)" style="font-weight:bold">setup_path</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\setup_path.m',9,0)">line 9</a>)] 
+== Dò thứ tự cổng block Simscape (chạy một lần)
+   Solar Cell: Ir = cổng 1, diode [1 2] -> không chạy được (block_diagram does not have a parameter named 'SimscapeLogType')
+   Solar Cell: Ir = cổng 1, diode [2 1] -> không chạy được (block_diagram does not have a parameter named 'SimscapeLogType')
+   Solar Cell: Ir = cổng 2, diode [1 2] -> không chạy được (block_diagram does not have a parameter named 'SimscapeLogType')
+   Solar Cell: Ir = cổng 2, diode [2 1] -> không chạy được (block_diagram does not have a parameter named 'SimscapeLogType')
+   Solar Cell: Ir = cổng 3, diode [1 2] -> không chạy được (block_diagram does not have a parameter named 'SimscapeLogType')
+   Solar Cell: Ir = cổng 3, diode [2 1] -> không chạy được (block_diagram does not have a parameter named 'SimscapeLogType')
+Error using sl_calibrate_ports (line 46)
+Không tìm được cách nối Solar Cell + diode cho hở mạch ~7,2 V.
+Kiểm tra tham số Solar Cell (sl_conf_solar) bằng tay trên một model nhỏ.
+
+Error in sl_build_model (line 20)
+pm = sl_calibrate_ports(recalibrate);
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+clc; rehash; try, sl_build_model(); disp('== BUILD OK =='); catch e, disp(getReport(e,'extended','hyperlinks','off')); end
+== Dò thứ tự cổng block Simscape (chạy một lần)
+   Solar Cell: Ir = cổng 1, diode [1 2] -> không chạy được (Block "sl_portcal/SC" không có ô nào khớp /Parameteri[sz]ation/.)
+   Solar Cell: Ir = cổng 1, diode [2 1] -> không chạy được (Block "sl_portcal/SC" không có ô nào khớp /Parameteri[sz]ation/.)
+   Solar Cell: Ir = cổng 2, diode [1 2] -> không chạy được (Block "sl_portcal/SC" không có ô nào khớp /Parameteri[sz]ation/.)
+   Solar Cell: Ir = cổng 2, diode [2 1] -> không chạy được (Block "sl_portcal/SC" không có ô nào khớp /Parameteri[sz]ation/.)
+   Solar Cell: Ir = cổng 3, diode [1 2] -> không chạy được (Block "sl_portcal/SC" không có ô nào khớp /Parameteri[sz]ation/.)
+   Solar Cell: Ir = cổng 3, diode [2 1] -> không chạy được (Block "sl_portcal/SC" không có ô nào khớp /Parameteri[sz]ation/.)
+Error using sl_calibrate_ports (line 46)
+Không tìm được cách nối Solar Cell + diode cho hở mạch ~7,2 V.
+Kiểm tra tham số Solar Cell (sl_conf_solar) bằng tay trên một model nhỏ.
+
+Error in sl_build_model (line 20)
+pm = sl_calibrate_ports(recalibrate);
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+clc; cfg=sl_config; new_system('tmpx'); fid=fopen('results/block_params.txt','w'); for kk={'solar','diode'}, b=sl_add(cfg,kk{1},['tmpx/' kk{1}],[0 0 50 50]); fprintf(fid,'=== %s : %s\n',kk{1},get_param(b,'ReferenceBlock')); dp=get_param(b,'DialogParameters'); f=fieldnames(dp); for k=1:numel(f), d=dp.(f{k}); e=''; if strcmp(d.Type,'enum'), e=strjoin(d.Enum,' | '); end; fprintf(fid,'%s\t%s\t%s\t%s\n',f{k},d.Prompt,d.Type,e); end; end; fclose(fid); close_system('tmpx',0); disp('== DUMP OK ==')
+== DUMP OK ==
+clc; new_system('tmpx'); fid=fopen('results/block_enum.txt','w'); for kk={'solar','diode'}, b=sl_add(cfg,kk{1},['tmpx/' kk{1}],[0 0 50 50]); dp=get_param(b,'DialogParameters'); f=fieldnames(dp); for k=1:numel(f), d=dp.(f{k}); fn=strjoin(fieldnames(d)',','); v=get_param(b,f{k}); if ~ischar(v), v=mat2str(v); end; fprintf(fid,'%s|%s|%s|%s\n',kk{1},f{k},v,fn); end; end; fclose(fid); close_system('tmpx',0); disp('== DUMP2 OK ==')
+== DUMP2 OK ==
+clc; fid=fopen('results/block_enum2.txt','w'); for c={'ee.enum.sources.solar_cell_prm','ee.enum.diode.idealModelType','ee.enum.diode.physicalModelType','ee.enum.diode.expParam'}, try, [m,s]=enumeration(c{1}); fprintf(fid,'%s: %s\n',c{1},strjoin(s',' | ')); for j=1:numel(m), try, fprintf(fid,'   %s = %s\n',s{j},char(string(m(j)))); catch, end; end; catch err, fprintf(fid,'%s ERR %s\n',c{1},err.message); end; end; fclose(fid); disp('== ENUM OK ==')
+== ENUM OK ==
+clc; new_system('tmpx'); b=sl_add(cfg,'diode','tmpx/d',[0 0 50 50]); fid=fopen('results/diode_variant.txt','w'); for p={'ComponentVariants','ComponentVariantNames','SourceFile','ComponentPath','MaskType'}, try, v=get_param(b,p{1}); if iscell(v), v=strjoin(v,' | '); end; fprintf(fid,'%s: %s\n',p{1},v); catch err, fprintf(fid,'%s ERR %s\n',p{1},err.message); end; end; op=fieldnames(get_param(b,'ObjectParameters')); fprintf(fid,'OBJ: %s\n',strjoin(op',' ')); fclose(fid); close_system('tmpx',0); disp('== VAR OK ==')
+== VAR OK ==
+clc; rehash; try, sl_build_model(); disp('== BUILD OK =='); catch e, disp(getReport(e,'extended','hyperlinks','off')); end
+== Dò thứ tự cổng block Simscape (chạy một lần)
+   Solar Cell: Ir = cổng 1, diode [1 2] -> không chạy được (Ô "Thermal mass parameterization" của "sl_portcal/D" không có lựa chọn khớp /IS and N|IS, N|useIsN/. Lựa chọn: timeconstant | thermalmass)
+   Solar Cell: Ir = cổng 1, diode [2 1] -> không chạy được (Ô "Thermal mass parameterization" của "sl_portcal/D" không có lựa chọn khớp /IS and N|IS, N|useIsN/. Lựa chọn: timeconstant | thermalmass)
+   Solar Cell: Ir = cổng 2, diode [1 2] -> không chạy được (Ô "Thermal mass parameterization" của "sl_portcal/D" không có lựa chọn khớp /IS and N|IS, N|useIsN/. Lựa chọn: timeconstant | thermalmass)
+   Solar Cell: Ir = cổng 2, diode [2 1] -> không chạy được (Ô "Thermal mass parameterization" của "sl_portcal/D" không có lựa chọn khớp /IS and N|IS, N|useIsN/. Lựa chọn: timeconstant | thermalmass)
+   Solar Cell: Ir = cổng 3, diode [1 2] -> không chạy được (Ô "Thermal mass parameterization" của "sl_portcal/D" không có lựa chọn khớp /IS and N|IS, N|useIsN/. Lựa chọn: timeconstant | thermalmass)
+   Solar Cell: Ir = cổng 3, diode [2 1] -> không chạy được (Ô "Thermal mass parameterization" của "sl_portcal/D" không có lựa chọn khớp /IS and N|IS, N|useIsN/. Lựa chọn: timeconstant | thermalmass)
+Error using sl_calibrate_ports (line 46)
+Không tìm được cách nối Solar Cell + diode cho hở mạch ~7,2 V.
+Kiểm tra tham số Solar Cell (sl_conf_solar) bằng tay trên một model nhỏ.
+
+Error in sl_build_model (line 20)
+pm = sl_calibrate_ports(recalibrate);
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+clc; rehash; try, sl_build_model(); disp('== BUILD OK =='); catch e, disp(getReport(e,'extended','hyperlinks','off')); end
+== Dò thứ tự cổng block Simscape (chạy một lần)
+   Solar Cell: Ir = cổng 1, diode [1 2] -> I_D = 2.75 A
+   Solar Cell: Ir = cổng 1, diode [2 1] -> I_D = -1e-06 A
+   sw: cổng điều khiển = 2
+   cvs: cổng điều khiển = 2
+   Đã lưu D:\Documents\261\4041\pvreconfig-sim\models\portmap.mat
+   Chiều nguồn quét so với tấm: đúng
+== Đã dựng pv1, pv3x3, pv3x3_tr, pv3x3_des (.slx) trong D:\Documents\261\4041\pvreconfig-sim\models
+== BUILD OK ==
+clc; try, sl_module_tests(); disp('== MODULE OK =='); catch e, disp(getReport(e,'extended','hyperlinks','off')); end
+
+== PV-01..03: Simulink so với tham chiếu
+Ca         G   T |     Isc     Voc     Vmp     Imp    Pmax | Isc_ref Voc_ref  Pm_ref | lệch Pmax
+PV-01   1000  25 |   2.751   7.215   6.021   2.578  15.521 |   2.750   7.200  15.000 |  +3.47 %
+PV-02    400  25 |   1.101   6.848   5.725   1.028   5.884 |   1.100   6.811   5.416 |  +8.63 %
+PV-02    700  25 |   1.926   7.072   5.909   1.803  10.654 |   1.925   7.051  10.153 |  +4.93 %
+PV-03   1000  45 |   2.779   6.719   5.517   2.574  14.201 |   2.777   6.704  13.764 |  +3.17 %
+PV-03   1000  60 |   2.799   6.343   5.133   2.572  13.201 |   2.798   6.329  12.823 |  +2.95 %
+
+== PV-04: điện áp tấm ở 2,5 A = -0.552 V (tham chiếu -0.552 V)
+PV-01..03: LỆCH > 0,5 % -> xem lại tham số Solar Cell (sl_conf_solar)
+== MODULE OK ==
+clc; rehash; try, sl_build_model(); sl_module_tests(); disp('== MODULE OK =='); catch e, disp(getReport(e,'extended','hyperlinks','off')); end
+[Warning: The model name 'pv1' is shadowing another name in the MATLAB workspace or path. Type "which -all pv1" at the command line to find the other
+uses of this name. You should change the name of the model to avoid problems.] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_new_model', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_new_model.m', 6)" style="font-weight:bold">sl_new_model</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_new_model.m',6,0)">line 6</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_build_model>build_module', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m', 48)" style="font-weight:bold">sl_build_model>build_module</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m',48,0)">line 48</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_build_model', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m', 23)" style="font-weight:bold">sl_build_model</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m',23,0)">line 23</a>)] 
+[Warning: The model name 'pv3x3' is shadowing another name in the MATLAB workspace or path. Type "which -all pv3x3" at the command line to find the
+other uses of this name. You should change the name of the model to avoid problems.] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_new_model', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_new_model.m', 6)" style="font-weight:bold">sl_new_model</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_new_model.m',6,0)">line 6</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_build_model>build_array', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m', 60)" style="font-weight:bold">sl_build_model>build_array</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m',60,0)">line 60</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_build_model', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m', 24)" style="font-weight:bold">sl_build_model</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m',24,0)">line 24</a>)] 
+[Warning: The model name 'pv3x3_tr' is shadowing another name in the MATLAB workspace or path. Type "which -all pv3x3_tr" at the command line to find
+the other uses of this name. You should change the name of the model to avoid problems.] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_new_model', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_new_model.m', 6)" style="font-weight:bold">sl_new_model</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_new_model.m',6,0)">line 6</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_build_transient', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_transient.m', 19)" style="font-weight:bold">sl_build_transient</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_transient.m',19,0)">line 19</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_build_model', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m', 38)" style="font-weight:bold">sl_build_model</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m',38,0)">line 38</a>)] 
+[Warning: The model name 'pv3x3_des' is shadowing another name in the MATLAB workspace or path. Type "which -all pv3x3_des" at the command line to find
+the other uses of this name. You should change the name of the model to avoid problems.] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_new_model', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_new_model.m', 6)" style="font-weight:bold">sl_new_model</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_new_model.m',6,0)">line 6</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_build_des', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_des.m', 13)" style="font-weight:bold">sl_build_des</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_des.m',13,0)">line 13</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_build_model', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m', 39)" style="font-weight:bold">sl_build_model</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m',39,0)">line 39</a>)] 
+== Đã dựng pv1, pv3x3, pv3x3_tr, pv3x3_des (.slx) trong D:\Documents\261\4041\pvreconfig-sim\models
+
+== PV-01..03: Simulink so với tham chiếu
+Ca         G   T |     Isc     Voc     Vmp     Imp    Pmax | Isc_ref Voc_ref  Pm_ref | lệch Pmax
+PV-01   1000  25 |   2.751   7.215   6.021   2.578  15.521 |   2.750   7.200  15.000 |  +3.47 %
+PV-02    400  25 |   1.101   6.848   5.725   1.028   5.884 |   1.100   6.811   5.416 |  +8.63 %
+PV-02    700  25 |   1.926   7.072   5.909   1.803  10.654 |   1.925   7.051  10.153 |  +4.93 %
+PV-03   1000  45 |   2.779   6.719   5.517   2.574  14.201 |   2.777   6.704  13.764 |  +3.17 %
+PV-03   1000  60 |   2.799   6.343   5.133   2.572  13.201 |   2.798   6.329  12.823 |  +2.95 %
+
+== PV-04: điện áp tấm ở 2,5 A = -0.552 V (tham chiếu -0.552 V)
+PV-01..03: LỆCH > 0,5 % -> xem lại tham số Solar Cell (sl_conf_solar)
+== MODULE OK ==
+clc; load_system(fullfile(cfg.modeldir,'pv1.slx')); sc=find_system('pv1','LookUnderMasks','all','FollowLinks','on','ReferenceBlock','ee_lib/Sources/Solar Cell'); if isempty(sc), sc=find_system('pv1','LookUnderMasks','all','FollowLinks','on','MaskType','Solar Cell'); end; disp(sc); for p={'prm','Iph','Is','Is2','ec','N2','Rs','Rp','N_series','EG','TXIS1','TFIXED','Tmeas'}, fprintf('%s = %s\n',p{1},get_param(sc{1},p{1})); end; p=pv_module_params(); disp(p)
+    {'pv1/PV/SC'}
+
+prm = ee.enum.sources.solar_cell_prm.fiveParameter
+Iph = 2.751335275
+Is = 4.180443293e-08
+Is2 = 0
+ec = 15.6
+N2 = 2
+Rs = 0.03367078131
+Rp = 69.34556385
+N_series = 1
+EG = 13.44
+TXIS1 = 46.8
+TFIXED = T
+Tmeas = 25
+      Vmp: 6
+      Imp: 2.5000
+      Voc: 7.2000
+      Isc: 2.7500
+       Ns: 12
+        n: 1.3000
+       ki: 5.0000e-04
+       Eg: 1.1200
+    Is_bp: 1.0000e-06
+     n_bp: 1.5000
+       Rs: 0.0337
+      Rsh: 69.3456
+       I0: 4.1804e-08
+      Iph: 2.7513
+    a_ref: 0.4008
+     Tref: 298.1500
+        q: 1.6022e-19
+       kB: 1.3806e-23
+
+clc; b=sc{1}; for p={'Rp','Rp_unit','Rp_conf','Rs_unit','Rs_conf','prm_conf','ec_unit'}, fprintf('%s = %s\n',p{1},get_param(b,p{1})); end; dp=get_param(b,'DialogParameters'); disp(dp.Rp); disp(dp.Rp.Attributes); disp(get_param(b,'SourceFile'))
+Rp = 69.34556385
+Rp_unit = Ohm
+Rp_conf = compiletime
+Rs_unit = Ohm
+Rs_conf = compiletime
+prm_conf = compiletime
+ec_unit = 1
+        Prompt: 'Parallel resistance, Rp'
+          Type: 'string'
+          Enum: {}
+    Attributes: {'read-write'  'read-only-if-compiled'  'link-instance'}
+
+    {'read-write'}    {'read-only-if-compiled'}    {'link-instance'}
+
+ee.sources.solar_cell
+clc; bdclose all; rehash; try, sl_build_model(); sl_module_tests(); disp('== MODULE OK =='); catch e, disp(getReport(e,'extended','hyperlinks','off')); end
+[Warning: The model name 'pv1' is shadowing another name in the MATLAB workspace or path. Type "which -all pv1" at the command line to find the other
+uses of this name. You should change the name of the model to avoid problems.] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_new_model', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_new_model.m', 6)" style="font-weight:bold">sl_new_model</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_new_model.m',6,0)">line 6</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_build_model>build_module', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m', 48)" style="font-weight:bold">sl_build_model>build_module</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m',48,0)">line 48</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_build_model', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m', 23)" style="font-weight:bold">sl_build_model</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m',23,0)">line 23</a>)] 
+[Warning: The model name 'pv3x3' is shadowing another name in the MATLAB workspace or path. Type "which -all pv3x3" at the command line to find the
+other uses of this name. You should change the name of the model to avoid problems.] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_new_model', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_new_model.m', 6)" style="font-weight:bold">sl_new_model</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_new_model.m',6,0)">line 6</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_build_model>build_array', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m', 60)" style="font-weight:bold">sl_build_model>build_array</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m',60,0)">line 60</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_build_model', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m', 24)" style="font-weight:bold">sl_build_model</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m',24,0)">line 24</a>)] 
+[Warning: The model name 'pv3x3_tr' is shadowing another name in the MATLAB workspace or path. Type "which -all pv3x3_tr" at the command line to find
+the other uses of this name. You should change the name of the model to avoid problems.] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_new_model', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_new_model.m', 6)" style="font-weight:bold">sl_new_model</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_new_model.m',6,0)">line 6</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_build_transient', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_transient.m', 19)" style="font-weight:bold">sl_build_transient</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_transient.m',19,0)">line 19</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_build_model', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m', 38)" style="font-weight:bold">sl_build_model</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m',38,0)">line 38</a>)] 
+[Warning: The model name 'pv3x3_des' is shadowing another name in the MATLAB workspace or path. Type "which -all pv3x3_des" at the command line to find
+the other uses of this name. You should change the name of the model to avoid problems.] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_new_model', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_new_model.m', 6)" style="font-weight:bold">sl_new_model</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_new_model.m',6,0)">line 6</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_build_des', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_des.m', 13)" style="font-weight:bold">sl_build_des</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_des.m',13,0)">line 13</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_build_model', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m', 39)" style="font-weight:bold">sl_build_model</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_build_model.m',39,0)">line 39</a>)] 
+== Đã dựng pv1, pv3x3, pv3x3_tr, pv3x3_des (.slx) trong D:\Documents\261\4041\pvreconfig-sim\models
+
+== PV-01..03: Simulink so với tham chiếu
+Ca         G   T |     Isc     Voc     Vmp     Imp    Pmax | Isc_ref Voc_ref  Pm_ref | lệch Pmax
+PV-01   1000  25 |   2.750   7.200   5.997   2.501  15.000 |   2.750   7.200  15.000 |  -0.00 %
+PV-02    400  25 |   1.100   6.811   5.669   0.955   5.416 |   1.100   6.811   5.416 |  -0.00 %
+PV-02    700  25 |   1.925   7.051   5.877   1.728  10.153 |   1.925   7.051  10.153 |  +0.00 %
+PV-03   1000  45 |   2.777   6.704   5.493   2.506  13.764 |   2.777   6.704  13.764 |  +0.00 %
+PV-03   1000  60 |   2.798   6.329   5.117   2.506  12.823 |   2.798   6.329  12.823 |  -0.00 %
+
+== PV-04: điện áp tấm ở 2,5 A = -0.552 V (tham chiếu -0.552 V)
+PV-01..03: ĐẠT (Pmax lệch <= 0,5 %)
+== MODULE OK ==
+clc; tic; try, sl_run_compare(); disp('== COMPARE RUN OK =='); catch e, disp(getReport(e,'extended','hyperlinks','off')); end; toc
+[13-Oct-2026 17:44:57] Checking for availability of parallel pool...
+Starting parallel pool (parpool) using the 'Processes' profile ...
+Connected to parallel pool with 6 workers.
+[Warning: Error occurred while executing the listener callback for event PoolAddedEvent defined for class parallel.internal.parpool.CurrentPoolStack:
+Error using Simulink.sdi.internal.Engine/setupParallelPool
+An error occurred interpreting the results of the function evaluation.
+
+Error in Simulink.sdi.internal.Engine/onPCTPoolAdded
+
+Error in Simulink.sdi.internal.Engine/enablePCTSupport>@(p)onPCTPoolAdded(this,p)
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parallel.internal.parpool.subscribePoolCreation>callParpoolListener', 'D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+parpool\subscribePoolCreation.m', 28)" style="font-weight:bold">parallel.internal.parpool.subscribePoolCreation>callParpoolListener</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+parpool\subscribePoolCreation.m',28,0)">line 28</a>)
+listenerFcn(eventData.Pool);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parallel.internal.parpool.subscribePoolCreation>@(~,eventData)callParpoolListener(listenerFcn,eventData)', 'D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+parpool\subscribePoolCreation.m', 22)" style="font-weight:bold">parallel.internal.parpool.subscribePoolCreation>@(~,eventData)callParpoolListener(listenerFcn,eventData)</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+parpool\subscribePoolCreation.m',22,0)">line 22</a>)
+wrappedListenerFcn = @(~, eventData) callParpoolListener(listenerFcn, eventData);
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parallel.internal.parpool.CurrentPoolStack/addPool', 'D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+parpool\CurrentPoolStack.m', 71)" style="font-weight:bold">parallel.internal.parpool.CurrentPoolStack/addPool</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+parpool\CurrentPoolStack.m',71,0)">line 71</a>)
+            notify(obj, "PoolAddedEvent", eventData);
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parallel.internal.pool.PoolArrayManager.add', 'D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+pool\PoolArrayManager.m', 14)" style="font-weight:bold">parallel.internal.pool.PoolArrayManager.add</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+pool\PoolArrayManager.m',14,0)">line 14</a>)
+            addPool(parallel.internal.parpool.CurrentPoolStack.getInstance(), pool);
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parallel.internal.pool.AbstractClusterPool.hBuildPool', 'D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+pool\@AbstractClusterPool\AbstractClusterPool.m', 627)" style="font-weight:bold">parallel.internal.pool.AbstractClusterPool.hBuildPool</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+pool\@AbstractClusterPool\AbstractClusterPool.m',627,0)">line 627</a>)
+            parallel.internal.pool.PoolArrayManager.add(aPool);
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parallel.internal.pool.doParpool', 'D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+pool\doParpool.m', 22)" style="font-weight:bold">parallel.internal.pool.doParpool</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+pool\doParpool.m',22,0)">line 22</a>)
+    pool = parallel.internal.pool.AbstractClusterPool.hBuildPool(constructorArgs{:});
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parpool', 'D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\cluster\parpool.m', 27)" style="font-weight:bold">parpool</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\cluster\parpool.m',27,0)">line 27</a>)
+        pool = parallel.internal.pool.doParpool(sessionInfo, varargin{:});
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parallel.internal.parpool.getOrCreateCurrentPool', 'D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+parpool\getOrCreateCurrentPool.m', 13)" style="font-weight:bold">parallel.internal.parpool.getOrCreateCurrentPool</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+parpool\getOrCreateCurrentPool.m',13,0)">line 13</a>)
+        pool = parpool(varargin{:});
+               ^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('gcp', 'D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\cluster\gcp.m', 11)" style="font-weight:bold">gcp</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\cluster\gcp.m',11,0)">line 11</a>)
+        aPool = parallel.internal.parpool.getOrCreateCurrentPool();
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('matlab.internal.parallel.canUseParallelPool', 'D:\Program Files\MATLAB\R2026b\toolbox\matlab\parallel\+matlab\+internal\+parallel\canUseParallelPool.m', 35)" style="font-weight:bold">matlab.internal.parallel.canUseParallelPool</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\matlab\parallel\+matlab\+internal\+parallel\canUseParallelPool.m',35,0)">line 35</a>)
+            pool = gcp();
+                   ^^^^^
+Error in Simulink.SimulationManager/useParallelExecution
+
+Error in Simulink.SimulationManager/validateParallelOptionsForSimProvider
+
+Error in Simulink.SimulationManager/setup
+
+Error in Simulink.SimulationManager/execute
+
+Error in Simulink.SimulationManager/run
+
+Error in parsim
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_sweep_batch', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_sweep_batch.m', 30)" style="font-weight:bold">sl_sweep_batch</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_sweep_batch.m',30,0)">line 30</a>)
+    out = parsim(in, 'ShowProgress', 'on', 'TransferBaseWorkspaceVariables', 'off', ...
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_run_compare', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_run_compare.m', 25)" style="font-weight:bold">sl_run_compare</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_run_compare.m',25,0)">line 25</a>)
+B = sl_sweep_batch('array', vars, Vg, struct('switches', {{'S1', 'S2', 'S3', 'S4'}}, ...
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parallel.internal.parpool/CurrentPoolStack/addPool', 'D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+parpool\CurrentPoolStack.m', 71)" style="font-weight:bold">parallel.internal.parpool/CurrentPoolStack/addPool</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+parpool\CurrentPoolStack.m',71,0)">line 71</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parallel.internal.pool.PoolArrayManager.add', 'D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+pool\PoolArrayManager.m', 14)" style="font-weight:bold">parallel.internal.pool.PoolArrayManager.add</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+pool\PoolArrayManager.m',14,0)">line 14</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parallel.internal.pool.AbstractClusterPool.hBuildPool', 'D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+pool\@AbstractClusterPool\AbstractClusterPool.m', 627)" style="font-weight:bold">parallel.internal.pool.AbstractClusterPool.hBuildPool</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+pool\@AbstractClusterPool\AbstractClusterPool.m',627,0)">line 627</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parallel.internal.pool.doParpool', 'D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+pool\doParpool.m', 22)" style="font-weight:bold">parallel.internal.pool.doParpool</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+pool\doParpool.m',22,0)">line 22</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parpool', 'D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\cluster\parpool.m', 27)" style="font-weight:bold">parpool</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\cluster\parpool.m',27,0)">line 27</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parallel.internal.parpool.getOrCreateCurrentPool', 'D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+parpool\getOrCreateCurrentPool.m', 13)" style="font-weight:bold">parallel.internal.parpool.getOrCreateCurrentPool</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\+parallel\+internal\+parpool\getOrCreateCurrentPool.m',13,0)">line 13</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('gcp', 'D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\cluster\gcp.m', 11)" style="font-weight:bold">gcp</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\parallel\cluster\cluster\gcp.m',11,0)">line 11</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('matlab.internal.parallel.canUseParallelPool', 'D:\Program Files\MATLAB\R2026b\toolbox\matlab\parallel\+matlab\+internal\+parallel\canUseParallelPool.m', 35)" style="font-weight:bold">matlab.internal.parallel.canUseParallelPool</a> (<a href="matlab: opentoline('D:\Program Files\MATLAB\R2026b\toolbox\matlab\parallel\+matlab\+internal\+parallel\canUseParallelPool.m',35,0)">line 35</a>)
+In Simulink/SimulationManager/useParallelExecution
+In Simulink/SimulationManager/validateParallelOptionsForSimProvider
+In Simulink/SimulationManager/setup
+In Simulink/SimulationManager/execute
+In Simulink/SimulationManager/run
+In parsim
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_sweep_batch', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_sweep_batch.m', 30)" style="font-weight:bold">sl_sweep_batch</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_sweep_batch.m',30,0)">line 30</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sl_run_compare', 'D:\Documents\261\4041\pvreconfig-sim\simulink\sl_run_compare.m', 25)" style="font-weight:bold">sl_run_compare</a> (<a href="matlab: opentoline('D:\Documents\261\4041\pvreconfig-sim\simulink\sl_run_compare.m',25,0)">line 25</a>)] 
+[13-Oct-2026 17:45:22] Starting Simulink on parallel workers...
+[13-Oct-2026 17:45:23] Cleaning up parallel workers...

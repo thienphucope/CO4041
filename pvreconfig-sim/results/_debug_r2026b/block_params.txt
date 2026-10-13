@@ -1,0 +1,371 @@
+=== solar : ee_lib/Sources/Solar Cell
+prm	Parameterize by	string	
+prm_unit	prm_unit	enum	1
+prm_conf	prm_conf	enum	compiletime
+Isc	Short-circuit current, Isc	string	
+Isc_unit	Isc_unit	string	
+Isc_conf	Isc_conf	enum	compiletime | runtime
+Voc	Open-circuit voltage, Voc	string	
+Voc_unit	Voc_unit	string	
+Voc_conf	Voc_conf	enum	compiletime | runtime
+Is	Diode saturation current, Is	string	
+Is_unit	Is_unit	string	
+Is_conf	Is_conf	enum	compiletime | runtime
+Is2	Diode saturation current, Is2	string	
+Is2_unit	Is2_unit	string	
+Is2_conf	Is2_conf	enum	compiletime
+Iph	Solar-generated current for measurements, Iph0	string	
+Iph_unit	Iph_unit	string	
+Iph_conf	Iph_conf	enum	compiletime | runtime
+Ir0	Irradiance used for measurements, Ir0	string	
+Ir0_unit	Ir0_unit	string	
+Ir0_conf	Ir0_conf	enum	compiletime | runtime
+ec	Quality factor, N	string	
+ec_unit	ec_unit	enum	1
+ec_conf	ec_conf	enum	compiletime | runtime
+N2	Quality factor, N2	string	
+N2_unit	N2_unit	enum	1
+N2_conf	N2_conf	enum	compiletime | runtime
+Rs	Series resistance, Rs	string	
+Rs_unit	Rs_unit	string	
+Rs_conf	Rs_conf	enum	compiletime | runtime
+Rp	Parallel resistance, Rp	string	
+Rp_unit	Rp_unit	string	
+Rp_conf	Rp_conf	enum	compiletime
+N_series	Number of series-connected cells per string	string	
+N_series_unit	N_series_unit	enum	1
+N_series_conf	N_series_conf	enum	compiletime
+N_parallel	Number of parallel-connected strings	string	
+N_parallel_unit	N_parallel_unit	enum	1
+N_parallel_conf	N_parallel_conf	enum	compiletime | runtime
+TIPH1	First order temperature coefficient for Iph, TIPH1	string	
+TIPH1_unit	TIPH1_unit	string	
+TIPH1_conf	TIPH1_conf	enum	compiletime | runtime
+EG	Energy gap, EG	string	
+EG_unit	EG_unit	string	
+EG_conf	EG_conf	enum	compiletime | runtime
+TXIS1	Temperature exponent for Is, TXIS1	string	
+TXIS1_unit	TXIS1_unit	enum	1
+TXIS1_conf	TXIS1_conf	enum	compiletime | runtime
+TXIS2	Temperature exponent for Is2, TXIS2	string	
+TXIS2_unit	TXIS2_unit	enum	1
+TXIS2_conf	TXIS2_conf	enum	compiletime | runtime
+TRS1	Temperature exponent for Rs, TRS1	string	
+TRS1_unit	TRS1_unit	enum	1
+TRS1_conf	TRS1_conf	enum	compiletime | runtime
+TRP1	Temperature exponent for Rp, TRP1	string	
+TRP1_unit	TRP1_unit	enum	1
+TRP1_conf	TRP1_conf	enum	compiletime | runtime
+Tmeas	Measurement temperature	string	
+Tmeas_unit	Tmeas_unit	string	
+Tmeas_conf	Tmeas_conf	enum	compiletime | runtime
+TFIXED	Device simulation temperature	string	
+TFIXED_unit	TFIXED_unit	string	
+TFIXED_conf	TFIXED_conf	enum	compiletime | runtime
+thermal_mass	Thermal mass per cell	string	
+thermal_mass_unit	thermal_mass_unit	string	
+thermal_mass_conf	thermal_mass_conf	enum	compiletime | runtime
+initial_temperature	Initial temperature	string	
+initial_temperature_unit	initial_temperature_unit	string	
+initial_temperature_conf	initial_temperature_conf	enum	compiletime | runtime
+=== diode : ee_lib/Semiconductors &
+Converters/Diode
+Vf	Forward voltage	string	
+Vf_unit	Vf_unit	string	
+Vf_conf	Vf_conf	enum	compiletime | runtime
+Ron	On resistance	string	
+Ron_unit	Ron_unit	string	
+Ron_conf	Ron_conf	enum	compiletime | runtime
+Goff	Off conductance	string	
+Goff_unit	Goff_unit	string	
+Goff_conf	Goff_conf	enum	compiletime
+N_series	Number of series diodes	string	
+N_series_unit	N_series_unit	enum	1
+N_series_conf	N_series_conf	enum	compiletime | runtime
+N_parallel	Number of parallel diodes	string	
+N_parallel_unit	N_parallel_unit	enum	1
+N_parallel_conf	N_parallel_conf	enum	compiletime | runtime
+ZenerEnable	Model Zener diode	string	
+ZenerEnable_unit	ZenerEnable_unit	enum	1
+ZenerEnable_conf	ZenerEnable_conf	enum	compiletime
+BV	Reverse breakdown voltage	string	
+BV_unit	BV_unit	string	
+BV_conf	BV_conf	enum	compiletime | runtime
+Rz	Zener resistance	string	
+Rz_unit	Rz_unit	string	
+Rz_conf	Rz_conf	enum	compiletime | runtime
+enable_fault_composite	Fault enabled by composite component	string	
+enable_fault_composite_unit	enable_fault_composite_unit	enum	1
+enable_fault_composite_conf	enable_fault_composite_conf	enum	compiletime
+i_specify	i_specify	boolean	
+i_priority	i_priority	enum	None | Low | High
+i	i	string	
+i_unit	i_unit	string	
+i_nominal_specify	i_nominal_specify	boolean	
+i_nominal_value	i_nominal_value	string	
+i_nominal_unit	i_nominal_unit	string	
+v_specify	v_specify	boolean	
+v_priority	v_priority	enum	None | Low | High
+v	v	string	
+v_unit	v_unit	string	
+v_nominal_specify	v_nominal_specify	boolean	
+v_nominal_value	v_nominal_value	string	
+v_nominal_unit	v_nominal_unit	string	
+ModelType	Diode model	string	
+ModelType_unit	ModelType_unit	enum	1
+ModelType_conf	ModelType_conf	enum	compiletime
+TableType	Table type	string	
+TableType_unit	TableType_unit	enum	1
+TableType_conf	TableType_conf	enum	compiletime
+IfMat	Forward currents, If(Tj,Vf)	string	
+IfMat_unit	IfMat_unit	string	
+IfMat_conf	IfMat_conf	enum	compiletime
+VfMat	Forward voltages, Vf(Tj,If)	string	
+VfMat_unit	VfMat_unit	string	
+VfMat_conf	VfMat_conf	enum	compiletime
+TjVec	Junction temperatures, Tj	string	
+TjVec_unit	TjVec_unit	string	
+TjVec_conf	TjVec_conf	enum	compiletime
+VfVec	Forward voltages, Vf	string	
+VfVec_unit	VfVec_unit	string	
+VfVec_conf	VfVec_conf	enum	compiletime
+IfVec	Forward currents, If	string	
+IfVec_unit	IfVec_unit	string	
+IfVec_conf	IfVec_conf	enum	compiletime
+IrMat	Reverse currents, Ir(Tj,Vr)	string	
+IrMat_unit	IrMat_unit	string	
+IrMat_conf	IrMat_conf	enum	compiletime
+VrMat	Reverse voltages, Vr(Tj,Ir)	string	
+VrMat_unit	VrMat_unit	string	
+VrMat_conf	VrMat_conf	enum	compiletime
+VrVec	Reverse voltages, Vr	string	
+VrVec_unit	VrVec_unit	string	
+VrVec_conf	VrVec_conf	enum	compiletime
+IrVec	Reverse currents, Ir	string	
+IrVec_unit	IrVec_unit	string	
+IrVec_conf	IrVec_conf	enum	compiletime
+rec_loss_model	Reverse recovery loss model	string	
+rec_loss_model_unit	rec_loss_model_unit	enum	1
+rec_loss_model_conf	rec_loss_model_conf	enum	compiletime
+ErecVal	Reverse recovery loss	string	
+ErecVal_unit	ErecVal_unit	string	
+ErecVal_conf	ErecVal_conf	enum	compiletime | runtime
+scaleWithIandV	Scale reverse recovery loss with current and voltage	string	
+scaleWithIandV_unit	scaleWithIandV_unit	enum	1
+scaleWithIandV_conf	scaleWithIandV_conf	enum	compiletime
+ErecMat	Reverse recovery loss table, Erec(Tj, If)	string	
+ErecMat_unit	ErecMat_unit	string	
+ErecMat_conf	ErecMat_conf	enum	compiletime | runtime
+ErecMat3D	Reverse recovery loss table, Erec(Tj, If, Vrec)	string	
+ErecMat3D_unit	ErecMat3D_unit	string	
+ErecMat3D_conf	ErecMat3D_conf	enum	compiletime | runtime
+TjrecVec	Temperature vector for recovery loss table, Tj	string	
+TjrecVec_unit	TjrecVec_unit	string	
+TjrecVec_conf	TjrecVec_conf	enum	compiletime | runtime
+IfrecVec	Forward current vector for reverse recovery loss table, If	string	
+IfrecVec_unit	IfrecVec_unit	string	
+IfrecVec_conf	IfrecVec_conf	enum	compiletime | runtime
+IrecVal	Forward current when measuring recovery loss, Irec	string	
+IrecVal_unit	IrecVal_unit	string	
+IrecVal_conf	IrecVal_conf	enum	compiletime | runtime
+VrecVal	Turn-off voltage when measuring recovery loss, Vrec	string	
+VrecVal_unit	VrecVal_unit	string	
+VrecVal_conf	VrecVal_conf	enum	compiletime | runtime
+VrecVec	Turn-off voltage vector for reverse recovery loss table, Vrec	string	
+VrecVec_unit	VrecVec_unit	string	
+VrecVec_conf	VrecVec_conf	enum	compiletime | runtime
+tFilter	Filter time constant for voltage and current values	string	
+tFilter_unit	tFilter_unit	string	
+tFilter_conf	tFilter_conf	enum	compiletime | runtime
+thermal_network_parameterization	Thermal network	string	
+thermal_network_parameterization_unit	thermal_network_parameterization_unit	enum	1
+thermal_network_parameterization_conf	thermal_network_parameterization_conf	enum	compiletime
+Rth	Junction-case and case-ambient thermal resistances, [R_JC R_CA]	string	
+Rth_unit	Rth_unit	string	
+Rth_conf	Rth_conf	enum	compiletime
+Rth_Cauer	Thermal resistances, [R1 R2 ... Rn]	string	
+Rth_Cauer_unit	Rth_Cauer_unit	string	
+Rth_Cauer_conf	Rth_Cauer_conf	enum	compiletime | runtime
+Rth_Foster	Thermal resistances, [R1 R2 ... Rn]	string	
+Rth_Foster_unit	Rth_Foster_unit	string	
+Rth_Foster_conf	Rth_Foster_conf	enum	compiletime | runtime
+thermal_mass_parameterization	Thermal mass parameterization	string	
+thermal_mass_parameterization_unit	thermal_mass_parameterization_unit	enum	1
+thermal_mass_parameterization_conf	thermal_mass_parameterization_conf	enum	compiletime
+thermal_mass	Junction and case thermal masses, [M_J M_C]	string	
+thermal_mass_unit	thermal_mass_unit	string	
+thermal_mass_conf	thermal_mass_conf	enum	compiletime
+thermal_mass_Cauer	Thermal masses, [M1 M2 ... Mn]	string	
+thermal_mass_Cauer_unit	thermal_mass_Cauer_unit	string	
+thermal_mass_Cauer_conf	thermal_mass_Cauer_conf	enum	compiletime | runtime
+thermal_mass_Foster	Thermal masses, [M1 M2 ... Mn]	string	
+thermal_mass_Foster_unit	thermal_mass_Foster_unit	string	
+thermal_mass_Foster_conf	thermal_mass_Foster_conf	enum	compiletime | runtime
+thermal_time_constant	Junction and case thermal time constants, [t_J t_C]	string	
+thermal_time_constant_unit	thermal_time_constant_unit	string	
+thermal_time_constant_conf	thermal_time_constant_conf	enum	compiletime
+thermal_time_constant_Cauer	Thermal time constants, [t1 t2 ... tn]	string	
+thermal_time_constant_Cauer_unit	thermal_time_constant_Cauer_unit	string	
+thermal_time_constant_Cauer_conf	thermal_time_constant_Cauer_conf	enum	compiletime | runtime
+thermal_time_constant_Foster	Thermal time constants, [t1 t2 ... tn]	string	
+thermal_time_constant_Foster_unit	thermal_time_constant_Foster_unit	string	
+thermal_time_constant_Foster_conf	thermal_time_constant_Foster_conf	enum	compiletime | runtime
+thermal_mass_initial_temperatures	Junction and case initial temperatures, [T_J T_C]	string	
+thermal_mass_initial_temperatures_unit	thermal_mass_initial_temperatures_unit	string	
+thermal_mass_initial_temperatures_conf	thermal_mass_initial_temperatures_conf	enum	compiletime | runtime
+thermal_mass_initial_temperatures_Cauer	Thermal node initial temperatures, [T1 T2 ... Tn]	string	
+thermal_mass_initial_temperatures_Cauer_unit	thermal_mass_initial_temperatures_Cauer_unit	string	
+thermal_mass_initial_temperatures_Cauer_conf	thermal_mass_initial_temperatures_Cauer_conf	enum	compiletime | runtime
+thermal_mass_initial_temperatures_Foster	Thermal node initial temperatures, [T1 T2 ... Tn]	string	
+thermal_mass_initial_temperatures_Foster_unit	thermal_mass_initial_temperatures_Foster_unit	string	
+thermal_mass_initial_temperatures_Foster_conf	thermal_mass_initial_temperatures_Foster_conf	enum	compiletime | runtime
+junction_thermal_mass	Junction thermal mass	string	
+junction_thermal_mass_unit	junction_thermal_mass_unit	string	
+junction_thermal_mass_conf	junction_thermal_mass_conf	enum	compiletime | runtime
+junction_temperature_specify	junction_temperature_specify	boolean	
+junction_temperature_priority	junction_temperature_priority	enum	None | Low | High
+junction_temperature	junction_temperature	string	
+junction_temperature_unit	junction_temperature_unit	string	
+junction_temperature_nominal_specify	junction_temperature_nominal_specify	boolean	
+junction_temperature_nominal_value	junction_temperature_nominal_value	string	
+junction_temperature_nominal_unit	junction_temperature_nominal_unit	string	
+ThermalPort	Show thermal port	string	
+ThermalPort_unit	ThermalPort_unit	enum	1
+ThermalPort_conf	ThermalPort_conf	enum	compiletime
+ModelTypePhysical	Diode model	string	
+ModelTypePhysical_unit	ModelTypePhysical_unit	enum	1
+ModelTypePhysical_conf	ModelTypePhysical_conf	enum	compiletime
+prmExp	Parameterization	string	
+prmExp_unit	prmExp_unit	enum	1
+prmExp_conf	prmExp_conf	enum	compiletime
+I12	Currents, [I1 I2]	string	
+I12_unit	I12_unit	string	
+I12_conf	I12_conf	enum	compiletime | runtime
+V12	Voltages, [V1 V2]	string	
+V12_unit	V12_unit	string	
+V12_conf	V12_conf	enum	compiletime | runtime
+IS	Saturation current, IS	string	
+IS_unit	IS_unit	string	
+IS_conf	IS_conf	enum	compiletime | runtime
+ec	Emission coefficient, N	string	
+ec_unit	ec_unit	enum	1
+ec_conf	ec_conf	enum	compiletime | runtime
+I1	Current, I1	string	
+I1_unit	I1_unit	string	
+I1_conf	I1_conf	enum	compiletime | runtime
+V1	Voltage, V1	string	
+V1_unit	V1_unit	string	
+V1_conf	V1_conf	enum	compiletime | runtime
+RS	Ohmic resistance, RS	string	
+RS_unit	RS_unit	string	
+RS_conf	RS_conf	enum	compiletime | runtime
+C_param	Parameterization	string	
+C_param_unit	C_param_unit	enum	1
+C_param_conf	C_param_conf	enum	compiletime
+CJ	Junction capacitance	string	
+CJ_unit	CJ_unit	string	
+CJ_conf	CJ_conf	enum	compiletime
+CJ0	Zero-bias junction capacitance, CJ0	string	
+CJ0_unit	CJ0_unit	string	
+CJ0_conf	CJ0_conf	enum	compiletime | runtime
+Vvec	Reverse bias voltages, [VR1 VR2 VR3]	string	
+Vvec_unit	Vvec_unit	string	
+Vvec_conf	Vvec_conf	enum	compiletime | runtime
+Cvec	Corresponding capacitances, [C1 C2 C3]	string	
+Cvec_unit	Cvec_unit	string	
+Cvec_conf	Cvec_conf	enum	compiletime | runtime
+VJ	Junction potential, VJ	string	
+VJ_unit	VJ_unit	string	
+VJ_conf	VJ_conf	enum	compiletime | runtime
+Mgrad	Grading coefficient, M	string	
+Mgrad_unit	Mgrad_unit	enum	1
+Mgrad_conf	Mgrad_conf	enum	compiletime | runtime
+FC	Capacitance coefficient, FC	string	
+FC_unit	FC_unit	enum	1
+FC_conf	FC_conf	enum	compiletime | runtime
+Q_param	Charge dynamics	string	
+Q_param_unit	Q_param_unit	enum	1
+Q_param_conf	Q_param_conf	enum	compiletime
+iRM	Peak reverse current, iRM	string	
+iRM_unit	iRM_unit	string	
+iRM_conf	iRM_conf	enum	compiletime | runtime
+iF	Initial forward current when measuring iRM	string	
+iF_unit	iF_unit	string	
+iF_conf	iF_conf	enum	compiletime | runtime
+didt	Rate of change of current when measuring iRM	string	
+didt_unit	didt_unit	string	
+didt_conf	didt_conf	enum	compiletime | runtime
+trr_factor	Reverse recovery time stretch factor	string	
+trr_factor_unit	trr_factor_unit	enum	1
+trr_factor_conf	trr_factor_conf	enum	compiletime | runtime
+trr	Reverse recovery time, trr	string	
+trr_unit	trr_unit	string	
+trr_conf	trr_conf	enum	compiletime | runtime
+Qrr	Reverse recovery charge, Qrr	string	
+Qrr_unit	Qrr_unit	string	
+Qrr_conf	Qrr_conf	enum	compiletime | runtime
+Vr	Diode turn-off voltage when measuring Erec	string	
+Vr_unit	Vr_unit	string	
+Vr_conf	Vr_conf	enum	compiletime | runtime
+Ls	Stray inductance when measuring Erec	string	
+Ls_unit	Ls_unit	string	
+Ls_conf	Ls_conf	enum	compiletime | runtime
+Erec	Reverse recovery energy, Erec	string	
+Erec_unit	Erec_unit	string	
+Erec_conf	Erec_conf	enum	compiletime | runtime
+TT	Transit time, TT	string	
+TT_unit	TT_unit	string	
+TT_conf	TT_conf	enum	compiletime | runtime
+tau	Carrier lifetime, tau	string	
+tau_unit	tau_unit	string	
+tau_conf	tau_conf	enum	compiletime | runtime
+T_param	Parameterization	string	
+T_param_unit	T_param_unit	enum	1
+T_param_conf	T_param_conf	enum	compiletime
+Tmeas	Measurement temperature	string	
+Tmeas_unit	Tmeas_unit	string	
+Tmeas_conf	Tmeas_conf	enum	compiletime | runtime
+I1_T2	Current I1 at second measurement temperature	string	
+I1_T2_unit	I1_T2_unit	string	
+I1_T2_conf	I1_T2_conf	enum	compiletime | runtime
+V1_T2	Voltage V1 at second measurement temperature	string	
+V1_T2_unit	V1_T2_unit	string	
+V1_T2_conf	V1_T2_conf	enum	compiletime | runtime
+IS_T2	Saturation current, IS, at second measurement temperature	string	
+IS_T2_unit	IS_T2_unit	string	
+IS_T2_conf	IS_T2_conf	enum	compiletime | runtime
+Tmeas2	Second measurement temperature	string	
+Tmeas2_unit	Tmeas2_unit	string	
+Tmeas2_conf	Tmeas2_conf	enum	compiletime | runtime
+EG_param	Energy gap parameterization	string	
+EG_param_unit	EG_param_unit	enum	1
+EG_param_conf	EG_param_conf	enum	compiletime
+EG	Energy gap, EG	string	
+EG_unit	EG_unit	string	
+EG_conf	EG_conf	enum	compiletime | runtime
+XTI_param	Saturation current temperature exponent parameterization	string	
+XTI_param_unit	XTI_param_unit	enum	1
+XTI_param_conf	XTI_param_conf	enum	compiletime
+XTI	Saturation current temperature exponent, XTI	string	
+XTI_unit	XTI_unit	enum	1
+XTI_conf	XTI_conf	enum	compiletime | runtime
+dBVdT	Reverse breakdown voltage temperature coefficient, dBV/dT	string	
+dBVdT_unit	dBVdT_unit	string	
+dBVdT_conf	dBVdT_conf	enum	compiletime | runtime
+Tdevice	Device simulation temperature	string	
+Tdevice_unit	Tdevice_unit	string	
+Tdevice_conf	Tdevice_conf	enum	compiletime | runtime
+i_capacitor_specify	i_capacitor_specify	boolean	
+i_capacitor_priority	i_capacitor_priority	enum	None | Low | High
+i_capacitor	i_capacitor	string	
+i_capacitor_unit	i_capacitor_unit	string	
+i_capacitor_nominal_specify	i_capacitor_nominal_specify	boolean	
+i_capacitor_nominal_value	i_capacitor_nominal_value	string	
+i_capacitor_nominal_unit	i_capacitor_nominal_unit	string	
+Qj_specify	Qj_specify	boolean	
+Qj_priority	Qj_priority	enum	None | Low | High
+Qj	Qj	string	
+Qj_unit	Qj_unit	string	
+Qj_nominal_specify	Qj_nominal_specify	boolean	
+Qj_nominal_value	Qj_nominal_value	string	
+Qj_nominal_unit	Qj_nominal_unit	string	

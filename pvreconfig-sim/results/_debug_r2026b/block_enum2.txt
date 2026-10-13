@@ -1,0 +1,15 @@
+ee.enum.sources.solar_cell_prm: datasheet | fiveParameter | eightParameter
+   datasheet = datasheet
+   fiveParameter = fiveParameter
+   eightParameter = eightParameter
+ee.enum.diode.idealModelType: pwl | tabulated
+   pwl = pwl
+   tabulated = tabulated
+ee.enum.diode.physicalModelType: exponential | tabulated
+   exponential = exponential
+   tabulated = tabulated
+ee.enum.diode.expParam: useTwo | useIsN | useIVIs | useIVN
+   useTwo = useTwo
+   useIsN = useIsN
+   useIVIs = useIVIs
+   useIVN = useIVN
