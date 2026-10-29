@@ -1,6 +1,6 @@
 # Q&A với thầy — Vòng 1 (Proposal GĐ1)
 
-> Ngày: 2026-08-28. Phần A giữ **nguyên văn** (câu hỏi đã gửi Slack + trả lời của thầy). Phần B là bản **sắp xếp lại** để dùng cho kế hoạch — nguồn cập nhật [`../plan/proposal.md`](../plan/proposal.md).
+> Ngày: 2026-08-28. Phần A giữ **nguyên văn** (câu hỏi đã gửi Slack + trả lời của thầy). Phần B là bản **sắp xếp lại** để dùng cho kế hoạch — nguồn cập nhật kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026).
 
 ---
 

@@ -123,7 +123,7 @@ Kết quả gói thành **sub-circuit**: 2 input (G, T) + 2 output (±). Xem sơ
 ---
 
 ## 5. Áp dụng vào đồ án
-- **Ở proposal (bắt buộc):** nêu **phương pháp** mô phỏng PV trên Proteus theo khuôn Ref 1 (6 block, AVCVS/AVCCS, DC sweep). Chưa cần chạy xong schematic đầy đủ ([`../plan/proposal.md`](../plan/proposal.md) A1, checklist 4).
+- **Ở proposal (bắt buộc):** nêu **phương pháp** mô phỏng PV trên Proteus theo khuôn Ref 1 (6 block, AVCVS/AVCCS, DC sweep). Chưa cần chạy xong schematic đầy đủ (kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026) A1, checklist 4).
 - **Thông số pin của nhóm chưa chốt** → tạm lấy 1 tấm mẫu (SM55 đơn giản) để minh hoạ; chốt sau khi có BOM ([[core-pv-reconfig]] B3).
 - Đường I–V/P–V mô phỏng là **đầu vào** để hiểu shading ([[core-partial-shading]]) và reconfiguration ([[core-pv-reconfig]]).
 

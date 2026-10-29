@@ -40,7 +40,7 @@ Cell nối tiếp dùng **cùng một dòng** nhưng dung lượng/nội trở l
 
 ## 4. Ref 2 làm gì (đối chiếu)
 - Ref 2 đo **áp từng cell** (C1–C3) + hiển thị, nhưng **không mô tả mạch cân bằng chủ động/thụ động cụ thể** — chủ yếu monitoring.
-- Có mạch **relay cân bằng** trong đồ án nhóm khoá trước (cùng 2 thầy) — ⚠️ xem cảnh báo trùng lặp ở [`../../plan/proposal.md`](../../plan/proposal.md) B6 (ảnh [`../extracted/solar-microgrid-project/images/p15-img01-x208.jpeg`](../extracted/solar-microgrid-project/images/p15-img01-x208.jpeg)).
+- Có mạch **relay cân bằng** trong đồ án nhóm khoá trước (cùng 2 thầy) — ⚠️ xem cảnh báo trùng lặp ở kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026) B6 (ảnh [`../extracted/solar-microgrid-project/images/p15-img01-x208.jpeg`](../extracted/solar-microgrid-project/images/p15-img01-x208.jpeg)).
 👉 **Được tham khảo bố trí, không bê nguyên, phải trích nguồn.**
 
 ## 5. Áp dụng vào đồ án
@@ -48,7 +48,7 @@ Cell nối tiếp dùng **cùng một dòng** nhưng dung lượng/nội trở l
 - Liên kết với [[core-soc]] (biết cell nào cao) và [[core-protection]] (ngưỡng OVP/UVP).
 
 ## 6. Còn mở
-- Số cell nối tiếp phụ thuộc **loại pin chưa chốt** ([`../../plan/proposal.md`](../../plan/proposal.md) B3): 12 V LiFePO4 ≈ 4S; SLA 12 V là 6 "cell" 2 V (thường không balance từng cell) → **ảnh hưởng lớn tới việc có cần balancing hay không**.
+- Số cell nối tiếp phụ thuộc **loại pin chưa chốt** (kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026) B3): 12 V LiFePO4 ≈ 4S; SLA 12 V là 6 "cell" 2 V (thường không balance từng cell) → **ảnh hưởng lớn tới việc có cần balancing hay không**.
 - Ngưỡng & dòng xả điện trở — chốt khi có thông số pin.
 
 *Cập nhật: 2026-09-10.*

@@ -10,10 +10,10 @@
 
 ## Việc cần làm
 
-- [ ] **Công tắc:** 2 MOSFET đấu ngược mỗi công tắc, hoặc relay. Chọn mã linh kiện; tính tổn hao dẫn I²·2R_DS(on).
-- [ ] **Mạch kích:** các nút nối chéo nằm ở điện thế khác nhau, nên mạch kích cổng phải thả nổi hoặc cách ly với mass của vi điều khiển (photovoltaic driver, gate driver cách ly, hoặc bootstrap). Tham khảo phân tích áp chịu đựng theo vị trí công tắc trong Ref R4 (Ng & Ertugrul 2025).
-- [ ] **Đo lường:** tối thiểu áp và dòng đầu ra dàn. Mở rộng: áp tại các nút trung gian, dòng từng nhánh, để nhận biết bóng che.
+- [ ] **Công tắc:** 2 MOSFET đấu ngược chung cực S mỗi công tắc (áp trên công tắc mở đổi chiều theo bóng che, một MOSFET sẽ dẫn qua diode ký sinh), hoặc relay. Chọn mã linh kiện; tính tổn hao dẫn I²·2R_DS(on).
+- [ ] **Mạch kích:** cực S chung nằm ở điện thế nút (nút 1 ≈ 12 V, nút 2 ≈ 6 V, thay đổi theo điểm làm việc), nên mạch kích cổng phải thả nổi theo cực S, cách ly với mass của vi điều khiển. Một mạch kích cho cả cặp MOSFET (G chung – S chung). Dùng photovoltaic driver, charge-pump cách ly, hoặc nguồn cách ly nhỏ + gate driver. **Không dùng bootstrap:** công tắc giữ trạng thái đóng liên tục, không băm xung nên tụ bootstrap không được nạp lại. Tham khảo phân tích áp chịu đựng theo vị trí công tắc trong Ref R4 (Ng & Ertugrul 2025).
+- [ ] **Đo lường:** bắt buộc áp và dòng đầu ra dàn, vì thuật toán quét phải đo công suất từng trạng thái (giả thiết 20 ms mỗi trạng thái trong `algo/run_arr05.m`). Mở rộng: áp tại các nút trung gian, dòng từng nhánh, để nhận biết bóng che.
 - [ ] **Bảo vệ:** diode bypass (nếu tấm chưa có), cầu chì đầu ra, đầu nối chịu khoảng 8 A, công tắc ngắt dàn khỏi bộ sạc.
-- [ ] **Trình tự chuyển mạch:** tránh trạng thái trung gian gây xung dòng. Kết quả mức 3 ([done/10](../done/10-chay-simulink.md)): với công tắc lý tưởng, đóng lần lượt cách 1 ms không giảm đỉnh dòng (123 → tới 181 A ở một công tắc); đỉnh do ΔV / R_on nên cần giới hạn tốc độ đóng (mạch kích cổng chậm, điện trở cổng) chứ không chỉ đổi thứ tự.
+- [ ] **Xung dòng khi đóng:** đỉnh 123–368 A ở mức 3 ([done/10](../done/10-chay-simulink.md)) chỉ là cận trên của mô hình: công tắc lý tưởng đóng tức thì nên đỉnh = ΔV / R_on, chưa có điện cảm vòng và thời gian bật MOSFET. Xung do điện dung tấm xả qua công tắc (không phải dòng tấm cấp, dòng xác lập vẫn ≤ I_sc), năng lượng nhỏ (≤ 1,8 mJ mỗi lần, `transient_simulink.csv`). Photovoltaic driver vốn bật chậm nên nhiều khả năng **không cần mạch đóng chậm riêng**. Khi chọn MOSFET và driver: so I_DM và SOA xung trong datasheet với xung ước lượng lại theo thời gian bật thật. Với 4 công tắc, mọi tổ hợp trung gian đều là trạng thái hợp lệ, nên thứ tự đóng không ảnh hưởng an toàn.
 - [ ] Vẽ schematic và layout, rà soát chéo, xuất BOM và file gia công, rồi đặt gia công.
 - [ ] Sau khi chọn MOSFET: cập nhật `cfg.tr.Rsw` trong `pvreconfig-sim/simulink/sl_config.m` và thời gian chuyển mạch trong `algo/run_arr05.m`.

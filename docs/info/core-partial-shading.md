@@ -1,7 +1,7 @@
 # Core — Bóng râm một phần (partial shading), hotspot & diode bảo vệ
 
 > **Cái gì:** khi một phần dàn pin bị che, công suất tụt **phi tuyến** và cell bị che có thể **nóng cháy (hotspot)**. Đây là *vấn đề* mà bypass/blocking diode và reconfiguration dùng để *giải*.
-> **Tại sao quan trọng với đồ án:** là nền lý thuyết cho hướng "chống bóng râm / PV array configuration" thầy dặn tìm hiểu ([`qa1.md`](qa1.md) §B.1; [`../plan/proposal.md`](../plan/proposal.md) B1).
+> **Tại sao quan trọng với đồ án:** là nền lý thuyết cho hướng "chống bóng râm / PV array configuration" thầy dặn tìm hiểu ([`qa1.md`](qa1.md) §B.1; kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026) B1).
 > **Nguồn chính:** Ref 3 §1–2 — Ngo & Nguyen 2018 ([`../references/extracted/03-pv-reconfig/03-pv-reconfig.md`](../references/extracted/03-pv-reconfig/03-pv-reconfig.md)); bổ sung kiến thức nền PV.
 > Liên quan: [[core-pv-model]] · [[core-pv-reconfig]]
 
@@ -49,7 +49,7 @@ Ref 3 (Trang 2) chia kỹ thuật thu hồi tổn hao làm **3 nhóm**:
 - **Bypass diode:** mắc **song song** ngược cực với một nhóm cell. Bình thường khoá; khi nhóm bị che → dẫn, cho dòng chuỗi đi vòng → **tránh hotspot** và giữ phần còn lại vẫn phát. **Đánh đổi:** Ref 3 lưu bypass diode tuy chặn hotspot nhưng vẫn gây **tổn hao một phần** và mất công suất đầu ra (Trang 2).
 - **Blocking diode:** mắc **nối tiếp** chuỗi, chặn dòng chảy ngược (vd ban đêm pin xả ngược, hoặc chuỗi yếu bị chuỗi mạnh nạp ngược).
 
-### Hai hướng cụ thể hoá cho đồ án (chưa chốt — [`../plan/proposal.md`](../plan/proposal.md) B1)
+### Hai hướng cụ thể hoá cho đồ án (chưa chốt — kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026) B1)
 - **PA1 — Reconfiguration (TCT + DES):** đúng thuật ngữ thầy nói, theo Ref 3 → [[core-pv-reconfig]]. Nếu mô phỏng thì **MATLAB–Simulink** (không phải Proteus).
 - **PA2 — Chia nhỏ tấm + bypass diode:** đơn giản, sát phần cứng.
 👉 **Cần đọc Ref 3 + PVEducation rồi mới chọn PA.**
@@ -57,7 +57,7 @@ Ref 3 (Trang 2) chia kỹ thuật thu hồi tổn hao làm **3 nhóm**:
 ---
 
 ## 4. Áp dụng vào đồ án
-- **Ở proposal:** chỉ cần **hiểu + tóm tắt** hiện tượng (shading → hotspot → tại sao phải chia/nhóm tấm). Không bắt buộc mô phỏng ([`../plan/proposal.md`](../plan/proposal.md) A1.4).
+- **Ở proposal:** chỉ cần **hiểu + tóm tắt** hiện tượng (shading → hotspot → tại sao phải chia/nhóm tấm). Không bắt buộc mô phỏng (kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026) A1.4).
 - Là phần "Cơ sở lý thuyết" của báo cáo (checklist 2): đặc tính PV, partial shading/hotspot, bypass diode.
 - Nối với [[core-pv-model]] (đường I–V/P–V) và [[core-pv-reconfig]] (giải pháp thuật toán).
 

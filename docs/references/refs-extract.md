@@ -3,7 +3,7 @@
 > **Lưu ý phạm vi:** Bản này viết trước buổi họp 23/09/2026. Trọng tâm hiện tại là PV reconfiguration 3 × 3, PCB chuyển mạch và mô phỏng MATLAB; xem [hub tài liệu đã cập nhật](references.md) và [ghi nhận buổi họp](../info/qa2.md). Các câu bên dưới gọi BMS là trọng tâm hoặc reconfiguration chỉ là phần mở rộng đã lỗi thời.
 
 > Bản rút gọn nội dung 3 PDF ở thư mục này — chỉ giữ phần **cần cho dự án** (Microgrid PV + BMS + IoT, HK261-DAGD1-133).
-> Danh mục link/tài liệu tự tìm thêm: [`references.md`](references.md) · Việc cần làm: [`../plan/proposal.md`](../plan/proposal.md) · Q&A thầy: [`../info/qa1.md`](../info/qa1.md).
+> Danh mục link/tài liệu tự tìm thêm: [`references.md`](references.md) · Việc cần làm: [`../progress/README.md`](../progress/README.md) · Q&A thầy: [`../info/qa1.md`](../info/qa1.md).
 > Ký hiệu: 🎯 = trực tiếp dùng cho GĐ1.
 
 ---

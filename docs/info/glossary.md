@@ -1,6 +1,6 @@
 # Glossary — Thuật ngữ trong dự án
 
-> Chỉ gồm thuật ngữ **thực sự dùng** trong đề tài *Microgrid PV + BMS + IoT* (HK261-DAGD1-133) — nguồn: [`../specifications/specs.md`](../specifications/specs.md), [`../info/qa1.md`](../info/qa1.md), [`../plan/proposal.md`](../plan/proposal.md) và 3 ref thầy cấp ([`../references/refs-extract.md`](../references/refs-extract.md)).
+> Chỉ gồm thuật ngữ **thực sự dùng** trong đề tài *Microgrid PV + BMS + IoT* (HK261-DAGD1-133) — nguồn: [`../specifications/specs.md`](../specifications/specs.md), [`../info/qa1.md`](../info/qa1.md), kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026) và 3 ref thầy cấp ([`../references/refs-extract.md`](../references/refs-extract.md)).
 
 ---
 

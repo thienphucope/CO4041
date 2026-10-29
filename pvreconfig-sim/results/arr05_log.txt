@@ -1,0 +1,253 @@
+
+== Kịch bản canh-ngang: Mép bóng thẳng đứng đi từ trái sang phải
+   bảng des / canh-ngang: 61 mốc thời gian x 3025 cấu hình (5 s)
+
+   bộ sạc pwm   thuật toán                   E (Wh) % oracle    so SP    đổi    quét
+   [tie] cố định SP                       1.0320   100.0%    +0.0%      0    0.0%
+   [tie] cố định TCT                      1.0320   100.0%    +0.0%      0    0.0%
+   [tie] oracle (16 trạng thái)           1.0320   100.0%    +0.0%      0    0.0%
+   [tie] quét 16, 2 s, MOSFET             1.0320   100.0%    +0.0%    480   21.2%
+   [tie] quét 16, 5 s, MOSFET             1.0320   100.0%    -0.0%    192    8.5%
+   [tie] quét 16, 10 s, MOSFET            1.0320   100.0%    -0.0%     96    4.2%
+   [tie] quét 16, 30 s, MOSFET            1.0320   100.0%    -0.0%     32    1.4%
+   [tie] quét 16, 10 s, relay             1.0320   100.0%    +0.0%     96   19.6%
+   [tie] quét khi P đổi 5 %, MOSFET       1.0320   100.0%    -0.0%    528   23.8%
+   [tie] leo đồi 4 lân cận, 5 s           1.0320   100.0%    +0.0%     60    2.6%
+   [des] DES cố định TCT                  1.0320   100.0%    -0.0%      0    0.0%
+   [des] DES oracle (3025 cách)           1.0320   100.0%    -0.0%      0    0.0%
+   [des] DES EI min 3025, 2 s             1.0314    99.9%    -0.1%      3    0.0%
+   [des] DES EI min 3025, 2 s, sai số 5%   1.0309    99.9%    -0.1%     30    0.0%
+   [des] DES EI min 280, 2 s              1.0314    99.9%    -0.1%      3    0.0%
+   [des] DES tham lam, 2 s                1.0320   100.0%    -0.0%      0    0.0%
+   [des] DES theo mô hình, 2 s, sai số 5%   1.0302    99.8%    -0.2%     30    0.0%
+
+   bộ sạc mppt  thuật toán                   E (Wh) % oracle    so SP    đổi    quét
+   [tie] cố định SP                       1.2940   100.0%    +0.0%      0    0.0%
+   [tie] cố định TCT                      1.2940   100.0%    +0.0%      0    0.0%
+   [tie] oracle (16 trạng thái)           1.2940   100.0%    +0.0%      0    0.0%
+   [tie] quét 16, 2 s, MOSFET             1.2940   100.0%    +0.0%    480   21.2%
+   [tie] quét 16, 5 s, MOSFET             1.2940   100.0%    +0.0%    192    8.5%
+   [tie] quét 16, 10 s, MOSFET            1.2940   100.0%    +0.0%     96    4.2%
+   [tie] quét 16, 30 s, MOSFET            1.2940   100.0%    +0.0%     32    1.4%
+   [tie] quét 16, 10 s, relay             1.2940   100.0%    +0.0%     96   19.6%
+   [tie] quét khi P đổi 5 %, MOSFET       1.2940   100.0%    +0.0%    560   25.3%
+   [tie] leo đồi 4 lân cận, 5 s           1.2940   100.0%    +0.0%     60    2.6%
+   [des] DES cố định TCT                  1.2940   100.0%    +0.0%      0    0.0%
+   [des] DES oracle (3025 cách)           1.2941   100.0%    +0.0%      4    0.0%
+   [des] DES EI min 3025, 2 s             1.2937   100.0%    -0.0%      3    0.0%
+   [des] DES EI min 3025, 2 s, sai số 5%   1.2933    99.9%    -0.1%     30    0.0%
+   [des] DES EI min 280, 2 s              1.2937   100.0%    -0.0%      3    0.0%
+   [des] DES tham lam, 2 s                1.2940   100.0%    +0.0%      0    0.0%
+   [des] DES theo mô hình, 2 s, sai số 5%   1.2926    99.9%    -0.1%     30    0.0%
+
+   bộ sạc po    thuật toán                   E (Wh) % oracle    so SP    đổi    quét
+   [tie] cố định SP                       1.2931   100.0%    +0.0%      0    0.0%
+   [tie] cố định TCT                      1.2931   100.0%    +0.0%      0    0.0%
+   [tie] oracle (16 trạng thái)           1.2931   100.0%    +0.0%      0    0.0%
+   [tie] quét 16, 2 s, MOSFET             1.2931   100.0%    +0.0%    479   21.2%
+   [tie] quét 16, 5 s, MOSFET             1.2931   100.0%    +0.0%    191    8.5%
+   [tie] quét 16, 10 s, MOSFET            1.2931   100.0%    +0.0%     95    4.2%
+   [tie] quét 16, 30 s, MOSFET            1.2931   100.0%    +0.0%     31    1.4%
+   [tie] quét 16, 10 s, relay             1.2931   100.0%    +0.0%     96   19.6%
+   [tie] quét khi P đổi 5 %, MOSFET       1.2931   100.0%    +0.0%    559   25.3%
+   [tie] leo đồi 4 lân cận, 5 s           1.2931   100.0%    +0.0%     60    2.6%
+   [des] DES cố định TCT                  1.2930   100.0%    -0.0%      0    0.0%
+   [des] DES oracle (3025 cách)           1.2931   100.0%    -0.0%      4    0.0%
+   [des] DES EI min 3025, 2 s             1.2927   100.0%    -0.0%      3    0.0%
+   [des] DES EI min 3025, 2 s, sai số 5%   1.2922    99.9%    -0.1%     30    0.0%
+   [des] DES EI min 280, 2 s              1.2927   100.0%    -0.0%      3    0.0%
+   [des] DES tham lam, 2 s                1.2930   100.0%    -0.0%      0    0.0%
+   [des] DES theo mô hình, 2 s, sai số 5%   1.2914    99.9%    -0.1%     30    0.0%
+
+== Kịch bản canh-cheo: Mép bóng chéo đi từ góc trên-trái
+   bảng tie / canh-cheo: 61 mốc thời gian x 16 cấu hình (29 s)
+   bảng des / canh-cheo: 61 mốc thời gian x 3025 cấu hình (4 s)
+
+   bộ sạc pwm   thuật toán                   E (Wh) % oracle    so SP    đổi    quét
+   [tie] cố định SP                       0.9032    99.0%    +0.0%      0    0.0%
+   [tie] cố định TCT                      0.8610    94.4%    -4.7%      0    0.0%
+   [tie] oracle (16 trạng thái)           0.9124   100.0%    +1.0%      8    0.0%
+   [tie] quét 16, 2 s, MOSFET             0.9033    99.0%    +0.0%    479   21.2%
+   [tie] quét 16, 5 s, MOSFET             0.8972    98.3%    -0.7%    192    8.5%
+   [tie] quét 16, 10 s, MOSFET            0.8822    96.7%    -2.3%     96    4.2%
+   [tie] quét 16, 30 s, MOSFET            0.8896    97.5%    -1.5%     32    1.4%
+   [tie] quét 16, 10 s, relay             0.8938    98.0%    -1.0%     96   19.6%
+   [tie] quét khi P đổi 5 %, MOSFET       0.8981    98.4%    -0.6%    543   23.9%
+   [tie] leo đồi 4 lân cận, 5 s           0.9040    99.1%    +0.1%     69    3.1%
+   [des] DES cố định TCT                  0.8610    86.7%    -4.7%      0    0.0%
+   [des] DES oracle (3025 cách)           0.9933   100.0%   +10.0%      9    0.0%
+   [des] DES EI min 3025, 2 s             0.9917    99.8%    +9.8%      7    0.0%
+   [des] DES EI min 3025, 2 s, sai số 5%   0.9900    99.7%    +9.6%     30    0.0%
+   [des] DES EI min 280, 2 s              0.9792    98.6%    +8.4%      5    0.0%
+   [des] DES tham lam, 2 s                0.9788    98.5%    +8.4%      7    0.0%
+   [des] DES theo mô hình, 2 s, sai số 5%   0.9889    99.6%    +9.5%     30    0.0%
+
+   bộ sạc mppt  thuật toán                   E (Wh) % oracle    so SP    đổi    quét
+   [tie] cố định SP                       1.1028    97.6%    +0.0%      0    0.0%
+   [tie] cố định TCT                      1.1250    99.6%    +2.0%      0    0.0%
+   [tie] oracle (16 trạng thái)           1.1299   100.0%    +2.5%      7    0.0%
+   [tie] quét 16, 2 s, MOSFET             1.1244    99.5%    +2.0%    479   21.2%
+   [tie] quét 16, 5 s, MOSFET             1.1240    99.5%    +1.9%    192    8.5%
+   [tie] quét 16, 10 s, MOSFET            1.1231    99.4%    +1.8%     96    4.2%
+   [tie] quét 16, 30 s, MOSFET            1.1209    99.2%    +1.6%     32    1.4%
+   [tie] quét 16, 10 s, relay             1.1129    98.5%    +0.9%     96   19.6%
+   [tie] quét khi P đổi 5 %, MOSFET       1.1230    99.4%    +1.8%    575   25.4%
+   [tie] leo đồi 4 lân cận, 5 s           1.1171    98.9%    +1.3%     89    3.9%
+   [des] DES cố định TCT                  1.1250    88.6%    +2.0%      0    0.0%
+   [des] DES oracle (3025 cách)           1.2704   100.0%   +15.2%     16    0.0%
+   [des] DES EI min 3025, 2 s             1.2676    99.8%   +14.9%      7    0.0%
+   [des] DES EI min 3025, 2 s, sai số 5%   1.2664    99.7%   +14.8%     30    0.0%
+   [des] DES EI min 280, 2 s              1.2529    98.6%   +13.6%      5    0.0%
+   [des] DES tham lam, 2 s                1.2526    98.6%   +13.6%      7    0.0%
+   [des] DES theo mô hình, 2 s, sai số 5%   1.2652    99.6%   +14.7%     30    0.0%
+
+   bộ sạc po    thuật toán                   E (Wh) % oracle    so SP    đổi    quét
+   [tie] cố định SP                       1.0714    97.9%    +0.0%      0    0.0%
+   [tie] cố định TCT                      1.1009   100.6%    +2.8%      0    0.0%
+   [tie] oracle (16 trạng thái)           1.0949   100.0%    +2.2%      7    0.0%
+   [tie] quét 16, 2 s, MOSFET             1.0959   100.1%    +2.3%    478   21.2%
+   [tie] quét 16, 5 s, MOSFET             1.0994   100.4%    +2.6%    191    8.5%
+   [tie] quét 16, 10 s, MOSFET            1.1002   100.5%    +2.7%     95    4.2%
+   [tie] quét 16, 30 s, MOSFET            1.1009   100.5%    +2.7%     31    1.4%
+   [tie] quét 16, 10 s, relay             1.0864    99.2%    +1.4%     95   19.6%
+   [tie] quét khi P đổi 5 %, MOSFET       1.0952   100.0%    +2.2%    559   24.4%
+   [tie] leo đồi 4 lân cận, 5 s           1.0929    99.8%    +2.0%     79    3.5%
+   [des] DES cố định TCT                  1.1009    92.2%    +2.8%      0    0.0%
+   [des] DES oracle (3025 cách)           1.1938   100.0%   +11.4%     16    0.0%
+   [des] DES EI min 3025, 2 s             1.2657   106.0%   +18.1%      7    0.0%
+   [des] DES EI min 3025, 2 s, sai số 5%   1.2642   105.9%   +18.0%     30    0.0%
+   [des] DES EI min 280, 2 s              1.2510   104.8%   +16.8%      5    0.0%
+   [des] DES tham lam, 2 s                1.2505   104.7%   +16.7%      7    0.0%
+   [des] DES theo mô hình, 2 s, sai số 5%   1.2630   105.8%   +17.9%     30    0.0%
+
+== Kịch bản cot-dien: Bóng cột điện (dải rộng 0,5 tấm) quét ngang
+   bảng tie / cot-dien: 61 mốc thời gian x 16 cấu hình (19 s)
+   bảng des / cot-dien: 61 mốc thời gian x 3025 cấu hình (5 s)
+
+   bộ sạc pwm   thuật toán                   E (Wh) % oracle    so SP    đổi    quét
+   [tie] cố định SP                       1.5965   100.0%    +0.0%      0    0.0%
+   [tie] cố định TCT                      1.5965   100.0%    +0.0%      0    0.0%
+   [tie] oracle (16 trạng thái)           1.5965   100.0%    +0.0%      0    0.0%
+   [tie] quét 16, 2 s, MOSFET             1.5965   100.0%    +0.0%    473   21.2%
+   [tie] quét 16, 5 s, MOSFET             1.5965   100.0%    +0.0%    189    8.5%
+   [tie] quét 16, 10 s, MOSFET            1.5965   100.0%    +0.0%     95    4.2%
+   [tie] quét 16, 30 s, MOSFET            1.5965   100.0%    +0.0%     32    1.4%
+   [tie] quét 16, 10 s, relay             1.5965   100.0%    +0.0%     94   19.6%
+   [tie] quét khi P đổi 5 %, MOSFET       1.5965   100.0%    +0.0%     96    4.3%
+   [tie] leo đồi 4 lân cận, 5 s           1.5965   100.0%    +0.0%     60    2.6%
+   [des] DES cố định TCT                  1.5965   100.0%    -0.0%      0    0.0%
+   [des] DES oracle (3025 cách)           1.5965   100.0%    -0.0%      0    0.0%
+   [des] DES EI min 3025, 2 s             1.5963   100.0%    -0.0%      3    0.0%
+   [des] DES EI min 3025, 2 s, sai số 5%   1.5921    99.7%    -0.3%     29    0.0%
+   [des] DES EI min 280, 2 s              1.5963   100.0%    -0.0%      3    0.0%
+   [des] DES tham lam, 2 s                1.5965   100.0%    -0.0%      0    0.0%
+   [des] DES theo mô hình, 2 s, sai số 5%   1.5921    99.7%    -0.3%     29    0.0%
+
+   bộ sạc mppt  thuật toán                   E (Wh) % oracle    so SP    đổi    quét
+   [tie] cố định SP                       2.0472   100.0%    +0.0%      0    0.0%
+   [tie] cố định TCT                      2.0472   100.0%    +0.0%      0    0.0%
+   [tie] oracle (16 trạng thái)           2.0472   100.0%    +0.0%      0    0.0%
+   [tie] quét 16, 2 s, MOSFET             2.0472   100.0%    +0.0%    473   21.2%
+   [tie] quét 16, 5 s, MOSFET             2.0472   100.0%    +0.0%    189    8.5%
+   [tie] quét 16, 10 s, MOSFET            2.0472   100.0%    +0.0%     95    4.2%
+   [tie] quét 16, 30 s, MOSFET            2.0472   100.0%    +0.0%     32    1.4%
+   [tie] quét 16, 10 s, relay             2.0472   100.0%    +0.0%     94   19.6%
+   [tie] quét khi P đổi 5 %, MOSFET       2.0472   100.0%    +0.0%     96    4.3%
+   [tie] leo đồi 4 lân cận, 5 s           2.0472   100.0%    +0.0%     60    2.6%
+   [des] DES cố định TCT                  2.0472   100.0%    +0.0%      0    0.0%
+   [des] DES oracle (3025 cách)           2.0472   100.0%    +0.0%      0    0.0%
+   [des] DES EI min 3025, 2 s             2.0472   100.0%    -0.0%      3    0.0%
+   [des] DES EI min 3025, 2 s, sai số 5%   2.0451    99.9%    -0.1%     29    0.0%
+   [des] DES EI min 280, 2 s              2.0472   100.0%    -0.0%      3    0.0%
+   [des] DES tham lam, 2 s                2.0472   100.0%    +0.0%      0    0.0%
+   [des] DES theo mô hình, 2 s, sai số 5%   2.0451    99.9%    -0.1%     29    0.0%
+
+   bộ sạc po    thuật toán                   E (Wh) % oracle    so SP    đổi    quét
+   [tie] cố định SP                       2.0451   100.0%    +0.0%      0    0.0%
+   [tie] cố định TCT                      2.0451   100.0%    +0.0%      0    0.0%
+   [tie] oracle (16 trạng thái)           2.0451   100.0%    +0.0%      0    0.0%
+   [tie] quét 16, 2 s, MOSFET             2.0451   100.0%    +0.0%    473   21.2%
+   [tie] quét 16, 5 s, MOSFET             2.0451   100.0%    +0.0%    188    8.5%
+   [tie] quét 16, 10 s, MOSFET            2.0451   100.0%    +0.0%     94    4.2%
+   [tie] quét 16, 30 s, MOSFET            2.0451   100.0%    +0.0%     31    1.4%
+   [tie] quét 16, 10 s, relay             2.0451   100.0%    +0.0%     94   19.6%
+   [tie] quét khi P đổi 5 %, MOSFET       2.0451   100.0%    +0.0%     95    4.3%
+   [tie] leo đồi 4 lân cận, 5 s           2.0451   100.0%    +0.0%     60    2.6%
+   [des] DES cố định TCT                  2.0451   100.0%    -0.0%      0    0.0%
+   [des] DES oracle (3025 cách)           2.0451   100.0%    -0.0%      0    0.0%
+   [des] DES EI min 3025, 2 s             2.0451   100.0%    -0.0%      3    0.0%
+   [des] DES EI min 3025, 2 s, sai số 5%   2.0430    99.9%    -0.1%     29    0.0%
+   [des] DES EI min 280, 2 s              2.0451   100.0%    -0.0%      3    0.0%
+   [des] DES tham lam, 2 s                2.0451   100.0%    -0.0%      0    0.0%
+   [des] DES theo mô hình, 2 s, sai số 5%   2.0430    99.9%    -0.1%     29    0.0%
+
+== Kịch bản dam-may: Đám mây tròn bán kính 1 tấm đi chéo
+   bảng tie / dam-may: 61 mốc thời gian x 16 cấu hình (29 s)
+   bảng des / dam-may: 61 mốc thời gian x 3025 cấu hình (6 s)
+
+   bộ sạc pwm   thuật toán                   E (Wh) % oracle    so SP    đổi    quét
+   [tie] cố định SP                       1.3797    99.6%    +0.0%      0    0.0%
+   [tie] cố định TCT                      1.3706    98.9%    -0.7%      0    0.0%
+   [tie] oracle (16 trạng thái)           1.3858   100.0%    +0.4%     10    0.0%
+   [tie] quét 16, 2 s, MOSFET             1.3806    99.6%    +0.1%    474   21.2%
+   [tie] quét 16, 5 s, MOSFET             1.3799    99.6%    +0.0%    189    8.5%
+   [tie] quét 16, 10 s, MOSFET            1.3738    99.1%    -0.4%     95    4.2%
+   [tie] quét 16, 30 s, MOSFET            1.3718    99.0%    -0.6%     32    1.4%
+   [tie] quét 16, 10 s, relay             1.3722    99.0%    -0.5%     93   19.6%
+   [tie] quét khi P đổi 5 %, MOSFET       1.3807    99.6%    +0.1%    302   13.5%
+   [tie] leo đồi 4 lân cận, 5 s           1.3795    99.5%    -0.0%     60    2.6%
+   [des] DES cố định TCT                  1.3706    93.6%    -0.7%      0    0.0%
+   [des] DES oracle (3025 cách)           1.4650   100.0%    +6.2%     17    0.0%
+   [des] DES EI min 3025, 2 s             1.4618    99.8%    +6.0%     11    0.0%
+   [des] DES EI min 3025, 2 s, sai số 5%   1.4573    99.5%    +5.6%     30    0.0%
+   [des] DES EI min 280, 2 s              1.4618    99.8%    +6.0%     11    0.0%
+   [des] DES tham lam, 2 s                1.4560    99.4%    +5.5%     13    0.0%
+   [des] DES theo mô hình, 2 s, sai số 5%   1.4573    99.5%    +5.6%     30    0.0%
+
+   bộ sạc mppt  thuật toán                   E (Wh) % oracle    so SP    đổi    quét
+   [tie] cố định SP                       1.7693    97.6%    +0.0%      0    0.0%
+   [tie] cố định TCT                      1.8125   100.0%    +2.4%      0    0.0%
+   [tie] oracle (16 trạng thái)           1.8125   100.0%    +2.4%      2    0.0%
+   [tie] quét 16, 2 s, MOSFET             1.8065    99.7%    +2.1%    468   21.2%
+   [tie] quét 16, 5 s, MOSFET             1.8092    99.8%    +2.3%    186    8.5%
+   [tie] quét 16, 10 s, MOSFET            1.8081    99.8%    +2.2%     93    4.2%
+   [tie] quét 16, 30 s, MOSFET            1.8055    99.6%    +2.0%     31    1.4%
+   [tie] quét 16, 10 s, relay             1.7927    98.9%    +1.3%     93   19.6%
+   [tie] quét khi P đổi 5 %, MOSFET       1.8039    99.5%    +2.0%    267   12.1%
+   [tie] leo đồi 4 lân cận, 5 s           1.8033    99.5%    +1.9%     79    3.5%
+   [des] DES cố định TCT                  1.8126    94.7%    +2.4%      0    0.0%
+   [des] DES oracle (3025 cách)           1.9133   100.0%    +8.1%     17    0.0%
+   [des] DES EI min 3025, 2 s             1.9106    99.9%    +8.0%     11    0.0%
+   [des] DES EI min 3025, 2 s, sai số 5%   1.9067    99.7%    +7.8%     30    0.0%
+   [des] DES EI min 280, 2 s              1.9106    99.9%    +8.0%     11    0.0%
+   [des] DES tham lam, 2 s                1.9065    99.6%    +7.8%     13    0.0%
+   [des] DES theo mô hình, 2 s, sai số 5%   1.9067    99.7%    +7.8%     30    0.0%
+
+   bộ sạc po    thuật toán                   E (Wh) % oracle    so SP    đổi    quét
+   [tie] cố định SP                       1.7674    97.6%    +0.0%      0    0.0%
+   [tie] cố định TCT                      1.8105   100.0%    +2.4%      0    0.0%
+   [tie] oracle (16 trạng thái)           1.8105   100.0%    +2.4%      2    0.0%
+   [tie] quét 16, 2 s, MOSFET             1.8045    99.7%    +2.1%    470   21.2%
+   [tie] quét 16, 5 s, MOSFET             1.8081    99.9%    +2.3%    188    8.5%
+   [tie] quét 16, 10 s, MOSFET            1.8093    99.9%    +2.4%     93    4.2%
+   [tie] quét 16, 30 s, MOSFET            1.8035    99.6%    +2.0%     30    1.4%
+   [tie] quét 16, 10 s, relay             1.7945    99.1%    +1.5%     93   19.6%
+   [tie] quét khi P đổi 5 %, MOSFET       1.8052    99.7%    +2.1%    284   12.8%
+   [tie] leo đồi 4 lân cận, 5 s           1.8021    99.5%    +2.0%     79    3.5%
+   [des] DES cố định TCT                  1.8105    94.7%    +2.4%      0    0.0%
+   [des] DES oracle (3025 cách)           1.9111   100.0%    +8.1%     17    0.0%
+   [des] DES EI min 3025, 2 s             1.9085    99.9%    +8.0%     11    0.0%
+   [des] DES EI min 3025, 2 s, sai số 5%   1.9044    99.6%    +7.8%     30    0.0%
+   [des] DES EI min 280, 2 s              1.9085    99.9%    +8.0%     11    0.0%
+   [des] DES tham lam, 2 s                1.9044    99.6%    +7.7%     13    0.0%
+   [des] DES theo mô hình, 2 s, sai số 5%   1.9044    99.6%    +7.8%     30    0.0%
+
+Đã ghi results/arr05_summary.csv, results/arr05_traces.mat
+ELAPSED run_arr05 156.8 s
+[Warning: Graphics acceleration hardware is unavailable. Graphics quality and performance might be diminished. See <a
+href="https://www.mathworks.com/support/requirements/matlab-system-requirements.html">MATLAB System Requirements</a>.] 
+[> In alternatePrintPath
+In print (line 56)
+In plot_arr05 (line 30)] 
+Đã ghi hình mức 2 vào results/fig/
+PLOT OK

@@ -14,7 +14,7 @@ Cần: MATLAB + Simulink + Simscape + Simscape Electrical. Tùy chọn: Parallel
 > - Simulink mức 1 (16 trạng thái × 9 ca): **ĐẠT**, lệch Pmax/Pbat ≤ 0,04 %. Ứng suất công tắc: 2,51 A / 7,58 V, khớp tham chiếu.
 > - Simulink mức 3 (quá độ): đã chạy, xem `transient_simulink.csv`, `fig/`.
 > - Simulink DES: 9/10 cấu hình đạt; `mot-tam` chia hàng 4-4-1 lệch Pbat 1,5 % (79,15 so với 80,36 W), chưa rõ nguyên nhân.
-> - Mức 2: mới chạy thử luồng code, chưa có kết quả đầy đủ.
+> - Mức 2 (30/10/2026, V_pin = 13 V): 4 công tắc chỉ hơn SP cố định ≤ 1 % khi bóng di chuyển; DES +6–10 %. Chi tiết: [`docs/progress/undone/02`](../docs/progress/undone/02-chay-muc-2-day-du.md), `results/arr05_summary.csv`.
 > - Sửa cho R2026b: Solar Cell dùng mô hình 8 tham số (mô hình 5 tham số bỏ qua Rp); Diode chuyển sang biến thể `physical`; ô popup dạng enum chuỗi (`sl_set`); Simscape log bật sau khi có block (`sl_simlog_on`); điện áp Solar Cell lấy từ p.v − n.v (`sl_log_v`); tắt `parsim` mặc định (`cfg.parallel`).
 
 ## Các mức mô phỏng

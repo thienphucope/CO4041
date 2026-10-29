@@ -2,10 +2,6 @@
 .tinytex/
 .miktex/
 
-# Portable GNU Octave (MATLAB-compatible), in-project
-.octave/
-.octave-dl.7z*
-
 # LaTeX build artifacts
 report/proposal/*.aux
 report/proposal/*.log
@@ -26,3 +22,6 @@ docs/references/*.mov
 
 # Model Simulink sinh ra từ code (sl_build_model dựng lại được)
 pvreconfig-sim/models/
+
+# Bảng công suất mức 2 lưu đệm (arr05_table dựng lại được)
+pvreconfig-sim/results/cache/

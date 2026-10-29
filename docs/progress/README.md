@@ -2,7 +2,7 @@
 
 GĐ1 (môn CO4041): **PCB mạch chuyển cấu hình dàn PV 3 × 3 + mô phỏng thuật toán trên MATLAB** (chốt 05/10/2026, xem [`docs/info/qa2.md`](../info/qa2.md)).
 
-**Cập nhật:** 13/10/2026 (tối: chạy xong Simulink lần đầu) · **Cài MATLAB:** [`docs/info/cai-dat-matlab.md`](../info/cai-dat-matlab.md)
+**Cập nhật:** 30/10/2026 (chạy đủ mức 2; bộ sạc xác nhận PWM; dọn repo) · **Cài MATLAB:** [`docs/info/cai-dat-matlab.md`](../info/cai-dat-matlab.md)
 
 **Quy ước:**
 - Mỗi task là một file Markdown. `done/` chứa việc đã xong, `undone/` chứa việc còn lại.
@@ -20,7 +20,7 @@ GĐ1 (môn CO4041): **PCB mạch chuyển cấu hình dàn PV 3 × 3 + mô phỏ
 | 06 | [DES dạng tĩnh (mức 4): 3025 cách chia hàng, chọn theo EI / tham lam](done/06-des-tinh-muc-4.md) | Xong, đã kiểm chứng |
 | 07 | [Tài liệu bàn giao Simulink + danh sách gói cần cài](done/07-tai-lieu-ban-giao-simulink.md) | Xong |
 | 08 | [Code dựng và chạy model Simulink (mức 1, 3, 4)](done/08-code-simulink.md) | Xong, đã chạy 13/10 (xem 10) |
-| 09 | [Code mức 2: bóng di chuyển + thuật toán (ARR-05)](done/09-code-muc-2-arr05.md) | Code xong, **chưa có kết quả đầy đủ** |
+| 09 | [Code mức 2: bóng di chuyển + thuật toán (ARR-05)](done/09-code-muc-2-arr05.md) | Code xong; chạy đủ 30/10 ở 13 V, xem [undone/02](undone/02-chay-muc-2-day-du.md) |
 | 10 | [Chạy Simulink lần đầu trên R2026b: PV-01..04, mức 1, 1b, 3 đạt; DES 9/10](done/10-chay-simulink.md) | Xong 13/10, còn việc phụ ở undone/01 |
 
 ## Chưa làm — [`undone/`](undone/)

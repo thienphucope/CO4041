@@ -49,7 +49,7 @@ Dải an toàn Li-ion theo Ref 2 (dẫn [8,9], Trang 1): **áp cell 2.5–4.2 V*
 - Ngưỡng lấy từ [[core-soc]] (áp cell) + [[core-thermal]] (nhiệt) + C-rate (dòng).
 
 ## 6. Còn mở
-- Ngưỡng cụ thể phụ thuộc **loại pin chưa chốt** ([`../../plan/proposal.md`](../../plan/proposal.md) B3): LiFePO4 (2.5–3.65 V/cell) vs SLA (dải khác). → Tra datasheet rồi chốt bảng ngưỡng.
+- Ngưỡng cụ thể phụ thuộc **loại pin chưa chốt** (kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026) B3): LiFePO4 (2.5–3.65 V/cell) vs SLA (dải khác). → Tra datasheet rồi chốt bảng ngưỡng.
 - Dùng IC bảo vệ sẵn (vd BQ769x, DW01) hay tự làm bằng MCU+MOSFET — quyết theo hướng "tự làm thuật toán" (KTMT) của đề tài.
 
 *Cập nhật: 2026-09-10.*

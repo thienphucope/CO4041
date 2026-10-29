@@ -172,18 +172,11 @@ Kết quả cần đưa vào báo cáo: bảng `Pmax` và `Pbat` (ca × cấu h�
 
 ---
 
-## 8. Cách không cần Simulink (chạy cả trên Octave)
+## 8. Cách không cần Simulink (mô hình tham chiếu)
 
-Viết hàm `I = pv_module(V, G)` giải phương trình một diode cho 1 tấm, có thêm diode bypass. Sau đó:
-- **SP:** mỗi chuỗi có chung một dòng → cộng điện áp 3 tấm theo dòng; 3 chuỗi chung điện áp → cộng dòng.
-- **TCT:** mỗi hàng chung điện áp → cộng dòng 3 tấm; 3 hàng chung dòng → cộng điện áp.
-- **Trạng thái nối chéo một phần:** phải giải hệ phương trình nút (`fsolve`).
+Đã làm trong `pvreconfig-sim/reference/`: `pv_module_current.m` giải phương trình một diode cho 1 tấm, có diode bypass; `pv_array_iv.m` giải hệ phương trình nút cho mọi trạng thái công tắc, kể cả nối chéo một phần. Chạy bằng MATLAB lõi, dùng để **đối chiếu** với Simulink (`sl_compare`).
 
-Cách này nhanh và không cần license, nhưng tự viết bộ giải cho trạng thái nối chéo một phần khó hơn. Nên dùng nó để **đối chiếu** SP và TCT với Simulink.
-
-**Octave đã cài sẵn trong dự án** (portable, đã gitignore): `.octave/octave-11.3.0-w64/`.
-- Giao diện đồ họa: chạy `.octave\octave-11.3.0-w64\octave.vbs`.
-- Dòng lệnh: `.octave\octave-11.3.0-w64\mingw64\bin\octave-cli.exe --eval "run('sim/ten_script.m')"`.
+Dự án không dùng Octave nữa (từ 12/10/2026); thư mục `.octave/` đã xoá ngày 30/10/2026.
 
 *Nguồn tham số block:* [MathWorks — Solar Cell block](https://au.mathworks.com/help/sps/ref/solarcell.html).
 

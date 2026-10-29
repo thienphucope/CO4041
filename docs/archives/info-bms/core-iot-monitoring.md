@@ -1,7 +1,7 @@
 # Core — IoT giám sát & chuyển nguồn hybrid (ESP32 + ThingSpeak + DPDT)
 
 > **Cái gì:** thu thập V/I/P/nhiệt + SoC → đẩy lên cloud để xem/điều khiển từ xa; và chuyển nguồn PV ↔ điện lưới để cấp điện liên tục.
-> **Tại sao quan trọng với đồ án:** trụ "IoT" của đề tài ([`../../specifications/specs.md`](../../specifications/specs.md)); làm **sau mốc proposal** (vẫn trong 4041), nhưng kiến trúc bám Ref 2. **Điểm khác biệt #3** = IoT **hai chiều** ([`../../plan/proposal.md`](../../plan/proposal.md) B7.3).
+> **Tại sao quan trọng với đồ án:** trụ "IoT" của đề tài ([`../../specifications/specs.md`](../../specifications/specs.md)); làm **sau mốc proposal** (vẫn trong 4041), nhưng kiến trúc bám Ref 2. **Điểm khác biệt #3** = IoT **hai chiều** (kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026) B7.3).
 > **Nguồn:** Ref 2 — Kulkarni 2025 ([`../../references/extracted/02-bms-iot/02-bms-iot.md`](../../references/extracted/02-bms-iot/02-bms-iot.md)).
 > Liên quan: [[core-soc]] · [[core-thermal]] · [[core-protection]]
 
@@ -31,7 +31,7 @@ Thành phần: **PV + nguồn lưới → DPDT → BMS → controller → IoT**.
 - BMS đo: loại pin, **V, nhiệt độ, công suất tiêu thụ, SoC, chu kỳ sạc**; theo dõi SoH.
 → Sơ đồ hệ Fig. 1: [`../../references/extracted/02-bms-iot/images/p02-img01-x75.jpeg`](../../references/extracted/02-bms-iot/images/p02-img01-x75.jpeg) · Sơ đồ mạch Fig. 2: [`../../references/extracted/02-bms-iot/images/p03-img01-x86.jpeg`](../../references/extracted/02-bms-iot/images/p03-img01-x86.jpeg)
 
-**Sơ đồ khối nhóm đề xuất** ([`../../plan/proposal.md`](../../plan/proposal.md) B4): PV → charge controller → battery + BMS → tải; nhánh cảm biến (V/I/P) → ESP32 → IoT/app.
+**Sơ đồ khối nhóm đề xuất** (kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026) B4): PV → charge controller → battery + BMS → tải; nhánh cảm biến (V/I/P) → ESP32 → IoT/app.
 
 ## 3. Luồng dữ liệu (Ref 2, Trang 3–4)
 ```
@@ -50,11 +50,11 @@ ThingSpeak vẽ đồ thị **sạc/xả real-time** từng cell; app hiện c�
 - Lưu ý Ref 2: đo áp có **sai số %** → **bắt buộc hiệu chuẩn (calibration)** (Table 1).
 
 ## 5. Điểm khác biệt nhóm đề xuất
-- **IoT hai chiều** (không chỉ dashboard xem): **điều khiển ngược** (bật/tắt tải, đổi nguồn, đặt ngưỡng) + **cảnh báo chủ động** (quá nhiệt/thấp áp) ([`../../plan/proposal.md`](../../plan/proposal.md) B7.3). Ref 2 chủ yếu **một chiều** (đẩy lên xem).
+- **IoT hai chiều** (không chỉ dashboard xem): **điều khiển ngược** (bật/tắt tải, đổi nguồn, đặt ngưỡng) + **cảnh báo chủ động** (quá nhiệt/thấp áp) (kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026) B7.3). Ref 2 chủ yếu **một chiều** (đẩy lên xem).
 - **Định lượng "chi phí tối ưu"** (BOM + so sánh) — bám tên đề tài (B7.4).
 
 ## 6. Áp dụng vào đồ án
-- **Ở proposal:** chủ yếu **mô tả kiến trúc + chọn nền tảng** (ThingSpeak theo Ref 2) + nêu điểm khác biệt. **IoT/app triển khai sau mốc proposal** (vẫn trong 4041) ([`../../plan/proposal.md`](../../plan/proposal.md) B4).
+- **Ở proposal:** chủ yếu **mô tả kiến trúc + chọn nền tảng** (ThingSpeak theo Ref 2) + nêu điểm khác biệt. **IoT/app triển khai sau mốc proposal** (vẫn trong 4041) (kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026) B4).
 - DPDT (chuyển nguồn) & inverter thuộc 4041 nhưng triển khai sau mốc proposal.
 
 ## 7. Còn mở

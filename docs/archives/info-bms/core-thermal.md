@@ -1,7 +1,7 @@
 # Core — Giám sát nhiệt độ & quản lý nhiệt (thermal / BTMS)
 
 > **Cái gì:** đo nhiệt độ pack bằng cảm biến (LM35), cảnh báo/ngắt khi quá nhiệt, có thể kích làm mát. Mạch tham khảo **thiếu hẳn** cảm biến nhiệt dù thầy yêu cầu đo nhiệt → nhóm lấp.
-> **Tại sao quan trọng với đồ án:** 1 trong 4 khối BMS thầy chốt ([`qa1.md`](../../info/qa1.md) §A1); là **điểm khác biệt #2** ([`../../plan/proposal.md`](../../plan/proposal.md) B7.2).
+> **Tại sao quan trọng với đồ án:** 1 trong 4 khối BMS thầy chốt ([`qa1.md`](../../info/qa1.md) §A1); là **điểm khác biệt #2** (kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026) B7.2).
 > **Nguồn:** Ref 2 — Kulkarni 2025 ([`../../references/extracted/02-bms-iot/02-bms-iot.md`](../../references/extracted/02-bms-iot/02-bms-iot.md)) + datasheet LM35.
 > Liên quan: [[core-protection]] · [[core-soc]] · [[core-iot-monitoring]]
 
@@ -37,14 +37,14 @@
 
 ## 5. Ref 2 làm gì (đối chiếu) & lỗ hổng mạch tham khảo
 - Ref 2 **có** LM35 + giám sát nhiệt liên tục + cooling system + đẩy IoT → khuôn mẫu tốt cho nhóm.
-- ⚠️ Nhưng **mạch BMS nhóm khoá trước** ([`../../plan/proposal.md`](../../plan/proposal.md) B6) **THIẾU cảm biến nhiệt** dù thầy yêu cầu đo nhiệt → **đây là chỗ nhóm thêm LM35 + bảo vệ quá nhiệt để khác biệt** (B7.2).
+- ⚠️ Nhưng **mạch BMS nhóm khoá trước** (kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026) B6) **THIẾU cảm biến nhiệt** dù thầy yêu cầu đo nhiệt → **đây là chỗ nhóm thêm LM35 + bảo vệ quá nhiệt để khác biệt** (B7.2).
 
 ## 6. Áp dụng vào đồ án
 - **Ở proposal (mức concept):** khối đo nhiệt = LM35 → ADC MCU → so ngưỡng → cảnh báo/ngắt + đẩy IoT. Nêu phương pháp, mô phỏng chức năng Proteus.
 - Nhiệt độ cũng là input để **bảo vệ** ([[core-protection]]) và ảnh hưởng ước lượng SoC ([[core-soc]]).
 
 ## 7. Còn mở
-- Ngưỡng nhiệt cụ thể **theo loại pin chưa chốt** ([`../../plan/proposal.md`](../../plan/proposal.md) B3) — tra datasheet.
+- Ngưỡng nhiệt cụ thể **theo loại pin chưa chốt** (kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026) B3) — tra datasheet.
 - LM35 (analog) vs cảm biến số (DS18B20, NTC) — chọn sau; Ref 2 dùng LM35 nên bám theo cho nhất quán.
 
 *Cập nhật: 2026-09-10.*

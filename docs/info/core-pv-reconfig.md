@@ -3,7 +3,7 @@
 > **Cập nhật phạm vi 23/09/2026:** Thầy đã chốt PV reconfiguration là trọng tâm GĐ1: dàn 3 × 3, PCB chuyển cấu hình và mô phỏng MATLAB. Các đoạn dưới mô tả kế hoạch proposal cũ; xem [ghi nhận buổi họp](qa2.md) và [hub tài liệu PV mới](../references/references.md) để thiết kế tiếp.
 
 > **Cái gì:** thuật toán **đổi nối dàn pin** lúc vận hành để cân bằng bức xạ giữa các hàng → giảm tổn hao do bóng râm → tăng công suất.
-> **Tại sao quan trọng với đồ án:** chính là **"thuật toán PV array configuration"** thầy dặn **tìm hiểu** ([`qa1.md`](qa1.md) §A1, §B.1). Ở mốc proposal chỉ cần *tìm hiểu* (lý thuyết + tóm tắt), chưa bắt buộc mô phỏng ([`../plan/proposal.md`](../plan/proposal.md) A1.4, B2).
+> **Tại sao quan trọng với đồ án:** chính là **"thuật toán PV array configuration"** thầy dặn **tìm hiểu** ([`qa1.md`](qa1.md) §A1, §B.1). Ở mốc proposal chỉ cần *tìm hiểu* (lý thuyết + tóm tắt), chưa bắt buộc mô phỏng (kế hoạch cũ `docs/plan/proposal.md` (đã xoá 30/10/2026) A1.4, B2).
 > **Nguồn chính:** Ref 3 — Ngo & Nguyen 2018 ([`../references/extracted/03-pv-reconfig/03-pv-reconfig.md`](../references/extracted/03-pv-reconfig/03-pv-reconfig.md)).
 > Liên quan: [[core-partial-shading]] · [[core-pv-model]]
 
