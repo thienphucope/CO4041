@@ -44,7 +44,8 @@ h1{font-family:var(--f-display);font-weight:700;font-size:clamp(28px,4vw,40px);l
 .stage canvas{display:block;width:100%;height:100%;touch-action:none}
 .stage .hint{position:absolute;left:12px;bottom:10px;right:12px;font-size:12px;color:var(--muted);pointer-events:none;display:flex;gap:14px;flex-wrap:wrap}
 .stage .reset{position:absolute;right:10px;top:10px;font:500 12px var(--f-body);padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
-.side{display:grid;gap:14px;min-width:0}
+.side,.left{display:grid;gap:14px;min-width:0}
+@media (max-width:900px){.left{display:contents}.left>.card{order:2}}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:12px;min-width:0}
 .lbl{font:600 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 select{font:500 15px var(--f-body);padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
@@ -78,6 +79,27 @@ svg text{font-family:var(--f-mono)}
 .legend div{display:flex;gap:8px;align-items:flex-start}
 .sw-dot{flex:none;width:14px;height:14px;border-radius:3px;margin-top:3px}
 button:focus-visible,select:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:6px}
+.kv div{display:grid;padding:6px 10px;border-radius:8px;background:var(--bg);font:600 13px var(--f-mono);font-variant-numeric:tabular-nums}
+.kv span{font:400 11px var(--f-body);color:var(--muted)}
+.probe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.pb{display:grid;gap:1px;padding:7px 9px;border-radius:8px;background:var(--bg);font:400 12px var(--f-mono);font-variant-numeric:tabular-nums}
+.pb b{font:600 13px var(--f-display)}
+.pb.byp{box-shadow:inset 0 0 0 1.5px var(--warn)} .pb .t{color:var(--warn);font-weight:600}
+.tblwrap{overflow-x:auto}
+table.all{width:100%;min-width:760px;border-collapse:separate;border-spacing:3px;font:400 13px var(--f-mono);font-variant-numeric:tabular-nums}
+table.all th{font:600 12px var(--f-body);color:var(--muted);padding:4px 6px;text-align:center}
+table.all th.grp{font:600 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;border-bottom:2px solid var(--line)}
+table.all td{padding:7px 8px;text-align:right;background:var(--bg);border-radius:6px;cursor:pointer}
+table.all td:hover{box-shadow:inset 0 0 0 1px var(--copper)}
+table.all td.case{text-align:left;background:none;cursor:default;font:600 13px var(--f-body);white-space:nowrap}
+table.all td.case:hover{box-shadow:none}
+table.all td.best{background:var(--ok);color:var(--surface);font-weight:600}
+table.all td.worse{color:var(--warn);font-weight:600}
+table.all td.cur{box-shadow:inset 0 0 0 2px var(--copper)}
+table.all td.case span.cw{display:flex;align-items:center;gap:8px}
+.mini{display:grid;flex:none;grid-template-columns:repeat(3,7px);gap:1px}
+.mini i{width:7px;height:7px;border-radius:1px}
 .src{font-size:12px;color:var(--muted)}
 </style>
 </head>
@@ -97,9 +119,18 @@ button:focus-visible,select:focus-visible{outline:2px solid var(--copper);outlin
   </div>
 
   <div class="main">
-    <div class="stage" id="stage">
-      <button class="reset" id="resetView" type="button">Góc nhìn ban đầu</button>
-      <div class="hint" id="hint"></div>
+    <div class="left">
+      <div class="stage" id="stage">
+        <button class="reset" id="resetView" type="button">Góc nhìn ban đầu</button>
+        <div class="hint" id="hint"></div>
+      </div>
+
+      <div class="card">
+        <div class="lbl" id="probeTitle">Probe</div>
+        <div class="kv" id="probeKv"></div>
+        <div class="probe" id="probeGrid"></div>
+        <p class="note" id="probeNote"></p>
+      </div>
     </div>
 
     <div class="side">
@@ -130,12 +161,20 @@ button:focus-visible,select:focus-visible{outline:2px solid var(--copper);outlin
         <div class="hwline" id="hwline"></div>
       </div>
 
+
       <div class="card">
         <div class="lbl" id="chartTitle">Pmax của 16 trạng thái</div>
         <div id="chart"></div>
         <p class="note" id="chartNote"></p>
       </div>
     </div>
+  </div>
+
+  <div class="card">
+    <div class="lbl">Tất cả ca che × cấu hình</div>
+    <div class="row" id="allMetric"></div>
+    <div class="tblwrap"><table class="all" id="allTbl"></table></div>
+    <p class="note" id="allNote"></p>
   </div>
 
   <div class="card">
@@ -148,7 +187,7 @@ button:focus-visible,select:focus-visible{outline:2px solid var(--copper);outlin
       <div><span class="sw-dot" style="background:var(--flow)"></span><span>Mũi tên chạy dọc dây: chiều dòng điện quy ước (từ cực + của tấm ra ngoài, về bộ sạc, quay lại cực −). Chạy càng nhanh thì dòng càng lớn; số ampe ghi trên từng tấm và từng công tắc. Ở DES, mũi tên mang màu của hàng; trên thanh N1 và N2 mũi tên xen kẽ hai màu vì dòng của hai hàng gặp nhau ở đó.</span></div>
       <div><span class="sw-dot" style="background:#3b4a55"></span><span>Tấm càng tối là càng ít nắng. Số W/m² ghi trên từng tấm.</span></div>
     </div>
-    <p class="src">Số liệu chế độ 4 công tắc lấy từ lần chạy Simulink ngày 13/10/2026 (khớp mô hình tham chiếu). Chế độ DES tính ngay trên trang bằng mô hình tham chiếu một diode + diode bypass, khớp <code>des_summary.csv</code>.</p>
+    <p class="src">Số liệu chế độ 4 công tắc lấy từ lần chạy Simulink ngày 13/10/2026 (khớp mô hình tham chiếu). Chế độ DES tính ngay trên trang bằng mô hình tham chiếu một diode + diode bypass, khớp <code>des_summary.csv</code>. Thẻ probe giải mạch ngay trên trang tại điểm làm việc đang chọn; bảng tất cả ca tính sẵn bằng cùng bộ giải.</p>
   </div>
 </div>
 
@@ -1226,7 +1265,9 @@ const CASES = [
 ];
 const ARR = {"deu":{"P":[135.0,135.0,135.0,135.0,135.0,135.0,135.0,135.0,135.0,135.0,135.0,135.0,135.0,135.0,135.0,135.0],"B":[104.71,104.71,104.71,104.71,104.71,104.71,104.71,104.71,104.71,104.71,104.71,104.71,104.71,104.71,104.71,104.71]},"mot-tam":{"P":[103.84,105.82,105.82,107.23,105.82,107.63,107.95,109.27,105.82,107.95,107.63,109.27,107.23,109.27,109.27,111.1],"B":[91.06,86.16,86.16,83.12,86.16,81.86,81.46,81.69,86.16,81.46,81.86,81.69,83.12,81.69,81.69,82.22]},"hai-tam":{"P":[88.64,87.45,88.64,87.36,87.45,86.03,87.36,86.03,102.61,104.27,104.31,105.48,102.58,104.27,104.27,105.48],"B":[77.41,72.51,77.41,71.91,72.51,68.21,72.45,67.44,79.99,80.22,80.2,80.4,80.01,80.22,80.22,80.4]},"hang-1":{"P":[85.86,85.86,85.86,85.86,85.86,85.86,85.86,85.86,85.86,85.86,85.86,85.86,85.86,85.86,85.86,85.86],"B":[63.75,63.75,63.75,63.75,63.75,63.75,63.75,63.75,63.75,63.75,63.75,63.75,63.75,63.75,63.75,63.75]},"cot-1":{"P":[100.99,100.99,100.99,100.99,100.99,100.99,100.99,100.99,100.99,100.99,100.99,100.99,100.99,100.99,100.99,100.99],"B":[79.69,79.69,79.69,79.69,79.69,79.69,79.69,79.69,79.69,79.69,79.69,79.69,79.69,79.69,79.69,79.69]},"cheo":{"P":[85.86,71.43,85.86,74.29,85.86,73.23,85.86,76.58,71.43,100.98,73.23,100.98,74.29,100.98,76.58,100.98],"B":[63.75,66.34,63.75,59.95,63.75,66.54,63.75,59.29,66.34,79.69,66.54,79.69,59.95,79.69,59.29,79.69]},"goc-2x2":{"P":[70.53,72.05,70.53,72.19,70.39,72.05,70.39,72.19,70.53,72.02,70.53,72.19,70.33,72.02,70.33,72.19],"B":[55.23,55.46,55.23,55.47,55.26,55.46,55.26,55.47,55.23,55.46,55.23,55.47,55.26,55.46,55.26,55.47]},"bong-dai":{"P":[81.78,81.78,81.78,81.78,81.78,81.78,81.78,81.78,81.78,81.78,81.78,81.78,81.78,81.78,81.78,81.78],"B":[65.4,65.4,65.4,65.4,65.4,65.4,65.4,65.4,65.4,65.4,65.4,65.4,65.4,65.4,65.4,65.4]},"ngau-nhien":{"P":[56.33,57.84,56.59,58.96,62.12,62.22,74.11,74.85,62.22,62.27,72.53,77.1,62.53,62.61,76.62,78.72],"B":[42.95,47.86,43.04,45.18,50.62,50.64,58.38,58.72,47.65,47.61,57.03,60.64,48.0,47.98,59.45,61.21]}};
 const DESB = {"deu":{"eq":"11 23 33 | 13 21 32 | 12 22 31","all":"11 23 33 | 13 21 32 | 12 22 31"},"mot-tam":{"eq":"11 23 33 | 13 21 32 | 12 22 31","all":"11 13 23 33 | 12 21 31 32 | 22"},"hai-tam":{"eq":"11 23 33 | 13 21 32 | 12 22 31","all":"11 23 33 | 13 21 32 | 12 22 31"},"hang-1":{"eq":"11 23 33 | 13 21 32 | 12 22 31","all":"11 23 33 | 13 21 32 | 12 22 31"},"cot-1":{"eq":"11 23 33 | 13 21 32 | 12 22 31","all":"11 23 33 | 13 21 32 | 12 22 31"},"cheo":{"eq":"11 13 23 | 21 32 33 | 12 22 31","all":"11 13 23 | 21 32 33 | 12 22 31"},"goc-2x2":{"eq":"11 23 33 | 13 21 32 | 12 22 31","all":"11 12 21 22 33 | 23 31 | 13 32"},"bong-dai":{"eq":"11 32 33 | 21 22 23 | 12 13 31","all":"11 32 33 | 21 22 23 | 12 13 31"},"ngau-nhien":{"eq":"11 12 31 | 13 21 32 | 22 23 33","all":"11 12 31 | 13 21 32 | 22 23 33"}};
-const NAMED = {0:'SP',15:'TCT',9:'BL',6:'HC?'};
+// Bảng 9 ca × 7 cấu hình (V, I, P, tấm bypass, dòng công tắc) tính sẵn bằng bộ giải bên dưới; best4/des: [chọn theo Pmax, chọn theo 13 V]
+const TAB = {"deu":{"SP":{"s":0,"mpp":{"V":18,"I":7.5,"P":135,"byp":[],"ipmax":2.5,"sw":[0,0,0,0]},"bat":{"V":13,"I":8.05,"P":104.71,"byp":[],"ipmax":2.68,"sw":[0,0,0,0]}},"TCT":{"s":15,"mpp":{"V":18,"I":7.5,"P":135,"byp":[],"ipmax":2.5,"sw":[0,0,0,0]},"bat":{"V":13,"I":8.05,"P":104.71,"byp":[],"ipmax":2.68,"sw":[0,0,0,0]}},"BL":{"s":9,"mpp":{"V":18,"I":7.5,"P":135,"byp":[],"ipmax":2.5,"sw":[0,0,0,0]},"bat":{"V":13,"I":8.05,"P":104.71,"byp":[],"ipmax":2.68,"sw":[0,0,0,0]}},"HC":{"s":6,"mpp":{"V":18,"I":7.5,"P":135,"byp":[],"ipmax":2.5,"sw":[0,0,0,0]},"bat":{"V":13,"I":8.05,"P":104.71,"byp":[],"ipmax":2.68,"sw":[0,0,0,0]}},"best4":{"s":[0,0],"mpp":{"V":18,"I":7.5,"P":135,"byp":[],"ipmax":2.5,"sw":[0,0,0,0]},"bat":{"V":13,"I":8.05,"P":104.71,"byp":[],"ipmax":2.68,"sw":[0,0,0,0]}},"des3":{"rows":["11 23 33 | 13 21 32 | 12 22 31","11 23 33 | 13 21 32 | 12 22 31"],"mpp":{"V":18,"I":7.5,"P":135,"byp":[],"ipmax":2.5},"bat":{"V":13,"I":8.05,"P":104.71,"byp":[],"ipmax":2.68}},"desF":{"rows":["11 23 33 | 13 21 32 | 12 22 31","11 23 33 | 13 21 32 | 12 22 31"],"mpp":{"V":18,"I":7.5,"P":135,"byp":[],"ipmax":2.5},"bat":{"V":13,"I":8.05,"P":104.71,"byp":[],"ipmax":2.68}}},"mot-tam":{"SP":{"s":0,"mpp":{"V":18.1,"I":5.74,"P":103.84,"byp":[],"ipmax":2.49,"sw":[0,0,0,0]},"bat":{"V":13,"I":7,"P":91.06,"byp":[4],"ipmax":2.68,"sw":[0,0,0,0]}},"TCT":{"s":15,"mpp":{"V":18.66,"I":5.95,"P":111.1,"byp":[],"ipmax":2.62,"sw":[0.64,-0.64,-0.64,0.64]},"bat":{"V":13,"I":6.32,"P":82.22,"byp":[],"ipmax":2.75,"sw":[0.64,-0.64,-0.64,0.64]}},"BL":{"s":9,"mpp":{"V":18.46,"I":5.85,"P":107.95,"byp":[],"ipmax":2.55,"sw":[0.9,0,0,0.9]},"bat":{"V":13,"I":6.27,"P":81.45,"byp":[4],"ipmax":2.7,"sw":[0.92,0,0,0.92]}},"HC":{"s":6,"mpp":{"V":18.46,"I":5.85,"P":107.95,"byp":[],"ipmax":2.55,"sw":[0,-0.9,-0.9,0]},"bat":{"V":13,"I":6.27,"P":81.45,"byp":[4],"ipmax":2.7,"sw":[0,-0.92,-0.92,0]}},"best4":{"s":[15,0],"mpp":{"V":18.66,"I":5.95,"P":111.1,"byp":[],"ipmax":2.62,"sw":[0.64,-0.64,-0.64,0.64]},"bat":{"V":13,"I":7,"P":91.06,"byp":[4],"ipmax":2.68,"sw":[0,0,0,0]}},"des3":{"rows":["11 23 33 | 13 21 32 | 12 22 31","11 23 33 | 13 21 22 | 12 31 32"],"mpp":{"V":18.66,"I":5.95,"P":111.1,"byp":[],"ipmax":2.62},"bat":{"V":13,"I":6.32,"P":82.22,"byp":[],"ipmax":2.75}},"desF":{"rows":["11 13 23 33 | 12 21 31 32 | 22","11 23 33 | 13 21 22 | 12 31 32"],"mpp":{"V":11.42,"I":9.97,"P":113.84,"byp":[4],"ipmax":9.97},"bat":{"V":13,"I":6.32,"P":82.22,"byp":[],"ipmax":2.75}}},"hai-tam":{"SP":{"s":0,"mpp":{"V":11.82,"I":7.5,"P":88.64,"byp":[0,4],"ipmax":2.69,"sw":[0,0,0,0]},"bat":{"V":13,"I":5.96,"P":77.42,"byp":[0,4],"ipmax":2.68,"sw":[0,0,0,0]}},"TCT":{"s":15,"mpp":{"V":18.14,"I":5.81,"P":105.48,"byp":[],"ipmax":2.58,"sw":[1.91,0,-0.64,0.64]},"bat":{"V":13,"I":6.18,"P":80.4,"byp":[],"ipmax":2.7,"sw":[1.92,0,-0.64,0.64]}},"BL":{"s":9,"mpp":{"V":18.1,"I":5.76,"P":104.27,"byp":[],"ipmax":2.6,"sw":[1.82,0,0,0.94]},"bat":{"V":13,"I":6.17,"P":80.22,"byp":[],"ipmax":2.7,"sw":[1.91,0,0,0.96]}},"HC":{"s":6,"mpp":{"V":11.66,"I":7.49,"P":87.37,"byp":[0,4],"ipmax":2.71,"sw":[0,-0.21,-0.1,0]},"bat":{"V":13,"I":5.57,"P":72.45,"byp":[0,4],"ipmax":2.7,"sw":[0,-0.81,-0.36,0]}},"best4":{"s":[11,11],"mpp":{"V":18.14,"I":5.81,"P":105.48,"byp":[],"ipmax":2.58,"sw":[1.91,0,-0.64,0.64]},"bat":{"V":13,"I":6.18,"P":80.4,"byp":[],"ipmax":2.7,"sw":[1.92,0,-0.64,0.64]}},"des3":{"rows":["11 23 33 | 13 21 32 | 12 22 31","11 23 33 | 13 21 32 | 12 22 31"],"mpp":{"V":18.14,"I":5.81,"P":105.48,"byp":[],"ipmax":2.58},"bat":{"V":13,"I":6.18,"P":80.4,"byp":[],"ipmax":2.7}},"desF":{"rows":["11 23 33 | 13 21 32 | 12 22 31","11 23 33 | 13 21 32 | 12 22 31"],"mpp":{"V":18.14,"I":5.81,"P":105.48,"byp":[],"ipmax":2.58},"bat":{"V":13,"I":6.18,"P":80.4,"byp":[],"ipmax":2.7}}},"hang-1":{"SP":{"s":0,"mpp":{"V":11.48,"I":7.48,"P":85.87,"byp":[0,1,2],"ipmax":2.49,"sw":[0,0,0,0]},"bat":{"V":13,"I":4.91,"P":63.77,"byp":[0,1,2],"ipmax":1.64,"sw":[0,0,0,0]}},"TCT":{"s":15,"mpp":{"V":11.48,"I":7.48,"P":85.87,"byp":[0,1,2],"ipmax":2.49,"sw":[0,0,0,0]},"bat":{"V":13,"I":4.91,"P":63.77,"byp":[0,1,2],"ipmax":1.64,"sw":[0,0,0,0]}},"BL":{"s":9,"mpp":{"V":11.48,"I":7.48,"P":85.87,"byp":[0,1,2],"ipmax":2.49,"sw":[0,0,0,0]},"bat":{"V":13,"I":4.91,"P":63.77,"byp":[0,1,2],"ipmax":1.64,"sw":[0,0,0,0]}},"HC":{"s":6,"mpp":{"V":11.48,"I":7.48,"P":85.87,"byp":[0,1,2],"ipmax":2.49,"sw":[0,0,0,0]},"bat":{"V":13,"I":4.91,"P":63.77,"byp":[0,1,2],"ipmax":1.64,"sw":[0,0,0,0]}},"best4":{"s":[0,0],"mpp":{"V":11.48,"I":7.48,"P":85.87,"byp":[0,1,2],"ipmax":2.49,"sw":[0,0,0,0]},"bat":{"V":13,"I":4.91,"P":63.77,"byp":[0,1,2],"ipmax":1.64,"sw":[0,0,0,0]}},"des3":{"rows":["11 23 33 | 13 21 32 | 12 22 31","11 23 33 | 13 21 32 | 12 22 31"],"mpp":{"V":17.72,"I":5.7,"P":100.99,"byp":[],"ipmax":2.53},"bat":{"V":13,"I":6.13,"P":79.69,"byp":[],"ipmax":2.68}},"desF":{"rows":["11 23 33 | 13 21 32 | 12 22 31","11 23 33 | 13 21 32 | 12 22 31"],"mpp":{"V":17.72,"I":5.7,"P":100.99,"byp":[],"ipmax":2.53},"bat":{"V":13,"I":6.13,"P":79.69,"byp":[],"ipmax":2.68}}},"cot-1":{"SP":{"s":0,"mpp":{"V":17.72,"I":5.7,"P":100.99,"byp":[],"ipmax":2.53,"sw":[0,0,0,0]},"bat":{"V":13,"I":6.13,"P":79.69,"byp":[],"ipmax":2.68,"sw":[0,0,0,0]}},"TCT":{"s":15,"mpp":{"V":17.72,"I":5.7,"P":100.99,"byp":[],"ipmax":2.53,"sw":[0,0,0,0]},"bat":{"V":13,"I":6.13,"P":79.69,"byp":[],"ipmax":2.68,"sw":[0,0,0,0]}},"BL":{"s":9,"mpp":{"V":17.72,"I":5.7,"P":100.99,"byp":[],"ipmax":2.53,"sw":[0,0,0,0]},"bat":{"V":13,"I":6.13,"P":79.69,"byp":[],"ipmax":2.68,"sw":[0,0,0,0]}},"HC":{"s":6,"mpp":{"V":17.72,"I":5.7,"P":100.99,"byp":[],"ipmax":2.53,"sw":[0,0,0,0]},"bat":{"V":13,"I":6.13,"P":79.69,"byp":[],"ipmax":2.68,"sw":[0,0,0,0]}},"best4":{"s":[0,0],"mpp":{"V":17.72,"I":5.7,"P":100.99,"byp":[],"ipmax":2.53,"sw":[0,0,0,0]},"bat":{"V":13,"I":6.13,"P":79.69,"byp":[],"ipmax":2.68,"sw":[0,0,0,0]}},"des3":{"rows":["11 23 33 | 13 21 32 | 12 22 31","11 23 33 | 13 21 32 | 12 22 31"],"mpp":{"V":17.72,"I":5.7,"P":100.99,"byp":[],"ipmax":2.53},"bat":{"V":13,"I":6.13,"P":79.69,"byp":[],"ipmax":2.68}},"desF":{"rows":["11 23 33 | 13 21 32 | 12 22 31","11 23 33 | 13 21 32 | 12 22 31"],"mpp":{"V":17.72,"I":5.7,"P":100.99,"byp":[],"ipmax":2.53},"bat":{"V":13,"I":6.13,"P":79.69,"byp":[],"ipmax":2.68}}},"cheo":{"SP":{"s":0,"mpp":{"V":11.48,"I":7.48,"P":85.87,"byp":[0,4,8],"ipmax":2.49,"sw":[0,0,0,0]},"bat":{"V":13,"I":4.91,"P":63.77,"byp":[0,4,8],"ipmax":1.64,"sw":[0,0,0,0]}},"TCT":{"s":15,"mpp":{"V":17.72,"I":5.7,"P":100.99,"byp":[],"ipmax":2.53,"sw":[1.91,0,0,1.91]},"bat":{"V":13,"I":6.13,"P":79.69,"byp":[],"ipmax":2.68,"sw":[1.92,0,0,1.92]}},"BL":{"s":9,"mpp":{"V":17.72,"I":5.7,"P":100.99,"byp":[],"ipmax":2.53,"sw":[1.91,0,0,1.91]},"bat":{"V":13,"I":6.13,"P":79.69,"byp":[],"ipmax":2.68,"sw":[1.92,0,0,1.92]}},"HC":{"s":6,"mpp":{"V":11.48,"I":7.48,"P":85.87,"byp":[0,4,8],"ipmax":2.49,"sw":[0,0,0,0]},"bat":{"V":13,"I":4.91,"P":63.77,"byp":[0,4,8],"ipmax":1.64,"sw":[0,0,0,0]}},"best4":{"s":[9,9],"mpp":{"V":17.72,"I":5.7,"P":100.99,"byp":[],"ipmax":2.53,"sw":[1.91,0,0,1.91]},"bat":{"V":13,"I":6.13,"P":79.69,"byp":[],"ipmax":2.68,"sw":[1.92,0,0,1.92]}},"des3":{"rows":["11 13 23 | 21 32 33 | 12 22 31","11 13 23 | 21 32 33 | 12 22 31"],"mpp":{"V":17.72,"I":5.7,"P":100.99,"byp":[],"ipmax":2.53},"bat":{"V":13,"I":6.13,"P":79.69,"byp":[],"ipmax":2.68}},"desF":{"rows":["11 13 23 | 21 32 33 | 12 22 31","11 13 23 | 21 32 33 | 12 22 31"],"mpp":{"V":17.72,"I":5.7,"P":100.99,"byp":[],"ipmax":2.53},"bat":{"V":13,"I":6.13,"P":79.69,"byp":[],"ipmax":2.68}}},"goc-2x2":{"SP":{"s":0,"mpp":{"V":17.88,"I":3.94,"P":70.53,"byp":[],"ipmax":2.52,"sw":[0,0,0,0]},"bat":{"V":13,"I":4.25,"P":55.23,"byp":[],"ipmax":2.68,"sw":[0,0,0,0]}},"TCT":{"s":15,"mpp":{"V":18.08,"I":3.99,"P":72.19,"byp":[],"ipmax":2.61,"sw":[0,0,0.64,1.28]},"bat":{"V":13,"I":4.27,"P":55.47,"byp":[],"ipmax":2.71,"sw":[0,0,0.64,1.28]}},"BL":{"s":9,"mpp":{"V":18.04,"I":3.99,"P":72.02,"byp":[],"ipmax":2.6,"sw":[0.02,0,0,0.96]},"bat":{"V":13,"I":4.27,"P":55.46,"byp":[],"ipmax":2.7,"sw":[0,0,0,0.96]}},"HC":{"s":6,"mpp":{"V":17.86,"I":3.94,"P":70.39,"byp":[],"ipmax":2.57,"sw":[0,0.08,0.01,0]},"bat":{"V":13,"I":4.25,"P":55.26,"byp":[],"ipmax":2.7,"sw":[0,0.02,0,0]}},"best4":{"s":[3,3],"mpp":{"V":18.08,"I":3.99,"P":72.19,"byp":[],"ipmax":2.61,"sw":[0,0,0.64,1.28]},"bat":{"V":13,"I":4.27,"P":55.47,"byp":[],"ipmax":2.71,"sw":[0,0,0.64,1.28]}},"des3":{"rows":["11 23 33 | 13 21 32 | 12 22 31","11 23 33 | 13 21 32 | 12 22 31"],"mpp":{"V":18.5,"I":4.09,"P":75.63,"byp":[],"ipmax":2.64},"bat":{"V":13,"I":4.4,"P":57.22,"byp":[],"ipmax":2.75}},"desF":{"rows":["11 12 21 22 33 | 23 31 | 13 32","11 12 21 22 33 | 23 31 | 13 32"],"mpp":{"V":17.76,"I":5.06,"P":89.78,"byp":[],"ipmax":2.54},"bat":{"V":13,"I":5.39,"P":70.1,"byp":[],"ipmax":2.7}}},"bong-dai":{"SP":{"s":0,"mpp":{"V":17.52,"I":4.67,"P":81.78,"byp":[],"ipmax":2.56,"sw":[0,0,0,0]},"bat":{"V":13,"I":5.03,"P":65.4,"byp":[],"ipmax":2.68,"sw":[0,0,0,0]}},"TCT":{"s":15,"mpp":{"V":17.52,"I":4.67,"P":81.78,"byp":[],"ipmax":2.56,"sw":[0,0,0,0]},"bat":{"V":13,"I":5.03,"P":65.4,"byp":[],"ipmax":2.68,"sw":[0,0,0,0]}},"BL":{"s":9,"mpp":{"V":17.52,"I":4.67,"P":81.78,"byp":[],"ipmax":2.56,"sw":[0,0,0,0]},"bat":{"V":13,"I":5.03,"P":65.4,"byp":[],"ipmax":2.68,"sw":[0,0,0,0]}},"HC":{"s":6,"mpp":{"V":17.52,"I":4.67,"P":81.78,"byp":[],"ipmax":2.56,"sw":[0,0,0,0]},"bat":{"V":13,"I":5.03,"P":65.4,"byp":[],"ipmax":2.68,"sw":[0,0,0,0]}},"best4":{"s":[0,0],"mpp":{"V":17.52,"I":4.67,"P":81.78,"byp":[],"ipmax":2.56,"sw":[0,0,0,0]},"bat":{"V":13,"I":5.03,"P":65.4,"byp":[],"ipmax":2.68,"sw":[0,0,0,0]}},"des3":{"rows":["11 32 33 | 21 22 23 | 12 13 31","11 32 33 | 21 22 23 | 12 13 31"],"mpp":{"V":17.52,"I":4.67,"P":81.78,"byp":[],"ipmax":2.56},"bat":{"V":13,"I":5.03,"P":65.4,"byp":[],"ipmax":2.68}},"desF":{"rows":["11 32 33 | 21 22 23 | 12 13 31","11 32 33 | 21 22 23 | 12 13 31"],"mpp":{"V":17.52,"I":4.67,"P":81.78,"byp":[],"ipmax":2.56},"bat":{"V":13,"I":5.03,"P":65.4,"byp":[],"ipmax":2.68}}},"ngau-nhien":{"SP":{"s":0,"mpp":{"V":11.72,"I":4.81,"P":56.33,"byp":[1,3,8],"ipmax":1.74,"sw":[0,0,0,0]},"bat":{"V":13,"I":3.3,"P":42.96,"byp":[1,3,8],"ipmax":1.19,"sw":[0,0,0,0]}},"TCT":{"s":15,"mpp":{"V":17.9,"I":4.4,"P":78.72,"byp":[],"ipmax":2.51,"sw":[-1.1,0.79,1.2,0.36]},"bat":{"V":13,"I":4.71,"P":61.21,"byp":[],"ipmax":2.62,"sw":[-1.11,0.8,1.21,0.36]}},"BL":{"s":9,"mpp":{"V":18.48,"I":3.37,"P":62.27,"byp":[],"ipmax":1.69,"sw":[-0.95,0,0,0.14]},"bat":{"V":13,"I":3.66,"P":47.61,"byp":[3,7,8],"ipmax":1.79,"sw":[-0.96,0,0,0.13]}},"HC":{"s":6,"mpp":{"V":17.8,"I":4.16,"P":74.11,"byp":[],"ipmax":2.49,"sw":[0,1.54,0.94,0]},"bat":{"V":13,"I":4.49,"P":58.38,"byp":[],"ipmax":2.68,"sw":[0,1.6,1,0]}},"best4":{"s":[15,15],"mpp":{"V":17.9,"I":4.4,"P":78.72,"byp":[],"ipmax":2.51,"sw":[-1.1,0.79,1.2,0.36]},"bat":{"V":13,"I":4.71,"P":61.21,"byp":[],"ipmax":2.62,"sw":[-1.11,0.8,1.21,0.36]}},"des3":{"rows":["11 12 31 | 13 21 32 | 22 23 33","11 12 31 | 13 21 32 | 22 23 33"],"mpp":{"V":17.54,"I":4.73,"P":82.88,"byp":[],"ipmax":2.55},"bat":{"V":13,"I":5.09,"P":66.18,"byp":[],"ipmax":2.68}},"desF":{"rows":["11 12 31 | 13 21 32 | 22 23 33","11 12 31 | 13 21 32 | 22 23 33"],"mpp":{"V":17.54,"I":4.73,"P":82.88,"byp":[],"ipmax":2.55},"bat":{"V":13,"I":5.09,"P":66.18,"byp":[],"ipmax":2.68}}}};
+const NAMED = {0:'SP',15:'TCT',9:'BL',6:'HC'};
 const bits = s => [(s>>3)&1,(s>>2)&1,(s>>1)&1,s&1];
 const stName = s => NAMED[s] || ('S=' + bits(s).join(''));
 const fmt = (v,d=2) => v.toFixed(d).replace('.', ',');
@@ -1339,7 +1380,7 @@ sel.addEventListener('change', ()=>{ st.caseId=sel.value; if(st.mode==='des') ap
 
 [['Pmax (bộ sạc MPPT)','mpp'],['13 V (bộ sạc PWM)','v13']].forEach(([t,k])=>{ const b=document.createElement('button'); b.className='chip'; b.type='button'; b.textContent=t; b.dataset.op=k;
   b.addEventListener('click',()=>{ st.op=k; update(); }); $('opbtns').appendChild(b); });
-const P4 = [['SP',0],['TCT',15],['BL',9],['Tốt nhất',-1]];
+const P4 = [['SP',0],['TCT',15],['BL',9],['HC',6],['Tốt nhất',-1]];
 P4.forEach(([t,s])=>{ const b=document.createElement('button'); b.className='chip'; b.type='button'; b.textContent=t; b.dataset.s=s;
   b.addEventListener('click',()=>{ st.s = s<0 ? bestState() : s; update(); }); $('presets4').appendChild(b); });
 ['S1','S2','S3','S4'].forEach((t,k)=>{ const b=document.createElement('button'); b.className='swb'; b.type='button'; b.id='swb'+k;
@@ -1465,6 +1506,85 @@ function renderDes(){
     b.setAttribute('aria-label', `PV${r+1}${c+1}, ${G[r][c]} W/m², đang ở hàng ${gg}. Bấm để chuyển hàng.`);
   }
 }
+
+/* ================= Probe tại điểm làm việc ================= */
+function renderProbe(){
+  const s=st.sol, des=st.mode==='des', at=(r,c)=>r*3+c;
+  const kv=(k,v)=>`<div><span>${k}</span>${v}</div>`;
+  $('probeTitle').textContent = `Probe tại ${st.op==='mpp' ? 'Pmax' : '13 V'}`;
+  let h = kv('Áp dàn', `${fmt(s.V,1)} V`) + kv('Dòng dàn', `${fmt(s.I)} A`) + kv('Công suất', `${fmt(s.V*s.I,1)} W`);
+  if(des){
+    [1,2,3].forEach(g=>{ const idx=[]; for(let r=0;r<3;r++) for(let c=0;c<3;c++) if(st.assign[r][c]===g) idx.push(at(r,c));
+      const I=idx.reduce((a,i)=>a+s.Ip[i],0);
+      h += kv(`Hàng ${g} · ${idx.length} tấm`, `${fmt(s.vp[idx[0]])} V · ${fmt(I)} A`); });
+  } else {
+    const b=bits(st.s), node=(l,c)=>s.V - s.vp[at(0,c)] - (l===2 ? s.vp[at(1,c)] : 0);
+    [0,1,2].forEach(c=>{ h += kv(`Cột ${c+1}`, `${fmt(s.Ip[at(0,c)])} A`); });
+    SWDEF.forEach(([l,c],k)=>{
+      if(b[k]){ const inj=cc=>s.Ip[at(l,cc)]-s.Ip[at(l-1,cc)], I = c===0 ? inj(0) : inj(0)+inj(1);
+        h += kv(`S${k+1} đóng`, `${fmt(Math.abs(I))} A`); }
+      else h += kv(`S${k+1} mở`, `${fmt(Math.abs(node(l,c)-node(l,c+1)))} V`);
+    });
+  }
+  $('probeKv').innerHTML = h;
+  let g='';
+  for(let r=0;r<3;r++) for(let c=0;c<3;c++){
+    const i=at(r,c), v=s.vp[i], I=s.Ip[i], byp=v<-0.05;
+    g += `<div class="pb${byp?' byp':''}"><b>PV${r+1}${c+1}${des?` · hàng ${st.assign[r][c]}`:''}</b><span>${fmt(v)} V</span><span>${fmt(I)} A</span><span class="${byp?'t':''}">${byp ? 'bypass' : fmt(v*I,1)+' W'}</span></div>`;
+  }
+  $('probeGrid').innerHTML = g;
+  $('probeNote').textContent = 'Mỗi ô là áp, dòng, công suất của một tấm; viền đỏ là tấm có diode bypass đang dẫn. '
+    + (des ? 'Hàng: áp chung của các tấm song song và tổng dòng của hàng.' : 'Cột: dòng ra cực + của cột. Công tắc đóng: dòng qua nó; công tắc mở: áp giữa hai đầu.');
+}
+
+/* ================= Bảng tất cả ca × cấu hình ================= */
+const ALLCFG = [['SP','SP',0],['TCT','TCT',15],['BL','BL',9],['HC','HC',6],['Tốt nhất','best4'],['DES 3-3-3','des3'],['DES tự do','desF']];
+const ALLM = [['P tại 13 V','bat','P'],['Pmax','mpp','P'],['I tại 13 V','bat','I'],['V tại Pmax','mpp','V'],['I tại Pmax','mpp','I']];
+st.allM = 0;
+ALLM.forEach(([t],i)=>{ const b=document.createElement('button'); b.className='chip'; b.type='button'; b.textContent=t; b.dataset.m=i;
+  b.addEventListener('click',()=>{ st.allM=i; renderAll(); }); $('allMetric').appendChild(b); });
+const rowsToAssign = rows => { const A=[[1,1,1],[2,2,2],[3,3,3]]; rows.split('|').map(g=>g.trim().split(/\s+/)).forEach((ids,gi)=>ids.forEach(id=>{ A[+id[0]-1][+id[1]-1]=gi+1; })); return A; };
+function cellCfg(cid,key,side){
+  const e=TAB[cid][key], j=side==='mpp'?0:1, fixed=ALLCFG.find(x=>x[1]===key)[2];
+  if(fixed!==undefined) return {mode:'sw4', s:fixed};
+  if(key==='best4') return {mode:'sw4', s:e.s[j]};
+  return {mode:'des', assign:rowsToAssign(e.rows[j])};
+}
+function isCurrent(cid,key,side){
+  if(cid!==st.caseId || (side==='mpp')!==(st.op==='mpp')) return false;
+  const c=cellCfg(cid,key,side); if(c.mode!==st.mode) return false;
+  return c.mode==='sw4' ? c.s===st.s : JSON.stringify(c.assign)===JSON.stringify(st.assign);
+}
+function renderAll(){
+  const [name, side, q] = ALLM[st.allM], ranked = q==='P' || side==='bat', unit = {P:'W',V:'V',I:'A'}[q];
+  document.querySelectorAll('#allMetric .chip').forEach(b=>b.setAttribute('aria-pressed', +b.dataset.m===st.allM ? 'true':'false'));
+  let h = `<tr><th></th><th class="grp" colspan="5">4 công tắc · 8 MOSFET</th><th class="grp" colspan="2">DES · ≈108 MOSFET</th></tr>`
+    + `<tr><th style="text-align:left">${name} (${unit})</th>${ALLCFG.map(c=>`<th>${c[0]}</th>`).join('')}</tr>`;
+  for(const C of CASES){
+    const e=TAB[C.id], vals=ALLCFG.map(c=>e[c[1]][side][q]), mx=Math.max(...vals), sp=vals[0];
+    const mini = '<span class="mini" aria-hidden="true">' + C.G.flat().map(g=>`<i style="background:color-mix(in srgb, hsl(40 75% 52%) ${Math.round((g-300)/7)}%, hsl(205 12% 34%))"></i>`).join('') + '</span>';
+    h += `<tr><td class="case"><span class="cw">${mini}${C.name}</span></td>`;
+    ALLCFG.forEach((c,i)=>{
+      const v=vals[i], j=side==='mpp'?0:1, best = ranked && v>=mx-0.005 && mx-sp>0.05, worse = ranked && v<sp-0.05;
+      const cls=[best?'best':'', worse?'worse':'', isCurrent(C.id,c[1],side)?'cur':''].filter(Boolean).join(' ');
+      const det = c[1]==='best4' ? ` = ${bits(e.best4.s[j]).join('')}` : c[1].startsWith('des') ? ` = ${e[c[1]].rows[j]}` : '';
+      h += `<td class="${cls}" data-c="${C.id}" data-k="${c[1]}" title="${C.name} · ${c[0]}${det}. Bấm để mở.">${fmt(v, q==='P'?1:2)}</td>`;
+    });
+    h += '</tr>';
+  }
+  $('allTbl').innerHTML = h;
+  $('allNote').textContent = `"Tốt nhất" (trong 16 trạng thái) và DES (trong 280 cách chia 3-3-3 hoặc 3025 cách chia tự do) chọn riêng theo ${side==='mpp' ? 'Pmax' : 'công suất tại 13 V'}. `
+    + (ranked ? 'Ô xanh là cao nhất và hơn SP; chữ đỏ là thấp hơn SP. ' : '')
+    + 'Bấm một ô để mở đúng ca và cấu hình đó ở khung 3D. Số tính sẵn bằng mô hình tham chiếu trên trang, khớp arr_summary.csv và des_summary.csv trong 0,02 W.';
+}
+$('allTbl').addEventListener('click', ev=>{
+  const td=ev.target.closest('td[data-c]'); if(!td) return;
+  const side=ALLM[st.allM][1], cfg=cellCfg(td.dataset.c, td.dataset.k, side);
+  st.caseId=td.dataset.c; sel.value=st.caseId; st.op = side==='mpp' ? 'mpp' : 'v13';
+  if(cfg.mode==='sw4') st.s=cfg.s; else st.assign=cfg.assign;
+  setMode(cfg.mode);
+  $('stage').scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'nearest'});
+});
 
 /* ================= Cảnh 3D ================= */
 const stage=$('stage');
@@ -1776,6 +1896,7 @@ function update(){
   panels.forEach(drawPanel);
   rebuildDes();
   if(des) renderDes(); else renderSw4();
+  renderProbe(); renderAll();
 }
 
 function resize(){
