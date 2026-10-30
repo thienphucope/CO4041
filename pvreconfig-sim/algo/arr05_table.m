@@ -5,11 +5,11 @@ function tab = arr05_table(sc, family, o)
 %   o.dt_tab [s] (1), o.Vg lưới điện áp, o.Vbat, o.T, o.source 'reference' | 'simulink' (chỉ 'tie')
 %   tab.t (K), tab.G (3x3xK), tab.Pmax, tab.Pbat (K x nC), tab.Vg, tab.labels, tab.nC
 %   tie: tab.I (nV x nC x K) đường I-V;  des: tab.M (mặt nạ hàng), đường I-V tính khi cần.
-%   Kết quả được lưu đệm trong results/cache/.
+%   Kết quả được lưu đệm trong results/cache/ (khoá gồm cả nhiệt độ và áp pin).
 root = setup_path();
 cdir = fullfile(root, 'results', 'cache');
 if ~exist(cdir, 'dir'), mkdir(cdir); end
-key = sprintf('arr05_%s_%s_%s_dt%g.mat', family, sc.name, o.source, o.dt_tab);
+key = sprintf('arr05_%s_%s_%s_dt%g_T%g_V%g.mat', family, sc.name, o.source, o.dt_tab, o.T, o.Vbat);
 cf = fullfile(cdir, key);
 if exist(cf, 'file')
     s = load(cf);  tab = s.tab;

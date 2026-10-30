@@ -4,6 +4,8 @@
 %   Mức 2  bóng di chuyển + thuật toán chọn cấu hình       (algo/, bảng công suất từ tham chiếu)
 %   Mức 3  quá độ khi đóng/cắt                              (Simulink)
 %   Mức 4  DES: đổi nhóm từng tấm giữa 3 hàng              (tham chiếu + kiểm tra Simulink)
+%   Mức 1, 1b, 2, 4 chạy 2 lần: 25 °C (file kết quả như cũ) và ngoài trời NOCT (hậu tố _noct),
+%   rồi quét độ nhạy theo Voc tấm (sensitivity_voc.csv).
 %   Phần Simulink tự bỏ qua nếu thiếu Simulink / Simscape / Simscape Electrical.
 root = setup_path();
 t0 = tic;
@@ -15,6 +17,14 @@ verify_des;
 run_des();
 fprintf('\n######## Mức 2 - thuật toán theo thời gian\n');
 run_arr05();
+th = pv_thermal('noct');
+fprintf('\n######## Mức 1, 1b, 4, 2 - %s\n', th.desc);
+run_compare(th);
+run_stress(th);
+run_des(th);
+run_arr05(struct('T', th.Tmove, 'suffix', th.suffix));
+fprintf('\n######## Độ nhạy theo Voc tấm\n');
+run_sensitivity();
 fprintf('\n######## Hình cho báo cáo\n');
 try
     plot_cases();

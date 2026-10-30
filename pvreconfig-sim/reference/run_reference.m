@@ -7,4 +7,4 @@ run_module_tests();
 fprintf('\n');
 run(fullfile(here, 'verify_sp.m'));
 fprintf('\n');
-run(fullfile(here, 'run_compare.m'));
+run_compare();

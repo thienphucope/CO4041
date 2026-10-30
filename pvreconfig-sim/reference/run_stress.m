@@ -1,12 +1,14 @@
-function R = run_stress()
+function R = run_stress(th)
 %RUN_STRESS  Ứng suất công tắc nối chéo để chọn linh kiện (MOSFET đấu ngược / relay).
 %   Quét 16 trạng thái x (9 ca che bóng + 17 ca cực đoan: tấm tối hẳn G = 0, hàng/cột tối, bàn cờ)
 %   trên toàn dải V = 0 .. Voc dàn. Lấy:
 %     Imax(k) : |dòng| lớn nhất qua Sk khi đóng
 %     Umax(k) : |điện áp| lớn nhất trên Sk khi mở (quyết định V_DS của MOSFET)
 %     và các giá trị tại V = Vbat (13 V, khi ST-S1230 là PWM).
-%   Ghi results/switch_stress.csv. Công tắc lý tưởng; tổn hao dẫn = I^2 * R_on tính sau từ Imax.
+%   Ghi results/switch_stress<suffix>.csv. Công tắc lý tưởng; tổn hao dẫn = I^2 * R_on tính sau từ Imax.
+%   run_stress(th): kịch bản nhiệt khác, vd run_stress(pv_thermal('noct')); mặc định 25 °C.
 root = setup_path();
+if nargin < 1, th = pv_thermal('stc'); end
 p = pv_module_params();
 [states, labels] = pv_states();
 cs = pv_shading_cases();
@@ -36,7 +38,7 @@ Imax = nan(nC, nS, 4);  Umax = Imax;  Ibat = Imax;  Ubat = Imax;
 t0 = tic;
 for k = 1:nC
     for s = 1:nS
-        st = pv_switch_stress(V, allc(k).G, states(s, :), p);
+        st = pv_switch_stress(V, allc(k).G, states(s, :), p, th.T(allc(k).G));
         gen = st.Iarr >= 0;                       % vùng dàn phát điện: 0 .. Voc
         [~, ib] = min(abs(V - Vbat));
         Imax(k, s, :) = max(abs(st.I(gen, :)), [], 1);
@@ -47,7 +49,8 @@ for k = 1:nC
 end
 fprintf('Đã quét %d ca x %d trạng thái trong %.0f s\n', nC, nS, toc(t0));
 
-fid = fopen(fullfile(root, 'results', 'switch_stress.csv'), 'w');
+fname = ['switch_stress' th.suffix '.csv'];
+fid = fopen(fullfile(root, 'results', fname), 'w');
 fprintf(fid, 'case,state,label,Imax_S1,Imax_S2,Imax_S3,Imax_S4,Umax_S1,Umax_S2,Umax_S3,Umax_S4,Ibat_S1,Ibat_S2,Ibat_S3,Ibat_S4,Ubat_S1,Ubat_S2,Ubat_S3,Ubat_S4\n');
 for k = 1:nC
     for s = 1:nS
@@ -58,7 +61,7 @@ for k = 1:nC
 end
 fclose(fid);
 
-fprintf('\n== Ứng suất lớn nhất mỗi công tắc (mọi ca, mọi trạng thái, V = 0 .. Voc)\n');
+fprintf('\n== Ứng suất lớn nhất mỗi công tắc (mọi ca, mọi trạng thái, V = 0 .. Voc, %s)\n', th.desc);
 fprintf('%-4s %9s  %-24s %9s  %-24s\n', 'Sk', '|I| max', '(ca, trạng thái)', '|U| max', '(ca, trạng thái)');
 for q = 1:4
     [im, ii] = max(reshape(Imax(:, :, q), [], 1));  [ki, si] = ind2sub([nC nS], ii);
@@ -67,6 +70,6 @@ for q = 1:4
         um, [allc(ku).name ', ' labels{su}]);
 end
 fprintf('Tại Vbat = %.0f V: |I| max = %.2f A, |U| max = %.2f V\n', Vbat, max(Ibat(:)), max(Ubat(:)));
-fprintf('Đã ghi results/switch_stress.csv\n');
+fprintf('Đã ghi results/%s\n', fname);
 R = struct('cases', {{allc.name}}, 'Imax', Imax, 'Umax', Umax, 'Ibat', Ibat, 'Ubat', Ubat);
 end

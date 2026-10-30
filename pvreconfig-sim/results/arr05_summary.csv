@@ -1,205 +1,205 @@
 scenario,charger,family,algorithm,E_Wh,Pavg_W,pct_of_family_oracle,gain_vs_SP_pct,vs_tie_oracle_pct,n_switch,scan_time_pct
-canh-ngang,pwm,tie,cố định SP,1.03201,61.920,100.00,0.00,0.00,0,0.00
-canh-ngang,pwm,tie,cố định TCT,1.03201,61.920,100.00,0.00,0.00,0,0.00
-canh-ngang,pwm,tie,oracle (16 trạng thái),1.03201,61.920,100.00,0.00,0.00,0,0.00
-canh-ngang,pwm,tie,quét 16, 2 s, MOSFET,1.03201,61.920,100.00,0.00,0.00,480,21.21
-canh-ngang,pwm,tie,quét 16, 5 s, MOSFET,1.03201,61.920,100.00,-0.00,-0.00,192,8.47
-canh-ngang,pwm,tie,quét 16, 10 s, MOSFET,1.03201,61.920,100.00,-0.00,-0.00,96,4.21
-canh-ngang,pwm,tie,quét 16, 30 s, MOSFET,1.03201,61.920,100.00,-0.00,-0.00,32,1.36
-canh-ngang,pwm,tie,quét 16, 10 s, relay,1.03201,61.920,100.00,0.00,0.00,96,19.63
-canh-ngang,pwm,tie,quét khi P đổi 5 %, MOSFET,1.03201,61.920,100.00,-0.00,-0.00,528,23.78
-canh-ngang,pwm,tie,leo đồi 4 lân cận, 5 s,1.03201,61.920,100.00,0.00,0.00,60,2.63
-canh-ngang,pwm,des,DES cố định TCT,1.03196,61.918,100.00,-0.00,-0.00,0,0.00
-canh-ngang,pwm,des,DES oracle (3025 cách),1.03196,61.918,100.00,-0.00,-0.00,0,0.00
-canh-ngang,pwm,des,DES EI min 3025, 2 s,1.03137,61.882,99.94,-0.06,-0.06,3,0.00
-canh-ngang,pwm,des,DES EI min 3025, 2 s, sai số 5%,1.03088,61.853,99.90,-0.11,-0.11,30,0.00
-canh-ngang,pwm,des,DES EI min 280, 2 s,1.03137,61.882,99.94,-0.06,-0.06,3,0.00
-canh-ngang,pwm,des,DES tham lam, 2 s,1.03196,61.918,100.00,-0.00,-0.00,0,0.00
-canh-ngang,pwm,des,DES theo mô hình, 2 s, sai số 5%,1.03025,61.815,99.83,-0.17,-0.17,30,0.00
-canh-ngang,mppt,tie,cố định SP,1.29402,77.641,100.00,0.00,0.00,0,0.00
-canh-ngang,mppt,tie,cố định TCT,1.29402,77.641,100.00,0.00,0.00,0,0.00
-canh-ngang,mppt,tie,oracle (16 trạng thái),1.29402,77.641,100.00,0.00,0.00,0,0.00
-canh-ngang,mppt,tie,quét 16, 2 s, MOSFET,1.29402,77.641,100.00,0.00,0.00,480,21.21
-canh-ngang,mppt,tie,quét 16, 5 s, MOSFET,1.29402,77.641,100.00,0.00,0.00,192,8.47
-canh-ngang,mppt,tie,quét 16, 10 s, MOSFET,1.29402,77.641,100.00,0.00,0.00,96,4.21
-canh-ngang,mppt,tie,quét 16, 30 s, MOSFET,1.29402,77.641,100.00,0.00,0.00,32,1.36
-canh-ngang,mppt,tie,quét 16, 10 s, relay,1.29402,77.641,100.00,0.00,0.00,96,19.63
-canh-ngang,mppt,tie,quét khi P đổi 5 %, MOSFET,1.29402,77.641,100.00,0.00,0.00,560,25.29
-canh-ngang,mppt,tie,leo đồi 4 lân cận, 5 s,1.29402,77.641,100.00,0.00,0.00,60,2.63
-canh-ngang,mppt,des,DES cố định TCT,1.29404,77.642,100.00,0.00,0.00,0,0.00
-canh-ngang,mppt,des,DES oracle (3025 cách),1.29405,77.643,100.00,0.00,0.00,4,0.00
-canh-ngang,mppt,des,DES EI min 3025, 2 s,1.29374,77.624,99.98,-0.02,-0.02,3,0.00
-canh-ngang,mppt,des,DES EI min 3025, 2 s, sai số 5%,1.29332,77.599,99.94,-0.05,-0.05,30,0.00
-canh-ngang,mppt,des,DES EI min 280, 2 s,1.29374,77.624,99.98,-0.02,-0.02,3,0.00
-canh-ngang,mppt,des,DES tham lam, 2 s,1.29404,77.642,100.00,0.00,0.00,0,0.00
-canh-ngang,mppt,des,DES theo mô hình, 2 s, sai số 5%,1.29259,77.555,99.89,-0.11,-0.11,30,0.00
-canh-ngang,po,tie,cố định SP,1.29306,77.583,100.00,0.00,0.00,0,0.00
-canh-ngang,po,tie,cố định TCT,1.29306,77.583,100.00,0.00,0.00,0,0.00
-canh-ngang,po,tie,oracle (16 trạng thái),1.29306,77.583,100.00,0.00,0.00,0,0.00
-canh-ngang,po,tie,quét 16, 2 s, MOSFET,1.29306,77.583,100.00,0.00,0.00,479,21.21
-canh-ngang,po,tie,quét 16, 5 s, MOSFET,1.29306,77.583,100.00,0.00,0.00,191,8.47
-canh-ngang,po,tie,quét 16, 10 s, MOSFET,1.29306,77.583,100.00,0.00,0.00,95,4.21
-canh-ngang,po,tie,quét 16, 30 s, MOSFET,1.29306,77.583,100.00,0.00,0.00,31,1.36
-canh-ngang,po,tie,quét 16, 10 s, relay,1.29306,77.583,100.00,0.00,0.00,96,19.63
-canh-ngang,po,tie,quét khi P đổi 5 %, MOSFET,1.29306,77.583,100.00,0.00,0.00,559,25.33
-canh-ngang,po,tie,leo đồi 4 lân cận, 5 s,1.29306,77.583,100.00,0.00,0.00,60,2.63
-canh-ngang,po,des,DES cố định TCT,1.29304,77.582,100.00,-0.00,-0.00,0,0.00
-canh-ngang,po,des,DES oracle (3025 cách),1.29306,77.583,100.00,-0.00,-0.00,4,0.00
-canh-ngang,po,des,DES EI min 3025, 2 s,1.29265,77.559,99.97,-0.03,-0.03,3,0.00
-canh-ngang,po,des,DES EI min 3025, 2 s, sai số 5%,1.29223,77.534,99.94,-0.06,-0.06,30,0.00
-canh-ngang,po,des,DES EI min 280, 2 s,1.29265,77.559,99.97,-0.03,-0.03,3,0.00
-canh-ngang,po,des,DES tham lam, 2 s,1.29304,77.582,100.00,-0.00,-0.00,0,0.00
-canh-ngang,po,des,DES theo mô hình, 2 s, sai số 5%,1.29138,77.483,99.87,-0.13,-0.13,30,0.00
-canh-cheo,pwm,tie,cố định SP,0.90318,54.191,98.99,0.00,-1.01,0,0.00
-canh-cheo,pwm,tie,cố định TCT,0.86097,51.658,94.36,-4.67,-5.64,0,0.00
-canh-cheo,pwm,tie,oracle (16 trạng thái),0.91238,54.743,100.00,1.02,0.00,8,0.00
-canh-cheo,pwm,tie,quét 16, 2 s, MOSFET,0.90332,54.199,99.01,0.02,-0.99,479,21.21
-canh-cheo,pwm,tie,quét 16, 5 s, MOSFET,0.89724,53.835,98.34,-0.66,-1.66,192,8.47
-canh-cheo,pwm,tie,quét 16, 10 s, MOSFET,0.88218,52.931,96.69,-2.32,-3.31,96,4.21
-canh-cheo,pwm,tie,quét 16, 30 s, MOSFET,0.88957,53.374,97.50,-1.51,-2.50,32,1.36
-canh-cheo,pwm,tie,quét 16, 10 s, relay,0.89385,53.631,97.97,-1.03,-2.03,96,19.63
-canh-cheo,pwm,tie,quét khi P đổi 5 %, MOSFET,0.89806,53.883,98.43,-0.57,-1.57,543,23.90
-canh-cheo,pwm,tie,leo đồi 4 lân cận, 5 s,0.90398,54.239,99.08,0.09,-0.92,69,3.07
-canh-cheo,pwm,des,DES cố định TCT,0.86099,51.659,86.68,-4.67,-5.63,0,0.00
-canh-cheo,pwm,des,DES oracle (3025 cách),0.99334,59.601,100.00,9.98,8.87,9,0.00
-canh-cheo,pwm,des,DES EI min 3025, 2 s,0.99166,59.500,99.83,9.80,8.69,7,0.00
-canh-cheo,pwm,des,DES EI min 3025, 2 s, sai số 5%,0.99001,59.400,99.66,9.61,8.51,30,0.00
-canh-cheo,pwm,des,DES EI min 280, 2 s,0.97919,58.752,98.58,8.42,7.32,5,0.00
-canh-cheo,pwm,des,DES tham lam, 2 s,0.97883,58.730,98.54,8.38,7.28,7,0.00
-canh-cheo,pwm,des,DES theo mô hình, 2 s, sai số 5%,0.98893,59.336,99.56,9.49,8.39,30,0.00
-canh-cheo,mppt,tie,cố định SP,1.10280,66.168,97.61,0.00,-2.39,0,0.00
-canh-cheo,mppt,tie,cố định TCT,1.12500,67.500,99.57,2.01,-0.43,0,0.00
-canh-cheo,mppt,tie,oracle (16 trạng thái),1.12986,67.791,100.00,2.45,0.00,7,0.00
-canh-cheo,mppt,tie,quét 16, 2 s, MOSFET,1.12440,67.464,99.52,1.96,-0.48,479,21.21
-canh-cheo,mppt,tie,quét 16, 5 s, MOSFET,1.12399,67.439,99.48,1.92,-0.52,192,8.47
-canh-cheo,mppt,tie,quét 16, 10 s, MOSFET,1.12308,67.385,99.40,1.84,-0.60,96,4.21
-canh-cheo,mppt,tie,quét 16, 30 s, MOSFET,1.12095,67.257,99.21,1.65,-0.79,32,1.36
-canh-cheo,mppt,tie,quét 16, 10 s, relay,1.11290,66.774,98.50,0.92,-1.50,96,19.63
-canh-cheo,mppt,tie,quét khi P đổi 5 %, MOSFET,1.12295,67.377,99.39,1.83,-0.61,575,25.41
-canh-cheo,mppt,tie,leo đồi 4 lân cận, 5 s,1.11708,67.025,98.87,1.30,-1.13,89,3.92
-canh-cheo,mppt,des,DES cố định TCT,1.12501,67.501,88.56,2.01,-0.43,0,0.00
-canh-cheo,mppt,des,DES oracle (3025 cách),1.27037,76.222,100.00,15.19,12.44,16,0.00
-canh-cheo,mppt,des,DES EI min 3025, 2 s,1.26764,76.058,99.79,14.95,12.19,7,0.00
-canh-cheo,mppt,des,DES EI min 3025, 2 s, sai số 5%,1.26640,75.984,99.69,14.84,12.09,30,0.00
-canh-cheo,mppt,des,DES EI min 280, 2 s,1.25288,75.173,98.62,13.61,10.89,5,0.00
-canh-cheo,mppt,des,DES tham lam, 2 s,1.25262,75.157,98.60,13.59,10.87,7,0.00
-canh-cheo,mppt,des,DES theo mô hình, 2 s, sai số 5%,1.26515,75.909,99.59,14.72,11.97,30,0.00
-canh-cheo,po,tie,cố định SP,1.07142,64.285,97.86,0.00,-2.14,0,0.00
-canh-cheo,po,tie,cố định TCT,1.10094,66.056,100.55,2.76,0.55,0,0.00
-canh-cheo,po,tie,oracle (16 trạng thái),1.09490,65.694,100.00,2.19,0.00,7,0.00
-canh-cheo,po,tie,quét 16, 2 s, MOSFET,1.09585,65.751,100.09,2.28,0.09,478,21.21
-canh-cheo,po,tie,quét 16, 5 s, MOSFET,1.09942,65.965,100.41,2.61,0.41,191,8.47
-canh-cheo,po,tie,quét 16, 10 s, MOSFET,1.10023,66.014,100.49,2.69,0.49,95,4.21
-canh-cheo,po,tie,quét 16, 30 s, MOSFET,1.10085,66.051,100.54,2.75,0.54,31,1.36
-canh-cheo,po,tie,quét 16, 10 s, relay,1.08642,65.185,99.23,1.40,-0.77,95,19.63
-canh-cheo,po,tie,quét khi P đổi 5 %, MOSFET,1.09517,65.710,100.02,2.22,0.02,559,24.38
-canh-cheo,po,tie,leo đồi 4 lân cận, 5 s,1.09287,65.572,99.81,2.00,-0.19,79,3.51
-canh-cheo,po,des,DES cố định TCT,1.10089,66.053,92.22,2.75,0.55,0,0.00
-canh-cheo,po,des,DES oracle (3025 cách),1.19381,71.629,100.00,11.42,9.03,16,0.00
-canh-cheo,po,des,DES EI min 3025, 2 s,1.26572,75.943,106.02,18.14,15.60,7,0.00
-canh-cheo,po,des,DES EI min 3025, 2 s, sai số 5%,1.26424,75.854,105.90,18.00,15.47,30,0.00
-canh-cheo,po,des,DES EI min 280, 2 s,1.25098,75.059,104.79,16.76,14.26,5,0.00
-canh-cheo,po,des,DES tham lam, 2 s,1.25052,75.031,104.75,16.72,14.21,7,0.00
-canh-cheo,po,des,DES theo mô hình, 2 s, sai số 5%,1.26302,75.781,105.80,17.88,15.36,30,0.00
-cot-dien,pwm,tie,cố định SP,1.59649,95.789,100.00,0.00,0.00,0,0.00
-cot-dien,pwm,tie,cố định TCT,1.59649,95.789,100.00,0.00,0.00,0,0.00
-cot-dien,pwm,tie,oracle (16 trạng thái),1.59649,95.789,100.00,0.00,0.00,0,0.00
-cot-dien,pwm,tie,quét 16, 2 s, MOSFET,1.59649,95.789,100.00,0.00,0.00,473,21.21
-cot-dien,pwm,tie,quét 16, 5 s, MOSFET,1.59649,95.789,100.00,0.00,0.00,189,8.47
-cot-dien,pwm,tie,quét 16, 10 s, MOSFET,1.59649,95.789,100.00,0.00,0.00,95,4.21
-cot-dien,pwm,tie,quét 16, 30 s, MOSFET,1.59649,95.789,100.00,0.00,0.00,32,1.36
-cot-dien,pwm,tie,quét 16, 10 s, relay,1.59649,95.789,100.00,0.00,0.00,94,19.63
-cot-dien,pwm,tie,quét khi P đổi 5 %, MOSFET,1.59649,95.789,100.00,0.00,0.00,96,4.29
-cot-dien,pwm,tie,leo đồi 4 lân cận, 5 s,1.59649,95.789,100.00,0.00,0.00,60,2.63
-cot-dien,pwm,des,DES cố định TCT,1.59646,95.787,100.00,-0.00,-0.00,0,0.00
-cot-dien,pwm,des,DES oracle (3025 cách),1.59646,95.787,100.00,-0.00,-0.00,0,0.00
-cot-dien,pwm,des,DES EI min 3025, 2 s,1.59629,95.778,99.99,-0.01,-0.01,3,0.00
-cot-dien,pwm,des,DES EI min 3025, 2 s, sai số 5%,1.59213,95.528,99.73,-0.27,-0.27,29,0.00
-cot-dien,pwm,des,DES EI min 280, 2 s,1.59629,95.778,99.99,-0.01,-0.01,3,0.00
-cot-dien,pwm,des,DES tham lam, 2 s,1.59646,95.787,100.00,-0.00,-0.00,0,0.00
-cot-dien,pwm,des,DES theo mô hình, 2 s, sai số 5%,1.59213,95.528,99.73,-0.27,-0.27,29,0.00
-cot-dien,mppt,tie,cố định SP,2.04720,122.832,100.00,0.00,0.00,0,0.00
-cot-dien,mppt,tie,cố định TCT,2.04720,122.832,100.00,0.00,0.00,0,0.00
-cot-dien,mppt,tie,oracle (16 trạng thái),2.04720,122.832,100.00,0.00,0.00,0,0.00
-cot-dien,mppt,tie,quét 16, 2 s, MOSFET,2.04720,122.832,100.00,0.00,0.00,473,21.21
-cot-dien,mppt,tie,quét 16, 5 s, MOSFET,2.04720,122.832,100.00,0.00,0.00,189,8.47
-cot-dien,mppt,tie,quét 16, 10 s, MOSFET,2.04720,122.832,100.00,0.00,0.00,95,4.21
-cot-dien,mppt,tie,quét 16, 30 s, MOSFET,2.04720,122.832,100.00,0.00,0.00,32,1.36
-cot-dien,mppt,tie,quét 16, 10 s, relay,2.04720,122.832,100.00,0.00,0.00,94,19.63
-cot-dien,mppt,tie,quét khi P đổi 5 %, MOSFET,2.04720,122.832,100.00,0.00,0.00,96,4.31
-cot-dien,mppt,tie,leo đồi 4 lân cận, 5 s,2.04720,122.832,100.00,0.00,0.00,60,2.63
-cot-dien,mppt,des,DES cố định TCT,2.04722,122.833,100.00,0.00,0.00,0,0.00
-cot-dien,mppt,des,DES oracle (3025 cách),2.04722,122.833,100.00,0.00,0.00,0,0.00
-cot-dien,mppt,des,DES EI min 3025, 2 s,2.04715,122.829,100.00,-0.00,-0.00,3,0.00
-cot-dien,mppt,des,DES EI min 3025, 2 s, sai số 5%,2.04510,122.706,99.90,-0.10,-0.10,29,0.00
-cot-dien,mppt,des,DES EI min 280, 2 s,2.04715,122.829,100.00,-0.00,-0.00,3,0.00
-cot-dien,mppt,des,DES tham lam, 2 s,2.04722,122.833,100.00,0.00,0.00,0,0.00
-cot-dien,mppt,des,DES theo mô hình, 2 s, sai số 5%,2.04510,122.706,99.90,-0.10,-0.10,29,0.00
-cot-dien,po,tie,cố định SP,2.04512,122.707,100.00,0.00,0.00,0,0.00
-cot-dien,po,tie,cố định TCT,2.04512,122.707,100.00,0.00,0.00,0,0.00
-cot-dien,po,tie,oracle (16 trạng thái),2.04512,122.707,100.00,0.00,0.00,0,0.00
-cot-dien,po,tie,quét 16, 2 s, MOSFET,2.04512,122.707,100.00,0.00,0.00,473,21.21
-cot-dien,po,tie,quét 16, 5 s, MOSFET,2.04512,122.707,100.00,0.00,0.00,188,8.47
-cot-dien,po,tie,quét 16, 10 s, MOSFET,2.04512,122.707,100.00,0.00,0.00,94,4.21
-cot-dien,po,tie,quét 16, 30 s, MOSFET,2.04512,122.707,100.00,0.00,0.00,31,1.36
-cot-dien,po,tie,quét 16, 10 s, relay,2.04512,122.707,100.00,0.00,0.00,94,19.63
-cot-dien,po,tie,quét khi P đổi 5 %, MOSFET,2.04512,122.707,100.00,0.00,0.00,95,4.30
-cot-dien,po,tie,leo đồi 4 lân cận, 5 s,2.04512,122.707,100.00,0.00,0.00,60,2.63
-cot-dien,po,des,DES cố định TCT,2.04511,122.707,100.00,-0.00,-0.00,0,0.00
-cot-dien,po,des,DES oracle (3025 cách),2.04511,122.707,100.00,-0.00,-0.00,0,0.00
-cot-dien,po,des,DES EI min 3025, 2 s,2.04505,122.703,100.00,-0.00,-0.00,3,0.00
-cot-dien,po,des,DES EI min 3025, 2 s, sai số 5%,2.04296,122.578,99.90,-0.11,-0.11,29,0.00
-cot-dien,po,des,DES EI min 280, 2 s,2.04505,122.703,100.00,-0.00,-0.00,3,0.00
-cot-dien,po,des,DES tham lam, 2 s,2.04511,122.707,100.00,-0.00,-0.00,0,0.00
-cot-dien,po,des,DES theo mô hình, 2 s, sai số 5%,2.04296,122.578,99.90,-0.11,-0.11,29,0.00
-dam-may,pwm,tie,cố định SP,1.37968,82.781,99.56,0.00,-0.44,0,0.00
-dam-may,pwm,tie,cố định TCT,1.37057,82.234,98.90,-0.66,-1.10,0,0.00
-dam-may,pwm,tie,oracle (16 trạng thái),1.38578,83.147,100.00,0.44,0.00,10,0.00
-dam-may,pwm,tie,quét 16, 2 s, MOSFET,1.38057,82.834,99.62,0.06,-0.38,474,21.21
-dam-may,pwm,tie,quét 16, 5 s, MOSFET,1.37993,82.796,99.58,0.02,-0.42,189,8.47
-dam-may,pwm,tie,quét 16, 10 s, MOSFET,1.37380,82.428,99.14,-0.43,-0.86,95,4.21
-dam-may,pwm,tie,quét 16, 30 s, MOSFET,1.37182,82.309,98.99,-0.57,-1.01,32,1.36
-dam-may,pwm,tie,quét 16, 10 s, relay,1.37215,82.329,99.02,-0.55,-0.98,93,19.63
-dam-may,pwm,tie,quét khi P đổi 5 %, MOSFET,1.38074,82.844,99.64,0.08,-0.36,302,13.47
-dam-may,pwm,tie,leo đồi 4 lân cận, 5 s,1.37949,82.770,99.55,-0.01,-0.45,60,2.63
-dam-may,pwm,des,DES cố định TCT,1.37060,82.236,93.56,-0.66,-1.10,0,0.00
-dam-may,pwm,des,DES oracle (3025 cách),1.46502,87.901,100.00,6.19,5.72,17,0.00
-dam-may,pwm,des,DES EI min 3025, 2 s,1.46179,87.707,99.78,5.95,5.48,11,0.00
-dam-may,pwm,des,DES EI min 3025, 2 s, sai số 5%,1.45731,87.438,99.47,5.63,5.16,30,0.00
-dam-may,pwm,des,DES EI min 280, 2 s,1.46179,87.707,99.78,5.95,5.48,11,0.00
-dam-may,pwm,des,DES tham lam, 2 s,1.45597,87.358,99.38,5.53,5.06,13,0.00
-dam-may,pwm,des,DES theo mô hình, 2 s, sai số 5%,1.45731,87.438,99.47,5.63,5.16,30,0.00
-dam-may,mppt,tie,cố định SP,1.76925,106.155,97.61,0.00,-2.39,0,0.00
-dam-may,mppt,tie,cố định TCT,1.81251,108.751,100.00,2.45,0.00,0,0.00
-dam-may,mppt,tie,oracle (16 trạng thái),1.81251,108.751,100.00,2.45,0.00,2,0.00
-dam-may,mppt,tie,quét 16, 2 s, MOSFET,1.80650,108.390,99.67,2.11,-0.33,468,21.21
-dam-may,mppt,tie,quét 16, 5 s, MOSFET,1.80917,108.550,99.82,2.26,-0.18,186,8.47
-dam-may,mppt,tie,quét 16, 10 s, MOSFET,1.80813,108.488,99.76,2.20,-0.24,93,4.21
-dam-may,mppt,tie,quét 16, 30 s, MOSFET,1.80547,108.328,99.61,2.05,-0.39,31,1.36
-dam-may,mppt,tie,quét 16, 10 s, relay,1.79275,107.565,98.91,1.33,-1.09,93,19.63
-dam-may,mppt,tie,quét khi P đổi 5 %, MOSFET,1.80394,108.236,99.53,1.96,-0.47,267,12.08
-dam-may,mppt,tie,leo đồi 4 lân cận, 5 s,1.80333,108.200,99.49,1.93,-0.51,79,3.47
-dam-may,mppt,des,DES cố định TCT,1.81257,108.754,94.74,2.45,0.00,0,0.00
-dam-may,mppt,des,DES oracle (3025 cách),1.91327,114.796,100.00,8.14,5.56,17,0.00
-dam-may,mppt,des,DES EI min 3025, 2 s,1.91065,114.639,99.86,7.99,5.41,11,0.00
-dam-may,mppt,des,DES EI min 3025, 2 s, sai số 5%,1.90673,114.404,99.66,7.77,5.20,30,0.00
-dam-may,mppt,des,DES EI min 280, 2 s,1.91065,114.639,99.86,7.99,5.41,11,0.00
-dam-may,mppt,des,DES tham lam, 2 s,1.90651,114.391,99.65,7.76,5.19,13,0.00
-dam-may,mppt,des,DES theo mô hình, 2 s, sai số 5%,1.90673,114.404,99.66,7.77,5.20,30,0.00
-dam-may,po,tie,cố định SP,1.76740,106.044,97.62,0.00,-2.38,0,0.00
-dam-may,po,tie,cố định TCT,1.81055,108.633,100.00,2.44,0.00,0,0.00
-dam-may,po,tie,oracle (16 trạng thái),1.81055,108.633,100.00,2.44,0.00,2,0.00
-dam-may,po,tie,quét 16, 2 s, MOSFET,1.80455,108.273,99.67,2.10,-0.33,470,21.21
-dam-may,po,tie,quét 16, 5 s, MOSFET,1.80815,108.489,99.87,2.31,-0.13,188,8.47
-dam-may,po,tie,quét 16, 10 s, MOSFET,1.80934,108.561,99.93,2.37,-0.07,93,4.21
-dam-may,po,tie,quét 16, 30 s, MOSFET,1.80349,108.209,99.61,2.04,-0.39,30,1.36
-dam-may,po,tie,quét 16, 10 s, relay,1.79446,107.668,99.11,1.53,-0.89,93,19.63
-dam-may,po,tie,quét khi P đổi 5 %, MOSFET,1.80516,108.310,99.70,2.14,-0.30,284,12.79
-dam-may,po,tie,leo đồi 4 lân cận, 5 s,1.80207,108.124,99.53,1.96,-0.47,79,3.47
-dam-may,po,des,DES cố định TCT,1.81052,108.631,94.74,2.44,-0.00,0,0.00
-dam-may,po,des,DES oracle (3025 cách),1.91114,114.668,100.00,8.13,5.56,17,0.00
-dam-may,po,des,DES EI min 3025, 2 s,1.90849,114.510,99.86,7.98,5.41,11,0.00
-dam-may,po,des,DES EI min 3025, 2 s, sai số 5%,1.90442,114.265,99.65,7.75,5.18,30,0.00
-dam-may,po,des,DES EI min 280, 2 s,1.90849,114.510,99.86,7.98,5.41,11,0.00
-dam-may,po,des,DES tham lam, 2 s,1.90437,114.262,99.65,7.75,5.18,13,0.00
-dam-may,po,des,DES theo mô hình, 2 s, sai số 5%,1.90442,114.265,99.65,7.75,5.18,30,0.00
+canh-ngang,pwm,tie,"cố định SP",1.03201,61.920,100.00,0.00,0.00,0,0.00
+canh-ngang,pwm,tie,"cố định TCT",1.03201,61.920,100.00,0.00,0.00,0,0.00
+canh-ngang,pwm,tie,"oracle (16 trạng thái)",1.03201,61.920,100.00,0.00,0.00,0,0.00
+canh-ngang,pwm,tie,"quét 16, 2 s, MOSFET",1.03201,61.920,100.00,0.00,0.00,480,21.21
+canh-ngang,pwm,tie,"quét 16, 5 s, MOSFET",1.03201,61.920,100.00,-0.00,-0.00,192,8.47
+canh-ngang,pwm,tie,"quét 16, 10 s, MOSFET",1.03201,61.920,100.00,-0.00,-0.00,96,4.21
+canh-ngang,pwm,tie,"quét 16, 30 s, MOSFET",1.03201,61.920,100.00,-0.00,-0.00,32,1.36
+canh-ngang,pwm,tie,"quét 16, 10 s, relay",1.03201,61.920,100.00,0.00,0.00,96,19.63
+canh-ngang,pwm,tie,"quét khi P đổi 5 %, MOSFET",1.03201,61.920,100.00,-0.00,-0.00,528,23.78
+canh-ngang,pwm,tie,"leo đồi 4 lân cận, 5 s",1.03201,61.920,100.00,0.00,0.00,60,2.63
+canh-ngang,pwm,des,"DES cố định TCT",1.03196,61.918,100.00,-0.00,-0.00,0,0.00
+canh-ngang,pwm,des,"DES oracle (3025 cách)",1.03196,61.918,100.00,-0.00,-0.00,0,0.00
+canh-ngang,pwm,des,"DES EI min 3025, 2 s",1.03137,61.882,99.94,-0.06,-0.06,3,0.00
+canh-ngang,pwm,des,"DES EI min 3025, 2 s, sai số 5%",1.03088,61.853,99.90,-0.11,-0.11,30,0.00
+canh-ngang,pwm,des,"DES EI min 280, 2 s",1.03137,61.882,99.94,-0.06,-0.06,3,0.00
+canh-ngang,pwm,des,"DES tham lam, 2 s",1.03196,61.918,100.00,-0.00,-0.00,0,0.00
+canh-ngang,pwm,des,"DES theo mô hình, 2 s, sai số 5%",1.03025,61.815,99.83,-0.17,-0.17,30,0.00
+canh-ngang,mppt,tie,"cố định SP",1.29402,77.641,100.00,0.00,0.00,0,0.00
+canh-ngang,mppt,tie,"cố định TCT",1.29402,77.641,100.00,0.00,0.00,0,0.00
+canh-ngang,mppt,tie,"oracle (16 trạng thái)",1.29402,77.641,100.00,0.00,0.00,0,0.00
+canh-ngang,mppt,tie,"quét 16, 2 s, MOSFET",1.29402,77.641,100.00,0.00,0.00,480,21.21
+canh-ngang,mppt,tie,"quét 16, 5 s, MOSFET",1.29402,77.641,100.00,0.00,0.00,192,8.47
+canh-ngang,mppt,tie,"quét 16, 10 s, MOSFET",1.29402,77.641,100.00,0.00,0.00,96,4.21
+canh-ngang,mppt,tie,"quét 16, 30 s, MOSFET",1.29402,77.641,100.00,0.00,0.00,32,1.36
+canh-ngang,mppt,tie,"quét 16, 10 s, relay",1.29402,77.641,100.00,0.00,0.00,96,19.63
+canh-ngang,mppt,tie,"quét khi P đổi 5 %, MOSFET",1.29402,77.641,100.00,0.00,0.00,560,25.29
+canh-ngang,mppt,tie,"leo đồi 4 lân cận, 5 s",1.29402,77.641,100.00,0.00,0.00,60,2.63
+canh-ngang,mppt,des,"DES cố định TCT",1.29404,77.642,100.00,0.00,0.00,0,0.00
+canh-ngang,mppt,des,"DES oracle (3025 cách)",1.29405,77.643,100.00,0.00,0.00,4,0.00
+canh-ngang,mppt,des,"DES EI min 3025, 2 s",1.29374,77.624,99.98,-0.02,-0.02,3,0.00
+canh-ngang,mppt,des,"DES EI min 3025, 2 s, sai số 5%",1.29332,77.599,99.94,-0.05,-0.05,30,0.00
+canh-ngang,mppt,des,"DES EI min 280, 2 s",1.29374,77.624,99.98,-0.02,-0.02,3,0.00
+canh-ngang,mppt,des,"DES tham lam, 2 s",1.29404,77.642,100.00,0.00,0.00,0,0.00
+canh-ngang,mppt,des,"DES theo mô hình, 2 s, sai số 5%",1.29259,77.555,99.89,-0.11,-0.11,30,0.00
+canh-ngang,po,tie,"cố định SP",1.29306,77.583,100.00,0.00,0.00,0,0.00
+canh-ngang,po,tie,"cố định TCT",1.29306,77.583,100.00,0.00,0.00,0,0.00
+canh-ngang,po,tie,"oracle (16 trạng thái)",1.29306,77.583,100.00,0.00,0.00,0,0.00
+canh-ngang,po,tie,"quét 16, 2 s, MOSFET",1.29306,77.583,100.00,0.00,0.00,479,21.21
+canh-ngang,po,tie,"quét 16, 5 s, MOSFET",1.29306,77.583,100.00,0.00,0.00,191,8.47
+canh-ngang,po,tie,"quét 16, 10 s, MOSFET",1.29306,77.583,100.00,0.00,0.00,95,4.21
+canh-ngang,po,tie,"quét 16, 30 s, MOSFET",1.29306,77.583,100.00,0.00,0.00,31,1.36
+canh-ngang,po,tie,"quét 16, 10 s, relay",1.29306,77.583,100.00,0.00,0.00,96,19.63
+canh-ngang,po,tie,"quét khi P đổi 5 %, MOSFET",1.29306,77.583,100.00,0.00,0.00,559,25.33
+canh-ngang,po,tie,"leo đồi 4 lân cận, 5 s",1.29306,77.583,100.00,0.00,0.00,60,2.63
+canh-ngang,po,des,"DES cố định TCT",1.29304,77.582,100.00,-0.00,-0.00,0,0.00
+canh-ngang,po,des,"DES oracle (3025 cách)",1.29306,77.583,100.00,-0.00,-0.00,4,0.00
+canh-ngang,po,des,"DES EI min 3025, 2 s",1.29265,77.559,99.97,-0.03,-0.03,3,0.00
+canh-ngang,po,des,"DES EI min 3025, 2 s, sai số 5%",1.29223,77.534,99.94,-0.06,-0.06,30,0.00
+canh-ngang,po,des,"DES EI min 280, 2 s",1.29265,77.559,99.97,-0.03,-0.03,3,0.00
+canh-ngang,po,des,"DES tham lam, 2 s",1.29304,77.582,100.00,-0.00,-0.00,0,0.00
+canh-ngang,po,des,"DES theo mô hình, 2 s, sai số 5%",1.29138,77.483,99.87,-0.13,-0.13,30,0.00
+canh-cheo,pwm,tie,"cố định SP",0.90318,54.191,98.99,0.00,-1.01,0,0.00
+canh-cheo,pwm,tie,"cố định TCT",0.86097,51.658,94.36,-4.67,-5.64,0,0.00
+canh-cheo,pwm,tie,"oracle (16 trạng thái)",0.91238,54.743,100.00,1.02,0.00,8,0.00
+canh-cheo,pwm,tie,"quét 16, 2 s, MOSFET",0.90332,54.199,99.01,0.02,-0.99,479,21.21
+canh-cheo,pwm,tie,"quét 16, 5 s, MOSFET",0.89724,53.835,98.34,-0.66,-1.66,192,8.47
+canh-cheo,pwm,tie,"quét 16, 10 s, MOSFET",0.88218,52.931,96.69,-2.32,-3.31,96,4.21
+canh-cheo,pwm,tie,"quét 16, 30 s, MOSFET",0.88957,53.374,97.50,-1.51,-2.50,32,1.36
+canh-cheo,pwm,tie,"quét 16, 10 s, relay",0.89385,53.631,97.97,-1.03,-2.03,96,19.63
+canh-cheo,pwm,tie,"quét khi P đổi 5 %, MOSFET",0.89806,53.883,98.43,-0.57,-1.57,543,23.90
+canh-cheo,pwm,tie,"leo đồi 4 lân cận, 5 s",0.90398,54.239,99.08,0.09,-0.92,69,3.07
+canh-cheo,pwm,des,"DES cố định TCT",0.86099,51.659,86.68,-4.67,-5.63,0,0.00
+canh-cheo,pwm,des,"DES oracle (3025 cách)",0.99334,59.601,100.00,9.98,8.87,9,0.00
+canh-cheo,pwm,des,"DES EI min 3025, 2 s",0.99166,59.500,99.83,9.80,8.69,7,0.00
+canh-cheo,pwm,des,"DES EI min 3025, 2 s, sai số 5%",0.99001,59.400,99.66,9.61,8.51,30,0.00
+canh-cheo,pwm,des,"DES EI min 280, 2 s",0.97919,58.752,98.58,8.42,7.32,5,0.00
+canh-cheo,pwm,des,"DES tham lam, 2 s",0.97883,58.730,98.54,8.38,7.28,7,0.00
+canh-cheo,pwm,des,"DES theo mô hình, 2 s, sai số 5%",0.98893,59.336,99.56,9.49,8.39,30,0.00
+canh-cheo,mppt,tie,"cố định SP",1.10280,66.168,97.61,0.00,-2.39,0,0.00
+canh-cheo,mppt,tie,"cố định TCT",1.12500,67.500,99.57,2.01,-0.43,0,0.00
+canh-cheo,mppt,tie,"oracle (16 trạng thái)",1.12986,67.791,100.00,2.45,0.00,7,0.00
+canh-cheo,mppt,tie,"quét 16, 2 s, MOSFET",1.12440,67.464,99.52,1.96,-0.48,479,21.21
+canh-cheo,mppt,tie,"quét 16, 5 s, MOSFET",1.12399,67.439,99.48,1.92,-0.52,192,8.47
+canh-cheo,mppt,tie,"quét 16, 10 s, MOSFET",1.12308,67.385,99.40,1.84,-0.60,96,4.21
+canh-cheo,mppt,tie,"quét 16, 30 s, MOSFET",1.12095,67.257,99.21,1.65,-0.79,32,1.36
+canh-cheo,mppt,tie,"quét 16, 10 s, relay",1.11290,66.774,98.50,0.92,-1.50,96,19.63
+canh-cheo,mppt,tie,"quét khi P đổi 5 %, MOSFET",1.12295,67.377,99.39,1.83,-0.61,575,25.41
+canh-cheo,mppt,tie,"leo đồi 4 lân cận, 5 s",1.11708,67.025,98.87,1.30,-1.13,89,3.92
+canh-cheo,mppt,des,"DES cố định TCT",1.12501,67.501,88.56,2.01,-0.43,0,0.00
+canh-cheo,mppt,des,"DES oracle (3025 cách)",1.27037,76.222,100.00,15.19,12.44,16,0.00
+canh-cheo,mppt,des,"DES EI min 3025, 2 s",1.26764,76.058,99.79,14.95,12.19,7,0.00
+canh-cheo,mppt,des,"DES EI min 3025, 2 s, sai số 5%",1.26640,75.984,99.69,14.84,12.09,30,0.00
+canh-cheo,mppt,des,"DES EI min 280, 2 s",1.25288,75.173,98.62,13.61,10.89,5,0.00
+canh-cheo,mppt,des,"DES tham lam, 2 s",1.25262,75.157,98.60,13.59,10.87,7,0.00
+canh-cheo,mppt,des,"DES theo mô hình, 2 s, sai số 5%",1.26515,75.909,99.59,14.72,11.97,30,0.00
+canh-cheo,po,tie,"cố định SP",1.07142,64.285,97.86,0.00,-2.14,0,0.00
+canh-cheo,po,tie,"cố định TCT",1.10094,66.056,100.55,2.76,0.55,0,0.00
+canh-cheo,po,tie,"oracle (16 trạng thái)",1.09490,65.694,100.00,2.19,0.00,7,0.00
+canh-cheo,po,tie,"quét 16, 2 s, MOSFET",1.09585,65.751,100.09,2.28,0.09,478,21.21
+canh-cheo,po,tie,"quét 16, 5 s, MOSFET",1.09942,65.965,100.41,2.61,0.41,191,8.47
+canh-cheo,po,tie,"quét 16, 10 s, MOSFET",1.10023,66.014,100.49,2.69,0.49,95,4.21
+canh-cheo,po,tie,"quét 16, 30 s, MOSFET",1.10085,66.051,100.54,2.75,0.54,31,1.36
+canh-cheo,po,tie,"quét 16, 10 s, relay",1.08642,65.185,99.23,1.40,-0.77,95,19.63
+canh-cheo,po,tie,"quét khi P đổi 5 %, MOSFET",1.09517,65.710,100.02,2.22,0.02,559,24.38
+canh-cheo,po,tie,"leo đồi 4 lân cận, 5 s",1.09287,65.572,99.81,2.00,-0.19,79,3.51
+canh-cheo,po,des,"DES cố định TCT",1.10089,66.053,92.22,2.75,0.55,0,0.00
+canh-cheo,po,des,"DES oracle (3025 cách)",1.19381,71.629,100.00,11.42,9.03,16,0.00
+canh-cheo,po,des,"DES EI min 3025, 2 s",1.26572,75.943,106.02,18.14,15.60,7,0.00
+canh-cheo,po,des,"DES EI min 3025, 2 s, sai số 5%",1.26424,75.854,105.90,18.00,15.47,30,0.00
+canh-cheo,po,des,"DES EI min 280, 2 s",1.25098,75.059,104.79,16.76,14.26,5,0.00
+canh-cheo,po,des,"DES tham lam, 2 s",1.25052,75.031,104.75,16.72,14.21,7,0.00
+canh-cheo,po,des,"DES theo mô hình, 2 s, sai số 5%",1.26302,75.781,105.80,17.88,15.36,30,0.00
+cot-dien,pwm,tie,"cố định SP",1.59649,95.789,100.00,0.00,0.00,0,0.00
+cot-dien,pwm,tie,"cố định TCT",1.59649,95.789,100.00,0.00,0.00,0,0.00
+cot-dien,pwm,tie,"oracle (16 trạng thái)",1.59649,95.789,100.00,0.00,0.00,0,0.00
+cot-dien,pwm,tie,"quét 16, 2 s, MOSFET",1.59649,95.789,100.00,0.00,0.00,473,21.21
+cot-dien,pwm,tie,"quét 16, 5 s, MOSFET",1.59649,95.789,100.00,0.00,0.00,189,8.47
+cot-dien,pwm,tie,"quét 16, 10 s, MOSFET",1.59649,95.789,100.00,0.00,0.00,95,4.21
+cot-dien,pwm,tie,"quét 16, 30 s, MOSFET",1.59649,95.789,100.00,0.00,0.00,32,1.36
+cot-dien,pwm,tie,"quét 16, 10 s, relay",1.59649,95.789,100.00,0.00,0.00,94,19.63
+cot-dien,pwm,tie,"quét khi P đổi 5 %, MOSFET",1.59649,95.789,100.00,0.00,0.00,96,4.29
+cot-dien,pwm,tie,"leo đồi 4 lân cận, 5 s",1.59649,95.789,100.00,0.00,0.00,60,2.63
+cot-dien,pwm,des,"DES cố định TCT",1.59646,95.787,100.00,-0.00,-0.00,0,0.00
+cot-dien,pwm,des,"DES oracle (3025 cách)",1.59646,95.787,100.00,-0.00,-0.00,0,0.00
+cot-dien,pwm,des,"DES EI min 3025, 2 s",1.59629,95.778,99.99,-0.01,-0.01,3,0.00
+cot-dien,pwm,des,"DES EI min 3025, 2 s, sai số 5%",1.59213,95.528,99.73,-0.27,-0.27,29,0.00
+cot-dien,pwm,des,"DES EI min 280, 2 s",1.59629,95.778,99.99,-0.01,-0.01,3,0.00
+cot-dien,pwm,des,"DES tham lam, 2 s",1.59646,95.787,100.00,-0.00,-0.00,0,0.00
+cot-dien,pwm,des,"DES theo mô hình, 2 s, sai số 5%",1.59213,95.528,99.73,-0.27,-0.27,29,0.00
+cot-dien,mppt,tie,"cố định SP",2.04720,122.832,100.00,0.00,0.00,0,0.00
+cot-dien,mppt,tie,"cố định TCT",2.04720,122.832,100.00,0.00,0.00,0,0.00
+cot-dien,mppt,tie,"oracle (16 trạng thái)",2.04720,122.832,100.00,0.00,0.00,0,0.00
+cot-dien,mppt,tie,"quét 16, 2 s, MOSFET",2.04720,122.832,100.00,0.00,0.00,473,21.21
+cot-dien,mppt,tie,"quét 16, 5 s, MOSFET",2.04720,122.832,100.00,0.00,0.00,189,8.47
+cot-dien,mppt,tie,"quét 16, 10 s, MOSFET",2.04720,122.832,100.00,0.00,0.00,95,4.21
+cot-dien,mppt,tie,"quét 16, 30 s, MOSFET",2.04720,122.832,100.00,0.00,0.00,32,1.36
+cot-dien,mppt,tie,"quét 16, 10 s, relay",2.04720,122.832,100.00,0.00,0.00,94,19.63
+cot-dien,mppt,tie,"quét khi P đổi 5 %, MOSFET",2.04720,122.832,100.00,0.00,0.00,96,4.31
+cot-dien,mppt,tie,"leo đồi 4 lân cận, 5 s",2.04720,122.832,100.00,0.00,0.00,60,2.63
+cot-dien,mppt,des,"DES cố định TCT",2.04722,122.833,100.00,0.00,0.00,0,0.00
+cot-dien,mppt,des,"DES oracle (3025 cách)",2.04722,122.833,100.00,0.00,0.00,0,0.00
+cot-dien,mppt,des,"DES EI min 3025, 2 s",2.04715,122.829,100.00,-0.00,-0.00,3,0.00
+cot-dien,mppt,des,"DES EI min 3025, 2 s, sai số 5%",2.04510,122.706,99.90,-0.10,-0.10,29,0.00
+cot-dien,mppt,des,"DES EI min 280, 2 s",2.04715,122.829,100.00,-0.00,-0.00,3,0.00
+cot-dien,mppt,des,"DES tham lam, 2 s",2.04722,122.833,100.00,0.00,0.00,0,0.00
+cot-dien,mppt,des,"DES theo mô hình, 2 s, sai số 5%",2.04510,122.706,99.90,-0.10,-0.10,29,0.00
+cot-dien,po,tie,"cố định SP",2.04512,122.707,100.00,0.00,0.00,0,0.00
+cot-dien,po,tie,"cố định TCT",2.04512,122.707,100.00,0.00,0.00,0,0.00
+cot-dien,po,tie,"oracle (16 trạng thái)",2.04512,122.707,100.00,0.00,0.00,0,0.00
+cot-dien,po,tie,"quét 16, 2 s, MOSFET",2.04512,122.707,100.00,0.00,0.00,473,21.21
+cot-dien,po,tie,"quét 16, 5 s, MOSFET",2.04512,122.707,100.00,0.00,0.00,188,8.47
+cot-dien,po,tie,"quét 16, 10 s, MOSFET",2.04512,122.707,100.00,0.00,0.00,94,4.21
+cot-dien,po,tie,"quét 16, 30 s, MOSFET",2.04512,122.707,100.00,0.00,0.00,31,1.36
+cot-dien,po,tie,"quét 16, 10 s, relay",2.04512,122.707,100.00,0.00,0.00,94,19.63
+cot-dien,po,tie,"quét khi P đổi 5 %, MOSFET",2.04512,122.707,100.00,0.00,0.00,95,4.30
+cot-dien,po,tie,"leo đồi 4 lân cận, 5 s",2.04512,122.707,100.00,0.00,0.00,60,2.63
+cot-dien,po,des,"DES cố định TCT",2.04511,122.707,100.00,-0.00,-0.00,0,0.00
+cot-dien,po,des,"DES oracle (3025 cách)",2.04511,122.707,100.00,-0.00,-0.00,0,0.00
+cot-dien,po,des,"DES EI min 3025, 2 s",2.04505,122.703,100.00,-0.00,-0.00,3,0.00
+cot-dien,po,des,"DES EI min 3025, 2 s, sai số 5%",2.04296,122.578,99.90,-0.11,-0.11,29,0.00
+cot-dien,po,des,"DES EI min 280, 2 s",2.04505,122.703,100.00,-0.00,-0.00,3,0.00
+cot-dien,po,des,"DES tham lam, 2 s",2.04511,122.707,100.00,-0.00,-0.00,0,0.00
+cot-dien,po,des,"DES theo mô hình, 2 s, sai số 5%",2.04296,122.578,99.90,-0.11,-0.11,29,0.00
+dam-may,pwm,tie,"cố định SP",1.37968,82.781,99.56,0.00,-0.44,0,0.00
+dam-may,pwm,tie,"cố định TCT",1.37057,82.234,98.90,-0.66,-1.10,0,0.00
+dam-may,pwm,tie,"oracle (16 trạng thái)",1.38578,83.147,100.00,0.44,0.00,10,0.00
+dam-may,pwm,tie,"quét 16, 2 s, MOSFET",1.38057,82.834,99.62,0.06,-0.38,474,21.21
+dam-may,pwm,tie,"quét 16, 5 s, MOSFET",1.37993,82.796,99.58,0.02,-0.42,189,8.47
+dam-may,pwm,tie,"quét 16, 10 s, MOSFET",1.37380,82.428,99.14,-0.43,-0.86,95,4.21
+dam-may,pwm,tie,"quét 16, 30 s, MOSFET",1.37182,82.309,98.99,-0.57,-1.01,32,1.36
+dam-may,pwm,tie,"quét 16, 10 s, relay",1.37215,82.329,99.02,-0.55,-0.98,93,19.63
+dam-may,pwm,tie,"quét khi P đổi 5 %, MOSFET",1.38074,82.844,99.64,0.08,-0.36,302,13.47
+dam-may,pwm,tie,"leo đồi 4 lân cận, 5 s",1.37949,82.770,99.55,-0.01,-0.45,60,2.63
+dam-may,pwm,des,"DES cố định TCT",1.37060,82.236,93.56,-0.66,-1.10,0,0.00
+dam-may,pwm,des,"DES oracle (3025 cách)",1.46502,87.901,100.00,6.19,5.72,17,0.00
+dam-may,pwm,des,"DES EI min 3025, 2 s",1.46179,87.707,99.78,5.95,5.48,11,0.00
+dam-may,pwm,des,"DES EI min 3025, 2 s, sai số 5%",1.45731,87.438,99.47,5.63,5.16,30,0.00
+dam-may,pwm,des,"DES EI min 280, 2 s",1.46179,87.707,99.78,5.95,5.48,11,0.00
+dam-may,pwm,des,"DES tham lam, 2 s",1.45597,87.358,99.38,5.53,5.06,13,0.00
+dam-may,pwm,des,"DES theo mô hình, 2 s, sai số 5%",1.45731,87.438,99.47,5.63,5.16,30,0.00
+dam-may,mppt,tie,"cố định SP",1.76925,106.155,97.61,0.00,-2.39,0,0.00
+dam-may,mppt,tie,"cố định TCT",1.81251,108.751,100.00,2.45,0.00,0,0.00
+dam-may,mppt,tie,"oracle (16 trạng thái)",1.81251,108.751,100.00,2.45,0.00,2,0.00
+dam-may,mppt,tie,"quét 16, 2 s, MOSFET",1.80650,108.390,99.67,2.11,-0.33,468,21.21
+dam-may,mppt,tie,"quét 16, 5 s, MOSFET",1.80917,108.550,99.82,2.26,-0.18,186,8.47
+dam-may,mppt,tie,"quét 16, 10 s, MOSFET",1.80813,108.488,99.76,2.20,-0.24,93,4.21
+dam-may,mppt,tie,"quét 16, 30 s, MOSFET",1.80547,108.328,99.61,2.05,-0.39,31,1.36
+dam-may,mppt,tie,"quét 16, 10 s, relay",1.79275,107.565,98.91,1.33,-1.09,93,19.63
+dam-may,mppt,tie,"quét khi P đổi 5 %, MOSFET",1.80394,108.236,99.53,1.96,-0.47,267,12.08
+dam-may,mppt,tie,"leo đồi 4 lân cận, 5 s",1.80333,108.200,99.49,1.93,-0.51,79,3.47
+dam-may,mppt,des,"DES cố định TCT",1.81257,108.754,94.74,2.45,0.00,0,0.00
+dam-may,mppt,des,"DES oracle (3025 cách)",1.91327,114.796,100.00,8.14,5.56,17,0.00
+dam-may,mppt,des,"DES EI min 3025, 2 s",1.91065,114.639,99.86,7.99,5.41,11,0.00
+dam-may,mppt,des,"DES EI min 3025, 2 s, sai số 5%",1.90673,114.404,99.66,7.77,5.20,30,0.00
+dam-may,mppt,des,"DES EI min 280, 2 s",1.91065,114.639,99.86,7.99,5.41,11,0.00
+dam-may,mppt,des,"DES tham lam, 2 s",1.90651,114.391,99.65,7.76,5.19,13,0.00
+dam-may,mppt,des,"DES theo mô hình, 2 s, sai số 5%",1.90673,114.404,99.66,7.77,5.20,30,0.00
+dam-may,po,tie,"cố định SP",1.76740,106.044,97.62,0.00,-2.38,0,0.00
+dam-may,po,tie,"cố định TCT",1.81055,108.633,100.00,2.44,0.00,0,0.00
+dam-may,po,tie,"oracle (16 trạng thái)",1.81055,108.633,100.00,2.44,0.00,2,0.00
+dam-may,po,tie,"quét 16, 2 s, MOSFET",1.80455,108.273,99.67,2.10,-0.33,470,21.21
+dam-may,po,tie,"quét 16, 5 s, MOSFET",1.80815,108.489,99.87,2.31,-0.13,188,8.47
+dam-may,po,tie,"quét 16, 10 s, MOSFET",1.80934,108.561,99.93,2.37,-0.07,93,4.21
+dam-may,po,tie,"quét 16, 30 s, MOSFET",1.80349,108.209,99.61,2.04,-0.39,30,1.36
+dam-may,po,tie,"quét 16, 10 s, relay",1.79446,107.668,99.11,1.53,-0.89,93,19.63
+dam-may,po,tie,"quét khi P đổi 5 %, MOSFET",1.80516,108.310,99.70,2.14,-0.30,284,12.79
+dam-may,po,tie,"leo đồi 4 lân cận, 5 s",1.80207,108.124,99.53,1.96,-0.47,79,3.47
+dam-may,po,des,"DES cố định TCT",1.81052,108.631,94.74,2.44,-0.00,0,0.00
+dam-may,po,des,"DES oracle (3025 cách)",1.91114,114.668,100.00,8.13,5.56,17,0.00
+dam-may,po,des,"DES EI min 3025, 2 s",1.90849,114.510,99.86,7.98,5.41,11,0.00
+dam-may,po,des,"DES EI min 3025, 2 s, sai số 5%",1.90442,114.265,99.65,7.75,5.18,30,0.00
+dam-may,po,des,"DES EI min 280, 2 s",1.90849,114.510,99.86,7.98,5.41,11,0.00
+dam-may,po,des,"DES tham lam, 2 s",1.90437,114.262,99.65,7.75,5.18,13,0.00
+dam-may,po,des,"DES theo mô hình, 2 s, sai số 5%",1.90442,114.265,99.65,7.75,5.18,30,0.00

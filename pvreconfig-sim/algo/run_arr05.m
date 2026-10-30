@@ -7,7 +7,9 @@ function S = run_arr05(o)
 %     o.dt_tab     bước bảng công suất [s] (1)           o.dt        bước mô phỏng [s] (0.005)
 %     o.source     'reference' | 'simulink' (bảng 4 công tắc lấy từ model Simulink)
 %     o.des        true: chạy thêm DES (đổi nhóm từng tấm, 3025 cách chia hàng)
-%   Ghi results/arr05_summary.csv và results/arr05_traces.mat (vẽ bằng plot_arr05).
+%     o.T          nhiệt độ tấm [°C] (25); ngoài trời dùng pv_thermal('noct').Tmove
+%     o.suffix     hậu tố tên file kết quả (''), vd '_noct'
+%   Ghi results/arr05_summary<suffix>.csv và results/arr05_traces<suffix>.mat (vẽ bằng plot_arr05).
 %
 %   Thời gian giả định: MOSFET chuyển + ổn định 5 ms, đo 20 ms mỗi cấu hình; relay 20 ms + 100 ms.
 %   Bộ sạc P&O: mỗi 0,1 s nhích 0,2 V, bắt đầu ở 17 V.
@@ -15,9 +17,10 @@ function S = run_arr05(o)
 root = setup_path();
 if nargin < 1, o = struct(); end
 o = defaults(o, struct('scenarios', {{}}, 'chargers', {{'pwm', 'mppt', 'po'}}, 'dt_tab', 1, ...
-    'dt', 0.005, 'source', 'reference', 'des', true, 'Vg', (0:0.1:23.5)', 'Vbat', 13, 'T', 25));
+    'dt', 0.005, 'source', 'reference', 'des', true, 'Vg', (0:0.1:23.5)', 'Vbat', 13, 'T', 25, 'suffix', ''));
 sc = shadow_profiles();
 if ~isempty(o.scenarios), sc = shadow_profiles(o.scenarios); end
+fprintf('Nhiệt độ tấm: %g °C\n', o.T);
 
 chgdef = struct('pwm', struct('type', 'pwm'), 'mppt', struct('type', 'mppt'), 'po', struct('type', 'po'));
 rows = {};
@@ -59,10 +62,11 @@ for i = 1:numel(sc)
     end
 end
 
-fid = fopen(fullfile(root, 'results', 'arr05_summary.csv'), 'w');
+fid = fopen(fullfile(root, 'results', ['arr05_summary' o.suffix '.csv']), 'w');
 fprintf(fid, 'scenario,charger,family,algorithm,E_Wh,Pavg_W,pct_of_family_oracle,gain_vs_SP_pct,vs_tie_oracle_pct,n_switch,scan_time_pct\n');
 for k = 1:size(rows, 1)
-    fprintf(fid, '%s,%s,%s,%s,%.5f,%.3f,%.2f,%.2f,%.2f,%d,%.2f\n', rows{k, :});
+    % tên thuật toán có dấu phẩy nên bọc ngoặc kép
+    fprintf(fid, '%s,%s,%s,"%s",%.5f,%.3f,%.2f,%.2f,%.2f,%d,%.2f\n', rows{k, :});
 end
 fclose(fid);
 G = struct();
@@ -72,8 +76,8 @@ for i = 1:numel(sc)
     for k = 1:numel(t), Gt(:, :, k) = sc(i).Gfun(t(k)); end
     G.(strrep(sc(i).name, '-', '_')) = struct('t', t, 'G', Gt);
 end
-save(fullfile(root, 'results', 'arr05_traces.mat'), 'traces', 'G', 'o');
-fprintf('\nĐã ghi results/arr05_summary.csv, results/arr05_traces.mat\n');
+save(fullfile(root, 'results', ['arr05_traces' o.suffix '.mat']), 'traces', 'G', 'o');
+fprintf('\nĐã ghi results/arr05_summary%s.csv, results/arr05_traces%s.mat\n', o.suffix, o.suffix);
 S = rows;
 end
 
