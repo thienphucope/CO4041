@@ -408,7 +408,7 @@ Lệnh: các bước trong `sl_run_all`. Log: `pvreconfig-sim/results/matlab_log
 | Mức 1: 16 trạng thái × 9 ca (`sl_run_compare`, `sl_compare`) | **Đạt**: lệch Pmax, P@13 V ≤ 0,04 %, số đỉnh khớp | `arr_summary_simulink.csv`, `compare_simulink_vs_ref.csv` |
 | Mức 1b: ứng suất công tắc (9 ca) | 2,51 A / 7,58 V, khớp tham chiếu cùng 9 ca | `switch_stress_simulink.csv` |
 | Mức 3: quá độ (`sl_transient_tests`) | Đã chạy 7 ca. Đóng 4 công tắc cùng lúc: đỉnh dòng tới 368 A (ca `cheo`), bằng ΔV/Rsw và không phụ thuộc Cpv vì model chưa có điện cảm vòng và thời gian chuyển mạch MOSFET → trường hợp xấu nhất | `transient_simulink.csv`, `fig/transient_*.png` |
-| Mức 4: DES (`sl_des_check`) | 9/10 cấu hình đạt. `mot-tam` chia hàng 4-4-1 lệch P@13 V 1,5 % (79,15 so với 80,36 W), Pmax lệch 0,26 %; chưa rõ nguyên nhân | `des_check_simulink.csv` |
+| Mức 4: DES (`sl_des_check`) | 9/10 cấu hình đạt. `mot-tam` chia hàng 4-4-1 lệch P@13 V 1,5 % (79,15 so với 80,36 W), Pmax lệch 0,26 %. Nguyên nhân (30/10/2026): R công tắc đóng 1 mΩ trong model, tham chiếu coi lý tưởng; tính lại với 1 mΩ ra 79,19 W | `des_check_simulink.csv` |
 | Mức 2: thuật toán theo thời gian | **Chưa chạy** với Simulink (`run_arr05(struct('source','simulink'))`) | |
 
 Sửa code để chạy được trên R2026b (thư mục `simulink/`):
@@ -429,5 +429,6 @@ Mô hình 3D tương tác (4 công tắc + DES 54 công tắc): `pv3x3-3d.html` 
 - Datasheet/số đo thật của tấm TEKI 6 V/15 W → thay Isc, Voc, trích lại tham số mục 2.1.
 - Mẫu công tắc chính xác của BL và HC cho dàn 3 cột (hiện `1001` và `0110?`).
 - Loại công tắc trên PCB (MOSFET back-to-back hay relay) → R_closed và t_dwell.
-- DES `mot-tam` hàng 4-4-1: Simulink lệch tham chiếu 1,5 % tại 13 V, cần tìm nguyên nhân.
+- DES `mot-tam` hàng 4-4-1: Simulink lệch tham chiếu 1,5 % tại 13 V. Đã rõ (30/10/2026): do R công tắc 1 mΩ; cần thêm R công tắc vào tham chiếu DES.
+- Nhiệt độ tấm: kết quả 13 V đổi khi tấm nóng (xem `pvreconfig-sim/README.md`, mục nhiệt độ). Cần đo Voc và nhiệt độ tấm thật.
 - Quá độ: thêm điện cảm vòng và thời gian chuyển mạch MOSFET thật để có đỉnh dòng thực tế.

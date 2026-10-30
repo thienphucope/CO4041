@@ -5,8 +5,9 @@
 
 ## Việc cần làm
 
-- [ ] Tìm nguyên nhân DES `mot-tam` chia hàng 4-4-1 lệch P@13 V 1,5 % (79,15 so với 80,36 W). Gợi ý: hàng chỉ có 1 tấm (PV22, 300 W/m²) chạy sâu trong vùng bypass ở 13 V → so điện áp tấm và dòng diode bypass giữa Simulink và `pv_module_current`; thử bước giải nhỏ hơn (`cfg.maxstep`) và R_closed = 0.
-- [ ] Chạy lại phần tham chiếu trên MATLAB: `run(fullfile('reference','run_reference.m'))`, `run_stress`, `verify_des`, `run_des` (xác nhận số trước đây chạy bằng Octave).
+- [x] Tìm nguyên nhân DES `mot-tam` chia hàng 4-4-1 lệch P@13 V 1,5 % (79,15 so với 80,36 W), 30/10/2026: do model DES có R công tắc đóng 1 mΩ (`cfg.R_closed`) còn tham chiếu coi lý tưởng. Mỗi tấm đi qua 2 công tắc; ở 13 V tấm sáng sát Voc nên vài mV đổi dòng nhiều. Tính lại tham chiếu với 1 mΩ: 79,19 W (Simulink 79,15), hang-1 chia theo hàng 63,33 W (trùng). Không phải lỗi.
+- [ ] Thêm R công tắc vào mô hình DES tham chiếu (`pv_des_subsets`). Với R_on thật khoảng 20 mΩ, chia lệch tầng 4-4-1 tụt Pmax 113,8 → 107,9 W (thấp hơn TCT), nên chọn cách chia phải tính R_on.
+- [x] Chạy lại phần tham chiếu trên MATLAB (30/10/2026, `matlab -batch "run_all"`): trùng số cũ.
 - [ ] Chụp ảnh model (toàn dàn, subsystem `PV`, hộp tham số Solar Cell) cho báo cáo.
 - [ ] (Tùy chọn) Độ nhạy theo điện trở công tắc thật: chạy lại mức 1 và DES với `cfg.R_closed = 0.02` (MOSFET back-to-back) để biết tổn hao do dòng ngang trên thanh N1, N2 / S1–S4.
 
